@@ -1,0 +1,19 @@
+extend default
+
+block content
+	h2.
+		#{console}
+
+	table
+		each val, index in games
+			tr
+				td
+					if val.url
+						div.image-icon
+							img(src="/images/" + val.url)
+					else
+						div.image-icon
+							img(src="/images/no-image.jpg")
+				td
+					a(href="/#{val.slug}")
+						= val.title

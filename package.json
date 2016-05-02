@@ -2,12 +2,15 @@
   "name": "samlenett",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "morgan": "^1.7.0",
+    "mysql": "^2.10.2",
+    "node-mysql": "^0.4.2",
     "nodemon": "^1.9.2",
+    "slug": "^0.9.1",
     "stylus": "^0.54.5"
   },
   "devDependencies": {},
