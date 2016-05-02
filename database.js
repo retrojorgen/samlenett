@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 
 
 module.exports = {
-	getGamesFromConsole: function (consoleSlug, sucessCallback, failCallback) {
+	getGamesFromConsoleSlug: function (consoleSlug, sucessCallback, failCallback) {
 		console.log('henter ut rader');
 		connection.query('SELECT id from consoles where slug = ? limit 1', [consoleSlug], function(err, rows, fields) {
 			if(rows.length) {
@@ -25,7 +25,27 @@ module.exports = {
 				});
 			}
 		});			
-	}
+	},
+  getGameFromSlug: function (gameSlug, sucessCallback, failCallback) {
+    console.log('henter ut rader');
+    connection.query('SELECT * from games where slug = ? limit 1', [gameSlug], function(err, rows, fields) {
+      if(rows.length) {
+        connection.query('SELECT * from games-regions where games_id = ?', [rows.id], function(err, regionrows, regionfields) {
+          connection.query('SELECT * from games-comments where games_id = ?', [rows.id], function(err, regionrows, regionfields) {
+
+          });
+        });
+      }
+    });
+  },
+  updateGame: function (gameSlug, values, sucessCallback, failCallback) {
+    connection.query('UPDATE games SET ? where slug = "' + gameSlug + '"', values, function(err, regionrows, regionfields) {
+    });     
+  },
+  updateGameRegion: function (gameSlug, values, sucessCallback, failCallback) {
+    connection.query('UPDATE games SET ? where slug = "' + gameSlug + '"', values, function(err, regionrows, regionfields) {
+    });     
+  },
 }
 
 /**

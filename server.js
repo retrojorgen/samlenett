@@ -30,7 +30,7 @@ app.get('/', function (req, res, next) {
 
 app.get('/:console', function (req, res, next) {
   console.log(req.params.console);
-  database.getGamesFromConsole(req.params.console, function (games) {
+  database.getGamesFromConsoleSlug(req.params.console, function (games) {
 
     try {
       var html = consoleTemplate(
