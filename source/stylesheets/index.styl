@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,200,700')
+@import 'open-iconic.styl'
+
+blue-color = #3e8acf
 
 *
   margin 0
@@ -9,20 +12,13 @@ body
   font-family 'Source Code Pro', monospace
 
 .header
-  background url('https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925')
-  background-position center
+  background-color black
 
-  .page-title
-    font-weight 200
-    font-size 80px
-    text-align center
-    padding 100px
-    text-transform uppercase
-    color #fff
-
-.nav
+.nav, .user-settings
   background #000
   text-align center
+  display inline-block
+  position relative
 
   li
     display inline-block
@@ -36,6 +32,11 @@ body
     &:hover
       background-color #3AB795
       text-decoration underline
+
+
+.user-settings
+  float right
+
 
 .main-content
   margin 50px auto
@@ -54,3 +55,112 @@ body
   p
     color #444
     font-size 12px
+
+
+
+.login-box-wrapper
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  display flex
+  flex-flow row wrap
+  align-content flex-end
+  justify-content space-around
+  background-color rgba(100,100,100,0.3)
+
+  .login-box-container
+    width 400px
+    height auto
+    margin auto
+    display block
+    background-color white
+    box-shadow rgba(0,0,0,0.4) 0px 20px 40px
+    padding 40px 40px
+    position relative
+    border-radius 4px
+
+  .tabs
+    position absolute
+    bottom 0
+    left 0
+    text-align center
+    width 100%
+    li
+      display inline-block
+      padding 10px
+      text-transform uppercase
+      font-size 12px
+      cursor pointer
+      position relative
+
+      &.selected
+        &:before
+          content ""
+          position absolute
+          bottom 0
+          left 0
+          width 100%
+          height 4px
+          background-color #b41212
+
+  .login-box-header
+    background-color blue-color
+    color white
+    margin -40px -40px 40px
+    padding 40px
+    position relative
+
+  .close-button
+    position absolute
+    right 10px
+    top 10px
+    border 0
+    background-color transparent
+    cursor pointer
+    span
+      color white
+      font-size 14px
+      &:hover
+        color rgb(200,200,200)
+
+  .form-tab
+    display none
+    &.visible
+      display block
+      
+  form
+    label
+      margin-right 10px
+      &.hidden
+        display none
+
+
+    .form-row
+      padding 4px 20px 4px 20px
+      input
+        padding 10px
+        
+        border 1px solid rgb(100,100,100)
+        border-radius 4px
+        font-size 14px
+        &.full
+          width 100%  
+      .login
+        background-color blue-color
+        color white
+        text-transform uppercase
+        border 0
+        padding 14px 20px
+        width 100%
+        border-radius 4px
+        cursor pointer
+        outline none
+
+
+
+.pull-right
+  text-align right
+
+

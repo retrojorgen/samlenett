@@ -1,0 +1,68 @@
+.login-box-wrapper
+  .login-box-container
+    .login-box-header
+      h1. 
+        Logg inn
+      ul(data-tab-container="tab-form-container").tabs
+        li(data-tab="tab-1").selected.
+          Logg inn
+        li(data-tab="tab-2").
+          Bli medlem
+            
+    #tab-form-container
+      #tab-1.form-tab.visible
+        button.close-button
+          span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
+
+        form(action="/login", method="post")
+            .form-row
+              label.hidden.
+                  Username
+              input(type="text", name="username", placeholder="e-post-adresse").full
+            .form-row
+              label.hidden.
+                  Password
+              input(type="password", name="password", placeholder="passord").full
+            
+            .form-row.pull-right
+              label.
+                Remember Me
+              input(type="checkbox", name="remember", value="yes")
+
+            .form-row
+              button(type="submit").login.
+                logg in
+
+      #tab-2.form-tab
+        button.close-button
+          span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
+
+        form(action="/signup", method="post")
+            .form-row
+              label.hidden.
+                  Username
+              input(type="text", name="username", placeholder="e-post-adresse").full
+              
+            .form-row
+              label.hidden.
+                  Username
+              input(type="text", name="username", placeholder="brukernavn").full
+
+            .form-row
+              label.hidden.
+                  Password
+              input(type="password", name="password", placeholder="passord").full
+
+            .form-row  
+              label.hidden.
+                Gjenta passord    
+              input(type="password", name="password", placeholder="gjenta passord").full
+            
+            .form-row.pull-right
+              label.
+                Remember Me
+              input(type="checkbox", name="remember", value="yes")
+
+            .form-row
+              button(type="submit").login.
+                logg in

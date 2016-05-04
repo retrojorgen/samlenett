@@ -2,16 +2,28 @@ doctype html
 html
   head
     link(rel='stylesheet', href='/css/index.css')
+    script(src='https://code.jquery.com/jquery-2.2.3.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js')
     title World Wide Web
   body
-    ul.nav
-      li: a(href='/') Home
-      li: a(href='#news') News
-      li: a(href='#about') About
-      li: a(href='#contact') Contact
-    
+    header.header
+      ul.nav
+        li: a(href='/') forside
+      
+      ul.user-settings
+        if !isLoggedIn
+          li(id="login-toggle")
+            span.
+              Logg inn / Bli medlem
+            include ./login-form.jade
+        else
+          li.
+            Logget inn som #{user.username}  
+
     .main-content
       block content
 
     .footer
-      p Copyright © 2020 Futurecorpz. Futurecorpz ® is a Registered Trademark of Futures (un)Ltd. in the Mars Community and other solar systems.
+      p Copyright © SpillDB
+
+    script(src='javascript/tabSelector.js')  
