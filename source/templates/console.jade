@@ -2,7 +2,7 @@ extend default
 
 block content
 	h2.
-		#{console}
+		#{console.name}
 
 	table
 		each val, index in games
@@ -15,5 +15,5 @@ block content
 						div.image-icon
 							img(src="/images/no-image.jpg")
 				td
-					a(href="/#{val.slug}")
+					a(href="/#{console.slug}/#{val.slug}")
 						= val.title
