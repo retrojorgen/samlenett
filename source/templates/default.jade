@@ -11,14 +11,13 @@ html
         li: a(href='/') forside
       
       ul.user-settings
-        if !isLoggedIn
+        if !isAuthenticated
           li(id="login-toggle")
             span.
               Logg inn / Bli medlem
-            include ./login-form.jade
         else
           li.
-            Logget inn som #{user.username}  
+            Logget inn som #{user.nick}  
 
     .main-content
       block content
@@ -26,4 +25,5 @@ html
     .footer
       p Copyright © SpillDB
 
-    script(src='javascript/tabSelector.js')  
+    script(src='/javascript/tabSelector.js')
+    include ./login-form.jade  

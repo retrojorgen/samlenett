@@ -1,0 +1,27 @@
+extend default
+
+block content
+	.user-header
+		if !user.cover_photo_url
+			.cover-photo(style="background-image: url(/images/standard-cover-picture.jpg)")
+		else
+			.cover-photo(style="background-image: url(/images/#{user.cover_photo_url})")
+
+		
+
+		.user-info
+			if !user.profile_image_url
+				.profile-image(style="background-image: url(/images/standard-profile-picture.jpg)")
+			else
+				.profile-image(style="background-image: url(/images/#{user.profile_image_url})")
+			h2
+				span.
+					#{user.nick}s samling
+			p.member-since
+				span.
+					Medlem siden #{user.created_time}
+
+
+	.innhold
+
+	

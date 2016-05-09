@@ -1,8 +1,7 @@
-.login-box-wrapper
-  .login-box-container
-    .login-box-header
+#login-box.modal-box-wrapper(style="display: none;")  
+  .modal-box-container
+    .modal-box-header
       h1. 
-        Logg inn
       ul(data-tab-container="tab-form-container").tabs
         li(data-tab="tab-1").selected.
           Logg inn
@@ -14,11 +13,11 @@
         button.close-button
           span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
 
-        form(action="/login", method="post")
+        form#login-form(action="/login", method="post")
             .form-row
               label.hidden.
-                  Username
-              input(type="text", name="username", placeholder="e-post-adresse").full
+                  e-postadresse
+              input(type="text", name="username", placeholder="e-postadresse").full
             .form-row
               label.hidden.
                   Password
@@ -37,32 +36,31 @@
         button.close-button
           span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
 
-        form(action="/signup", method="post")
+        form#signup-form(action="/signup", method="post")
             .form-row
               label.hidden.
-                  Username
-              input(type="text", name="username", placeholder="e-post-adresse").full
+                  e-postadresse
+              input#new-username(type="text", name="username", placeholder="e-postadresse").full
+              p.message
               
             .form-row
               label.hidden.
-                  Username
-              input(type="text", name="username", placeholder="brukernavn").full
+                  Nick
+              input#new-nick(type="text", name="nick", placeholder="Ditt kallenavn/nick").full
+              p.message
 
             .form-row
               label.hidden.
                   Password
-              input(type="password", name="password", placeholder="passord").full
+              input#new-password(type="password", name="password", placeholder="passord").full
+              p.message
 
             .form-row  
               label.hidden.
                 Gjenta passord    
-              input(type="password", name="password", placeholder="gjenta passord").full
-            
-            .form-row.pull-right
-              label.
-                Remember Me
-              input(type="checkbox", name="remember", value="yes")
+              input#new-password-repeat(type="password", name="password-repeat", placeholder="gjenta passord").full
+              p.message
 
             .form-row
-              button(type="submit").login.
-                logg in
+              button(type="submit", disabled="disabled").login.
+                Bli medlem

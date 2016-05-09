@@ -2,6 +2,38 @@ extend default
 
 block content
 	h2.
-		#{console}
+		#{game.title}
+	h3.
+		#{game.name}
 
+	button#add-game-button.
+		add game	
+
+
+
+
+	#add-game-box.modal-box-wrapper(style="display: none;")  
+		.modal-box-container
+			.modal-box-header
+				p.
+					legg til i samlingen
+				h2.
+					#{game.title}
+
+			#tab-form-container
+				form#login-form(action="/login", method="post")
+					.form-row
+						label.
+							Har spillet en regionkode?
+						select
+							each val, index in regionselect
+								option.
+									#{val.name}
+
+					.form-row
+						button(type="submit").login.
+							Legg til
+
+
+	script(src="/javascript/addGameSelector.js")
 	

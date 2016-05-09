@@ -6,10 +6,7 @@
     , flash             = require('connect-flash')
     , logger            = require('morgan')
     , port              = process.env.PORT || 3000
-    , app               = express()
-    , frontpageTemplate = require('jade').compileFile(__dirname + '/source/templates/homepage.jade')
-    , consoleTemplate   = require('jade').compileFile(__dirname + '/source/templates/console.jade')
-    , gameTemplate      = require('jade').compileFile(__dirname + '/source/templates/game.jade');
+    , app               = express();
 
 
 // configuration ===============================================================
@@ -54,7 +51,7 @@ app.use(express.static(__dirname + '/static'));
 
 
 
-require('./app/routes.js')(app, passport, dbQueries, frontpageTemplate, consoleTemplate, gameTemplate);
+require('./app/routes.js')(app, passport, dbQueries);
 
 
 app.listen(port, function () {

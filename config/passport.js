@@ -7,6 +7,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var dbconfig = require('./database');
+var slug = require('slug')
 var connection = mysql.createConnection(dbconfig.connection);
 
 connection.query('USE ' + dbconfig.database);
@@ -21,6 +22,7 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
+        console.log(user);
         done(null, user.id);
     });
 
@@ -58,14 +60,15 @@ module.exports = function(passport) {
                     // create the user
                     var newUserMysql = {
                         username: username,
-                        password: bcrypt.hashSync(password, null, null)  // use the generateHash function in our user model
+                        password: bcrypt.hashSync(password, null, null),  // use the generateHash function in our user model
+                        nick: req.body.nick
                     };
 
-                    var insertQuery = "INSERT INTO users ( username, password ) values (?,?)";
+                    console.log('verdier: ', req.body);
+                    var insertQuery = "INSERT INTO users ( username, password, nick, slug, role ) values (?,?,?,?,?)";
 
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password],function(err, rows) {
+                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.nick, slug(newUserMysql.nick), 'regular'],function(err, rows) {
                         newUserMysql.id = rows.insertId;
-
                         return done(null, newUserMysql);
                     });
                 }
