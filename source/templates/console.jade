@@ -4,7 +4,16 @@ block content
 	h2.
 		#{console.name}
 
-	table
+	table.collection-table
+		tr
+			th.
+				screen-shot
+			th.
+				title
+			th.
+				utgivelselsår
+			th.
+				karakter
 		each val, index in games
 			tr
 				td
@@ -15,5 +24,9 @@ block content
 						div.image-icon
 							img(src="/images/no-image.jpg")
 				td
-					a(href="/games/#{console.slug}/#{val.slug}")
+					a(href="/games/#{console.slug}/#{val.slug}").
 						= val.title
+				td.
+					test
+				td.
+					test

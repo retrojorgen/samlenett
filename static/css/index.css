@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,200,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,200,700");
 @font-face {
   font-family: 'Icons';
   src: url("../fonts/open-iconic.eot");
@@ -729,16 +729,49 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  font-size: 10px;
+  font-weight: 300;
 }
 body {
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fbfbfb;
 }
 .header {
-  background-color: #000;
+  background-color: #4ba1ee;
+}
+.main-content {
+  max-width: 1100px;
+  margin: 80px auto;
+}
+.main-content h2 {
+  font-size: 4em;
+  padding: 40px 0;
+}
+.collection-table {
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.collection-table th {
+  background: #f7f7f7;
+  border-right: 1px solid #e0e0e0;
+  font-size: 1.4em;
+  font-weight: 600;
+  padding: 1.5em 1em;
+}
+.collection-table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+.collection-table td {
+  padding: 0.5em 1em;
+  font-size: 1.4em;
+  text-align: center;
 }
 .nav,
 .user-settings {
-  background: #000;
   text-align: center;
   display: inline-block;
   position: relative;
@@ -746,12 +779,14 @@ body {
 .nav li,
 .user-settings li {
   display: inline-block;
+  font-size: 14px;
 }
 .nav a,
 .user-settings a {
   display: inline-block;
   padding: 20px;
   color: #fff;
+  font-size: 14px;
   text-decoration: none;
 }
 .nav a:hover,
@@ -763,14 +798,16 @@ body {
   float: right;
 }
 .user-settings #login-toggle {
-  background-color: #3e8acf;
+  background-color: #fff;
   padding: 10px 20px;
-  text-transform: uppercase;
   border-radius: 6px;
-  color: #fff;
-  font-size: 14px;
   margin: 10px;
   cursor: pointer;
+  border-bottom: 4px solid #1373c8;
+}
+.user-settings #login-toggle span {
+  color: #2e92eb;
+  font-size: 14px;
 }
 .user-header {
   width: 100%;
@@ -848,9 +885,10 @@ body {
   display: inline-block;
   padding: 10px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 1.2em;
   cursor: pointer;
   position: relative;
+  color: #fff;
 }
 .modal-box-wrapper .tabs li.selected:before {
   content: "";
@@ -859,10 +897,10 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: #b41212;
+  background-color: #1373c8;
 }
 .modal-box-wrapper .modal-box-header {
-  background-color: #3e8acf;
+  background-color: #4ba1ee;
   color: #fff;
   margin: -40px -40px 40px;
   padding: 40px 80px;
@@ -937,7 +975,7 @@ body {
 }
 .modal-box-wrapper form .form-row input {
   padding: 10px;
-  border: 1px solid #646464;
+  border: 1px solid #c8c8c8;
   border-radius: 4px;
   font-size: 14px;
   position: relative;
@@ -946,18 +984,24 @@ body {
   width: 100%;
 }
 .modal-box-wrapper form .form-row .login {
-  background-color: #3e8acf;
-  color: #fff;
-  text-transform: uppercase;
   border: 0;
-  padding: 14px 20px;
   width: 100%;
-  border-radius: 4px;
   cursor: pointer;
   outline: none;
+  background: #4ba1ee;
+  border-bottom: 4px solid #1373c8;
+  border-radius: 0.3em;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.8em;
+  padding: 0.8em;
+}
+.modal-box-wrapper form .form-row .login:hover {
+  background: #5daaf0;
 }
 .modal-box-wrapper form .form-row .login:disabled {
   background-color: #aaa;
+  border-bottom: 4px solid #777;
 }
 .pull-right {
   text-align: right;
