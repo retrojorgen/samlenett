@@ -1,32 +1,52 @@
 extend default
 
 block content
-	h2.
-		#{console.name}
 
-	table.collection-table
-		tr
-			th.
-				screen-shot
-			th.
-				title
-			th.
-				utgivelselsår
-			th.
-				karakter
-		each val, index in games
-			tr
-				td
-					if val.url
-						div.image-icon
-							img(src="/images/" + val.url)
-					else
-						div.image-icon
-							img(src="/images/no-image.jpg")
-				td
-					a(href="/games/#{console.slug}/#{val.slug}").
-						= val.title
-				td.
-					test
-				td.
-					test
+	.content-header
+		.main-content
+			h2.
+				#{console.name}
+	.content-body
+		.main-content
+			.table-information.
+				Viser  #{games.length} spill
+			table.collection-table
+				tr
+					th.
+						Screen-shot
+					th.
+						Title
+					th.
+						Utgivelselsår
+					th.
+						karakter
+					th.
+						Wiki
+					th.
+						Legg til
+
+
+				each val, index in games
+					tr
+						td
+							if val.url
+								div.image-icon
+									img(src="/images/" + val.url)
+							else
+								div.image-icon
+									img(src="/images/no-image.jpg")
+						td.left
+							a(href="/games/#{console.slug}/#{val.slug}").
+								#{val.title}
+						td.
+							#{val.release_year}
+						td.
+
+						td
+							if(val.wiki_link)
+								a(href="#{val.wiki_link}").
+									link
+						td
+							button.add-game-button.
+								Legg til samling
+						

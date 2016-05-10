@@ -20,13 +20,26 @@ body
   background-color blue-color
 
 .main-content
-  max-width 1100px
-  margin 80px auto
+  max-width 90%
+  margin 40px auto
+  position relative
 
   h2 
     font-size 4em
     padding 40px 0
+  h3
+    font-size 2em
+    padding 40px 0 40px 0
+  h2+h3
+    margin-top -60px
+  .button-container
+    font-size 1.4em
 
+.content-header
+  background #f7f7f7
+  border-bottom 1px solid #e0e0e0
+  text-align center
+  padding 4em 0
 
 .collection-table
   border 1px solid #e0e0e0
@@ -39,12 +52,26 @@ body
     font-size 1.4em
     font-weight 600
     padding 1.5em 1em
+    &.left
+      text-align left
   tr
     border-bottom 1px solid #e0e0e0
   td
     padding .5em 1em
     font-size 1.4em
     text-align center
+    background-color white
+    &.left
+      text-align left
+    a
+      font-size 1.1em
+    .image-icon
+      width 40px
+      height 40px
+      overflow hidden
+      display inline-block
+      img
+        max-width 100%
 
 
 .nav, .user-settings
@@ -140,13 +167,14 @@ body
 
   .modal-box-container
     overflow hidden
+    max-width 100%
     width 400px
     height auto
     margin auto
     display block
     background-color white
     box-shadow rgba(0,0,0,0.4) 0px 20px 40px
-    padding 40px 0
+    padding 0 0
     position relative
     border-radius 6px
 
@@ -178,9 +206,12 @@ body
   .modal-box-header
     background-color blue-color
     color white
-    margin -40px -40px 40px
-    padding 40px 80px
+    padding 40px
     position relative
+    h2
+      color white
+      font-size 2em
+      text-align center
 
   .close-button
     position absolute
@@ -203,12 +234,16 @@ body
   form
     label
       margin-right 10px
+      font-size 1.4em
+      margin-bottom 10px
+      display block
       &.hidden
         display none
 
-
+    >div+div
+      padding-top 0 !important
     .form-row
-      padding 4px 40px 4px 40px
+      padding 20px 40px 20px 40px
       position relative
 
       .message
@@ -244,8 +279,7 @@ body
           .message
             color #12b415
 
-
-      input
+      input, select, textarea
         padding 10px
         
         border 1px solid rgb(200,200,200)
@@ -279,7 +313,27 @@ body
 
        
 
+.add-game-button
 
+  border 0
+  width 100%
+  cursor pointer
+  outline none
+  background blue-color
+  border-bottom 4px solid darken(blue-color, 30%)
+  border-radius .3em
+  color white
+  font-weight 600
+  font-size 1em
+  padding .8em
+
+  &:hover 
+    background lighten(blue-color, 10%)
+  
+
+  &:disabled
+    background-color #aaaaaa
+    border-bottom 4px solid darken(#aaaaaa, 30%)
 
 
 .pull-right

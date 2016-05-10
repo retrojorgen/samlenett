@@ -38,6 +38,7 @@ module.exports = function(app, passport, dbQueries) {
     // render the page and pass in any flash data if it exists
   });
 
+
   app.get('/login', function(req, res) {
     console.log('error');
     res.redirect('/');
@@ -149,6 +150,12 @@ module.exports = function(app, passport, dbQueries) {
         validation: false,
         message: decodeURIComponent(req.params.nick) + " er ledig"
       });
+    });
+  });
+
+  app.get('/tools/getgamefromgameid/:gameId', function (req, res,next) {
+    dbQueries.getGameRegionsFromGameId(req.params.gameId, function (games) {
+      res.json(games);
     });
   });
 

@@ -15,19 +15,14 @@
 
         form#login-form(action="/login", method="post")
             .form-row
-              label.hidden.
-                  e-postadresse
+              label.
+                  E-postadresse
               input(type="text", name="username", placeholder="e-postadresse").full
             .form-row
-              label.hidden.
-                  Password
+              label.
+                  Passord
               input(type="password", name="password", placeholder="passord").full
             
-            .form-row.pull-right
-              label.
-                Remember Me
-              input(type="checkbox", name="remember", value="yes")
-
             .form-row
               button(type="submit").login.
                 logg in
@@ -38,25 +33,25 @@
 
         form#signup-form(action="/signup", method="post")
             .form-row
-              label.hidden.
-                  e-postadresse
+              label.
+                  E-postadresse
               input#new-username(type="text", name="username", placeholder="e-postadresse").full
               p.message
               
             .form-row
-              label.hidden.
+              label.
                   Nick
               input#new-nick(type="text", name="nick", placeholder="Ditt kallenavn/nick").full
               p.message
 
             .form-row
-              label.hidden.
-                  Password
+              label.
+                  Passord
               input#new-password(type="password", name="password", placeholder="passord").full
               p.message
 
             .form-row  
-              label.hidden.
+              label.
                 Gjenta passord    
               input#new-password-repeat(type="password", name="password-repeat", placeholder="gjenta passord").full
               p.message

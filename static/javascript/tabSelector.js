@@ -8,9 +8,7 @@ $(function () {
 		$("#" + tabContainerId + " #" + newVisibleTab).addClass("visible");
 	});
 
-	$(".close-button").on('click', function (event) {
-		$(event.target).closest(".modal-box-wrapper").hide();
-	});
+
 
 	$("#login-toggle").on('click', function (event) {
 		$("#login-box").show();

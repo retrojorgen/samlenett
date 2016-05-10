@@ -742,12 +742,29 @@ body {
   background-color: #4ba1ee;
 }
 .main-content {
-  max-width: 1100px;
-  margin: 80px auto;
+  max-width: 90%;
+  margin: 40px auto;
+  position: relative;
 }
 .main-content h2 {
   font-size: 4em;
   padding: 40px 0;
+}
+.main-content h3 {
+  font-size: 2em;
+  padding: 40px 0 40px 0;
+}
+.main-content h2+h3 {
+  margin-top: -60px;
+}
+.main-content .button-container {
+  font-size: 1.4em;
+}
+.content-header {
+  background: #f7f7f7;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  padding: 4em 0;
 }
 .collection-table {
   border: 1px solid #e0e0e0;
@@ -762,6 +779,9 @@ body {
   font-weight: 600;
   padding: 1.5em 1em;
 }
+.collection-table th.left {
+  text-align: left;
+}
 .collection-table tr {
   border-bottom: 1px solid #e0e0e0;
 }
@@ -769,6 +789,22 @@ body {
   padding: 0.5em 1em;
   font-size: 1.4em;
   text-align: center;
+  background-color: #fff;
+}
+.collection-table td.left {
+  text-align: left;
+}
+.collection-table td a {
+  font-size: 1.1em;
+}
+.collection-table td .image-icon {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  display: inline-block;
+}
+.collection-table td .image-icon img {
+  max-width: 100%;
 }
 .nav,
 .user-settings {
@@ -864,13 +900,14 @@ body {
 }
 .modal-box-wrapper .modal-box-container {
   overflow: hidden;
+  max-width: 100%;
   width: 400px;
   height: auto;
   margin: auto;
   display: block;
   background-color: #fff;
   box-shadow: rgba(0,0,0,0.4) 0px 20px 40px;
-  padding: 40px 0;
+  padding: 0 0;
   position: relative;
   border-radius: 6px;
 }
@@ -902,9 +939,13 @@ body {
 .modal-box-wrapper .modal-box-header {
   background-color: #4ba1ee;
   color: #fff;
-  margin: -40px -40px 40px;
-  padding: 40px 80px;
+  padding: 40px;
   position: relative;
+}
+.modal-box-wrapper .modal-box-header h2 {
+  color: #fff;
+  font-size: 2em;
+  text-align: center;
 }
 .modal-box-wrapper .close-button {
   position: absolute;
@@ -929,12 +970,18 @@ body {
 }
 .modal-box-wrapper form label {
   margin-right: 10px;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  display: block;
 }
 .modal-box-wrapper form label.hidden {
   display: none;
 }
+.modal-box-wrapper form >div+div {
+  padding-top: 0 !important;
+}
 .modal-box-wrapper form .form-row {
-  padding: 4px 40px 4px 40px;
+  padding: 20px 40px 20px 40px;
   position: relative;
 }
 .modal-box-wrapper form .form-row .message {
@@ -973,14 +1020,18 @@ body {
 .modal-box-wrapper form .form-row.success:after .message {
   color: #12b415;
 }
-.modal-box-wrapper form .form-row input {
+.modal-box-wrapper form .form-row input,
+.modal-box-wrapper form .form-row select,
+.modal-box-wrapper form .form-row textarea {
   padding: 10px;
   border: 1px solid #c8c8c8;
   border-radius: 4px;
   font-size: 14px;
   position: relative;
 }
-.modal-box-wrapper form .form-row input.full {
+.modal-box-wrapper form .form-row input.full,
+.modal-box-wrapper form .form-row select.full,
+.modal-box-wrapper form .form-row textarea.full {
   width: 100%;
 }
 .modal-box-wrapper form .form-row .login {
@@ -1000,6 +1051,26 @@ body {
   background: #5daaf0;
 }
 .modal-box-wrapper form .form-row .login:disabled {
+  background-color: #aaa;
+  border-bottom: 4px solid #777;
+}
+.add-game-button {
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  background: #4ba1ee;
+  border-bottom: 4px solid #1373c8;
+  border-radius: 0.3em;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 0.8em;
+}
+.add-game-button:hover {
+  background: #5daaf0;
+}
+.add-game-button:disabled {
   background-color: #aaa;
   border-bottom: 4px solid #777;
 }
