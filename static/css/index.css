@@ -757,14 +757,17 @@ body {
 .main-content h2+h3 {
   margin-top: -60px;
 }
-.main-content .button-container {
-  font-size: 1.4em;
-}
 .content-header {
   background: #f7f7f7;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   padding: 4em 0;
+}
+.content-header .button-container {
+  font-size: 1.4em;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .collection-table {
   border: 1px solid #e0e0e0;

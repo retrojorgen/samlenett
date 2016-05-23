@@ -5,6 +5,7 @@
     , passport          = require('passport')
     , flash             = require('connect-flash')
     , logger            = require('morgan')
+    , MongoStore        = require('connect-mongo')(session) 
     , port              = process.env.PORT || 3000
     , app               = express();
 
@@ -37,7 +38,8 @@ app.use(session({
   cookie: {
     path: '/',
     maxAge: new Date().getTime() + (10 * 365 * 24 * 60 * 60)
-  }
+  },
+  store: new MongoStore({ url: 'mongodb://localhost/spilldb' })
  } )); // session secret
 
 app.use(passport.initialize());

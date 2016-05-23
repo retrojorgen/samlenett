@@ -30,6 +30,18 @@ module.exports = {
 		});
 	},
 
+	getConsolesAndGames: function (successCallback, failCallback) {
+		connection.query("SELECT consoles.*, count(games.id) as games from consoles left join games on (consoles.id = games.console_id) group by consoles.name", function (err, rows, fields) {
+			successCallback(rows);
+		});
+	},
+
+	getRegionsFromConsoleSlug: function (consoleSlug, successCallback, failCallback) {
+		connection.query("SELECT regions.name from regions left join consoles on(regions.console_id = consoles.id and consoles.slug = ?)", [consoleSlug], function (err, rows, fields) {
+			successCallback(rows);
+		});
+	},
+
 	getGameRegionsFromGameId: function (gameId, successCallback, failCallback) {
 		connection.query('SELECT * from games where parent_id = ? limit 1', [gameId], function (err, rows, fields) {
 			if(rows) {

@@ -6,10 +6,15 @@ var frontpageTemplate = require('jade').compileFile(__dirname + '/../source/temp
 
 
 module.exports = function(app, passport, dbQueries) {
+  var consoles = []; 
+  dbQueries.getConsolesAndGames(function (cons) {
+    consoles = cons;
+  });
 
   app.get('/', function (req, res, next) {
     console.log(req.isAuthenticated());
     console.log(req.user);
+
     try {
       var html = frontpageTemplate(
       { 
@@ -17,12 +22,7 @@ module.exports = function(app, passport, dbQueries) {
         user: req.user,
         title: 'Home' , 
         hest: 'blabla', 
-        games: [
-          {'game': 'nes game 1'},
-          {'game': 'nes game 2'},
-          {'game': 'nes game 3'},
-          {'game': 'nes game 4'}
-        ]
+        consoles: consoles
       })
       res.send(html)
     } catch (e) {

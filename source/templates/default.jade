@@ -9,7 +9,11 @@ html
     header.header
       ul.nav
         li: a(href='/') forside
+        li: Konsoller
+          ul.consoles
+            each console in consoles
       
+
       ul.user-settings
         if !isAuthenticated
           li(id="login-toggle")
