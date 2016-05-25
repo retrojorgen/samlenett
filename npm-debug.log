@@ -1,0 +1,713 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'watch' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.2
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'watch', null ]
+7 verbose cache add spec watch
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'watch',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'watch',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed watch@*
+10 verbose addNamed "*" is a valid semver range for watch
+11 silly addNameRange { name: 'watch', range: '*', hasData: false }
+12 silly mapToRegistry name watch
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/watch
+16 verbose addNameRange registry:https://registry.npmjs.org/watch not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/watch
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 8:19:36 PM
+20 verbose request id d84d2f62ee69b36d
+21 http request GET https://registry.npmjs.org/watch
+22 http 200 https://registry.npmjs.org/watch
+23 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 verbose headers   etag: '"6XNH7NKPSWJ0HXIXMZETSSATU"',
+23 verbose headers   'content-type': 'application/json',
+23 verbose headers   'content-encoding': 'gzip',
+23 verbose headers   'cache-control': 'max-age=300',
+23 verbose headers   'content-length': '5622',
+23 verbose headers   'accept-ranges': 'bytes',
+23 verbose headers   date: 'Wed, 25 May 2016 18:19:37 GMT',
+23 verbose headers   via: '1.1 varnish',
+23 verbose headers   age: '127',
+23 verbose headers   connection: 'keep-alive',
+23 verbose headers   'x-served-by': 'cache-fra1249-FRA',
+23 verbose headers   'x-cache': 'HIT',
+23 verbose headers   'x-cache-hits': '1',
+23 verbose headers   'x-timer': 'S1464200377.974076,VS0,VE0',
+23 verbose headers   vary: 'Accept-Encoding' }
+24 silly get cb [ 200,
+24 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly get     etag: '"6XNH7NKPSWJ0HXIXMZETSSATU"',
+24 silly get     'content-type': 'application/json',
+24 silly get     'content-encoding': 'gzip',
+24 silly get     'cache-control': 'max-age=300',
+24 silly get     'content-length': '5622',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Wed, 25 May 2016 18:19:37 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     age: '127',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-fra1249-FRA',
+24 silly get     'x-cache': 'HIT',
+24 silly get     'x-cache-hits': '1',
+24 silly get     'x-timer': 'S1464200377.974076,VS0,VE0',
+24 silly get     vary: 'Accept-Encoding' } ]
+25 verbose get saving watch to /Users/retrojorgen/.npm/registry.npmjs.org/watch/.cache.json
+26 silly addNameRange number 2 { name: 'watch', range: '*', hasData: true }
+27 silly addNameRange versions [ 'watch',
+27 silly addNameRange   [ '0.1.0',
+27 silly addNameRange     '0.2.0',
+27 silly addNameRange     '0.2.1',
+27 silly addNameRange     '0.3.0',
+27 silly addNameRange     '0.3.1',
+27 silly addNameRange     '0.3.2',
+27 silly addNameRange     '0.3.3',
+27 silly addNameRange     '0.4.0',
+27 silly addNameRange     '0.5.0',
+27 silly addNameRange     '0.5.1',
+27 silly addNameRange     '0.6.0',
+27 silly addNameRange     '0.7.0',
+27 silly addNameRange     '0.8.0',
+27 silly addNameRange     '0.9.0',
+27 silly addNameRange     '0.10.0',
+27 silly addNameRange     '0.11.0',
+27 silly addNameRange     '0.12.0',
+27 silly addNameRange     '0.13.0',
+27 silly addNameRange     '0.14.0',
+27 silly addNameRange     '0.15.0',
+27 silly addNameRange     '0.16.0',
+27 silly addNameRange     '0.17.0',
+27 silly addNameRange     '0.17.1',
+27 silly addNameRange     '0.18.0' ] ]
+28 silly addNamed watch@0.18.0
+29 verbose addNamed "0.18.0" is a plain semver version for watch
+30 silly mapToRegistry name watch
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/watch
+34 verbose addRemoteTarball https://registry.npmjs.org/watch/-/watch-0.18.0.tgz not in flight; adding
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/watch/-/watch-0.18.0.tgz',
+35 verbose addRemoteTarball   '28095476c6df7c90c963138990c0a5423eb4b986' ]
+36 info retry fetch attempt 1 at 8:19:38 PM
+37 info attempt registry request try #1 at 8:19:38 PM
+38 http fetch GET https://registry.npmjs.org/watch/-/watch-0.18.0.tgz
+39 http fetch 200 https://registry.npmjs.org/watch/-/watch-0.18.0.tgz
+40 silly fetchAndShaCheck shasum 28095476c6df7c90c963138990c0a5423eb4b986
+41 verbose addTmpTarball /tmp/npm-5460-000fbe69/registry.npmjs.org/watch/-/watch-0.18.0.tgz not in flight; adding
+42 verbose addTmpTarball already have metadata; skipping unpack for watch@0.18.0
+43 silly cache afterAdd watch@0.18.0
+44 verbose afterAdd /Users/retrojorgen/.npm/watch/0.18.0/package/package.json not in flight; writing
+45 verbose afterAdd /Users/retrojorgen/.npm/watch/0.18.0/package/package.json written
+46 silly install resolved [ { name: 'watch',
+46 silly install resolved     description: 'Utilities for watching file trees.',
+46 silly install resolved     keywords: [ 'util', 'utility', 'fs', 'files' ],
+46 silly install resolved     bin: { watch: './cli.js' },
+46 silly install resolved     version: '0.18.0',
+46 silly install resolved     homepage: 'https://github.com/mikeal/watch',
+46 silly install resolved     bugs: { url: 'https://github.com/mikeal/watch/issues' },
+46 silly install resolved     license: 'Apache-2.0',
+46 silly install resolved     repository: { type: 'git', url: 'git://github.com/mikeal/watch.git' },
+46 silly install resolved     author: { name: 'Mikeal Rogers', email: 'mikeal.rogers@gmail.com' },
+46 silly install resolved     directories: { lib: 'lib' },
+46 silly install resolved     engines: { node: '>=0.1.95' },
+46 silly install resolved     main: './main',
+46 silly install resolved     dependencies: { 'exec-sh': '^0.2.0', minimist: '^1.2.0' },
+46 silly install resolved     gitHead: '9529f78fc6912acf4ed39cf384dec0ec79c624a9',
+46 silly install resolved     _id: 'watch@0.18.0',
+46 silly install resolved     scripts: {},
+46 silly install resolved     _shasum: '28095476c6df7c90c963138990c0a5423eb4b986',
+46 silly install resolved     _from: 'watch@*',
+46 silly install resolved     _npmVersion: '2.15.0',
+46 silly install resolved     _nodeVersion: '4.4.2',
+46 silly install resolved     _npmUser: { name: 'mikeal', email: 'mikeal.rogers@gmail.com' },
+46 silly install resolved     maintainers: [ [Object], [Object] ],
+46 silly install resolved     dist:
+46 silly install resolved      { shasum: '28095476c6df7c90c963138990c0a5423eb4b986',
+46 silly install resolved        tarball: 'https://registry.npmjs.org/watch/-/watch-0.18.0.tgz' },
+46 silly install resolved     _npmOperationalInternal:
+46 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+46 silly install resolved        tmp: 'tmp/watch-0.18.0.tgz_1461962739879_0.18643369735218585' },
+46 silly install resolved     _resolved: 'https://registry.npmjs.org/watch/-/watch-0.18.0.tgz' } ]
+47 info install watch@0.18.0 into /usr/local/lib
+48 info installOne watch@0.18.0
+49 verbose installOne of watch to /usr/local/lib not in flight; installing
+50 verbose lock using /Users/retrojorgen/.npm/_locks/watch-5043fb459dfb1540.lock for /usr/local/lib/node_modules/watch
+51 silly install write writing watch 0.18.0 to /usr/local/lib/node_modules/watch
+52 verbose unbuild lib/node_modules/watch
+53 silly gentlyRm /usr/local/lib/node_modules/watch is being purged from base /usr/local
+54 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch
+55 verbose tar unpack /Users/retrojorgen/.npm/watch/0.18.0/package.tgz
+56 verbose tar unpacking to /usr/local/lib/node_modules/watch
+57 silly gentlyRm /usr/local/lib/node_modules/watch is being purged
+58 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch
+59 silly gunzTarPerm modes [ '755', '644' ]
+60 silly gunzTarPerm extractEntry package.json
+61 silly gunzTarPerm extractEntry .npmignore
+62 silly gunzTarPerm extractEntry LICENSE
+63 silly gunzTarPerm extractEntry cli.js
+64 silly gunzTarPerm extractEntry main.js
+65 silly gunzTarPerm extractEntry readme.mkd
+66 silly gunzTarPerm extractEntry release.sh
+67 silly gunzTarPerm extractEntry test/test_monitor.js
+68 silly gunzTarPerm extractEntry test/test_monitorRootDirectory.js
+69 silly gunzTarPerm extractEntry test/test_watchTree.js
+70 silly gunzTarPerm extractEntry test/d/d/t
+71 silly gunzTarPerm extractEntry test/d/t
+72 verbose write writing to /usr/local/lib/node_modules/watch/package.json
+73 info preinstall watch@0.18.0
+74 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/package.json
+75 silly prepareForInstallMany adding exec-sh@^0.2.0 from watch dependencies
+76 silly prepareForInstallMany adding minimist@^1.2.0 from watch dependencies
+77 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/package.json
+78 silly cache add args [ 'exec-sh@^0.2.0', null ]
+79 verbose cache add spec exec-sh@^0.2.0
+80 silly cache add args [ 'minimist@^1.2.0', null ]
+81 verbose cache add spec minimist@^1.2.0
+82 silly cache add parsed spec Result {
+82 silly cache add   raw: 'exec-sh@^0.2.0',
+82 silly cache add   scope: null,
+82 silly cache add   name: 'exec-sh',
+82 silly cache add   rawSpec: '^0.2.0',
+82 silly cache add   spec: '>=0.2.0 <0.3.0',
+82 silly cache add   type: 'range' }
+83 silly addNamed exec-sh@>=0.2.0 <0.3.0
+84 verbose addNamed ">=0.2.0 <0.3.0" is a valid semver range for exec-sh
+85 silly addNameRange { name: 'exec-sh', range: '>=0.2.0 <0.3.0', hasData: false }
+86 silly mapToRegistry name exec-sh
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry uri https://registry.npmjs.org/exec-sh
+90 verbose addNameRange registry:https://registry.npmjs.org/exec-sh not in flight; fetching
+91 silly cache add parsed spec Result {
+91 silly cache add   raw: 'minimist@^1.2.0',
+91 silly cache add   scope: null,
+91 silly cache add   name: 'minimist',
+91 silly cache add   rawSpec: '^1.2.0',
+91 silly cache add   spec: '>=1.2.0 <2.0.0',
+91 silly cache add   type: 'range' }
+92 silly addNamed minimist@>=1.2.0 <2.0.0
+93 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for minimist
+94 silly addNameRange { name: 'minimist', range: '>=1.2.0 <2.0.0', hasData: false }
+95 silly mapToRegistry name minimist
+96 silly mapToRegistry using default registry
+97 silly mapToRegistry registry https://registry.npmjs.org/
+98 silly mapToRegistry uri https://registry.npmjs.org/minimist
+99 verbose addNameRange registry:https://registry.npmjs.org/minimist not in flight; fetching
+100 verbose request uri https://registry.npmjs.org/exec-sh
+101 verbose request no auth needed
+102 info attempt registry request try #1 at 8:19:38 PM
+103 http request GET https://registry.npmjs.org/exec-sh
+104 verbose request uri https://registry.npmjs.org/minimist
+105 verbose request no auth needed
+106 info attempt registry request try #1 at 8:19:38 PM
+107 verbose etag "1IHTCX1VAGK10JJ0WI556KTCY"
+108 http request GET https://registry.npmjs.org/minimist
+109 http 200 https://registry.npmjs.org/exec-sh
+110 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+110 verbose headers   etag: '"BY1KJDQ251IMUFAAXK24OR9BR"',
+110 verbose headers   'content-type': 'application/json',
+110 verbose headers   'content-encoding': 'gzip',
+110 verbose headers   'cache-control': 'max-age=300',
+110 verbose headers   'content-length': '2779',
+110 verbose headers   'accept-ranges': 'bytes',
+110 verbose headers   date: 'Wed, 25 May 2016 18:19:38 GMT',
+110 verbose headers   via: '1.1 varnish',
+110 verbose headers   age: '240',
+110 verbose headers   connection: 'keep-alive',
+110 verbose headers   'x-served-by': 'cache-fra1242-FRA',
+110 verbose headers   'x-cache': 'HIT',
+110 verbose headers   'x-cache-hits': '2',
+110 verbose headers   'x-timer': 'S1464200378.367133,VS0,VE0',
+110 verbose headers   vary: 'Accept-Encoding' }
+111 silly get cb [ 200,
+111 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+111 silly get     etag: '"BY1KJDQ251IMUFAAXK24OR9BR"',
+111 silly get     'content-type': 'application/json',
+111 silly get     'content-encoding': 'gzip',
+111 silly get     'cache-control': 'max-age=300',
+111 silly get     'content-length': '2779',
+111 silly get     'accept-ranges': 'bytes',
+111 silly get     date: 'Wed, 25 May 2016 18:19:38 GMT',
+111 silly get     via: '1.1 varnish',
+111 silly get     age: '240',
+111 silly get     connection: 'keep-alive',
+111 silly get     'x-served-by': 'cache-fra1242-FRA',
+111 silly get     'x-cache': 'HIT',
+111 silly get     'x-cache-hits': '2',
+111 silly get     'x-timer': 'S1464200378.367133,VS0,VE0',
+111 silly get     vary: 'Accept-Encoding' } ]
+112 verbose get saving exec-sh to /Users/retrojorgen/.npm/registry.npmjs.org/exec-sh/.cache.json
+113 silly addNameRange number 2 { name: 'exec-sh', range: '>=0.2.0 <0.3.0', hasData: true }
+114 silly addNameRange versions [ 'exec-sh', [ '0.1.0', '0.1.2', '0.1.3', '0.1.4', '0.2.0' ] ]
+115 silly addNamed exec-sh@0.2.0
+116 verbose addNamed "0.2.0" is a plain semver version for exec-sh
+117 silly mapToRegistry name exec-sh
+118 silly mapToRegistry using default registry
+119 silly mapToRegistry registry https://registry.npmjs.org/
+120 silly mapToRegistry uri https://registry.npmjs.org/exec-sh
+121 verbose addRemoteTarball https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz not in flight; adding
+122 verbose addRemoteTarball [ 'https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz',
+122 verbose addRemoteTarball   '14f75de3f20d286ef933099b2ce50a90359cef10' ]
+123 info retry fetch attempt 1 at 8:19:38 PM
+124 info attempt registry request try #1 at 8:19:38 PM
+125 http fetch GET https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz
+126 http 200 https://registry.npmjs.org/minimist
+127 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+127 verbose headers   etag: '"AT9WGC14PV1X45LDVYJWISH2K"',
+127 verbose headers   'content-type': 'application/json',
+127 verbose headers   'content-encoding': 'gzip',
+127 verbose headers   'cache-control': 'max-age=300',
+127 verbose headers   'content-length': '5521',
+127 verbose headers   'accept-ranges': 'bytes',
+127 verbose headers   date: 'Wed, 25 May 2016 18:19:38 GMT',
+127 verbose headers   via: '1.1 varnish',
+127 verbose headers   age: '78',
+127 verbose headers   connection: 'keep-alive',
+127 verbose headers   'x-served-by': 'cache-fra1247-FRA',
+127 verbose headers   'x-cache': 'HIT',
+127 verbose headers   'x-cache-hits': '8',
+127 verbose headers   'x-timer': 'S1464200378.376507,VS0,VE0',
+127 verbose headers   vary: 'Accept-Encoding' }
+128 silly get cb [ 200,
+128 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+128 silly get     etag: '"AT9WGC14PV1X45LDVYJWISH2K"',
+128 silly get     'content-type': 'application/json',
+128 silly get     'content-encoding': 'gzip',
+128 silly get     'cache-control': 'max-age=300',
+128 silly get     'content-length': '5521',
+128 silly get     'accept-ranges': 'bytes',
+128 silly get     date: 'Wed, 25 May 2016 18:19:38 GMT',
+128 silly get     via: '1.1 varnish',
+128 silly get     age: '78',
+128 silly get     connection: 'keep-alive',
+128 silly get     'x-served-by': 'cache-fra1247-FRA',
+128 silly get     'x-cache': 'HIT',
+128 silly get     'x-cache-hits': '8',
+128 silly get     'x-timer': 'S1464200378.376507,VS0,VE0',
+128 silly get     vary: 'Accept-Encoding' } ]
+129 verbose get saving minimist to /Users/retrojorgen/.npm/registry.npmjs.org/minimist/.cache.json
+130 silly addNameRange number 2 { name: 'minimist', range: '>=1.2.0 <2.0.0', hasData: true }
+131 silly addNameRange versions [ 'minimist',
+131 silly addNameRange   [ '0.0.0',
+131 silly addNameRange     '0.0.1',
+131 silly addNameRange     '0.0.2',
+131 silly addNameRange     '0.0.3',
+131 silly addNameRange     '0.0.4',
+131 silly addNameRange     '0.0.5',
+131 silly addNameRange     '0.0.6',
+131 silly addNameRange     '0.0.7',
+131 silly addNameRange     '0.0.8',
+131 silly addNameRange     '0.0.9',
+131 silly addNameRange     '0.0.10',
+131 silly addNameRange     '0.1.0',
+131 silly addNameRange     '0.2.0',
+131 silly addNameRange     '1.0.0',
+131 silly addNameRange     '1.1.0',
+131 silly addNameRange     '1.1.1',
+131 silly addNameRange     '1.1.2',
+131 silly addNameRange     '1.1.3',
+131 silly addNameRange     '1.2.0' ] ]
+132 silly addNamed minimist@1.2.0
+133 verbose addNamed "1.2.0" is a plain semver version for minimist
+134 silly cache afterAdd minimist@1.2.0
+135 verbose afterAdd /Users/retrojorgen/.npm/minimist/1.2.0/package/package.json not in flight; writing
+136 verbose afterAdd /Users/retrojorgen/.npm/minimist/1.2.0/package/package.json written
+137 http fetch 200 https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz
+138 silly fetchAndShaCheck shasum 14f75de3f20d286ef933099b2ce50a90359cef10
+139 verbose addTmpTarball /tmp/npm-5460-000fbe69/registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz not in flight; adding
+140 verbose addTmpTarball already have metadata; skipping unpack for exec-sh@0.2.0
+141 silly cache afterAdd exec-sh@0.2.0
+142 verbose afterAdd /Users/retrojorgen/.npm/exec-sh/0.2.0/package/package.json not in flight; writing
+143 verbose afterAdd /Users/retrojorgen/.npm/exec-sh/0.2.0/package/package.json written
+144 silly install resolved [ { name: 'minimist',
+144 silly install resolved     version: '1.2.0',
+144 silly install resolved     description: 'parse argument options',
+144 silly install resolved     main: 'index.js',
+144 silly install resolved     devDependencies: { covert: '^1.0.0', tap: '~0.4.0', tape: '^3.5.0' },
+144 silly install resolved     scripts: { test: 'tap test/*.js', coverage: 'covert test/*.js' },
+144 silly install resolved     testling: { files: 'test/*.js', browsers: [Object] },
+144 silly install resolved     repository: { type: 'git', url: 'git://github.com/substack/minimist.git' },
+144 silly install resolved     homepage: 'https://github.com/substack/minimist',
+144 silly install resolved     keywords: [ 'argv', 'getopt', 'parser', 'optimist' ],
+144 silly install resolved     author:
+144 silly install resolved      { name: 'James Halliday',
+144 silly install resolved        email: 'mail@substack.net',
+144 silly install resolved        url: 'http://substack.net' },
+144 silly install resolved     license: 'MIT',
+144 silly install resolved     readme: '# minimist\n\nparse argument options\n\nThis module is the guts of optimist\'s argument parser without all the\nfanciful decoration.\n\n[![browser support](https://ci.testling.com/substack/minimist.png)](http://ci.testling.com/substack/minimist)\n\n[![build status](https://secure.travis-ci.org/substack/minimist.png)](http://travis-ci.org/substack/minimist)\n\n# example\n\n``` js\nvar argv = require(\'minimist\')(process.argv.slice(2));\nconsole.dir(argv);\n```\n\n```\n$ node example/parse.js -a beep -b boop\n{ _: [], a: \'beep\', b: \'boop\' }\n```\n\n```\n$ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz\n{ _: [ \'foo\', \'bar\', \'baz\' ],\n  x: 3,\n  y: 4,\n  n: 5,\n  a: true,\n  b: true,\n  c: true,\n  beep: \'boop\' }\n```\n\n# methods\n\n``` js\nvar parseArgs = require(\'minimist\')\n```\n\n## var argv = parseArgs(args, opts={})\n\nReturn an argument object `argv` populated with the array arguments from `args`.\n\n`argv._` contains all the arguments that didn\'t have an option associated with\nthem.\n\nNumeric-looking arguments will be returned as numbers unless `opts.string` or\n`opts.boolean` is set for that argument name.\n\nAny arguments after `\'--\'` will not be parsed and will end up in `argv._`.\n\noptions can be:\n\n* `opts.string` - a string or array of strings argument names to always treat as\nstrings\n* `opts.boolean` - a boolean, string or array of strings to always treat as\nbooleans. if `true` will treat all double hyphenated arguments without equal signs\nas boolean (e.g. affects `--foo`, not `-f` or `--foo=bar`)\n* `opts.alias` - an object mapping string names to strings or arrays of string\nargument names to use as aliases\n* `opts.default` - an object mapping string argument names to default values\n* `opts.stopEarly` - when true, populate `argv._` with everything after the\nfirst non-option\n* `opts[\'--\']` - when true, populate `argv._` with everything before the `--`\nand `argv[\'--\']` with everything after the `--`. Here\'s an example:\n* `opts.unknown` - a function which is invoked with a command line parameter not\ndefined in the `opts` configuration object. If the function returns `false`, the\nunknown option is not added to `argv`.\n\n```\n> require(\'./\')(\'one two three -- four five --six\'.split(\' \'), { \'--\': true })\n{ _: [ \'one\', \'two\', \'three\' ],\n  \'--\': [ \'four\', \'five\', \'--six\' ] }\n```\n\nNote that with `opts[\'--\']` set, parsing for arguments still stops after the\n`--`.\n\n# install\n\nWith [npm](https://npmjs.org) do:\n\n```\nnpm install minimist\n```\n\n# license\n\nMIT\n',
+144 silly install resolved     readmeFilename: 'readme.markdown',
+144 silly install resolved     bugs: { url: 'https://github.com/substack/minimist/issues' },
+144 silly install resolved     _id: 'minimist@1.2.0',
+144 silly install resolved     _shasum: 'a35008b20f41383eec1fb914f4cd5df79a264284',
+144 silly install resolved     _resolved: 'https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz',
+144 silly install resolved     _from: 'minimist@>=1.2.0 <2.0.0' },
+144 silly install resolved   { name: 'exec-sh',
+144 silly install resolved     version: '0.2.0',
+144 silly install resolved     description: 'Execute shell command forwarding all stdio.',
+144 silly install resolved     main: 'lib/exec-sh.js',
+144 silly install resolved     scripts:
+144 silly install resolved      { test: 'npm run cover-test && jshint',
+144 silly install resolved        'cover-test': 'istanbul cover --dir artifacts/coverage _mocha -- --reporter spec',
+144 silly install resolved        jshint: 'jshint lib/ example/ test/',
+144 silly install resolved        dev: 'mocha --reporter spec --watch',
+144 silly install resolved        jsdoc: 'jsdoc --private --destination artifacts/jsdoc lib/' },
+144 silly install resolved     repository: { type: 'git', url: 'git@github.com:tsertkov/exec-sh.git' },
+144 silly install resolved     keywords:
+144 silly install resolved      [ 'exec',
+144 silly install resolved        'spawn',
+144 silly install resolved        'terminal',
+144 silly install resolved        'console',
+144 silly install resolved        'shell',
+144 silly install resolved        'command',
+144 silly install resolved        'child_process' ],
+144 silly install resolved     author: { name: 'Aleksandr Tsertkov', email: 'tsertkov@gmail.com' },
+144 silly install resolved     license:
+144 silly install resolved      { type: 'MIT',
+144 silly install resolved        url: 'https://github.com/tsertkov/exec-sh/blob/master/LICENSE' },
+144 silly install resolved     bugs: { url: 'https://github.com/tsertkov/exec-sh/issues' },
+144 silly install resolved     dependencies: { merge: '^1.1.3' },
+144 silly install resolved     devDependencies:
+144 silly install resolved      { coveralls: '^2.11.2',
+144 silly install resolved        istanbul: '^0.3.2',
+144 silly install resolved        jsdoc: '^3.3.0-alpha8',
+144 silly install resolved        jshint: '^2.5.1',
+144 silly install resolved        mocha: '^1.20.1',
+144 silly install resolved        sinon: '^1.10.2' },
+144 silly install resolved     gitHead: '33a0a3731e78838f7f56d31cfcb737b3d510a526',
+144 silly install resolved     homepage: 'https://github.com/tsertkov/exec-sh',
+144 silly install resolved     _id: 'exec-sh@0.2.0',
+144 silly install resolved     _shasum: '14f75de3f20d286ef933099b2ce50a90359cef10',
+144 silly install resolved     _from: 'exec-sh@>=0.2.0 <0.3.0',
+144 silly install resolved     _npmVersion: '2.1.6',
+144 silly install resolved     _nodeVersion: '0.10.33',
+144 silly install resolved     _npmUser: { name: 'tsertkov', email: 'tsertkov@gmail.com' },
+144 silly install resolved     maintainers: [ [Object] ],
+144 silly install resolved     dist:
+144 silly install resolved      { shasum: '14f75de3f20d286ef933099b2ce50a90359cef10',
+144 silly install resolved        tarball: 'https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz' },
+144 silly install resolved     directories: {},
+144 silly install resolved     _resolved: 'https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz' } ]
+145 info install minimist@1.2.0 into /usr/local/lib/node_modules/watch
+146 info install exec-sh@0.2.0 into /usr/local/lib/node_modules/watch
+147 info installOne minimist@1.2.0
+148 verbose installOne of minimist to /usr/local/lib/node_modules/watch not in flight; installing
+149 info installOne exec-sh@0.2.0
+150 verbose installOne of exec-sh to /usr/local/lib/node_modules/watch not in flight; installing
+151 verbose lock using /Users/retrojorgen/.npm/_locks/minimist-77dc698073b5987d.lock for /usr/local/lib/node_modules/watch/node_modules/minimist
+152 silly install write writing minimist 1.2.0 to /usr/local/lib/node_modules/watch/node_modules/minimist
+153 verbose lock using /Users/retrojorgen/.npm/_locks/exec-sh-3c512c1f506bdc00.lock for /usr/local/lib/node_modules/watch/node_modules/exec-sh
+154 silly install write writing exec-sh 0.2.0 to /usr/local/lib/node_modules/watch/node_modules/exec-sh
+155 verbose unbuild lib/node_modules/watch/node_modules/minimist
+156 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/minimist is being purged from base /usr/local
+157 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/minimist
+158 verbose unbuild lib/node_modules/watch/node_modules/exec-sh
+159 verbose tar unpack /Users/retrojorgen/.npm/minimist/1.2.0/package.tgz
+160 verbose tar unpacking to /usr/local/lib/node_modules/watch/node_modules/minimist
+161 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/minimist is being purged
+162 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/minimist
+163 silly gunzTarPerm modes [ '755', '644' ]
+164 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/exec-sh is being purged from base /usr/local
+165 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/exec-sh
+166 verbose tar unpack /Users/retrojorgen/.npm/exec-sh/0.2.0/package.tgz
+167 verbose tar unpacking to /usr/local/lib/node_modules/watch/node_modules/exec-sh
+168 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/exec-sh is being purged
+169 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/exec-sh
+170 silly gunzTarPerm modes [ '755', '644' ]
+171 silly gunzTarPerm extractEntry package.json
+172 silly gunzTarPerm extractEntry package.json
+173 silly gunzTarPerm extractEntry LICENSE
+174 silly gunzTarPerm extractEntry index.js
+175 silly gunzTarPerm extractEntry .npmignore
+176 silly gunzTarPerm extractEntry README.md
+177 silly gunzTarPerm extractEntry .travis.yml
+178 silly gunzTarPerm extractEntry example/parse.js
+179 silly gunzTarPerm extractEntry LICENSE
+180 silly gunzTarPerm extractEntry .jshintrc
+181 silly gunzTarPerm extractEntry readme.markdown
+182 silly gunzTarPerm extractEntry test/all_bool.js
+183 silly gunzTarPerm extractEntry test/default_bool.js
+184 silly gunzTarPerm extractEntry test/dotted.js
+185 silly gunzTarPerm extractEntry test/kv_short.js
+186 silly gunzTarPerm extractEntry test/long.js
+187 silly gunzTarPerm extractEntry test/dash.js
+188 silly gunzTarPerm extractEntry test/parse.js
+189 silly gunzTarPerm extractEntry test/parse_modified.js
+190 silly gunzTarPerm extractEntry test/short.js
+191 silly gunzTarPerm extractEntry test/stop_early.js
+192 silly gunzTarPerm extractEntry test/unknown.js
+193 silly gunzTarPerm extractEntry test/bool.js
+194 silly gunzTarPerm extractEntry test/whitespace.js
+195 silly gunzTarPerm extractEntry test/num.js
+196 silly gunzTarPerm extractEntry .travis.yml
+197 silly gunzTarPerm extractEntry example/example.js
+198 silly gunzTarPerm extractEntry lib/exec-sh.js
+199 silly gunzTarPerm extractEntry test/exec-sh.js
+200 verbose write writing to /usr/local/lib/node_modules/watch/node_modules/exec-sh/package.json
+201 info preinstall exec-sh@0.2.0
+202 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/exec-sh/package.json
+203 silly prepareForInstallMany adding merge@^1.1.3 from exec-sh dependencies
+204 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/exec-sh/package.json
+205 silly cache add args [ 'merge@^1.1.3', null ]
+206 verbose cache add spec merge@^1.1.3
+207 silly cache add parsed spec Result {
+207 silly cache add   raw: 'merge@^1.1.3',
+207 silly cache add   scope: null,
+207 silly cache add   name: 'merge',
+207 silly cache add   rawSpec: '^1.1.3',
+207 silly cache add   spec: '>=1.1.3 <2.0.0',
+207 silly cache add   type: 'range' }
+208 silly addNamed merge@>=1.1.3 <2.0.0
+209 verbose addNamed ">=1.1.3 <2.0.0" is a valid semver range for merge
+210 silly addNameRange { name: 'merge', range: '>=1.1.3 <2.0.0', hasData: false }
+211 silly mapToRegistry name merge
+212 silly mapToRegistry using default registry
+213 silly mapToRegistry registry https://registry.npmjs.org/
+214 silly mapToRegistry uri https://registry.npmjs.org/merge
+215 verbose addNameRange registry:https://registry.npmjs.org/merge not in flight; fetching
+216 verbose request uri https://registry.npmjs.org/merge
+217 verbose request no auth needed
+218 info attempt registry request try #1 at 8:19:38 PM
+219 http request GET https://registry.npmjs.org/merge
+220 verbose write writing to /usr/local/lib/node_modules/watch/node_modules/minimist/package.json
+221 info preinstall minimist@1.2.0
+222 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/minimist/package.json
+223 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/minimist/package.json
+224 silly install resolved []
+225 verbose about to build /usr/local/lib/node_modules/watch/node_modules/minimist
+226 info build /usr/local/lib/node_modules/watch/node_modules/minimist
+227 info linkStuff minimist@1.2.0
+228 silly linkStuff minimist@1.2.0 has /usr/local/lib/node_modules/watch/node_modules as its parent node_modules
+229 silly linkStuff minimist@1.2.0 is part of a global install
+230 silly linkStuff minimist@1.2.0 is installed into a global node_modules
+231 verbose linkBins minimist@1.2.0
+232 verbose linkMans minimist@1.2.0
+233 verbose rebuildBundles minimist@1.2.0
+234 info install minimist@1.2.0
+235 info postinstall minimist@1.2.0
+236 verbose unlock done using /Users/retrojorgen/.npm/_locks/minimist-77dc698073b5987d.lock for /usr/local/lib/node_modules/watch/node_modules/minimist
+237 http 200 https://registry.npmjs.org/merge
+238 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+238 verbose headers   etag: '"CQS05T3PBIE2GY7Z0P0L91AK0"',
+238 verbose headers   'content-type': 'application/json',
+238 verbose headers   'content-encoding': 'gzip',
+238 verbose headers   'cache-control': 'max-age=300',
+238 verbose headers   'content-length': '1992',
+238 verbose headers   'accept-ranges': 'bytes',
+238 verbose headers   date: 'Wed, 25 May 2016 18:19:38 GMT',
+238 verbose headers   via: '1.1 varnish',
+238 verbose headers   age: '68',
+238 verbose headers   connection: 'keep-alive',
+238 verbose headers   'x-served-by': 'cache-fra1236-FRA',
+238 verbose headers   'x-cache': 'HIT',
+238 verbose headers   'x-cache-hits': '1',
+238 verbose headers   'x-timer': 'S1464200378.686811,VS0,VE0',
+238 verbose headers   vary: 'Accept-Encoding' }
+239 silly get cb [ 200,
+239 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+239 silly get     etag: '"CQS05T3PBIE2GY7Z0P0L91AK0"',
+239 silly get     'content-type': 'application/json',
+239 silly get     'content-encoding': 'gzip',
+239 silly get     'cache-control': 'max-age=300',
+239 silly get     'content-length': '1992',
+239 silly get     'accept-ranges': 'bytes',
+239 silly get     date: 'Wed, 25 May 2016 18:19:38 GMT',
+239 silly get     via: '1.1 varnish',
+239 silly get     age: '68',
+239 silly get     connection: 'keep-alive',
+239 silly get     'x-served-by': 'cache-fra1236-FRA',
+239 silly get     'x-cache': 'HIT',
+239 silly get     'x-cache-hits': '1',
+239 silly get     'x-timer': 'S1464200378.686811,VS0,VE0',
+239 silly get     vary: 'Accept-Encoding' } ]
+240 verbose get saving merge to /Users/retrojorgen/.npm/registry.npmjs.org/merge/.cache.json
+241 silly addNameRange number 2 { name: 'merge', range: '>=1.1.3 <2.0.0', hasData: true }
+242 silly addNameRange versions [ 'merge',
+242 silly addNameRange   [ '1.0.0', '1.1.0', '1.1.1', '1.1.2', '1.1.3', '1.2.0' ] ]
+243 silly addNamed merge@1.2.0
+244 verbose addNamed "1.2.0" is a plain semver version for merge
+245 silly mapToRegistry name merge
+246 silly mapToRegistry using default registry
+247 silly mapToRegistry registry https://registry.npmjs.org/
+248 silly mapToRegistry uri https://registry.npmjs.org/merge
+249 verbose addRemoteTarball https://registry.npmjs.org/merge/-/merge-1.2.0.tgz not in flight; adding
+250 verbose addRemoteTarball [ 'https://registry.npmjs.org/merge/-/merge-1.2.0.tgz',
+250 verbose addRemoteTarball   '7531e39d4949c281a66b8c5a6e0265e8b05894da' ]
+251 info retry fetch attempt 1 at 8:19:38 PM
+252 info attempt registry request try #1 at 8:19:38 PM
+253 http fetch GET https://registry.npmjs.org/merge/-/merge-1.2.0.tgz
+254 http fetch 200 https://registry.npmjs.org/merge/-/merge-1.2.0.tgz
+255 silly fetchAndShaCheck shasum 7531e39d4949c281a66b8c5a6e0265e8b05894da
+256 verbose addTmpTarball /tmp/npm-5460-000fbe69/registry.npmjs.org/merge/-/merge-1.2.0.tgz not in flight; adding
+257 verbose addTmpTarball already have metadata; skipping unpack for merge@1.2.0
+258 silly cache afterAdd merge@1.2.0
+259 verbose afterAdd /Users/retrojorgen/.npm/merge/1.2.0/package/package.json not in flight; writing
+260 verbose afterAdd /Users/retrojorgen/.npm/merge/1.2.0/package/package.json written
+261 silly install resolved [ { name: 'merge',
+261 silly install resolved     version: '1.2.0',
+261 silly install resolved     author: { name: 'yeikos', url: 'http://www.yeikos.com' },
+261 silly install resolved     description: 'Merge multiple objects into one, optionally creating a new cloned object. Similar to the jQuery.extend but more flexible. Works in Node.js and the browser.',
+261 silly install resolved     main: 'merge.js',
+261 silly install resolved     license: 'MIT',
+261 silly install resolved     homepage: 'https://github.com/yeikos/js.merge',
+261 silly install resolved     repository: { type: 'git', url: 'https://github.com/yeikos/js.merge.git' },
+261 silly install resolved     keywords: [ 'merge', 'recursive', 'extend', 'clone', 'object', 'browser' ],
+261 silly install resolved     scripts: { test: 'cd tests; node index.js' },
+261 silly install resolved     gitHead: '6fc27c23e1ebf54a4f6ba8a7224dd48dfd9faf7c',
+261 silly install resolved     bugs: { url: 'https://github.com/yeikos/js.merge/issues' },
+261 silly install resolved     _id: 'merge@1.2.0',
+261 silly install resolved     _shasum: '7531e39d4949c281a66b8c5a6e0265e8b05894da',
+261 silly install resolved     _from: 'merge@>=1.1.3 <2.0.0',
+261 silly install resolved     _npmVersion: '1.4.21',
+261 silly install resolved     _npmUser: { name: 'yeikos', email: 'yeikos@gmail.com' },
+261 silly install resolved     maintainers: [ [Object] ],
+261 silly install resolved     dist:
+261 silly install resolved      { shasum: '7531e39d4949c281a66b8c5a6e0265e8b05894da',
+261 silly install resolved        tarball: 'https://registry.npmjs.org/merge/-/merge-1.2.0.tgz' },
+261 silly install resolved     directories: {},
+261 silly install resolved     _resolved: 'https://registry.npmjs.org/merge/-/merge-1.2.0.tgz' } ]
+262 info install merge@1.2.0 into /usr/local/lib/node_modules/watch/node_modules/exec-sh
+263 info installOne merge@1.2.0
+264 verbose installOne of merge to /usr/local/lib/node_modules/watch/node_modules/exec-sh not in flight; installing
+265 verbose lock using /Users/retrojorgen/.npm/_locks/merge-0dd6ff2e076994ae.lock for /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+266 silly install write writing merge 1.2.0 to /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+267 verbose unbuild lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+268 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge is being purged from base /usr/local
+269 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+270 verbose tar unpack /Users/retrojorgen/.npm/merge/1.2.0/package.tgz
+271 verbose tar unpacking to /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+272 silly gentlyRm /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge is being purged
+273 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+274 silly gunzTarPerm modes [ '755', '644' ]
+275 silly gunzTarPerm extractEntry package.json
+276 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+277 silly gunzTarPerm extractEntry .npmignore
+278 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+279 silly gunzTarPerm extractEntry README.md
+280 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+281 silly gunzTarPerm extractEntry LICENSE
+282 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+283 silly gunzTarPerm extractEntry merge.js
+284 silly gunzTarPerm modified mode [ 'merge.js', 438, 420 ]
+285 silly gunzTarPerm extractEntry merge.min.js
+286 silly gunzTarPerm modified mode [ 'merge.min.js', 438, 420 ]
+287 silly gunzTarPerm extractEntry bower.json
+288 silly gunzTarPerm modified mode [ 'bower.json', 438, 420 ]
+289 verbose write writing to /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge/package.json
+290 info preinstall merge@1.2.0
+291 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge/package.json
+292 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge/package.json
+293 silly install resolved []
+294 verbose about to build /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+295 info build /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+296 info linkStuff merge@1.2.0
+297 silly linkStuff merge@1.2.0 has /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules as its parent node_modules
+298 silly linkStuff merge@1.2.0 is part of a global install
+299 silly linkStuff merge@1.2.0 is installed into a global node_modules
+300 verbose linkBins merge@1.2.0
+301 verbose linkMans merge@1.2.0
+302 verbose rebuildBundles merge@1.2.0
+303 info install merge@1.2.0
+304 info postinstall merge@1.2.0
+305 verbose unlock done using /Users/retrojorgen/.npm/_locks/merge-0dd6ff2e076994ae.lock for /usr/local/lib/node_modules/watch/node_modules/exec-sh/node_modules/merge
+306 verbose about to build /usr/local/lib/node_modules/watch/node_modules/exec-sh
+307 info build /usr/local/lib/node_modules/watch/node_modules/exec-sh
+308 info linkStuff exec-sh@0.2.0
+309 silly linkStuff exec-sh@0.2.0 has /usr/local/lib/node_modules/watch/node_modules as its parent node_modules
+310 silly linkStuff exec-sh@0.2.0 is part of a global install
+311 silly linkStuff exec-sh@0.2.0 is installed into a global node_modules
+312 verbose linkBins exec-sh@0.2.0
+313 verbose linkMans exec-sh@0.2.0
+314 verbose rebuildBundles exec-sh@0.2.0
+315 verbose rebuildBundles [ 'merge' ]
+316 info install exec-sh@0.2.0
+317 info postinstall exec-sh@0.2.0
+318 verbose unlock done using /Users/retrojorgen/.npm/_locks/exec-sh-3c512c1f506bdc00.lock for /usr/local/lib/node_modules/watch/node_modules/exec-sh
+319 verbose about to build /usr/local/lib/node_modules/watch
+320 info build /usr/local/lib/node_modules/watch
+321 info linkStuff watch@0.18.0
+322 silly linkStuff watch@0.18.0 has /usr/local/lib/node_modules as its parent node_modules
+323 silly linkStuff watch@0.18.0 is part of a global install
+324 silly linkStuff watch@0.18.0 is installed into a global node_modules
+325 silly linkStuff watch@0.18.0 is installed into the top-level global node_modules
+326 verbose linkBins watch@0.18.0
+327 verbose link bins [ { watch: './cli.js' }, '/usr/local/bin', true ]
+328 verbose linkMans watch@0.18.0
+329 verbose rebuildBundles watch@0.18.0
+330 verbose rebuildBundles [ 'exec-sh', 'minimist' ]
+331 silly gentlyRm /usr/local/bin/watch is being gently removed
+332 silly gentlyRm verifying /usr/local is an npm working directory
+333 silly gentlyRm containing path /usr/local is under npm's control, in /usr/local
+334 silly gentlyRm deletion target /usr/local/bin/watch is under /usr/local
+335 verbose gentlyRm vacuuming from /usr/local/bin/watch up to /usr/local
+336 info install watch@0.18.0
+337 info postinstall watch@0.18.0
+338 verbose unlock done using /Users/retrojorgen/.npm/_locks/watch-5043fb459dfb1540.lock for /usr/local/lib/node_modules/watch
+339 verbose validateInstall loading /usr/local/lib/package.json for validation
+340 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/npmconf requires mkdirp@'~0.3.3' but will load
+340 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/mkdirp,
+340 warn unmet dependency which is version 0.5.1
+341 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/npmconf requires osenv@'0.0.3' but will load
+341 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/osenv,
+341 warn unmet dependency which is version 0.1.3
+342 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/npmconf requires nopt@'2' but will load
+342 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/nopt,
+342 warn unmet dependency which is version 3.0.4
+343 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/npmconf requires semver@'2' but will load
+343 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/semver,
+343 warn unmet dependency which is version 5.0.3
+344 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/npmconf requires ini@'~1.1.0' but will load
+344 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/ini,
+344 warn unmet dependency which is version 1.3.4
+345 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data requires semver@'2' but will load
+345 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/semver,
+345 warn unmet dependency which is version 5.0.3
+346 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data requires github-url-from-git@'~1.1.1' but will load
+346 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/github-url-from-git,
+346 warn unmet dependency which is version 1.4.0
+347 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data requires github-url-from-username-repo@'0.0.2' but will load
+347 warn unmet dependency /usr/local/lib/node_modules/npm/node_modules/github-url-from-username-repo,
+347 warn unmet dependency which is version 1.0.2
+348 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/phonegap-build requires colors@'0.6.x' but will load
+348 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/colors,
+348 warn unmet dependency which is version 0.6.0-1
+349 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/connect-phonegap/node_modules/connect/node_modules/multiparty/node_modules/stream-counter requires readable-stream@'~1.1.8' but will load
+349 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/connect-phonegap/node_modules/connect/node_modules/multiparty/node_modules/readable-stream,
+349 warn unmet dependency which is version 1.1.13-1
+350 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/phonegap-build/node_modules/qrcode-terminal requires colors@'*' but will load
+350 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/colors,
+350 warn unmet dependency which is version 0.6.0-1
+351 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/prompt/node_modules/winston requires colors@'0.x.x' but will load
+351 warn unmet dependency /usr/local/lib/node_modules/phonegap/node_modules/colors,
+351 warn unmet dependency which is version 0.6.0-1
+352 verbose stack Error: The package generator-karma@0.7.0 does not satisfy its siblings' peerDependencies requirements!
+352 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+352 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+352 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+352 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+352 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+352 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+352 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+352 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+352 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+352 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+353 verbose cwd /Users/retrojorgen/Repos/samlenett
+354 error Darwin 15.4.0
+355 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "watch"
+356 error node v4.2.2
+357 error npm  v2.14.7
+358 error code EPEERINVALID
+359 error peerinvalid The package generator-karma@0.7.0 does not satisfy its siblings' peerDependencies requirements!
+359 error peerinvalid Peer generator-angular@0.9.0-1 wants generator-karma@>=0.8.2
+360 verbose exit [ 1, true ]

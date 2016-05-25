@@ -9,10 +9,13 @@ html
     header.header
       ul.nav
         li: a(href='/') forside
-        li: Konsoller
+        li
+          span.
+            konsoller
           ul.consoles
             each console in consoles
-      
+              li.
+                #{console.name}
 
       ul.user-settings
         if !isAuthenticated
