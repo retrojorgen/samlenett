@@ -1,61 +1,26 @@
-#login-box.modal-box-wrapper(style="display: none;")  
-  .modal-box-container
-    .modal-box-header
-      h1. 
-      ul(data-tab-container="tab-form-container").tabs
-        li(data-tab="tab-1").selected.
-          Logg inn
-        li(data-tab="tab-2").
-          Bli medlem
-            
-    #tab-form-container
-      #tab-1.form-tab.visible
-        button.close-button
-          span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
-
-        form#login-form(action="/login", method="post")
-            .form-row
-              label.
+.modal.fade.modal-signup-login(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button(type="button", data-dismiss="modal", aria-label="close").close
+          span(aria-hidden="true"):&times;
+        h4.modal-title#login-title.
+          Logg inn  
+      .modal-body
+          form#login-form(action="/login", method="post")
+              .form-group
+                label(for="username").sr-only.
                   E-postadresse
-              input(type="text", name="username", placeholder="e-postadresse").full
-            .form-row
-              label.
+                input(type="email", name="username", placeholder="e-postadresse")#username.form-control
+
+              .form-group
+                label(for="password").sr-only.
                   Passord
-              input(type="password", name="password", placeholder="passord").full
-            
-            .form-row
-              button(type="submit").login.
-                logg in
-
-      #tab-2.form-tab
-        button.close-button
-          span(class="oi" data-glyph="circle-x" title="circle-x" aria-hidden="true")
-
-        form#signup-form(action="/signup", method="post")
-            .form-row
-              label.
-                  E-postadresse
-              input#new-username(type="text", name="username", placeholder="e-postadresse").full
-              p.message
+                input(type="password", name="password", placeholder="Passord")#password.form-control  
               
-            .form-row
-              label.
-                  Nick
-              input#new-nick(type="text", name="nick", placeholder="Ditt kallenavn/nick").full
-              p.message
+              button(type="submit").btn.btn-primary.btn-block.btn-lg.
+                  logg in
 
-            .form-row
-              label.
-                  Passord
-              input#new-password(type="password", name="password", placeholder="passord").full
-              p.message
+                    
 
-            .form-row  
-              label.
-                Gjenta passord    
-              input#new-password-repeat(type="password", name="password-repeat", placeholder="gjenta passord").full
-              p.message
-
-            .form-row
-              button(type="submit", disabled="disabled").login.
-                Bli medlem
+          

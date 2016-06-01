@@ -1,4 +1,6 @@
+console.log('hello');
 $(function () {
+	console.log('hello');
 	$('.tabs li').on('click', function (event) {
 		var tabContainerId = $(event.target).parent().attr("data-tab-container");
 		var newVisibleTab = $(event.target).attr("data-tab");
@@ -11,6 +13,7 @@ $(function () {
 
 
 	$("#login-toggle").on('click', function (event) {
+		console.log('showing box');
 		$("#login-box").show();
 	});
 

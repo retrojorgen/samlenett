@@ -82,9 +82,13 @@ module.exports = {
 				if(rows.length) {
 					connection.query('SELECT games.title, games.wiki_link, games.rarity, games.release_year, games.slug, game_images.url from games left join game_images on games.id = game_images.game_id where games.console_id = ? group BY games.title', [rows[0].id], 
 					function(gameserr, gamesrows, gamesfields) {
-						successCallback({
-							console: rows[0],
-							games: gamesrows
+						connection.query('SELECT regions.* from regions where regions.console_id = ?', [rows[0].id],
+						function (regionserr, regionsrows, regionsfields) {
+							successCallback({
+								regions: regionsrows,
+								console: rows[0],
+								games: gamesrows
+							});
 						});
 					});
 				} else {

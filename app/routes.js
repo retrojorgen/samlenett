@@ -60,19 +60,13 @@ module.exports = function(app, passport, dbQueries) {
 
 
     }, function () {
-      res.redirect('/404');
+      res.redirect('/');
     });
     
   });
 
   app.get('/404', function(req, res) {
-      try {
-        var html = errorTemplate();
-        res.send(html);
-      } catch (e) {
-        next(e);
-      }
-    
+        res.send("error");
   });
 
   // process the login form
@@ -108,7 +102,13 @@ module.exports = function(app, passport, dbQueries) {
 
       console.log(games);
       try {
-        var html = consoleTemplate(games);
+        var html = consoleTemplate({
+          user: req.user,
+          consoles: consoles, 
+          console: games.console,
+          regions: games.regions,
+          games: games.games
+        });
         res.send(html);
       } catch (e) {
         next(e);
@@ -126,7 +126,11 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.getGameFromSlug(req.params.consoleSlug, req.params.gameSlug, function (games) {
       console.log(games);
       try {
-        var html = gameTemplate(games);
+        var html = gameTemplate({
+          user: req.user,
+          consoles: consoles, 
+          games: games
+        });
         res.send(html);
       } catch (e) {
         next(e);

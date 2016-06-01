@@ -2,26 +2,22 @@ extend default
 
 block content
 
-	.content-header
+	.container-fluid
 		.main-content
 			h2.
 				#{console.name}
-	.content-body
-		.main-content
+	.container-fluid
+		.main-content.container
 			.table-information.
 				Viser  #{games.length} spill
-			table.collection-table
+			table.collection-table.table.table-striped.table-condensed
 				tr
 					th.
 						Screen-shot
 					th.
 						Title
 					th.
-						Utgivelselsår
-					th.
-						karakter
-					th.
-						Wiki
+						Først utgitt
 					th.
 						Legg til
 
@@ -31,22 +27,30 @@ block content
 						td
 							if val.url
 								div.image-icon
-									img(src="/images/" + val.url)
+									img(src="/images/" + val.url).img-thumbnail
 							else
 								div.image-icon
-									img(src="/images/no-image.jpg")
+									img(src="/images/no-image.jpg").img-thumbnail
 						td.left
 							a(href="/games/#{console.slug}/#{val.slug}").
 								#{val.title}
 						td.
 							#{val.release_year}
-						td.
-
 						td
-							if(val.wiki_link)
-								a(href="#{val.wiki_link}").
-									link
-						td
-							button.add-game-button.
-								Legg til samling
+							if regions.length
+								.btn-group
+									button(type="button").btn.btn-primary.
+										Action
+									button(type="button",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false").btn.btn-primary.dropdown-toggle
+										span.caret
+										span.sr-only.
+											Toggle Dropdown
+									ul.dropdown-menu
+										each region, index in regions
+											li
+												a(href="#").
+													#{region.name}
+							else
+								button.add-game-button.btn.btn-primary.
+									Legg til samling
 						
