@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>SamleDB</title>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/screen.css">
+		<style>
+			.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+		</style>
+
+	</head>
+	<body ng-app="spilldb">
+
+
+		<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+			<div class="container-fluid">
+		        <div class="navbar-header">
+		          	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			            <span class="sr-only">
+			              Toggle navigation
+			          	</span>
+			          	<span class="icon-bar"></span>
+			          	<span class="icon-bar"></span>
+			          	<span class="icon-bar"></span>
+		          	</button>
+		          	<a class="navbar-brand" href="#">
+		            	SamleDB
+        			</a>
+        		</div>
+		        <div class="collapse navbar-collapse" id="collapsed-navbar">
+					<ul class="nav navbar-nav">
+			            <li>
+			              	<a href="#">
+			                	Forside
+			            	</a>
+			            </li>
+			            <li clas="dropdown">
+		              		<a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
+		                		<span>
+		                	  	Dropdown 
+			              		</span>
+			                	<span class="caret">
+			                	</span>
+			              	<ul class="dropdown-menu">
+	                	  		<li>
+									<a href="/games/#/console/nes">
+			                    		NES
+			                    	</a>
+			                    	<a href="/games/#/console/sms">
+			                    		Sega Master System
+			                    	</a>
+			                	</li>
+		            		</ul>
+		            	</li>
+	            	</ul>
+	            	<form class="navbar-form navbar-left" role="search">
+	            		<div class="form-group">
+		              		<input type="text" placeholder="Søk etter spill" class="form-control">
+		              	</div>
+	              	</form>	
+		                      
+
+		          	<ul class="nav navbar-nav navbar-right">
+		          		<li>
+		           			<auth></auth>
+		              	</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		
+		<script src="app/scripts/app.js"></script>
+		<script src="app/scripts/components/auth.js"></script>
+	</body>
+</html>

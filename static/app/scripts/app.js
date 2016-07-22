@@ -1,0 +1,1 @@
+var spilldb = angular.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate']);

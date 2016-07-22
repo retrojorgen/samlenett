@@ -1,0 +1,58 @@
+<div ng-if="!loggedIn">
+    <button type="button" id="login-toggle" class="btn btn-default navbar-btn" ng-click="toggleLoginForm()">
+        Logg inn / Bli medlem
+    </button>
+
+</div>
+<div ng-if="loggedIn">
+    <p class="navbar-text">
+        Logget inn som {{user.nick}}
+    </p>
+     <button type="button" id="login-toggle" class="btn btn-default navbar-btn" ng-click="logOut()">
+        logg ut
+    </button>
+</div>
+
+<div ng-show="showLoginForm" class="dialog-wrapper">
+    <div class="cloak"></div>
+    <div class="dialog-container">
+        <ul class="dialog-tabs">
+            <li class="btn" ng-click="loginFormTab = 'login'" ng-class="{
+            active: loginFormTab == 'login'
+        }">Logg inn</li>
+            <li class="btn" ng-click="loginFormTab = 'signup'" ng-class="{
+            active: loginFormTab == 'signup'
+        }">Bli medlem</li>
+        </ul>
+        <div class="loginForm" ng-show="loginFormTab == 'login'">
+            <form ng-submit="submitLoginForm()">
+                <div class="form-group">
+                    <label for="username-login">E-postadresse</label>
+                    <input ng-model="loginUsername" class="form-control" id="username-login" type="text" placeholder="Nick">
+                </div>
+                <div class="form-group">
+                    <label for="password-login">Passord</label>
+                    <input ng-model="LoginPassword" class="form-control" id="password-login" type="password" placeholder="Passord">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Logg inn</button>
+            </form>
+        </div>
+        <div class="signupForm" ng-show="loginFormTab == 'signup'">
+            <form ng-submit="submitSignupForm()">
+                <div class="form-group">
+                    <label for="username-signup">E-postadresse</label>
+                    <input ng-model="signupUsername" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                </div>
+                <div class="form-group">
+                    <label for="username-signup">Nick</label>
+                    <input ng-model="signupNick" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                </div>
+                <div class="form-group">
+                    <label for="password-signup">Passord</label>
+                    <input ng-model="signupPassword" class="form-control" id="password-signup" type="password" placeholder="Passord">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Bli medlem</button>
+            </form>
+        </div>
+    </div>
+</div>

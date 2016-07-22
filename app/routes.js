@@ -11,7 +11,7 @@ module.exports = function(app, passport, dbQueries) {
     consoles = cons;
   });
 
-  app.get('/', function (req, res, next) {
+  app.get('/api', function (req, res, next) {
     console.log(req.isAuthenticated());
     console.log(req.user);
 
@@ -37,6 +37,8 @@ module.exports = function(app, passport, dbQueries) {
     else res.redirect('/');
     // render the page and pass in any flash data if it exists
   });
+
+
 
 
   app.get('/login', function(req, res) {
@@ -86,6 +88,50 @@ module.exports = function(app, passport, dbQueries) {
             **/
         res.redirect('/profile');
     });
+
+
+  // process the login form
+  app.post('/api/login', passport.authenticate('local-login', {
+            successRedirect : '/api/auth', // In both cases redirect to auth
+            failureRedirect : '/api/auth', // 
+            failureFlash : true // allow flash messages
+    }),
+        function(req, res) {
+            console.log("hello");
+            /**
+            if (req.body.remember) {
+              req.session.cookie.maxAge = 1000 * 60 * 3;
+            } else {
+              req.session.cookie.expires = false;
+            }
+            **/
+        //res.redirect('/profile');
+    });
+
+
+  app.get('/api/auth', function (req, res, next) {
+
+    var status = {
+      status: req.isAuthenticated(),
+      user: req.user || undefined
+    };
+
+
+    if(!req.isAuthenticated()) {
+      res.json(401, status);
+    } else {
+      res.json(status);  
+    }
+  });
+
+  app.get('/api/logout', function (req, res, next) {
+
+    req.logout();
+    res.json({
+      status: 'logged out'
+    });
+  });
+
 
 
   app.post('/signup', passport.authenticate('local-signup', {
@@ -187,6 +233,15 @@ module.exports = function(app, passport, dbQueries) {
     }
   });
 
+  app.get('/auth', function (req, res, next) {
+
+    var status = {
+      status: req.isAuthenticated()
+    };
+
+    res.json(status);
+  });
+
 
   // route middleware to make sure
   function isLoggedIn(req, res, next) {
@@ -197,6 +252,14 @@ module.exports = function(app, passport, dbQueries) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
+  }
+
+  function isLoggedInBoolean(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+      return true;
+    return false;
   }
 
   function validateEmail(email) 
