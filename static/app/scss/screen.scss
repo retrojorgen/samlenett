@@ -54,11 +54,23 @@
   		width: 100%;
   		padding: 0;
   	}
+    .input-group {
+      width: 100%;
+    }
   	.form-control {
   		border: 1px solid #798790;
   		color: #798790;
   		background-color: transparent;
   	}
+    .form-control-feedback {
+      
+      &.glyphicon-remove {
+        color: red;  
+      }
+      &.glyphicon-ok {
+        color: green;
+      }
+    }
   	.dialog-container {
   		max-width: 100%;
   		width: 320px;

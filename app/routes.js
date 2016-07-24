@@ -132,6 +132,46 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.post('/api/check/nick', function (req, res, next) {
+    dbQueries.getNickSlugfromNick(req.body.nick, function () {
+      res.json(401, {
+        validation: true,
+        code: "notavailable"
+      });
+    }, function () {
+      res.json({
+        validation: false,
+        code: "available"
+      });
+    });
+  });
+
+  app.post('/api/check/email', function (req, res, next) {
+    console.log('validerer ',validateEmail(req.body.email));
+    if(!validateEmail(req.body.email)) {
+
+      res.json(404, {
+        validation: true,
+        code: "novalid"
+      });
+    } else {
+      dbQueries.getUsernameFromUsername(req.body.email, function () {
+        res.json(404, {
+          validation: true,
+          code: "alreadyexists"
+
+        });
+      }, function () {
+        res.json({
+          validation: false,
+          code: "available"
+        });
+      });
+    }
+  });
+
+
+
 
 
   app.post('/signup', passport.authenticate('local-signup', {
@@ -189,19 +229,7 @@ module.exports = function(app, passport, dbQueries) {
     
   });
 
-  app.get('/tools/validatenick/:nick', function (req, res, next) {
-    dbQueries.getNickSlugfromNick(decodeURIComponent(req.params.nick), function () {
-      res.json({
-        validation: true,
-        message: decodeURIComponent(req.params.nick) + " er opptatt"
-      });
-    }, function () {
-      res.json({
-        validation: false,
-        message: decodeURIComponent(req.params.nick) + " er ledig"
-      });
-    });
-  });
+
 
   app.get('/tools/getgamefromgameid/:gameId', function (req, res,next) {
     dbQueries.getGameRegionsFromGameId(req.params.gameId, function (games) {
@@ -209,29 +237,6 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.get('/tools/validateusername/:username', function (req, res, next) {
-    console.log('validerer ',validateEmail(decodeURIComponent(req.params.username)));
-    if(!validateEmail(decodeURIComponent(req.params.username))) {
-
-      res.json({
-        validation: true,
-        message: decodeURIComponent(req.params.username) + " er ikke en gyldig e-postadresse"
-      });
-    } else {
-      dbQueries.getUsernameFromUsername(decodeURIComponent(req.params.username), function () {
-        res.json({
-          validation: true,
-          message: "Det finnes allerede en bruker registrert på " + decodeURIComponent(req.params.username) + ". Prøv heller å logge inn hvis du eier denne kontoen"
-
-        });
-      }, function () {
-        res.json({
-          validation: false,
-          message: decodeURIComponent(req.params.username) + " er ledig"
-        });
-      });
-    }
-  });
 
   app.get('/auth', function (req, res, next) {
 

@@ -28,11 +28,19 @@
             <form ng-submit="submitLoginForm()">
                 <div class="form-group">
                     <label for="username-login">E-postadresse</label>
-                    <input ng-model="loginUsername" class="form-control" id="username-login" type="text" placeholder="Nick">
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <input ng-model="loginUsername" class="form-control" id="username-login" type="text" placeholder="Nick">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password-login">Passord</label>
                     <input ng-model="LoginPassword" class="form-control" id="password-login" type="password" placeholder="Passord">
+                </div>
+                <div class="alert alert-danger" role="alert" ng-if="loginError">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                    E-posten eller brukernavnet stemmer ikke. Vennligst prøv igjen eller tilbakestill passordet.
                 </div>
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Logg inn</button>
             </form>
@@ -41,17 +49,73 @@
             <form ng-submit="submitSignupForm()">
                 <div class="form-group">
                     <label for="username-signup">E-postadresse</label>
-                    <input ng-model="signupUsername" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <input ng-model="signupUsername" ng-keyup="typingProxy(checkEmail, signupUsername, 'signupEmail')" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupEmailStatus == 2 || signupEmailStatus == 3"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupEmailStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupEmailStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupEmailStatus == 2">
+                            Denne e-postadressen har allerede en registrert bruker på seg. Trykk <span ng-click="loginFormTab = 'login'">her</span> for å logge inn
+                        </span>
+                        <span ng-if="signupEmailStatus == 3">
+                            Dette er ikke en gyldig e-postadresse
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="username-signup">Nick</label>
-                    <input ng-model="signupNick" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                    <div class="input-group">
+                        <input ng-model="signupNick" ng-keyup="typingProxy(checkNick, signupNick, 'signupNick')" class="form-control" id="username-signup" type="text" placeholder="Nick">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 2"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupNickStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupNickStatus == 2">
+                            Dette nicket er allerede i bruk
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password-signup">Passord</label>
-                    <input ng-model="signupPassword" class="form-control" id="password-signup" type="password" placeholder="Passord">
+                    <div class="input-group">
+                        <input ng-model="signupPassword" ng-keyup="typingProxy(checkPassword, signupPassword, 'signupPassword')" class="form-control" id="password-signup" type="password" placeholder="Passord">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupPasswordStatus == 2"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupPasswordStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupPasswordStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupPasswordStatus == 2">
+                            Passordet må være minst 6 tegn
+                        </span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Bli medlem</button>
+                <div class="form-group">
+                    <label for="password-signup-repeat">Gjenta passord</label>
+                    <div class="input-group">
+                        <input ng-model="signupPasswordRepeat" ng-keyup="typingProxy(CheckPasswordEqual, signupPasswordRepeat, 'signupPasswordRepeat')" class="form-control" id="password-signup-repeat" type="password" placeholder="Gjenta passord">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupPasswordRepeatStatus == 2"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupPasswordRepeatStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupPasswordRepeatStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupPasswordRepeatStatus == 2">
+                            Passordet stemmer ikke overens med det første
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="isSignupValid()">Bli medlem</button>
             </form>
         </div>
     </div>

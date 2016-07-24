@@ -63,12 +63,24 @@
   color: #fff;
 }
 /* line 57, ../app/scss/screen.scss */
+.dialog-wrapper .input-group {
+  width: 100%;
+}
+/* line 60, ../app/scss/screen.scss */
 .dialog-wrapper .form-control {
   border: 1px solid #798790;
   color: #798790;
   background-color: transparent;
 }
-/* line 62, ../app/scss/screen.scss */
+/* line 67, ../app/scss/screen.scss */
+.dialog-wrapper .form-control-feedback.glyphicon-remove {
+  color: red;
+}
+/* line 70, ../app/scss/screen.scss */
+.dialog-wrapper .form-control-feedback.glyphicon-ok {
+  color: green;
+}
+/* line 74, ../app/scss/screen.scss */
 .dialog-wrapper .dialog-container {
   max-width: 100%;
   width: 320px;
@@ -76,7 +88,7 @@
   background-color: #23323b;
   padding: 20px;
 }
-/* line 69, ../app/scss/screen.scss */
+/* line 81, ../app/scss/screen.scss */
 .dialog-wrapper .btn {
   text-transform: uppercase;
 }
