@@ -6,6 +6,7 @@ spilldb.component('auth', {
   		$scope.loginFormTab = 'login';
   		$scope.showLoginForm = false;
       $scope.loginError = false;
+      $scope.signupError = false;
       $scope.signupEmailStatus = 0;
       $scope.signupNickStatus = 0;
       $scope.signupPasswordStatus = 0;
@@ -32,6 +33,21 @@ spilldb.component('auth', {
           $scope.loginError = true;
   			});
   		};
+
+      $scope.submitSignupForm = function () {
+        $scope.signupError = false;
+        $http.post('/api/signup', {
+          username: $scope.signupUsername,
+          password: $scope.signupPassword,
+          nick: $scope.signupNick
+        }).success(function (data) {
+          $scope.loggedIn = true;
+          $scope.user = data.user;
+          $scope.showLoginForm = false;
+        }).error(function (data) {
+          $scope.signupError = true;
+        });
+      }
 
   		$scope.logOut = function () {
   			$http.get('/api/logout')

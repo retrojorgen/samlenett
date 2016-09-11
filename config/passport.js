@@ -50,7 +50,7 @@ module.exports = function(passport) {
         function(req, username, password, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
+            connection.query("SELECT * FROM users WHERE username = ? or slug = ?",[username, encodeURIComponent(req.body.nick)], function(err, rows) {
                 if (err)
                     return done(err);
                 if (rows.length) {
@@ -64,7 +64,6 @@ module.exports = function(passport) {
                         nick: req.body.nick
                     };
 
-                    console.log('verdier: ', req.body);
                     var insertQuery = "INSERT INTO users ( username, password, nick, slug, role ) values (?,?,?,?,?)";
 
                     connection.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.nick, slug(newUserMysql.nick), 'regular'],function(err, rows) {

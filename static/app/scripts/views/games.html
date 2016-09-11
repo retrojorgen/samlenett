@@ -1,0 +1,53 @@
+<div class="header">
+    <div class="container">
+        <h1>{{consoleInfo.name}}</h1>
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-controls">
+                <h2><span class="games-count">{{gamesFiltered.length}} </span> <span>spill</span></h2>
+                <div class="form-group">
+                    <label>Søkefilter</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <input ng-model="gamesFilter" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>filtrer på region</label>
+                    <div ng-repeat="region in regions | orderBy: '-name'">
+                        <label>
+                            <input type="radio" ng-model="filterRegion" ng-value="region.name">
+                            <span>&nbsp; {{region.name}} ({{region.games.length}})</span>
+                        </label>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tittel <span ng-click="toggleOrder()" class="glyphicon glyphicon-chevron-down" ng-if="orderToggle == false" aria-hidden="true"></span>
+                            <span ng-click="toggleOrder()" class="glyphicon glyphicon-chevron-up" ng-if="orderToggle == true" aria-hidden="true"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="game in gamesFiltered | orderBy: 'title' : orderToggle | filter: gamesFilter">
+                        <td><a ng-href="/#/games/{{console}}/{{game.slug}}">{{game.title}}</a>
+
+                                <button type="button" class="btn btn-primary pull-right" ng-click="openAddGameDialog(game)">Legg til</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
+
+<div ng-include="'app/scripts/views/addgamePopup.html'"></div>

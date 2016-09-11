@@ -1,15 +1,5 @@
-var frontpageTemplate = require('jade').compileFile(__dirname + '/../source/templates/homepage.jade')
-, consoleTemplate   = require('jade').compileFile(__dirname + '/../source/templates/console.jade')
-, gameTemplate      = require('jade').compileFile(__dirname + '/../source/templates/game.jade')
-, userTemplate      = require('jade').compileFile(__dirname + '/../source/templates/user.jade')
-, errorTemplate      = require('jade').compileFile(__dirname + '/../source/templates/error.jade');
-
-
-module.exports = function(app, passport, dbQueries) {
-  var consoles = []; 
-  dbQueries.getConsolesAndGames(function (cons) {
-    consoles = cons;
-  });
+module.exports = function(app, passport, dbQueries, importers) {
+  
 
   app.get('/api', function (req, res, next) {
     console.log(req.isAuthenticated());
@@ -109,6 +99,12 @@ module.exports = function(app, passport, dbQueries) {
     });
 
 
+  app.post('/api/signup', passport.authenticate('local-signup', {
+    successRedirect : '/api/auth', // redirect to the secure profile section
+    failureRedirect : '/api/auth', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+  }));
+
   app.get('/api/auth', function (req, res, next) {
 
     var status = {
@@ -129,6 +125,104 @@ module.exports = function(app, passport, dbQueries) {
     req.logout();
     res.json({
       status: 'logged out'
+    });
+  });
+
+
+  app.post('api/import/games/:consoleId', function (req, res, next) {
+    var consoleId = req.params.consoleId;
+  });
+
+
+  app.post('/api/generate/unreleased/:consoleId/:regionId', function (req, res, next) {
+    var allowedGames = req.body.games;
+    var consoleId = req.params.consoleId;
+    var regionId = req.params.regionId;
+    //games = games.split("\n");
+    res.json("pushing");
+    //console.log(games);
+    dbQueries.getParentGamesFromConsoleId(consoleId, function (games) {
+      games.forEach(function (game) {
+        if(allowedGames.indexOf(game.title) < 0) {
+          //console.log(game.title + ' has no US release and will be removed');
+          dbQueries.setVariantAsUnreleased(game.id, regionId, function (response) {
+            //console.log(response);
+          });
+        }
+      });
+    });
+  });
+
+
+  app.get('/api/generate/children/:consoleId', function (req,res,next) {
+    res.send('generating');
+    var consoleId = req.params.consoleId;
+    dbQueries.getRegionsFromConsoleId(consoleId, function (regions) {
+      dbQueries.getParentGamesFromConsoleId(consoleId, function (games) {
+        console.log('found ' + games.length + 'games with ' + regions.length + ' regions. total: ' + (games.length + regions.length) + 'games with chilren');
+        console.log('generating children');
+        games.forEach(function (game) {
+          regions.forEach(function (region) {
+            dbQueries.isGameVariant(game.id, region.id, function (response) {
+              //console.log('found game?', response);
+              
+              if(!response) {
+                  //console.log('added variant ' + game.title + ' - ' + region.name);
+                  dbQueries.addGameVariant(region.id, '', consoleId, game.id, function () {
+                  });
+              }
+              else {
+                //console.log('dropped variant ' + game.title + ' - ' + region.name);
+              }
+                
+            });
+          });
+        });
+      });
+    });
+  });
+
+
+  app.post('api/user/add/game', function (req, res, next) {
+    if(req.body.regionId, req.body.gameTitle, req.body.consoleId, req.body.parentId, req.body.gameRegion) {
+      dbQueries.isGameVariant(req.body.gameTitle, req.body.gameRegion, function (result) {
+        if(result) {
+          console.log('spillet var der ', result);
+        } else {
+          dbQueries.addGameVariant(req.body.regionId, req.body.gameTitle, req.body.consoleId, req.body.parentId, function (result) {
+            if(result) {
+              console.log('ble lagt til ', result);
+            } else {
+              console.log('noe feilet');
+            }
+          })
+        }
+      })
+    } else {
+      res.json(401, {
+        status: "missing parameters"
+      });
+    }
+  });
+
+  // requires consoleslug
+  app.post('/api/conditions', function (req, res, next) {
+    dbQueries.getConsoleIdFromSlug(req.body.consoleSlug, function (result) {
+      if(result) {
+        dbQueries.getConditionsFromConsoleId(result.id, function (results) {
+          if(results) {
+            res.json(results);
+          } else {
+            res.json(404, {
+              status: "no conditions"
+            })
+          }
+        });
+      } else {
+        res.json(404, {
+          status: "no console"
+        });
+      }
     });
   });
 
@@ -171,62 +265,34 @@ module.exports = function(app, passport, dbQueries) {
   });
 
 
+  app.post('/api/games', function (req, res, next) {
+    dbQueries.getGamesFromConsoleSlug(req.body.consoleSlug, function (games) {
 
-
-
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
-
-
-
-  app.get('/games/:consoleSlug', function (req, res, next) {
-    console.log(req.params.consoleSlug);
-    dbQueries.getGamesFromConsoleSlug(req.params.consoleSlug, function (games) {
-
-      console.log(games);
-      try {
-        var html = consoleTemplate({
-          user: req.user,
-          consoles: consoles, 
-          console: games.console,
-          regions: games.regions,
-          games: games.games
-        });
-        res.send(html);
-      } catch (e) {
-        next(e);
-      }
-
+        res.json(games);
 
     }, function () {
-      res.send("error");
+        res.json(404, {
+            code: "nogames"
+        });
     });
   });
 
 
-  app.get('/games/:consoleSlug/:gameSlug', function (req, res, next) {
+
+
+  app.post('/games/:consoleSlug/:gameSlug', function (req, res, next) {
     
-    dbQueries.getGameFromSlug(req.params.consoleSlug, req.params.gameSlug, function (games) {
+    dbQueries.getGameFromSlug(req.body.consoleSlug, req.body.gameSlug, function (games) {
       console.log(games);
-      try {
-        var html = gameTemplate({
-          user: req.user,
-          consoles: consoles, 
-          games: games
-        });
-        res.send(html);
-      } catch (e) {
-        next(e);
-      }
+      res.json({
+        game: games
+      });
 
     }, function () {
-
+      res.json(404, {
+        code: "nogame"
+      })
     });
-  }, function () {
-    
   });
 
 
@@ -235,6 +301,22 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.getGameRegionsFromGameId(req.params.gameId, function (games) {
       res.json(games);
     });
+  });
+
+
+  app.get('/tools/import/games/nes/games', function (req, res, next) {
+    importers.nesImportGames();
+    res.send('ok');
+  });
+
+  app.get('/tools/import/games/nes/variants', function (req, res, next) {
+    importers.nesImportVariants();
+    res.send('ok');
+  });
+
+  app.get('/tools/import/games/nes/publishers', function (req, res, next) {
+    importers.nesImportPublishers();
+    res.send('ok');
   });
 
 

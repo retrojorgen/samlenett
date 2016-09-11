@@ -15,6 +15,8 @@
 
 require('./config/passport')(passport); // pass passport for configuration
 var dbQueries = require('./config/dbQueries.js'); // pass passport for configuration
+var importers = require('./config/importers.js')(dbQueries); // pass passport for configuration
+
 
 
 app.use(logger('dev'));
@@ -53,7 +55,7 @@ app.use(express.static(__dirname + '/static'));
 
 
 
-require('./app/routes.js')(app, passport, dbQueries);
+require('./app/routes.js')(app, passport, dbQueries, importers);
 
 
 app.listen(port, function () {
