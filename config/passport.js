@@ -4,15 +4,14 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
-var dbconfig = require('./database');
-var slug = require('slug')
-var connection = mysql.createConnection(dbconfig.connection);
+var slug = require('slug');
 
-connection.query('USE ' + dbconfig.database);
+
 // expose this function to our app using module.exports
-module.exports = function(passport) {
+module.exports = function(passport, models) {
+
+    var User = models.User;
 
     // =========================================================================
     // passport session setup ==================================================
@@ -28,8 +27,8 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        connection.query("SELECT * FROM users WHERE id = ? ",[id], function(err, rows){
-            done(err, rows[0]);
+        User.findById(id, function(err, user) {
+            done(err, user);
         });
     });
 
@@ -50,30 +49,33 @@ module.exports = function(passport) {
         function(req, username, password, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            connection.query("SELECT * FROM users WHERE username = ? or slug = ?",[username, encodeURIComponent(req.body.nick)], function(err, rows) {
+            User.findOne({'username': req.body.username}, function (err, user) {
                 if (err)
                     return done(err);
-                if (rows.length) {
+                if (user) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
-                    // if there is no user with that username
-                    // create the user
-                    var newUserMysql = {
+                    var newUser = new User({
                         username: username,
-                        password: bcrypt.hashSync(password, null, null),  // use the generateHash function in our user model
-                        nick: req.body.nick
-                    };
+                        password: bcrypt.hashSync(password),
+                        profileImageUrl: '',
+                        coverPhotoUrl: '',
+                        role: 'moderator',
+                        nick: req.body.nick,
+                        slug: slug(req.body.nick),
+                        created: new Date()
+                    });
 
-                    var insertQuery = "INSERT INTO users ( username, password, nick, slug, role ) values (?,?,?,?,?)";
-
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.nick, slug(newUserMysql.nick), 'regular'],function(err, rows) {
-                        newUserMysql.id = rows.insertId;
-                        return done(null, newUserMysql);
+                    newUser.save(function(err) {
+                        if(err)
+                            throw err;
+                        return done(null, newUser);
                     });
                 }
             });
-        })
+        })  
     );
+
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
@@ -90,20 +92,18 @@ module.exports = function(passport) {
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) { // callback with email and password from our form
-            connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows){
-                if (err)
+            User.findOne({'username': username}, function (err, user) {
+                if(err)
                     return done(err);
-                if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-                }
 
-                // if the user is found but the password is wrong
-                if (!bcrypt.compareSync(password, rows[0].password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                if(!user)
+                    return done(null, false, req.flash('loginMessage', 'No user found.'));
 
-                // all is well, return successful user
-                return done(null, rows[0]);
+                if(!bcrypt.compareSync(password, user.password))
+                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+
+                return done(null, user);
             });
         })
     );
-};
+}

@@ -65,58 +65,35 @@ spilldb.component('auth', {
         }
         console.log(typingTimeout, 'reset / starting timeout');
         $scope.typingTimeouts[typingTimeout] = $timeout(function () {
-          console.log(toCall, parameter, typingTimeout, 'Running function');
+          //console.log(toCall, parameter, typingTimeout, 'Running function');
           toCall(parameter);
         }, 1000);
       }
 
-      $scope.checkEmail = function (email) {
-        
-        $http.post('/api/check/email', { email: email})
-        .success(function (data) {
-          console.log('error 2');
-          $scope.signupEmailStatus = 1;
-        })
-        .error(function (data) {
-          console.log('error', data);
-          if(data.code == 'alreadyexists') {
+      $scope.checkEmail = function (username) {
+        if(username) {
+          $http.post('/api/check/username', { username: username})
+          .success(function (data) {
+            console.log('user exists', data);
             $scope.signupEmailStatus = 2;
-          }
-          if(data.code == 'novalid') {
-            $scope.signupEmailStatus = 3;
-          }
-        })
-      };
-
-      $scope.checkEmail = function (email) {
-        
-        $http.post('/api/check/email', { email: email})
-        .success(function (data) {
-          $scope.signupEmailStatus = 1;
-        })
-        .error(function (data) {
-          console.log('error', data);
-          if(data.code == 'alreadyexists') {
-            $scope.signupEmailStatus = 2;
-          }
-          if(data.code == 'novalid') {
-            $scope.signupEmailStatus = 3;
-          }
-        })
+          })
+          .error(function (data) {
+            console.log('no user', data);
+            $scope.signupEmailStatus = 1;
+          })
+        }
       };
 
       $scope.checkNick = function (nick) {
-        console.log('checking nick ', nick);
-        $http.post('/api/check/nick', { nick: nick})
-        .success(function (data) {
-          $scope.signupNickStatus = 1;
-        })
-        .error(function (data) {
-          console.log('error', data);
-          if(data.code == 'notavailable') {
+        if(nick) {
+          $http.post('/api/check/nick', { nick: nick})
+          .success(function (data) {
             $scope.signupNickStatus = 2;
-          }
-        })
+          })
+          .error(function (data) {
+              $scope.signupNickStatus = 1;
+          })  
+        }
       };
 
       $scope.checkPassword = function (password) {

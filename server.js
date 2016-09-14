@@ -7,15 +7,25 @@
     , logger            = require('morgan')
     , MongoStore        = require('connect-mongo')(session) 
     , port              = process.env.PORT || 3000
-    , app               = express();
+    , app               = express()
+    , mongoose          = require('mongoose')
+    , slug              = require('slug');
 
 
 // configuration ===============================================================
 // connect to our database
 
-require('./config/passport')(passport); // pass passport for configuration
-var dbQueries = require('./config/dbQueries.js'); // pass passport for configuration
-var importers = require('./config/importers.js')(dbQueries); // pass passport for configuration
+
+
+
+mongoose.connect('mongodb://localhost/spilldb');
+var db = mongoose.connection;
+
+var models = require('./config/models')(mongoose);
+
+
+require('./config/passport')(passport, models); // pass passport for configuration
+var dbQueries = require('./config/dbQueries.js')(models, slug); // pass passport for configuration
 
 
 
@@ -55,7 +65,7 @@ app.use(express.static(__dirname + '/static'));
 
 
 
-require('./app/routes.js')(app, passport, dbQueries, importers);
+require('./app/routes.js')(app, passport, dbQueries);
 
 
 app.listen(port, function () {
