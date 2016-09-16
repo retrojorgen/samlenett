@@ -75,14 +75,27 @@
             	</tr>
             </tbody>
         </table>
-            <p class="pull-right">Totalt {{games.length}} rader i liste</p>
-        <button class="add-button" ng-click="addRow(currentCollection._id)">+</button>
-        <div ng-if="toggles['editGames'].length > 0">
-            <select ng-model="toggles.bulkAlternative">
-                <option value="">Velg bulk-endring</option>
-                <option value="deleteRows">Slett {{toggles['editGames'].length}} rad(er)</option>
-            </select>
-            <button class="btn btn-primary" ng-click="runBulk()">Go!</button>
-        </div>       
+        <nav class="navbar navbar-default bottom-navbar">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{toggles['editGames'].length}} rader valgt<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li ng-click="runBulk('deleteRows')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                Slett {{toggles['editGames'].length}} rader
+                            </li>
+                          </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Søkefilter..">
+                </div>
+                </form>
+                <p class="navbar-text pull-right">Totalt {{games.length}} rader</p></li>
+                
+            </div>
+        </nav>   
     </div> 
 </div>
