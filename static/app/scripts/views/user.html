@@ -1,63 +1,88 @@
-<div class="header">
-    
+<div class="user-bar">
+    <div class="user-header">
+        <div class="collection-user-profile-cover" ng-style="
+            {'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}">
+        </div>
+        <div class="collection-user-profile-avatar" ng-style="
+            {'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}">
+        </div>
+    <div class="user-name">
+        {{user.nick}}
+    </div>
+    </div>
+
+
 </div>
 
-{{newRow}}
-<div class="fluid-container">
-    <table class="table table-striped game-list">
-        <thead>
-        	<tr>
-                <th class="game-list-controls"><span class="glyphicon glyphicon-asterisk"></span></th>
-                <th >#</th>
-        		<th ng-repeat="setting in settings" ng-click="sortBy(setting.field)">
-        			{{setting.name}}
-                    <span class="glyphicon glyphicon-menu-down" ng-if="toggles.sortOrder == setting.field"></span>
-                    <span class="glyphicon glyphicon-menu-up" ng-if="toggles.sortOrder == '-' + setting.field"></span>
-        			<!--<p>{{setting.description}}</p>-->
-        		</th>
-        	</tr>
-        </thead>
-        <tbody>
-        	<tr class="game-row" ng-repeat="game in games" ng-class="{
-            'toggled': toggles['editGames'].indexOf(game) > -1
-        }">
-                <td class="game-list-controls">
-                    <label class="game-toggle-label">
-                        <input type="checkbox" name="game-toggle" ng-click="toggleGameInEditList(game)">
-                    </label>
-                </td>
-                <td class="context-menu-container">{{$index+1}} 
-                <button class="context-menu glyphicon glyphicon-menu-hamburger" ng-class="{
-                    'selected': toggles['contextMenu'] == game._id
-                }" ng-click="toggleGameToggle(game._id, 'contextMenu')">
-                </button>
-                <ul class="context-menu-list" ng-show="toggles['contextMenu'] == game._id">
-                    <li ng-click="removeGame(game)">
-                        <span class="description"><span class="glyphicon glyphicon-remove"> </span> Slett rad</span>
-                    </li>
-                    <li>
-                        <span class="description"><span class="glyphicon glyphicon-share-alt"></span> Flytt rad til annen liste</span>
-                    </li>
-                    <li>
-                        <span class="description"><span class="glyphicon glyphicon-copy"></span> Kopier rad til annen liste</span>
-                    </li>
-                    <li>
-                        <span class="description"><span class="glyphicon glyphicon-duplicate"></span> Dupliker rad i denne listen</span>
-                    </li>
-                </ul>
-                </td>
-        		<td ng-repeat="setting in settings" class="editable-col" contenteditable ng-model="game[setting.field]" ng-keydown="gameKeyHandler($event, game, setting.field)" ng-change="updateGame(game, game[setting.field], setting.field)">
-        		</td>
-        	</tr>
-        </tbody>
-    </table>
-        <p class="pull-right">Totalt {{games.length}} rader i liste</p>
-    <button class="add-button" ng-click="addRow()">+</button>
-    <div ng-if="toggles['editGames'].length > 0">
-        <select ng-model="toggles.bulkAlternative">
-            <option value="">Velg bulk-endring</option>
-            <option value="deleteRows">Slett {{toggles['editGames'].length}} rad(er)</option>
-        </select>
-        <button class="btn btn-primary" ng-click="runBulk()">Go!</button>
-    </div>       
-</div> 
+<div class="fluid-container collection-container">
+    <div class="fluid-container collection-header">
+        <div class="collection-background" ng-style="
+            {'background-image': 'url(userImages/' + currentCollection.collectionImageId + '.jpg)'}"></div>
+        <div class="collection-title">
+            <h1 contenteditable ng-model="currentCollection.title" ng-if="currentCollection.userId == user._id"></h1>
+            <span ng-if="currentCollection.userId == user._id" class="glyphicon glyphicon-pencil"></span>
+
+            <h1 ng-if="currentCollection.userId != user._id">{{currentCollection.title}}</h1>
+
+        </div>
+
+    </div>
+    <div class="fluid-container">
+        <table class="table table-striped game-list">
+            <thead>
+            	<tr>
+                    <th class="game-list-controls"><span class="glyphicon glyphicon-asterisk"></span></th>
+                    <th >#</th>
+            		<th ng-repeat="setting in settings" ng-click="sortBy(setting.field)">
+            			{{setting.name}}
+                        <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == setting.field"></span>
+                        <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + setting.field"></span>
+            			<!--<p>{{setting.description}}</p>-->
+            		</th>
+            	</tr>
+            </thead>
+            <tbody>
+            	<tr class="game-row" ng-repeat="game in games" ng-class="{
+                'toggled': toggles['editGames'].indexOf(game) > -1
+            }">
+                    <td class="game-list-controls">
+                        <label class="game-toggle-label">
+                            <input type="checkbox" name="game-toggle" ng-click="toggleGameInEditList(game)">
+                        </label>
+                    </td>
+                    <td class="context-menu-container">{{$index+1}} 
+                    <button class="context-menu glyphicon glyphicon-menu-hamburger" ng-class="{
+                        'selected': toggles['contextMenu'] == game._id
+                    }" ng-click="toggleGameToggle(game._id, 'contextMenu')">
+                    </button>
+                    <ul class="context-menu-list" ng-show="toggles['contextMenu'] == game._id">
+                        <li ng-click="removeGame(game)">
+                            <span class="description"><span class="glyphicon glyphicon-remove"> </span> Slett rad</span>
+                        </li>
+                        <li>
+                            <span class="description"><span class="glyphicon glyphicon-share-alt"></span> Flytt rad til annen liste</span>
+                        </li>
+                        <li>
+                            <span class="description"><span class="glyphicon glyphicon-copy"></span> Kopier rad til annen liste</span>
+                        </li>
+                        <li>
+                            <span class="description"><span class="glyphicon glyphicon-duplicate"></span> Dupliker rad i denne listen</span>
+                        </li>
+                    </ul>
+                    </td>
+            		<td ng-repeat="setting in settings" class="editable-col" contenteditable ng-model="game[setting.field]" ng-keydown="gameKeyHandler($event, game, setting.field)" ng-change="updateGame(game, game[setting.field], setting.field)">
+            		</td>
+            	</tr>
+            </tbody>
+        </table>
+            <p class="pull-right">Totalt {{games.length}} rader i liste</p>
+        <button class="add-button" ng-click="addRow(currentCollection._id)">+</button>
+        <div ng-if="toggles['editGames'].length > 0">
+            <select ng-model="toggles.bulkAlternative">
+                <option value="">Velg bulk-endring</option>
+                <option value="deleteRows">Slett {{toggles['editGames'].length}} rad(er)</option>
+            </select>
+            <button class="btn btn-primary" ng-click="runBulk()">Go!</button>
+        </div>       
+    </div> 
+</div>

@@ -253,7 +253,7 @@ body {
   background-image: linear-gradient(#f4f6ff, #eeeff9);
   font-weight: normal;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   color: #32445c;
 }
 /* line 234, ../app/scss/screen.scss */
@@ -323,4 +323,184 @@ body {
 /* line 291, ../app/scss/screen.scss */
 .context-menu-list li:last-child {
   border-bottom: 0;
+}
+
+/* line 297, ../app/scss/screen.scss */
+.collection-header {
+  padding: 40px;
+  position: relative;
+  height: 140px;
+}
+/* line 301, ../app/scss/screen.scss */
+.collection-header .collection-title {
+  position: relative;
+  color: white;
+  outline: none;
+}
+/* line 306, ../app/scss/screen.scss */
+.collection-header .collection-title h1 {
+  display: inline-block;
+  outline: none;
+  margin: 0;
+  padding: 10px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+/* line 313, ../app/scss/screen.scss */
+.collection-header .collection-title .glyphicon {
+  position: absolute;
+  top: 4px;
+  margin-left: -5px;
+  font-size: 15px;
+}
+/* line 320, ../app/scss/screen.scss */
+.collection-header .collection-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+/* line 331, ../app/scss/screen.scss */
+.collection-container {
+  border-right: 250px solid transparent;
+  border-top: 50px solid transparent;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: scroll;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* line 343, ../app/scss/screen.scss */
+.btn {
+  border-radius: 20px;
+}
+
+/* line 347, ../app/scss/screen.scss */
+.auth {
+  margin-right: -15px;
+  padding-right: 15px;
+  text-align: right;
+}
+/* line 351, ../app/scss/screen.scss */
+.auth .profile-image {
+  background-size: cover;
+  background-image: url("userImages/57da923427b493018b00a314.jpg");
+  padding: 17px 17px 16px 16px;
+  /* width: 20px; */
+  /* height: 20px; */
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-block;
+  /* border: 1px solid white; */
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 10px;
+  float: right;
+}
+/* line 366, ../app/scss/screen.scss */
+.auth .btn {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: white;
+  border-radius: 10px;
+  padding: 4px 7px;
+  background-color: #467cc6;
+  border: 2px solid transparent;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+/* line 376, ../app/scss/screen.scss */
+.auth .btn:hover {
+  border: 2px solid white;
+  background: transparent;
+}
+/* line 380, ../app/scss/screen.scss */
+.auth .btn.logout {
+  border-radius: 50%;
+}
+
+/* line 386, ../app/scss/screen.scss */
+.user-bar {
+  position: fixed;
+  border-top: 50px solid transparent;
+  height: 100%;
+  width: 250px;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  background-color: #d1d1d1;
+}
+/* line 395, ../app/scss/screen.scss */
+.user-bar .user-header {
+  width: 100%;
+  position: relative;
+  height: 174px;
+  background-color: black;
+  overflow: hidden;
+}
+/* line 401, ../app/scss/screen.scss */
+.user-bar .user-header .collection-user-profile-cover {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  left: -25%;
+  top: -25%;
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  background-image: cover;
+  opacity: 0.6;
+}
+/* line 411, ../app/scss/screen.scss */
+.user-bar .user-header .collection-user-profile-avatar {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 20px;
+  background-size: cover;
+}
+/* line 421, ../app/scss/screen.scss */
+.user-bar .user-header .user-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 17px 8px 8px 8px;
+  text-align: center;
+  color: #d2d3d4;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC44Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.8)));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+}
+/* line 434, ../app/scss/screen.scss */
+.user-bar .user-header .user-name:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM3NmNiMyIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjNDY3Y2M2Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzc2Y2IzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #376cb3), color-stop(50%, #467cc6), color-stop(100%, #376cb3));
+  background-image: -moz-linear-gradient(left, #376cb3, #467cc6, #376cb3);
+  background-image: -webkit-linear-gradient(left, #376cb3, #467cc6, #376cb3);
+  background-image: linear-gradient(to right, #376cb3, #467cc6, #376cb3);
 }

@@ -5,12 +5,13 @@
 
 </div>
 <div ng-if="loggedIn">
+    
     <p class="navbar-text">
         Logget inn som <a ng-href="#!/user/{{user.slug}}">{{user.nick}}</a>
     </p>
-     <button type="button" id="login-toggle" class="btn btn-default navbar-btn" ng-click="logOut()">
-        logg ut
+     <button type="button" id="login-toggle" class="btn btn-default navbar-btn logout glyphicon glyphicon-off pull-right" ng-click="logOut()">
     </button>
+    <div class="profile-image" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
 </div>
 
 <div ng-show="showLoginForm" class="dialog-wrapper">

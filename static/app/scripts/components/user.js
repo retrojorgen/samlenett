@@ -8,6 +8,8 @@ spilldb.component('user', {
       $scope.games = [];
       $scope.user = {};
 
+      $scope.currentCollection = {};
+
       $scope.toggles = {
         contextMenu: 0,
         editGames: [],
@@ -18,7 +20,24 @@ spilldb.component('user', {
       .success(function (data) {
         console.log(data);
         $scope.user = data.user;
-        $scope.games = data.games;
+        //$scope.games = data.games;
+
+        _.each(data.collections, function (collection) {
+          if(!collection.games)
+            collection.games = [];
+          _.each(data.games, function (game) {
+            if(game.collectionId == collection._id)
+              collection.games.push(game);
+          });
+        });
+
+        $scope.currentCollection = _.find(data.collections, function (collection) {
+          return collection._id == data.user.mainCollectionId;
+        });
+
+        $scope.games = $scope.currentCollection.games;
+
+
 
       	_.each(data.settings, function (setting, key) {
 
@@ -46,12 +65,14 @@ spilldb.component('user', {
         //console.log(data);
       });
 
-      $scope.addRow = function () {
+      $scope.addRow = function (collectionId) {
       
         var newRow = {};
         _.each($scope.settings, function (setting) {
           newRow[setting.field] = "";
         });
+
+        newRow.collectionId = collectionId;
 
         newRow.userId = $scope.user._id;
         

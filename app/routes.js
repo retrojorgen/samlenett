@@ -65,15 +65,18 @@ module.exports = function(app, passport, dbQueries) {
       
       dbQueries.getUserFromSlug(req.body.nickSlug, function (user) {
         console.log(user);
-        dbQueries.getGamesForUserFromUserId(user.id, function (newGames) {
-          console.log(newGames);
-          res.json({
-            games: newGames,
-            newGames: newGames,
-            user: user,
-            settings: settings
-          });
-        });  
+        dbQueries.getCollectionsFromUserId(user.id, function (collections) {
+          dbQueries.getGamesForUserFromUserId(user.id, function (newGames) {
+            console.log(newGames);
+            res.json({
+              games: newGames,
+              newGames: newGames,
+              user: user,
+              settings: settings,
+              collections: collections
+            });
+          });  
+        });
       });
     });
   });

@@ -1,9 +1,14 @@
+var shortid = require('shortid');
+
 module.exports = function (models, slug) {
 
+	shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 	
 	var User = models.User;
 	var Game = models.Game;
 	var Settings = models.Settings;
+	var Collection = models.Collection;
+	var ImageObj = models.Image;
 
 
 	return {
@@ -47,6 +52,12 @@ module.exports = function (models, slug) {
 					callback(games);
 				}
 					
+			});
+		},
+		getCollectionsFromUserId: function (userId, callback) {
+			Collection.find({'userId': userId}, null, {sort: {title:1}}, function (err, collections) {
+				if(!err)
+					callback(collections);
 			});
 		},
 		getSettings: function (settingType, callback) {
