@@ -61,13 +61,11 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/get/user/games', function (req,res,next) {
-    dbQueries.getSettings("mainNo", function (settings) {
+    dbQueries.getSettings(function (settings) {
       
       dbQueries.getUserFromSlug(req.body.nickSlug, function (user) {
-        console.log(user);
         dbQueries.getCollectionsFromUserId(user.id, function (collections) {
           dbQueries.getGamesForUserFromUserId(user.id, function (newGames) {
-            console.log(newGames);
             res.json({
               games: newGames,
               newGames: newGames,

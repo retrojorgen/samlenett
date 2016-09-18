@@ -323,6 +323,7 @@ body {
       width: 100%;
       height: 100%;
       background-size: cover;
+      background-color: rgb(100,100,100);
     }
   }
 
@@ -507,3 +508,22 @@ body {
   }
 }
 
+.collection-list-header {
+  margin-top: 10px;
+  color: #676666;
+  text-transform: uppercase;
+}
+
+.collection-list {
+  margin-left: -15px;
+  border-radius: 0;
+  .list-group-item {
+    border-radius: 0;
+    padding-left: 30px;
+    color: #574c4c;
+    font-size: 14px;
+    padding: 4px 4px 4px 15px;
+    background-color: rgba(0,0,0,0.05);
+    border: 0;
+  }
+}

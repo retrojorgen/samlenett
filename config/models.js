@@ -44,9 +44,10 @@ module.exports = function (dbHandler) {
 	    notePublic: String,
 	    notePrivat: String,
 	    gameAdded: { type: Date, default: Date.now },
-	    status: Number,
-	    askingPrice: Object,
-	    soldForPrice: Object
+	    salesStatus: Boolean,
+	    acquiredStatus: Boolean,
+	    askingPrice: Number,
+	    soldForPrice: Number
 	});
 
 	var collectionSchema = dbHandler.Schema({

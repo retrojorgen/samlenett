@@ -6,6 +6,9 @@ var spilldb = angular
 		when('/user/:nickSlug', {
 			'template': '<user></user>'
 		}).
+		when('/user/:nickSlug/:listId', {
+			'template': '<user></user>'
+		}).
 		otherwise('/');
 }]);
 

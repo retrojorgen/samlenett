@@ -60,8 +60,8 @@ module.exports = function (models, slug) {
 					callback(collections);
 			});
 		},
-		getSettings: function (settingType, callback) {
-			Settings.findOne({'type': settingType}, function (err, settings) {
+		getSettings: function (callback) {
+			Settings.find({}, function (err, settings) {
 			 	if(err)
 			 		callback(false);
 			 	if(!settings)

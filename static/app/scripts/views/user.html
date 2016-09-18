@@ -10,7 +10,35 @@
         {{user.nick}}
     </div>
     </div>
-
+    <div class="user-body container-fluid">
+        <ul class="list-group collection-list">
+          <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> {{user.nick}}s samling</li>
+        </ul>
+        <p class="collection-list-header">Min samling</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['collections']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+        <p class="collection-list-header">Mine samlemål</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['goals']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-hear"></span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+        <p class="collection-list-header">Til salgs</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['sales']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-usd"></span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+    </div>
 
 </div>
 
@@ -33,7 +61,7 @@
             	<tr>
                     <th class="game-list-controls"><span class="glyphicon glyphicon-asterisk"></span></th>
                     <th >#</th>
-            		<th ng-repeat="setting in settings" ng-click="sortBy(setting.field)">
+            		<th ng-repeat="setting in settingFields[currentCollection.type]" ng-click="sortBy(setting.field)">
             			{{setting.name}}
                         <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == setting.field"></span>
                         <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + setting.field"></span>
@@ -70,12 +98,15 @@
                         </li>
                     </ul>
                     </td>
-            		<td ng-repeat="setting in settings" class="editable-col" contenteditable ng-model="game[setting.field]" ng-keydown="gameKeyHandler($event, game, setting.field)" ng-change="updateGame(game, game[setting.field], setting.field)">
+            		<td ng-repeat="setting in settingFields[currentCollection.type]" class="editable-col" contenteditable ng-model="game[setting.field]" ng-keydown="gameKeyHandler($event, game, setting.field)" ng-change="updateGame(game, game[setting.field], setting.field)">
             		</td>
             	</tr>
             </tbody>
         </table>
-        <nav class="navbar navbar-default bottom-navbar">
+    </div> 
+</div>
+
+<nav class="navbar navbar-default bottom-navbar">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -96,6 +127,4 @@
                 <p class="navbar-text pull-right">Totalt {{games.length}} rader</p></li>
                 
             </div>
-        </nav>   
-    </div> 
-</div>
+        </nav>

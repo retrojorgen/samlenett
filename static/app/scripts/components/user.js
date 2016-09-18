@@ -2,13 +2,28 @@ spilldb.component('user', {
 	templateUrl: 'app/scripts/views/user.html',
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window) {
 
+
+
       $scope.nickSlug = $routeParams.nickSlug;
       $scope.settings = [];
 
       $scope.games = [];
       $scope.user = {};
+      $scope.currentCollectionId = {};
 
-      $scope.currentCollection = {};
+      $scope.currentCollection = undefined;
+
+      $scope.collectionByTypes = {
+        "collections": [],
+        "goals": [],
+        "sales": []
+      };
+
+      $scope.settingFields = {
+        "collections": [],
+        "goals": [],
+        "sales": []
+      };
 
       $scope.toggles = {
         contextMenu: 0,
@@ -18,10 +33,28 @@ spilldb.component('user', {
 
       $http.post("/api/get/user/games", {"nickSlug": $scope.nickSlug})
       .success(function (data) {
-        console.log(data);
-        $scope.user = data.user;
-        //$scope.games = data.games;
 
+        // assign user
+        $scope.user = data.user;
+
+        // fix the settings
+        _.each(data.settings, function (settingList) {
+          _.each(settingList, function (setting, key) {
+            if(key != "type") {
+              if(key != "_id") {
+                $scope.settingFields[settingList.type].push({
+                  field: key,
+                  name: setting.name,
+                  type: setting.type,
+                  description: setting.description
+                }); 
+              }
+            }
+          });
+        });
+
+
+        // Fix collections
         _.each(data.collections, function (collection) {
           if(!collection.games)
             collection.games = [];
@@ -31,38 +64,35 @@ spilldb.component('user', {
           });
         });
 
-        $scope.currentCollection = _.find(data.collections, function (collection) {
-          return collection._id == data.user.mainCollectionId;
-        });
+        if($routeParams.listId) {
+          $scope.currentCollection = _.find(data.collections, function (collection) {
+            return collection._id == $routeParams.listId;
+          });
+        }
+
+        if(!$scope.currentCollection) {
+          $scope.currentCollection = _.find(data.collections, function (collection) {
+            return collection._id == data.user.mainCollectionId;
+          });
+        }
+           
+
+        
+
 
         $scope.games = $scope.currentCollection.games;
 
 
+        _.each(data.collections, function (collection) {
+            $scope.collectionByTypes[collection.type].push(collection);
+        });
 
-      	_.each(data.settings, function (setting, key) {
-
-      		if(key != "type") {
-      			if(key != "_id") {
-      				console.log(key);
-	      			$scope.settings.push({
-	      				field: key,
-	      				name: setting.name,
-	      				type: setting.type,
-	      				description: setting.description
-	      			});	
-      			}
-      			
-      		}
-      	});
-
-      	console.log($scope.settings);
 
       });
 
       $($window).on('paste', function (e) {
         //e.preventDefault();
         //var data = e.originalEvent.clipboardData.getData('text/plain');
-        //console.log(data);
       });
 
       $scope.addRow = function (collectionId) {
@@ -113,7 +143,6 @@ spilldb.component('user', {
         } else {
           $scope.toggles.sortOrder = field;
         }
-        console.log($scope.toggles.sortOrder);
         $scope.games = $filter('orderBy')($scope.games, $scope.toggles.sortOrder);
       };
 
@@ -139,7 +168,6 @@ spilldb.component('user', {
         }
       }
       $scope.runBulk = function () {
-        console.log($scope.toggles['editGames'], $scope.toggles.bulkAlternative);
         _.each($scope.toggles['editGames'], function (game) {
           if($scope.toggles.bulkAlternative == 'deleteRows') {
             $scope.removeGame(game);
