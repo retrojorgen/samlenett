@@ -88,7 +88,8 @@ body {
 				color: #fff;
   			}
   		}
-  		margin-bottom: 20px;
+
+      margin-bottom: 0;
   		width: 100%;
   		padding: 0;
   	}
@@ -146,7 +147,7 @@ body {
 
 .game-list.table {
   box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-  padding-bottom: 100px;
+  margin-bottom: 0;
   tr {
     &.game-row {
       &.toggled {
@@ -193,8 +194,11 @@ body {
       padding: 0;
       color: #646464;
       position: relative;
+      height: 26px;
       
-
+      &.inactive {
+        background-color: #dadada;
+      }
 
 
       &.game-list-controls {
@@ -223,6 +227,7 @@ body {
     th {
       border-bottom: 1px solid #697599;
       cursor:pointer;
+      height: 26px;
       &:nth-child(even),
       &:nth-child(odd) {
         @include background-image(linear-gradient(#f4f6ff, #eeeff9));
@@ -297,6 +302,9 @@ body {
     padding: 40px;
     position: relative;
     height: 140px;
+    background-color: rgb(100,100,100);
+    background-image: url(../images/default-collection.jpg);
+    background-size: cover;
     .collection-title {
       position: relative;
       color: white;
@@ -323,7 +331,6 @@ body {
       width: 100%;
       height: 100%;
       background-size: cover;
-      background-color: rgb(100,100,100);
     }
   }
 
@@ -393,6 +400,16 @@ body {
   right: 0;
   z-index: 10;
   background-color: #d1d1d1;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid rgba(0, 0, 0, .15);
+
+  }
   .user-header {
     width: 100%;
     position: relative;
@@ -515,9 +532,11 @@ body {
 }
 
 .collection-list {
-  margin-left: -15px;
+  
   border-radius: 0;
   .list-group-item {
+    margin-left: -15px;
+    margin-right: -15px;
     border-radius: 0;
     padding-left: 30px;
     color: #574c4c;
@@ -525,5 +544,34 @@ body {
     padding: 4px 4px 4px 15px;
     background-color: rgba(0,0,0,0.05);
     border: 0;
+    cursor: pointer;
+    @include transition(0.25s ease-in-out);
+    &:hover {
+      margin-right: 0;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
   }
+}
+
+.main-menu {
+  li {
+    border-right: 1px solid rgba(255, 255, 255, .15);
+    cursor: pointer;
+    text-transform: uppercase;
+    a {
+      cursor: pointer;
+    }
+    &:hover {
+      background-color: darken(#23323b, 10%);
+    }
+  }
+}
+
+.glyphicon-heart {
+  color: #d6566d;
+}
+
+.glyphicon-usd {
+ color: #4caf50; 
 }

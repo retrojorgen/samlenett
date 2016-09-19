@@ -28,7 +28,7 @@ spilldb.component('user', {
       $scope.toggles = {
         contextMenu: 0,
         editGames: [],
-        sortOrder: ""
+        sortOrder: "hest"
       };
 
       $http.post("/api/get/user/games", {"nickSlug": $scope.nickSlug})
@@ -62,6 +62,7 @@ spilldb.component('user', {
             if(game.collectionId == collection._id)
               collection.games.push(game);
           });
+          $scope.addRow(collection, true);
         });
 
         if($routeParams.listId) {
@@ -76,13 +77,6 @@ spilldb.component('user', {
           });
         }
            
-
-        
-
-
-        $scope.games = $scope.currentCollection.games;
-
-
         _.each(data.collections, function (collection) {
             $scope.collectionByTypes[collection.type].push(collection);
         });
@@ -95,43 +89,75 @@ spilldb.component('user', {
         //var data = e.originalEvent.clipboardData.getData('text/plain');
       });
 
-      $scope.addRow = function (collectionId) {
-      
+      $scope.addRow = function (collection, postToggle) {        
         var newRow = {};
-        _.each($scope.settings, function (setting) {
+        _.each($scope.settingFields[collection.type], function (setting) {
           newRow[setting.field] = "";
         });
 
-        newRow.collectionId = collectionId;
+        newRow.collectionId = collection._id;
 
         newRow.userId = $scope.user._id;
+        if(!postToggle) {
+          $http.post("/api/add/game", newRow)
+          .success(function (game) {
+            collection.games.push(game);
+          });  
+        } else {
+          newRow.inactive = true;
+          collection.games.push(newRow);
+        }
         
-        $http.post("/api/add/game", newRow)
-        .success(function (game) {
-          $scope.games.push(game);
-        });
       };
 
-      $scope.removeGame = function (game) {
+      $scope.countCollection = function (games) {
+        var counter = 0;
+        if(games) {
+          _.each(games, function (game) {
+            if(!game.inactive)
+              counter++;
+          });  
+        }
+        return counter;
+      };
+
+      $scope.removeGame = function (collection, game) {
         var indexPosition = $scope.games.indexOf(game);
-        $scope.games.splice(indexPosition, 1);
+        collection.games.splice(indexPosition, 1);
         $http.post("/api/remove/game", {gameId: game._id}, function () {
 
         });
       };
 
       $scope.updateGame = function (game, row, field) {
+        row = row.replace(/<\/?[^>]+(>|$)/g, "");
+        console.log(game[field], row, game);
+        game[field] = game[field].replace(/<\/?[^>]+(>|$)/g, "");
+        console.log(game[field], row, game);
+        if(!game.inactive) {
+
           $http.post("/api/update/game", {
             gameId: game._id,
             newValue : row,
             field: field
           })
           .success(function (data) {
-          });  
+          });
+        } else {
+          delete game.inactive;
+          console.log('sending in game:', game);
+          $http.post("/api/add/game", game)
+          .success(function (dbGame) {
+            game._id = dbGame._id;
+          });
+          $scope.addRow($scope.currentCollection, true);
+        }
+          
       };
 
-      $scope.sortBy = function (field) {
+      $scope.sortBy = function (currentCollection, field) {
         var currentSort = $scope.toggles.sortOrder;
+        if(!currentSort)
         currentSort.replace("-", "");
 
         if(currentSort == field) {
@@ -143,7 +169,8 @@ spilldb.component('user', {
         } else {
           $scope.toggles.sortOrder = field;
         }
-        $scope.games = $filter('orderBy')($scope.games, $scope.toggles.sortOrder);
+        console.log($scope.currentCollection.games, $scope.toggles.sortOrder);
+        $scope.currentCollection.games = $filter('orderBy')($scope.currentCollection.games, $scope.toggles.sortOrder);
       };
 
       $scope.gameKeyHandler = function ($event,game, field) {
@@ -167,10 +194,10 @@ spilldb.component('user', {
           $scope.toggles['editGames'].push(game);
         }
       }
-      $scope.runBulk = function () {
+      $scope.runBulk = function (collection, command) {
         _.each($scope.toggles['editGames'], function (game) {
-          if($scope.toggles.bulkAlternative == 'deleteRows') {
-            $scope.removeGame(game);
+          if(command == 'deleteRows') {
+            $scope.removeGame(collection, game);
           }
         });
       }
