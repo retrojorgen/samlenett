@@ -1,0 +1,3 @@
+{"_id":{"$oid":"57deceef27b493484634d841"},"type":"goals","userId":{"$oid":"57d7074a6aef33191a8ce06c"},"title":"Jorgolinis ønskeliste"}
+{"_id":{"$oid":"57decf1327b493484634d843"},"userId":{"$oid":"57d7074a6aef33191a8ce06c"},"type":"sales","title":"Jorgolinis salgsliste"}
+{"_id":{"$oid":"57da571627b493018b00a312"},"userId":{"$oid":"57d7074a6aef33191a8ce06c"},"type":"collections","title":"Jorgolinis samling","collectionImageId":{"$oid":"57da62fa27b493018b00a313"}}
