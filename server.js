@@ -24,8 +24,9 @@ var db = mongoose.connection;
 var models = require('./config/models')(mongoose);
 
 
-require('./config/passport')(passport, models); // pass passport for configuration
+
 var dbQueries = require('./config/dbQueries.js')(models, slug); // pass passport for configuration
+require('./config/passport')(passport, models, dbQueries); // pass passport for configuration
 
 
 

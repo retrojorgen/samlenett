@@ -9,7 +9,7 @@ var slug = require('slug');
 
 
 // expose this function to our app using module.exports
-module.exports = function(passport, models) {
+module.exports = function(passport, models, dbQueries) {
 
     var User = models.User;
 
@@ -69,7 +69,14 @@ module.exports = function(passport, models) {
                     newUser.save(function(err) {
                         if(err)
                             throw err;
-                        return done(null, newUser);
+                        dbQueries.addCollection(newUser.nick + "s samling", newUser._id, "collections", function () {
+                            dbQueries.addCollection(newUser.nick + "s ønskeliste", newUser._id, "goals", function () {
+                                dbQueries.addCollection(newUser.nick + "s salgsliste", newUser._id, "sales", function () {
+                                    return done(null, newUser);
+                                });
+                            });
+                        });
+                        
                     });
                 }
             });

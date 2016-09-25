@@ -80,6 +80,7 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/check/nick', function (req,res,next) {
+    console.log('checking nick', req.body.nick);
     dbQueries.getUserFromNick(req.body.nick, function (user) {
       if(user)
         res.json(user);

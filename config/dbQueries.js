@@ -54,6 +54,7 @@ module.exports = function (models, slug) {
 					
 			});
 		},
+
 		getCollectionsFromUserId: function (userId, callback) {
 			Collection.find({'userId': userId}, null, {sort: {title:1}}, function (err, collections) {
 				if(!err)
@@ -68,6 +69,18 @@ module.exports = function (models, slug) {
 			 		callback(false);
 			 	if(settings)
 			 		callback(settings);
+			});
+		},
+		addCollection: function (title,userId,type,callback) {
+			var collection = new Collection ({
+				userId: userId,
+				title: title,
+				type: type
+			});
+			collection.save(function (err) {
+				if(!err) {
+					callback(collection);
+				}
 			});
 		},
 		addGame: function (game, callback) {

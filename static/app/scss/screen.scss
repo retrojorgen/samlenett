@@ -8,7 +8,7 @@
 
 body {
   background-color: #E0E1E5;
-  color: #9ba3af;
+  color: #1a1d22;
   font-size: 12px;
   padding-bottom: 100px;
 }
@@ -45,6 +45,15 @@ body {
   }
 }
 
+.login-container {
+  position: absolute;
+  right: 0;
+  width: 320px;
+  background-color: #101010;
+  padding: 20px;
+  top: 50px;
+}
+
 .dialog-wrapper {
 	position: fixed;
 	width: 100%;
@@ -55,6 +64,17 @@ body {
   z-index: 10000;
 	align-items: center;
 	justify-content: center;
+  &.login-wrapper {
+    display: block;
+    text-align: right;
+
+    .dialog-container {
+      display: inline-block;
+      margin-top: 50px;
+      border-radius: 0;
+      max-width: 320px;
+    }
+  }
   .dialog-container {
     @include border-radius(6px);
   }
@@ -64,7 +84,16 @@ body {
   		top: 0;
   		width: 100%;
   		height: 100%;
-  		background-color: rgba(0,0,0,0.5);
+      border-top: 50px solid transparent;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+      }
   	}
   	label {
   		color: #798790;
@@ -252,6 +281,10 @@ body {
     
 }
 
+.navbar-static-top {
+  z-index: 100;
+}
+
 .context-menu {
   position: absolute;
   left: 0;
@@ -376,10 +409,11 @@ body {
     margin-top: 6px;
     margin-bottom: 6px;
     color: white;
-    border-radius: 10px;
-    padding: 4px 7px;
     background-color: #467cc6;
     border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 8px 20px;
+    outline: none;
     @include transition(0.5s);
     &:hover {
       border: 2px solid white;
@@ -387,6 +421,7 @@ body {
     }
     &.logout {
       border-radius: 50%;
+      padding: 4px 7px;
     }
   }
 }
@@ -574,4 +609,18 @@ body {
 
 .glyphicon-usd {
  color: #4caf50; 
+}
+
+.signup-form {
+  max-width: 340px;
+  padding: 20px;
+  background-color: white;
+  margin: 50px auto 0 auto;
+}
+
+.btn {
+  font-size: 100%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 20px;
 }

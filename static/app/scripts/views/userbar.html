@@ -1,0 +1,42 @@
+<div class="user-bar">
+    <div class="user-header">
+        <div class="collection-user-profile-cover" ng-style="
+            {'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}">
+        </div>
+        <div class="collection-user-profile-avatar" ng-style="
+            {'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}">
+        </div>
+        <div class="user-name">
+            {{user.nick}}
+        </div>
+    </div>
+    <div class="user-body container-fluid">
+        <ul class="list-group collection-list">
+          <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> {{user.nick}}s samling</li>
+        </ul>
+        <p class="collection-list-header">Min samling</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['collections']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-floppy-disk"></span><span class="badge pull-right">{{countCollection(list.games)}}</span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+        <p class="collection-list-header">Mine samlemål</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['goals']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-heart"></span><span class="badge pull-right">{{countCollection(list.games)}}</span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+        <p class="collection-list-header">Til salgs</p>
+        <ul class="list-group collection-list">
+            <li class="list-group-item" ng-repeat="list in collectionByTypes['sales']">
+                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                    <span class="glyphicon glyphicon-usd"></span><span class="badge pull-right">{{countCollection(list.games)}}</span> {{list.title}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
