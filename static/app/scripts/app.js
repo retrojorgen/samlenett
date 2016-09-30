@@ -6,7 +6,7 @@ var spilldb = angular
 		when('/user/:nickSlug', {
 			'template': '<user></user>'
 		}).
-		when('/user/:nickSlug/:listId', {
+		when('/user/:nickSlug/:collectionId', {
 			'template': '<userlist></userlist>'
 		}).
 		when('/signup', {

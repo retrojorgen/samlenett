@@ -1,3 +1,6 @@
+var lwip = require('lwip');
+var fs = require('fs');
+
 module.exports = function(app, passport, dbQueries) {
 
   app.get('/api', function (req, res, next) {
@@ -79,6 +82,13 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.post('/api/get/user/collection', function (req,res,next) {
+    console.log(req.body.collectionId);
+    dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
+      res.json(collection);
+    });
+  });
+
   app.post('/api/check/nick', function (req,res,next) {
     console.log('checking nick', req.body.nick);
     dbQueries.getUserFromNick(req.body.nick, function (user) {
@@ -94,6 +104,13 @@ module.exports = function(app, passport, dbQueries) {
     req.logout();
     res.json({
       status: 'logged out'
+    });
+  });
+
+  app.get('/api/me/collections', function (req, res, next) {
+    dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
+      console.log(collections);
+      res.json(collections);
     });
   });
 
@@ -121,6 +138,43 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.removeGame(req.body.gameId, function () {
       res.json({});
     });
+  });
+
+  app.post('/api/user/image', function (req, res, next) {
+
+    dbQueries.addImage(function (addedImage) {
+
+      var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,'');
+      var img = new Buffer(base64Data, 'base64');
+
+      lwip.open(img, 'jpg', function (err, image) {
+        var width = image.width();
+        var height = image.height();
+        if(width > 1400) {
+          height = (image.height() / image.width()) * 1400;
+          width = 1400;
+        }
+
+        if(!err) {
+            image.resize(width, height, function (err, image) {
+              if(!err)
+                image.toBuffer('jpg', {quality: 80}, function(err, buffer){
+                  fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
+                    res.json({
+                      image: addedImage
+                    });
+                    dbQueries.addImageToUser(req.user._id, addedImage);
+                  });
+                });
+            });
+        } else {
+          //console.log(err);
+        }
+
+      });
+
+    });
+
   });
 
 

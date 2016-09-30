@@ -1,25 +1,57 @@
-<div ng-include="'/app/scripts/views/userbar.html'"></div>
-
 <div class="fluid-container collection-container">
-    <div class="fluid-container collection-header">
-        <div class="collection-background" ng-if="currentCollection.collectionImageId" ng-style="
-            {'background-image': 'url(userImages/' + currentCollection.collectionImageId + '.jpg)'}"></div>
+    <div class="fluid-container collection-edit">
+        <div class="image-row">
+            <div class="dropzone" file-dropzone="[image/jpeg]"
+                          file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
+              <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
+            </div>
+            <div class="image-container" ng-style="{
+            'background-image': 'url(' + imageInfo.image + ')'
+            }">
+                <span class="file-name">{{imageInfo.imageFileName}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="fluid-container collection-header clearfix">
+        <div class="collection-photo">
+            
+        </div>
+        <div class="collection-background" ng-if="collection.collection.collectionImageId" ng-style="
+            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}"></div>
         <div class="collection-title">
-            <h1 contenteditable ng-model="currentCollection.title" ng-if="currentCollection.userId == user._id"></h1>
-            <span ng-if="currentCollection.userId == user._id" class="glyphicon glyphicon-pencil"></span>
+            <p class="kicker">
+                <span ng-if="collection.collection.type == 'collections'">Samling</span>
+                <span ng-if="collection.collection.type == 'goals'">Samlemål</span>
+                <span ng-if="collection.collection.type == 'sales'">Til salgs</span>
+            </p>
+            <h1>{{collection.collection.title}}</h1>
+            <p class="description">{{collection.collection.description}}</p>
+            <p class="byline">
+                Opprettet av: <a ng-href="/#!/user/{{collection.user.slug}}">{{collection.user.nick}}</a>
+                &bull; {{collection.games.length-1}} spill</p>
 
-            <h1 ng-if="currentCollection.userId != user._id">{{currentCollection.title}}</h1>
+                
 
         </div>
 
     </div>
+    <div class="filter-row">
+            <form class="navbar-form">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                    <input type="text" class="form-control" placeholder="Filter" ng-model="toggles.filterPhrase">
+                </div>
+            </div>
+            </form>
+    </div>
     <div class="fluid-container">
-        <table class="table table-striped game-list">
+        <table class="table game-list">
             <thead>
             	<tr>
                     <th class="game-list-controls"><span class="glyphicon glyphicon-asterisk"></span></th>
                     <th >#</th>
-            		<th ng-repeat="setting in settingFields[currentCollection.type]" ng-click="sortBy(currentCollection, setting.field)">
+            		<th ng-repeat="setting in collection.settings" ng-click="sortBy(collection.games, setting.field)">
             			{{setting.name}}
                         <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == setting.field"></span>
                         <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + setting.field"></span>
@@ -28,7 +60,7 @@
             	</tr>
             </thead>
             <tbody>
-            	<tr class="game-row" ng-repeat="game in currentCollection.games | filter:filterPhrase as filterPhraseList" ng-class="{
+            	<tr class="game-row" ng-repeat="game in collection.games | filter:filterPhrase as filterPhraseList" ng-class="{
                 'toggled': toggles['editGames'].indexOf(game) > -1
             }">
                     <td ng-class="{
@@ -60,7 +92,7 @@
                         </li>
                     </ul>
                     </td>
-            		<td ng-repeat="setting in settingFields[currentCollection.type]" class="editable-col" contenteditable ng-model="game[setting.field]" ng-keydown="gameKeyHandler($event, game, setting.field)" ng-change="updateGame(game, game[setting.field], setting.field)">
+            		<td ng-repeat="(settingKey, setting) in collection.settings" class="editable-col" contenteditable="true" ng-model="game[settingKey]" ng-keydown="gameKeyHandler($event, game, settingKey)" ng-change="updateGame(game, game[settingKey], settingKey)">
             		</td>
             	</tr>
             </tbody>
@@ -81,11 +113,6 @@
                           </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Søkefilter.." ng-model="filterPhrase" ng-change="textFilter(currentCollection, filterPhrase)">
-                </div>
-                </form>
                 <p class="navbar-text pull-right">{{countCollection(filterPhraseList)}} rader</p></li>
                 
             </div>

@@ -33,9 +33,12 @@ require('./config/passport')(passport, models, dbQueries); // pass passport for 
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
+  limit: '50mb'
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 
 
 // required for passport

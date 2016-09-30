@@ -7,6 +7,7 @@ spilldb.component('auth', {
   		$scope.showLoginForm = false;
       $scope.loginError = false;
       $scope.typingTimeouts = {};
+      $rootScope.user = undefined;
 
   		$scope.toggleLoginForm = function () {
         console.log('toggling');
@@ -23,7 +24,10 @@ spilldb.component('auth', {
           $scope.user = true;
           $scope.showLoginForm = false;
           console.log('logget inn');
-				$scope.user = data.user;
+				  $scope.user = data.user;
+          $rootScope.user = data.user;
+          $rootScope.$broadcast("user logged in");
+          console.log('emitted event');
   			}).error(function (data) {
   				$scope.loggedIn = false;
 				  $scope.user = undefined;
@@ -42,7 +46,7 @@ spilldb.component('auth', {
 
       $scope.$on('$routeChangeStart', function(next, current) { 
         //$scope.toggleLoginForm();
-        $scope.checkLogin();
+        //$scope.checkLogin();
       });
 
       $scope.typingProxy = function(toCall, parameter, typingTimeout) {
@@ -63,7 +67,8 @@ spilldb.component('auth', {
           $scope.loggedIn = true;
           $scope.user = data.user;
           $rootScope.user = data.user;
-          //$location.path("/");
+          $rootScope.$broadcast("user logged in");
+          console.log('emitted event');
         })
         .error(function (data) {
           $scope.loggedIn = false;

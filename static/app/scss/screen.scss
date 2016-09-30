@@ -6,17 +6,29 @@
 @import "compass";
 
 
+$textDarkGrey: #a0a0a0;
+$darkGrey: #282828;
+$textLightGrey: #fcfcfc;
+$textBlue: #5589ce;
+
+
 body {
   background-color: #E0E1E5;
-  color: #1a1d22;
+  background-color: #181818;
+  color: $textDarkGrey;
   font-size: 12px;
   padding-bottom: 100px;
 }
 
 .navbar {
 	background-color: #23323b;
+  background-color: #282828;
   margin-bottom: 0;
 }
+
+ a {
+  color: $textLightGrey;
+ }
 
 .btn {
 	//border-radius: 0;
@@ -175,30 +187,27 @@ body {
 }
 
 .game-list.table {
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+  //box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
   margin-bottom: 0;
   tr {
+    background-color: transparent;
     &.game-row {
       &.toggled {
-        background-color: #c7d1df;
+        background-color: transparent;
       }
     }
-    background-color: white;
     &:hover {
-      background-color: #c7d1df;
+      background-color: #282828;
     }
     td,th {
-      border-right: 1px solid #c8c8c8;
-      border-bottom: 1px solid #c8c8c8;
+      border-right: 1px solid #282828;
+      border-bottom: 1px solid #282828;
 
       &.editable-col {
-        padding: 4px;
+        padding: 6px;
         outline: none;
         cursor: pointer;
       }
-    }
-    td:nth-child(2) {
-      
     }
     .context-menu-container {
       font-weight: bold;
@@ -221,12 +230,11 @@ body {
     }
     td {
       padding: 0;
-      color: #646464;
+      color: #fcfcfc;
       position: relative;
       height: 26px;
       
       &.inactive {
-        background-color: #dadada;
       }
 
 
@@ -254,16 +262,18 @@ body {
       }
     }
     th {
-      border-bottom: 1px solid #697599;
+      border-bottom: 1px solid #282828;
       cursor:pointer;
       height: 26px;
       &:nth-child(even),
       &:nth-child(odd) {
-        @include background-image(linear-gradient(#f4f6ff, #eeeff9));
         font-weight: normal;
         text-transform: uppercase;
         text-align: left;
-        color: #32445c;
+        color: #a0a0a0;
+        &:hover {
+          color: #fcfcfc;
+        }
       }
       &.game-list-controls {
         @include background-image(linear-gradient(#467cc6, #376cb3));
@@ -331,23 +341,77 @@ body {
     }
   }
 
+    .filter-row {
+      border-top: 1px solid $darkGrey;
+      .form-control:focus {
+        color: $textLightGrey;
+        box-shadow: none;
+      }
+      .input-group-addon {
+        background-color: transparent;
+        border: 0;
+        padding: 0 14px 0 0;
+      }
+      padding: 0;
+      .form-group {
+        padding: 14px 14px;
+        position: relative;
+
+      }
+      form {
+        padding: 0;
+        margin: 0;
+        input {
+          background-color: transparent;
+          color: $textDarkGrey;
+          border: 0;
+          outline: none;
+          padding: 0;
+          box-shadow: 0;
+          display: block;
+        }
+      }
+    }
+
+
   .collection-header {
-    padding: 40px;
+    margin: 0 0 14px 0;
     position: relative;
-    height: 140px;
-    background-color: rgb(100,100,100);
-    background-image: url(../images/default-collection.jpg);
-    background-size: cover;
+
+    .collection-photo {
+      background-color: rgb(100,100,100);
+      background-image: url(../images/default-collection.jpg);
+      background-size: cover;
+      float: left;
+      margin-right: 14px;
+      width: 210px;
+      height: 210px;
+      display: block;
+    }
+
     .collection-title {
       position: relative;
       color: white;
       outline: none;
-      
+      .kicker {
+        text-transform: uppercase;
+        margin-bottom: 0;
+        color: $textDarkGrey;
+      }
+      .byline {
+        color: $textDarkGrey;
+        font-size: 14px;
+      }
+      .description {
+        font-size: 14px;
+        color: $textDarkGrey;
+      }
       h1 {
         display: inline-block;
         outline: none;
         margin: 0;
-        padding: 10px;
+        padding: 14px 0 14px;
+        font-size: 38px;
         @include text-shadow(0 0 10px rgba(0,0,0,0.8));
       }
       .glyphicon {
@@ -367,18 +431,18 @@ body {
     }
   }
 
-
 .collection-container {
-  border-right: 250px solid transparent;
+  border-left: 200px solid transparent;
   border-top: 50px solid transparent;
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  overflow: scroll;
+  overflow: auto;
   box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
   border-bottom: 42px solid transparent;
+  padding: 14px;
 }
 
 .btn {
@@ -430,11 +494,12 @@ body {
   position: fixed;
   border-top: 50px solid transparent;
   height: 100%;
-  width: 250px;
+  width: 200px;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 10;
-  background-color: #d1d1d1;
+  background-color: #f9f9f9;
+  background-color: #282828;
   &:after {
     content: "";
     position: absolute;
@@ -516,13 +581,16 @@ body {
 
 .bottom-navbar {
   padding: 0;
-  background-color: #d8d8d8;
+  background-color: #f9f9f9;
+  background-color: #282828;
+  border: 0;
+  border-radius: 0;
   border-top: 1px solid rgba(0, 0, 0, .15);
   position: fixed;
   left: 0;
   width: 100%;
   bottom: 0;
-  border-right: 250px solid transparent;
+  border-left: 200px solid transparent;
   min-height: 40px;
   .container-fluid {
     padding: 0;
@@ -562,8 +630,10 @@ body {
 
 .collection-list-header {
   margin-top: 10px;
-  color: #676666;
+  color: $textDarkGrey;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
 }
 
 .collection-list {
@@ -574,17 +644,36 @@ body {
     margin-right: -15px;
     border-radius: 0;
     padding-left: 30px;
-    color: #574c4c;
+    color: $textDarkGrey;
     font-size: 14px;
     padding: 4px 4px 4px 15px;
-    background-color: rgba(0,0,0,0.05);
     border: 0;
     cursor: pointer;
     @include transition(0.25s ease-in-out);
+    background-color: transparent;
+    &.selected {
+      &:before {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 100%;
+        left: 0;
+        background-color: $textBlue;
+        top: 0;
+      }
+      
+    }
+    a {
+      color: $textDarkGrey;
+      letter-spacing: 0.2px;
+      &:hover {
+        color: $textLightGrey;
+      }
+    }
     &:hover {
-      margin-right: 0;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;
+    }
+    .glyphicon {
+      padding-right: 8px;
     }
   }
 }
@@ -603,13 +692,7 @@ body {
   }
 }
 
-.glyphicon-heart {
-  color: #d6566d;
-}
 
-.glyphicon-usd {
- color: #4caf50; 
-}
 
 .signup-form {
   max-width: 340px;
@@ -623,4 +706,42 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 8px 20px;
+}
+
+
+.image-row {
+  * {
+    vertical-align: top;
+  }
+  .dropzone {
+    display: inline-block;
+    width: 20%;
+    height: 172px;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 20px;
+    font-family: Arial;
+  }
+  .image-container {
+    display: inline-block;
+    width: 20%;
+    height: 172px;
+    background-size: cover;
+
+  }
+}
+
+
+
+.game-list.table tr td[contenteditable="true"]:active,
+.game-list.table tr td[contenteditable="true"]:focus{
+  outline:none;
+  color: $textBlue;
+}
+
+
+.clearfix:after {
+    content:" ";
+    display:table;
+    clear:both;
 }

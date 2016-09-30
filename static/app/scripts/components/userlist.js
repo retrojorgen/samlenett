@@ -1,87 +1,26 @@
 spilldb.component('userlist', {
 	templateUrl: 'app/scripts/views/userlist.html',
-  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window) {
+  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
 
+      var collectionId = $routeParams.collectionId;
 
-
-      $scope.nickSlug = $routeParams.nickSlug;
-      $scope.settings = [];
-
-      $scope.games = [];
-      $scope.user = {};
-      $scope.currentCollectionId = {};
-
-      $scope.currentCollection = undefined;
-
-      $scope.collectionByTypes = {
-        "collections": [],
-        "goals": [],
-        "sales": []
-      };
-
-      $scope.settingFields = {
-        "collections": [],
-        "goals": [],
-        "sales": []
-      };
+      $scope.collection = {};
 
       $scope.toggles = {
         contextMenu: 0,
         editGames: [],
-        sortOrder: "hest"
+        sortOrder: "",
+        filterPhrase : ""
       };
 
-      $http.post("/api/get/user/games", {"nickSlug": $scope.nickSlug})
-      .success(function (data) {
+      $http.post("/api/get/user/collection", {collectionId: collectionId})
+      .success(function (collection) {
+        $scope.collection = collection;
 
-        // assign user
-        $scope.user = data.user;
-
-        // fix the settings
-        _.each(data.settings, function (settingList) {
-          _.each(settingList, function (setting, key) {
-            if(key != "type") {
-              if(key != "_id") {
-                $scope.settingFields[settingList.type].push({
-                  field: key,
-                  name: setting.name,
-                  type: setting.type,
-                  description: setting.description
-                }); 
-              }
-            }
-          });
-        });
-
-
-        // Fix collections
-        _.each(data.collections, function (collection) {
-          if(!collection.games)
-            collection.games = [];
-          _.each(data.games, function (game) {
-            if(game.collectionId == collection._id)
-              collection.games.push(game);
-          });
-          $scope.addRow(collection, true);
-        });
-
-        if($routeParams.listId) {
-          $scope.currentCollection = _.find(data.collections, function (collection) {
-            return collection._id == $routeParams.listId;
-          });
-        }
-
-        if(!$scope.currentCollection) {
-          $scope.currentCollection = _.find(data.collections, function (collection) {
-            return collection._id == data.user.mainCollectionId;
-          });
-        }
-           
-        _.each(data.collections, function (collection) {
-            $scope.collectionByTypes[collection.type].push(collection);
-        });
-
-
+        delete $scope.collection.settings._id;
+        delete $scope.collection.settings.type;
+        console.log($scope.collection);
+        $scope.addRow(true);
       });
 
       $($window).on('paste', function (e) {
@@ -89,51 +28,39 @@ spilldb.component('userlist', {
         //var data = e.originalEvent.clipboardData.getData('text/plain');
       });
 
-      $scope.addRow = function (collection, postToggle) {        
+      $scope.addRow = function (postToggle) {        
         var newRow = {};
-        _.each($scope.settingFields[collection.type], function (setting) {
+        _.each($scope.collection.settings, function (setting) {
           newRow[setting.field] = "";
         });
 
-        newRow.collectionId = collection._id;
+        newRow.collectionId = $scope.collection.collection._id;
 
-        newRow.userId = $scope.user._id;
+        newRow.userId = $rootScope.user._id;
         if(!postToggle) {
           $http.post("/api/add/game", newRow)
           .success(function (game) {
-            collection.games.push(game);
+            $scope.collection.games.push(game);
           });  
         } else {
           newRow.inactive = true;
-          collection.games.push(newRow);
+          $scope.collection.games.push(newRow);
         }
         
       };
 
-      $scope.countCollection = function (games) {
-        var counter = 0;
-        if(games) {
-          _.each(games, function (game) {
-            if(!game.inactive)
-              counter++;
-          });  
-        }
-        return counter;
-      };
-
-      $scope.removeGame = function (collection, game) {
-        var indexPosition = $scope.games.indexOf(game);
-        collection.games.splice(indexPosition, 1);
+      $scope.removeGame = function (game) {
+        var indexPosition = $scope.collection.games.indexOf(game);
+        $scope.collection.games.splice(indexPosition, 1);
         $http.post("/api/remove/game", {gameId: game._id}, function () {
 
         });
       };
 
       $scope.updateGame = function (game, row, field) {
+        console.log(game, row, field);
         row = row.replace(/<\/?[^>]+(>|$)/g, "");
-        console.log(game[field], row, game);
         game[field] = game[field].replace(/<\/?[^>]+(>|$)/g, "");
-        console.log(game[field], row, game);
         if(!game.inactive) {
 
           $http.post("/api/update/game", {
@@ -145,7 +72,6 @@ spilldb.component('userlist', {
           });
         } else {
           delete game.inactive;
-          console.log('sending in game:', game);
           $http.post("/api/add/game", game)
           .success(function (dbGame) {
             game._id = dbGame._id;
@@ -155,7 +81,7 @@ spilldb.component('userlist', {
           
       };
 
-      $scope.sortBy = function (currentCollection, field) {
+      $scope.sortGamesBy = function (field) {
         var currentSort = $scope.toggles.sortOrder;
         if(!currentSort)
         currentSort.replace("-", "");
@@ -169,8 +95,8 @@ spilldb.component('userlist', {
         } else {
           $scope.toggles.sortOrder = field;
         }
-        console.log($scope.currentCollection.games, $scope.toggles.sortOrder);
-        $scope.currentCollection.games = $filter('orderBy')($scope.currentCollection.games, $scope.toggles.sortOrder);
+        
+        $scope.collection.games = $filter('orderBy')($scope.collection.games, $scope.toggles.sortOrder);
       };
 
       $scope.gameKeyHandler = function ($event,game, field) {

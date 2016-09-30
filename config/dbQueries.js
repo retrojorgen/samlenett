@@ -8,7 +8,7 @@ module.exports = function (models, slug) {
 	var Game = models.Game;
 	var Settings = models.Settings;
 	var Collection = models.Collection;
-	var ImageObj = models.Image;
+	var ImageObj = models.ImageObj;
 
 
 	return {
@@ -61,6 +61,25 @@ module.exports = function (models, slug) {
 					callback(collections);
 			});
 		},
+		getCollectionFromId: function (collectionId, callback) {
+			Collection.findById(collectionId, function (err, collection) {
+				if(!err) 
+					User.findById(collection.userId, function (err, user) {
+						if(!err)
+							Game.find({"userId": user._id}, function (err, games) {
+								if(!err)
+									Settings.findOne({"type": collection.type}, function (err, settings) {
+										callback({
+											collection: collection,
+											user: user,
+											games: games,
+											settings: settings
+										});
+									});
+							});
+					});
+			});
+		},
 		getSettings: function (callback) {
 			Settings.find({}, function (err, settings) {
 			 	if(err)
@@ -105,7 +124,39 @@ module.exports = function (models, slug) {
 				if(!err)
 					callback();
 			});
-		} 
+		},
+		addImage: function (callback) {
+			var newImage = {
+				'location': 'static/userImages/',
+				'type': 'jpg',
+				imageAdded: new Date()
+			};
+
+			var image = new ImageObj(newImage);
+
+			image.save(function (err) {
+				if(!err) {
+					callback(image);
+				}
+			});
+		},
+		addImageToUser: function (userId, image, callback) {
+			User.findById(userId, function (err, user) {
+				if(!err) {
+					if(!user.collectionImages) {
+						user.collectionImages = [image];
+					} else {
+						user.collectionImages.push(image);
+					}
+					console.log(user);
+					user.save(function (err) {
+						if(!err)
+							if(callback)
+								callback(user);
+					});
+				}
+			})
+		}
 	}
 }
 

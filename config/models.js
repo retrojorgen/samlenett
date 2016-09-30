@@ -7,6 +7,7 @@ module.exports = function (dbHandler) {
 	    password: String,
 	    profileImageUrl: String,
 	    coverPhotoUrl: String,
+	    collectionImages: [],
 	    role: String,
 	    nick: String,
 	    slug: String,
@@ -47,7 +48,8 @@ module.exports = function (dbHandler) {
 	    salesStatus: Boolean,
 	    acquiredStatus: Boolean,
 	    askingPrice: Number,
-	    soldForPrice: Number
+	    soldForPrice: Number,
+	    images: []
 	});
 
 	var collectionSchema = dbHandler.Schema({
@@ -56,12 +58,13 @@ module.exports = function (dbHandler) {
 	    title: String,
 	    slug: String,
 	    collectionImageId: String,
+	    description: String,
 	    collectionAdded: { type: Date, default: Date.now }
 	});	
 
 	var imageSchema = dbHandler.Schema({
-	    originalTitle: String,
 	    location: String,
+	    type: String,
 	    imageAdded: { type: Date, default: Date.now }
 	});	
 
@@ -72,6 +75,6 @@ module.exports = function (dbHandler) {
 		Settings : dbHandler.model('Settings', settingsSchema),
 		Game: dbHandler.model('Game', gameSchema),
 		Collection: dbHandler.model('Collection', collectionSchema),
-		imageSchema: dbHandler.model('Image', imageSchema)
+		ImageObj: dbHandler.model('Image', imageSchema)
 	}
 }
