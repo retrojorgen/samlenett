@@ -10,12 +10,24 @@ spilldb.component('userlist', {
         contextMenu: 0,
         editGames: [],
         sortOrder: "",
-        filterPhrase : ""
+        filterPhrase : "",
+        editTab: false
+      };
+
+      $scope.imageInfo = {
+        image: {},
+        imageFileName: {}
+      }
+
+      $scope.editCollection = {
+
       };
 
       $http.post("/api/get/user/collection", {collectionId: collectionId})
       .success(function (collection) {
         $scope.collection = collection;
+        $scope.editCollection = angular.copy(collection.collection);
+
 
         delete $scope.collection.settings._id;
         delete $scope.collection.settings.type;
@@ -120,6 +132,22 @@ spilldb.component('userlist', {
           $scope.toggles['editGames'].push(game);
         }
       }
+
+      $scope.reportImage = function (image) {
+
+        $http.post("/api/me/upload/image", {
+          image: image
+        })
+        .success(function (image) {
+          console.log(image);
+          $scope.editCollection.collectionImageId = image.image._id;
+          console.log($scope.editCollection, image);
+        });
+      }
+      $scope.toggleEditTab = function () {
+        $scope.toggles.editTab = !$scope.toggles.editTab;
+      };
+
       $scope.runBulk = function (collection, command) {
         _.each($scope.toggles['editGames'], function (game) {
           if(command == 'deleteRows') {

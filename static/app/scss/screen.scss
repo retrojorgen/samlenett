@@ -695,10 +695,11 @@ body {
 
 
 .signup-form {
-  max-width: 340px;
-  padding: 20px;
+  max-width: 640px;
+  padding: 40px;
   background-color: white;
   margin: 50px auto 0 auto;
+  color: darken($textDarkGrey, 40%);
 }
 
 .btn {
@@ -721,17 +722,69 @@ body {
     text-align: center;
     padding: 20px;
     font-family: Arial;
+    &.profile-image {
+      width: 210px;
+      height: 210px;
+    }
   }
   .image-container {
     display: inline-block;
     width: 20%;
     height: 172px;
     background-size: cover;
-
+    &.profile-image {
+      width: 210px;
+      height: 210px;
+    }
   }
 }
 
 
+.collection-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 14px;
+  width: 100%;
+  
+  background-color: $textDarkGrey;
+  @include box-shadow(2px 2px 4px rgba(0,0,0,0.4));
+  @include translateY(-100%);
+  z-index: 10000;
+  @include transition(0.25s ease-in-out);
+  &.visible {
+    @include translateX(0%);
+  }
+
+  label {
+    color: darken($textDarkGrey, 40%);
+  }
+  form {
+    margin-top: 14px;
+  }
+  .dropzone {
+    position: relative;
+    border: 0;
+    padding: 30px;
+    &:after {
+      content: "";
+      position: absolute;
+      border: 2px dotted darken($textDarkGrey, 40%);
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+    }
+    span {
+      color: darken($textDarkGrey, 40%);
+    }
+  }
+}
+
+.edit-button {
+    position: relative;
+    z-index: 10;
+}
 
 .game-list.table tr td[contenteditable="true"]:active,
 .game-list.table tr td[contenteditable="true"]:focus{
@@ -739,6 +792,9 @@ body {
   color: $textBlue;
 }
 
+.btn {
+  outline: none;
+}
 
 .clearfix:after {
     content:" ";

@@ -51,17 +51,18 @@ spilldb.directive('fileDropzone', function() {
                 if (angular.isString(scope.fileName)) {
                   return scope.fileName = name;
                 }
+                //console.log(evt.target.result);
+                scope.report(scope.file);
               });
             }
           };
-          console.log(scope.report);
 
           file = event.originalEvent.dataTransfer.files[0];
           name = file.name;
           type = file.type;
           size = file.size;
           reader.readAsDataURL(file);
-          scope.report();
+          
           return false;
         });
       }

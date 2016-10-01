@@ -15,21 +15,10 @@ module.exports = function(app, passport, dbQueries) {
 
   // process the login form
   app.post('/api/login', passport.authenticate('local-login', {
-            successRedirect : '/api/auth', // In both cases redirect to auth
-            failureRedirect : '/api/auth', // 
+            successRedirect : '/api/auth/success', // In both cases redirect to auth
+            failureRedirect : '/api/auth/fail', // 
             failureFlash : true // allow flash messages
-    }),
-        function(req, res) {
-            console.log("hello");
-            /**
-            if (req.body.remember) {
-              req.session.cookie.maxAge = 1000 * 60 * 3;
-            } else {
-              req.session.cookie.expires = false;
-            }
-            **/
-        //res.redirect('/profile');
-    });
+    }));
 
 
   app.post('/api/signup', passport.authenticate('local-signup', {
@@ -45,9 +34,24 @@ module.exports = function(app, passport, dbQueries) {
       user: req.user || undefined
     };
 
-
+    
     if(!req.isAuthenticated()) {
-      res.json(401, status);
+      res.status(401).json(status);
+    } else {
+      res.json(status);  
+    }
+  });
+
+  app.get('/api/auth/:status', function (req, res, next) {
+
+    var status = {
+      status: req.isAuthenticated(),
+      user: req.user || undefined
+    };
+
+    
+    if(!req.isAuthenticated()) {
+      res.status(401).json(status);
     } else {
       res.json(status);  
     }
@@ -83,14 +87,14 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/get/user/collection', function (req,res,next) {
-    console.log(req.body.collectionId);
+    
     dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
       res.json(collection);
     });
   });
 
   app.post('/api/check/nick', function (req,res,next) {
-    console.log('checking nick', req.body.nick);
+    
     dbQueries.getUserFromNick(req.body.nick, function (user) {
       if(user)
         res.json(user);
@@ -109,7 +113,7 @@ module.exports = function(app, passport, dbQueries) {
 
   app.get('/api/me/collections', function (req, res, next) {
     dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
-      console.log(collections);
+      
       res.json(collections);
     });
   });
@@ -117,7 +121,7 @@ module.exports = function(app, passport, dbQueries) {
 
   app.post('/api/add/game', function (req,res,next) {
     
-    console.log('returning game', req.body);
+    
 
     dbQueries.addGame(req.body, function (game) {
 
@@ -140,7 +144,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/user/image', function (req, res, next) {
+  app.post('/api/me/upload/image', function (req, res, next) {
 
     dbQueries.addImage(function (addedImage) {
 
@@ -163,12 +167,11 @@ module.exports = function(app, passport, dbQueries) {
                     res.json({
                       image: addedImage
                     });
-                    dbQueries.addImageToUser(req.user._id, addedImage);
                   });
                 });
             });
         } else {
-          //console.log(err);
+          
         }
 
       });

@@ -53,8 +53,8 @@ module.exports = function (dbHandler) {
 	});
 
 	var collectionSchema = dbHandler.Schema({
-		type: String,
-		userId: Schema.Types.ObjectId,
+			type: String,
+			userId: Schema.Types.ObjectId,
 	    title: String,
 	    slug: String,
 	    collectionImageId: String,

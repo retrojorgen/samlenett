@@ -1,20 +1,33 @@
 <div class="fluid-container collection-container">
-    <div class="fluid-container collection-edit">
+    <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
+        <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
+        <button class="btn btn-primary edit-button pull-right" ng-click="toggleEditTab()">Lagre</button>
+        <label for="collection-image">Bilde av liste</label>
         <div class="image-row">
-            <div class="dropzone" file-dropzone="[image/jpeg]"
+            <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
                           file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
               <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
             </div>
-            <div class="image-container" ng-style="{
-            'background-image': 'url(' + imageInfo.image + ')'
+            <div class="image-container profile-image" ng-style="{
+            'background-image': 'url(/userImages/' + editCollection.collectionImageId + '.jpg)'
             }">
-                <span class="file-name">{{imageInfo.imageFileName}}</span>
             </div>
         </div>
+        <form>
+            <div class="form-group">
+                <label for="collection-title">Tittel på liste</label>
+                <input type="text" class="form-control" id="collection-title" placeholder="skriv inn tittel.." ng-model="editCollection.title">
+            </div>
+            <div class="form-group">
+                <label for="collection-description">Beskrivelse av liste</label>
+                <textarea type="text" class="form-control" id="collection-description" placeholder="beskrivelse.." ng-model="editCollection.description"></textarea>
+            </div>
+        </form>
     </div>
     <div class="fluid-container collection-header clearfix">
+        <button class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
         <div class="collection-photo">
-            
+             
         </div>
         <div class="collection-background" ng-if="collection.collection.collectionImageId" ng-style="
             {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}"></div>
@@ -33,6 +46,7 @@
                 
 
         </div>
+        
 
     </div>
     <div class="filter-row">

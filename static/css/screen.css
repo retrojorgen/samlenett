@@ -775,13 +775,14 @@ a {
 
 /* line 697, ../app/scss/screen.scss */
 .signup-form {
-  max-width: 340px;
-  padding: 20px;
+  max-width: 640px;
+  padding: 40px;
   background-color: white;
   margin: 50px auto 0 auto;
+  color: #3a3a3a;
 }
 
-/* line 704, ../app/scss/screen.scss */
+/* line 705, ../app/scss/screen.scss */
 .btn {
   font-size: 100%;
   letter-spacing: 1px;
@@ -789,11 +790,11 @@ a {
   padding: 8px 20px;
 }
 
-/* line 713, ../app/scss/screen.scss */
+/* line 714, ../app/scss/screen.scss */
 .image-row * {
   vertical-align: top;
 }
-/* line 716, ../app/scss/screen.scss */
+/* line 717, ../app/scss/screen.scss */
 .image-row .dropzone {
   display: inline-block;
   width: 20%;
@@ -804,21 +805,99 @@ a {
   font-family: Arial;
 }
 /* line 725, ../app/scss/screen.scss */
+.image-row .dropzone.profile-image {
+  width: 210px;
+  height: 210px;
+}
+/* line 730, ../app/scss/screen.scss */
 .image-row .image-container {
   display: inline-block;
   width: 20%;
   height: 172px;
   background-size: cover;
 }
+/* line 735, ../app/scss/screen.scss */
+.image-row .image-container.profile-image {
+  width: 210px;
+  height: 210px;
+}
 
-/* line 736, ../app/scss/screen.scss */
+/* line 743, ../app/scss/screen.scss */
+.collection-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 14px;
+  width: 100%;
+  background-color: #a0a0a0;
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  z-index: 10000;
+  -moz-transition: ease-in-out 0.25s;
+  -o-transition: ease-in-out 0.25s;
+  -webkit-transition: ease-in-out 0.25s;
+  transition: ease-in-out 0.25s;
+}
+/* line 755, ../app/scss/screen.scss */
+.collection-edit.visible {
+  -moz-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+}
+/* line 759, ../app/scss/screen.scss */
+.collection-edit label {
+  color: #3a3a3a;
+}
+/* line 762, ../app/scss/screen.scss */
+.collection-edit form {
+  margin-top: 14px;
+}
+/* line 765, ../app/scss/screen.scss */
+.collection-edit .dropzone {
+  position: relative;
+  border: 0;
+  padding: 30px;
+}
+/* line 769, ../app/scss/screen.scss */
+.collection-edit .dropzone:after {
+  content: "";
+  position: absolute;
+  border: 2px dotted #3a3a3a;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+}
+/* line 778, ../app/scss/screen.scss */
+.collection-edit .dropzone span {
+  color: #3a3a3a;
+}
+
+/* line 784, ../app/scss/screen.scss */
+.edit-button {
+  position: relative;
+  z-index: 10;
+}
+
+/* line 789, ../app/scss/screen.scss */
 .game-list.table tr td[contenteditable="true"]:active,
 .game-list.table tr td[contenteditable="true"]:focus {
   outline: none;
   color: #5589ce;
 }
 
-/* line 743, ../app/scss/screen.scss */
+/* line 795, ../app/scss/screen.scss */
+.btn {
+  outline: none;
+}
+
+/* line 799, ../app/scss/screen.scss */
 .clearfix:after {
   content: " ";
   display: table;
