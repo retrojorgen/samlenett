@@ -8,6 +8,7 @@
 
 $textDarkGrey: #a0a0a0;
 $darkGrey: #282828;
+$darkDarkGrey: #181818;
 $textLightGrey: #fcfcfc;
 $textBlue: #5589ce;
 
@@ -64,6 +65,10 @@ body {
   background-color: #101010;
   padding: 20px;
   top: 50px;
+  display: none;
+  &.visible {
+    display: block;
+  }
 }
 
 .dialog-wrapper {
@@ -212,7 +217,6 @@ body {
     .context-menu-container {
       font-weight: bold;
       padding: 4px;
-      padding-left: 30px;
     }
     td:nth-child(1n+3) {
       &:hover {
@@ -328,7 +332,7 @@ body {
       display: block;
       padding: 4px;
       font-weight: normal;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid black;
       font-weight: normal;
       cursor: pointer;
       background-color: #376cb3;
@@ -636,6 +640,15 @@ body {
   font-size: 12px;
 }
 
+.create-new-button {
+    background-color: #181818;
+    border: 0;
+    padding: 6px 7px 3px 7px;
+    border-radius: 50%;
+    float: right;
+    margin-top: -5px;
+}
+
 .collection-list {
   
   border-radius: 0;
@@ -651,6 +664,7 @@ body {
     cursor: pointer;
     @include transition(0.25s ease-in-out);
     background-color: transparent;
+
     &.selected {
       &:before {
         content: "";

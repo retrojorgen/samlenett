@@ -66,7 +66,7 @@ module.exports = function (models, slug) {
 				if(!err) 
 					User.findById(collection.userId, function (err, user) {
 						if(!err)
-							Game.find({"userId": user._id}, function (err, games) {
+							Game.find({"collectionId": collection._id}, function (err, games) {
 								if(!err)
 									Settings.findOne({"type": collection.type}, function (err, settings) {
 										callback({
@@ -90,6 +90,21 @@ module.exports = function (models, slug) {
 			 		callback(settings);
 			});
 		},
+
+		updateCollection: function (collection, callback) {
+			
+			Collection.findById(collection._id, function (err, foundCollection) {
+
+				foundCollection.title = collection.title;
+				foundCollection.description = collection.description;
+				foundCollection.collectionImageId = collection.collectionImageId;
+				foundCollection.save(function (err, updatedCollection) {
+					callback(updatedCollection);
+				});
+			});
+
+		},
+
 		addCollection: function (title,userId,type,callback) {
 			var collection = new Collection ({
 				userId: userId,
@@ -148,7 +163,7 @@ module.exports = function (models, slug) {
 					} else {
 						user.collectionImages.push(image);
 					}
-					console.log(user);
+
 					user.save(function (err) {
 						if(!err)
 							if(callback)

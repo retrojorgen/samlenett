@@ -118,6 +118,24 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.post('/api/me/update/collection', function (req, res) {
+    console.log(req.body.collection);
+    
+    dbQueries.updateCollection(req.body.collection, function (collection) {
+      res.json(collection);
+    });
+  });
+
+  app.post('/api/me/create/collection', function (req, res) {
+    var title = "ny liste";
+    if(req.body.type == "collections") title = "Ny samling";
+    if(req.body.type == "goals") title = "Nye mål";
+    if(req.body.type == "sales") title = "Ny salgsliste";
+    dbQueries.addCollection(title, req.user._id, req.body.type, function (collection) {
+      res.json(collection);
+    });
+  });
+
 
   app.post('/api/add/game', function (req,res,next) {
     

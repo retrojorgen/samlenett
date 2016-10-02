@@ -7,9 +7,16 @@ spilldb.component('userbar', {
 
       console.log('running again');
 
+      $rootScope.$on("update collections", function () {
+        updateCollection();
+      });
+
       $rootScope.$on("user logged in", function () {
         $scope.user = $rootScope.user;
-        
+        updateCollection();
+      });
+
+      var updateCollection = function () {
         $http.get("/api/me/collections")
         .success(function (collections) {
 
@@ -19,14 +26,34 @@ spilldb.component('userbar', {
             'sales': []
           };
           _.each(collections, function (collection) {
-            if($routeParams.collectionId && $routeParams.collectionId == collection._id)
+            $scope.collections[collection.type].push(collection);
+          });
+
+          if($routeParams.collectionId)
+            setSelected($routeParams.collectionId);
+        });
+      };
+
+      var setSelected = function (selectedId) {
+        _.each($scope.collections, function (collectionList) {
+          _.each(collectionList, function (collection) {
+            if(collection._id == selectedId)
               collection.selected = true;
             else
               collection.selected = false;
-            $scope.collections[collection.type].push(collection);
-            
           });
-          console.log($scope.collections);
         });
+      }
+
+      $scope.addCollection = function (type) {
+        $http.post("/api/me/create/collection", {type: type})
+        .success(function (collection) {
+          $scope.collections[type].push(collection);
+        });
+      };
+
+      $scope.$on('$routeChangeStart', function(next, current) { 
+        if(current.pathParams && current.pathParams.collectionId)
+          setSelected(current.pathParams.collectionId);
       });
   }});

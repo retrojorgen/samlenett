@@ -8,13 +8,16 @@ spilldb.component('auth', {
       $scope.loginError = false;
       $scope.typingTimeouts = {};
       $rootScope.user = undefined;
+      $scope.toggles = {
+        showLogin: false
+      };
 
   		$scope.toggleLoginForm = function () {
         console.log('toggling');
-  			$scope.showLoginForm = !$scope.showLoginForm;
+  			$scope.toggles.showLogin = !$scope.toggles.showLogin;
   		};
 
-  		$scope.submitLoginForm = function () {  			
+  		$scope.submitLoginForm = function () {
         $scope.loginError = false;
   			$http.post('/api/login',{
   				username: $scope.loginUsername,
@@ -28,6 +31,7 @@ spilldb.component('auth', {
           $rootScope.user = data.user;
           $rootScope.$broadcast("user logged in");
           console.log('emitted event');
+          $scope.toggleLoginForm();
   			}).error(function (data) {
   				$scope.loggedIn = false;
 				  $scope.user = undefined;

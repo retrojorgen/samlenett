@@ -1,7 +1,7 @@
 <div class="fluid-container collection-container">
     <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
         <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
-        <button class="btn btn-primary edit-button pull-right" ng-click="toggleEditTab()">Lagre</button>
+        <button class="btn btn-primary edit-button pull-right" ng-click="updateCollection()">Lagre</button>
         <label for="collection-image">Bilde av liste</label>
         <div class="image-row">
             <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
@@ -26,11 +26,14 @@
     </div>
     <div class="fluid-container collection-header clearfix">
         <button class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
-        <div class="collection-photo">
+        <div ng-if="collection.collection.collectionImageId" class="collection-photo" ng-style="
+            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
-        <div class="collection-background" ng-if="collection.collection.collectionImageId" ng-style="
-            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}"></div>
+        <div class="collection-photo" ng-if="!collection.collection.collectionImageId" ng-style="
+            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+             
+        </div>
         <div class="collection-title">
             <p class="kicker">
                 <span ng-if="collection.collection.type == 'collections'">Samling</span>
@@ -87,12 +90,14 @@
                     <td ng-class="{
                             'inactive': game.inactive
                         }" class="context-menu-container"><span ng-if="!game.inactive">{{$index+1}}</span>
+                    <!--    
                     <button class="context-menu glyphicon glyphicon-menu-hamburger" ng-class="{
                         'selected': toggles['contextMenu'] == game._id
                     }" ng-click="toggleGameToggle(game._id, 'contextMenu')" ng-if="!game.inactive">
                     </button>
+                    
                     <ul class="context-menu-list" ng-show="toggles['contextMenu'] == game._id">
-                        <li ng-click="removeGame(currentCollection, game)">
+                        <li ng-click="removeGame(game)">
                             <span class="description"><span class="glyphicon glyphicon-remove"> </span> Slett rad</span>
                         </li>
                         <li>
@@ -105,6 +110,7 @@
                             <span class="description"><span class="glyphicon glyphicon-duplicate"></span> Dupliker rad i denne listen</span>
                         </li>
                     </ul>
+                    -->
                     </td>
             		<td ng-repeat="(settingKey, setting) in collection.settings" class="editable-col" contenteditable="true" ng-model="game[settingKey]" ng-keydown="gameKeyHandler($event, game, settingKey)" ng-change="updateGame(game, game[settingKey], settingKey)">
             		</td>
@@ -114,20 +120,11 @@
     </div> 
 </div>
 
-<nav class="navbar navbar-default bottom-navbar">
+<nav class="navbar navbar-default bottom-navbar" ng-if="toggles['editGames'].length">
             <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{toggles['editGames'].length}} rader valgt<span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li ng-click="runBulk(currentCollection, 'deleteRows')">
-                                <span class="glyphicon glyphicon-remove"></span>
-                                Slett {{toggles['editGames'].length}} rader
-                            </li>
-                          </ul>
-                    </li>
-                </ul>
-                <p class="navbar-text pull-right">{{countCollection(filterPhraseList)}} rader</p></li>
-                
+            <p class="navbar-text">
+            {{toggles['editGames'].length}} rader valgt</p>
+            
+            <button type="button" class="btn btn-default navbar-btn">Utfør</button>
             </div>
         </nav>
