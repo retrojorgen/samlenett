@@ -31,11 +31,13 @@ spilldb.component('auth', {
           $rootScope.user = data.user;
           $rootScope.$broadcast("user logged in");
           console.log('emitted event');
+          $rootScope.visible = true;
           $scope.toggleLoginForm();
   			}).error(function (data) {
   				$scope.loggedIn = false;
 				  $scope.user = undefined;
           $scope.loginError = true;
+          $rootScope.visible = false;
   			});
   		};
 
@@ -44,6 +46,7 @@ spilldb.component('auth', {
         .success(function (data) {
           $scope.loggedIn = false;
           $scope.user = undefined;
+          $rootScope.visible = false;
         });
       };
 
@@ -72,12 +75,14 @@ spilldb.component('auth', {
           $scope.user = data.user;
           $rootScope.user = data.user;
           $rootScope.$broadcast("user logged in");
+          $rootScope.visible = true;
           console.log('emitted event');
         })
         .error(function (data) {
           $scope.loggedIn = false;
           $scope.user = undefined;
           $rootScope.user = undefined;
+          $rootScope.visible = false;
         });
       };
 

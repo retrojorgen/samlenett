@@ -11,7 +11,8 @@ spilldb.component('userlist', {
         editGames: [],
         sortOrder: "",
         filterPhrase : "",
-        editTab: false
+        editTab: false,
+        editable: false
       };
 
       $scope.imageInfo = {
@@ -32,6 +33,13 @@ spilldb.component('userlist', {
         delete $scope.collection.settings._id;
         delete $scope.collection.settings.type;
         console.log($scope.collection);
+
+        console.log(collection, collection.user._id, collection.collection.userId);
+        if(collection.user._id == collection.collection.userId)
+        {
+          
+          $scope.toggles.editable = true;
+        }
         $scope.addRow();
       });
 
@@ -62,31 +70,47 @@ spilldb.component('userlist', {
       };
 
       $scope.updateGame = function (game, row, field) {
-        console.log(game, row, field);
+        console.log(game.inactive, game);
         row = row.replace(/<\/?[^>]+(>|$)/g, "");
         game[field] = game[field].replace(/<\/?[^>]+(>|$)/g, "");
         if(!game.inactive) {
 
-          $http.post("/api/update/game", {
-            gameId: game._id,
-            newValue : row,
-            field: field
-          })
-          .success(function (data) {
-          });
-        } else {
           var add = false;
           add = _.find(game, function (row) {
-            return row;
+            if(row != "")
+              return row;
           });
 
           if(add) {
+            console.log('updated game');
+            $http.post("/api/update/game", {
+              gameId: game._id,
+              newValue : row,
+              field: field
+            })
+            .success(function (data) {
+            });
+          }
+          
+        } else {
+          var add = false;
+          add = _.find(game, function (row, key) {
+            if(row != "" && key != "$$hashKey" && key != "collectionId" && key != "userId" && key != "inactive")
+              return row;
+          });
+
+          console.log('trying to add game', add, game);
+
+          if(add) {
+            
             delete game.inactive;
+            
             $http.post("/api/add/game", game)
             .success(function (dbGame) {
               game._id = dbGame._id;
             });
             $scope.addRow($scope.currentCollection, true);
+            
           }
         }
       };
@@ -164,6 +188,14 @@ spilldb.component('userlist', {
             $scope.removeGame(collection, game);
           }
         });
+      }
+
+      $scope.changeToBreak = function (content) {
+        if(content) {
+          content = content.replace(/\n/g, "<br />");
+          return content;
+        }
+        return "";
       }
     }
 });

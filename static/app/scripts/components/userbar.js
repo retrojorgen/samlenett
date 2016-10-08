@@ -7,11 +7,11 @@ spilldb.component('userbar', {
 
       console.log('running again');
 
-      $rootScope.$on("update collections", function () {
+      $scope.$on("update collections", function () {
         updateCollection();
       });
 
-      $rootScope.$on("user logged in", function () {
+      $scope.$on("user logged in", function () {
         $scope.user = $rootScope.user;
         updateCollection();
       });

@@ -21,8 +21,9 @@
 
 	</head>
 	<body ng-app="spilldb">
-
-		<userbar></userbar>
+		<div ng-class="{visible: visible}">
+			<userbar></userbar>
+		</div>
 		<nav class="navbar navbar-default navbar-static-top navbar-inverse">
 			<div class="container-fluid">
 		        <div class="navbar-header">
@@ -57,7 +58,7 @@
 			</div>
 		</nav>
 
-		<div class="main-container">
+		<div class="main-container" ng-class="{visible: visible}">
 			<div ng-view>
 				
 			</div>
@@ -65,6 +66,7 @@
 		
 		<script src="app/scripts/app.js"></script>
 		<script src="app/scripts/components/auth.js"></script>
+		<script src="app/scripts/components/user.js"></script>
 		<script src="app/scripts/components/userbar.js"></script>
 		<script src="app/scripts/components/userlist.js"></script>
 		<script src="app/scripts/components/signup.js"></script>
