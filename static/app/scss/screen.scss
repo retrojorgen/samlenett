@@ -7,10 +7,11 @@
 
 
 $textDarkGrey: #a0a0a0;
+$textLight: white;
 $darkGrey: #282828;
 $darkDarkGrey: #181818;
 $textLightGrey: #fcfcfc;
-$textBlue: #98c1f7;
+$textBlue: #66d1f2;
 
 
 body {
@@ -757,7 +758,6 @@ body {
     display: inline-block;
     width: 20%;
     height: 172px;
-    border: 1px solid #ccc;
     text-align: center;
     padding: 20px;
     font-family: Arial;
@@ -801,24 +801,29 @@ body {
   form {
     margin-top: 14px;
   }
-  .dropzone {
-    position: relative;
-    border: 0;
-    padding: 30px;
-    &:after {
-      content: "";
-      position: absolute;
-      border: 2px dotted darken($textDarkGrey, 40%);
-      width: 80%;
-      height: 80%;
-      top: 10%;
-      left: 10%;
-    }
-    span {
-      color: darken($textDarkGrey, 40%);
-    }
+
+}
+
+.dropzone {
+  position: relative;
+  border: 0;
+  padding: 30px;
+  &:after {
+    content: "";
+    position: absolute;
+    border: 2px dashed darken($textDarkGrey, 40%);
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+  }
+  span {
+    color: darken($textDarkGrey, 40%);
   }
 }
+
+
+
 
 .edit-button {
     position: relative;
@@ -839,4 +844,52 @@ body {
     content:" ";
     display:table;
     clear:both;
+}
+
+
+.user-tab {
+  display: none;
+  margin-top: 14px*2;
+  &.selected {
+    display: block;
+  }
+}
+
+.user-menu {
+  border-bottom: 1px solid $darkGrey;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    position: relative;
+    color: $textDarkGrey;
+    padding: 10px 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 14px;
+    @include transition(0.25s);
+    cursor: pointer;
+    &:after {
+      content :"";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      background-color: transparent;
+      left: 0;
+      @include transition(0.25s);
+    }
+    &.selected {
+      color: $textLightGrey;
+      &:after {
+        background-color: $textBlue;
+        @include transition(0.25s);
+      }
+
+    }
+    &:hover {
+      color: $textLightGrey;
+    }
+  }
 }

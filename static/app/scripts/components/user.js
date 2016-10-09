@@ -2,7 +2,15 @@ spilldb.component('user', {
 	templateUrl: 'app/scripts/views/user.html',
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
       $scope.toggles = {
-        editable: false
+        editable: false,
+        editTab: false,
+        usermenu: {
+          'overview': true,
+          'photos': false,
+          'collections': false,
+          'goals': false,
+          'sales': false
+        }
       };
 
       $scope.user = {};
@@ -21,6 +29,20 @@ spilldb.component('user', {
           $scope.toggles.editable = true;
         }
       }
+
+      $scope.toggleEditTab = function () {
+        $scope.toggles.editTab = !$scope.toggles.editTab;
+      };
+
+      $scope.toggleUserTab = function (tabName) {
+        _.each($scope.toggles.usermenu, function (menuValue, key) {
+          if(key == tabName)
+            $scope.toggles.usermenu[key] = true;
+          else
+            $scope.toggles.usermenu[key] = false;
+        });
+      };
+
       setPriveleges();
     }
 });
