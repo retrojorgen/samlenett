@@ -13,7 +13,7 @@
             <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
         </ul>
         <p class="collection-list-header">Din samling                 <button class="create-new-button" ng-click="addCollection('collections')">
-                    <span class="glyphicon glyphicon-plus-sign"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
+                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
@@ -23,7 +23,7 @@
             </li>
         </ul>
         <p class="collection-list-header">Dine samlemål<button class="create-new-button" ng-click="addCollection('goals')">
-                    <span class="glyphicon glyphicon-plus-sign"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
+                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['goals']" ng-class="{selected: list.selected}">
@@ -33,7 +33,7 @@
             </li>
         </ul>
         <p class="collection-list-header">Til salgs                 <button class="create-new-button" ng-click="addCollection('sales')">
-                    <span class="glyphicon glyphicon-plus-sign"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
+                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['sales']" ng-class="{selected: list.selected}">
