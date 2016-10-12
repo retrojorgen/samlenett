@@ -12,6 +12,7 @@ $darkGrey: #282828;
 $darkDarkGrey: #181818;
 $textLightGrey: #fcfcfc;
 $textBlue: #66d1f2;
+$blue: #467cc6;
 
 
 body {
@@ -257,7 +258,7 @@ body {
         .glyphicon {
           cursor: pointer;
           &:hover {
-            color: #467cc6;
+            color: $blue;
             .description {
               display: inline-block;
             }
@@ -281,7 +282,7 @@ body {
         }
       }
       &.game-list-controls {
-        @include background-image(linear-gradient(#467cc6, #376cb3));
+        @include background-image(linear-gradient($blue, #376cb3));
         color: white;
         border-top: 0;
       }
@@ -449,7 +450,25 @@ body {
   }
   .user-bar {
     @include translateX(0px);
+    overflow: auto;
   }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background:white;
+    background:linear-gradient(0deg,$darkDarkGrey,darken($darkDarkGrey, 10%));
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:linear-gradient(0deg,$blue,lighten($blue, 10%),$blue);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
 .collection-container {
@@ -494,7 +513,7 @@ body {
     margin-top: 6px;
     margin-bottom: 6px;
     color: white;
-    background-color: #467cc6;
+    background-color: $blue;
     border: 2px solid transparent;
     border-radius: 20px;
     padding: 8px 20px;
@@ -580,7 +599,7 @@ body {
         left: 0;
         width: 100%;
         height: 2px;
-        @include background-image(linear-gradient(left, #376cb3, #467cc6, #376cb3));
+        @include background-image(linear-gradient(left, #376cb3, $blue, #376cb3));
       }
     }
   }
@@ -592,7 +611,7 @@ body {
 }
 
 .navbar-brand {
-  @include background-image(linear-gradient(#467cc6, #376cb3)); 
+  @include background-image(linear-gradient($blue, #376cb3)); 
 
   .spilldb-logo {
     position: relative;
@@ -667,12 +686,18 @@ body {
 }
 
 .create-new-button {
-    background-color: #181818;
-    border: 0;
+    background-color: transparent;
+    border: 1px solid $textDarkGrey;
     padding: 6px 7px 3px 7px;
     border-radius: 50%;
     float: right;
     margin-top: -5px;
+    @include transition(0.25s);
+    &:hover {
+      border: 1px solid $blue;
+      background-color: $blue;
+      color: white
+    }
 }
 
 .collection-list {
@@ -685,20 +710,22 @@ body {
     padding-left: 30px;
     color: $textDarkGrey;
     font-size: 14px;
-    padding: 4px 4px 4px 15px;
+    padding: 8px 4px 8px 15px;
     border: 0;
     cursor: pointer;
     @include transition(0.25s ease-in-out);
     background-color: transparent;
 
     &.selected {
+      background-color: $darkDarkGrey;
+      @include box-shadow(0 0 0 black inset);
       &:before {
         content: "";
         position: absolute;
         width: 6px;
         height: 100%;
         left: 0;
-        background-color: $textBlue;
+        background-color: $blue;
         top: 0;
       }
       
@@ -874,8 +901,8 @@ body {
       content :"";
       position: absolute;
       width: 100%;
-      height: 2px;
-      bottom: 0;
+      height: 1px;
+      bottom: -1px;
       background-color: transparent;
       left: 0;
       @include transition(0.25s);
