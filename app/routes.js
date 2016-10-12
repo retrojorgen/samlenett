@@ -8,6 +8,10 @@ module.exports = function(app, passport, dbQueries) {
   });
 
 
+  app.get('/', function (req, res) {
+    res.render('index', { title: 'Hey', message: 'Hello there!'});
+  });
+
 
   app.get('/404', function(req, res) {
         res.send("error");

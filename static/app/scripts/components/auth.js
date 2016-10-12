@@ -1,5 +1,5 @@
 spilldb.component('auth', {
-	templateUrl: 'app/scripts/views/auth.html',
+	templateUrl: '/static/app/scripts/views/auth.html',
   	controller: function ($scope, $http, $timeout, $location, $rootScope) {
   		$scope.loggedIn = false;
   		$scope.user = undefined;

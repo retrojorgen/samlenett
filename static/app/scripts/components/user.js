@@ -1,5 +1,5 @@
 spilldb.component('user', {
-	templateUrl: 'app/scripts/views/user.html',
+	templateUrl: '/static/app/scripts/views/user.html',
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
       $scope.toggles = {
         editable: false,

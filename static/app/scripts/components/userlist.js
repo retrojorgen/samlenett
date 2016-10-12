@@ -1,5 +1,5 @@
 spilldb.component('userlist', {
-	templateUrl: 'app/scripts/views/userlist.html',
+	templateUrl: '/static/app/scripts/views/userlist.html',
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
 
       var collectionId = $routeParams.collectionId;

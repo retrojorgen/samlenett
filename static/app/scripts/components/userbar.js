@@ -1,5 +1,5 @@
 spilldb.component('userbar', {
-	templateUrl: 'app/scripts/views/userbar.html',
+	templateUrl: '/static/app/scripts/views/userbar.html',
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
 
       $scope.collections = {};

@@ -11,6 +11,8 @@
     , mongoose          = require('mongoose')
     , slug              = require('slug');
 
+    
+
 
 // configuration ===============================================================
 // connect to our database
@@ -62,10 +64,12 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+app.set('view engine', 'pug');
 
 
 
-app.use(express.static(__dirname + '/static'));
+
+app.use('/static', express.static(__dirname + '/static'));
 
 
 

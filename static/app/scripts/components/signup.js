@@ -1,5 +1,5 @@
 spilldb.component('signup', {
-	templateUrl: 'app/scripts/views/signup.html',
+	templateUrl: '/static/app/scripts/views/signup.html',
   	controller: function ($scope, $http, $timeout, $location) {
       console.log('hei');
   		$scope.loggedIn = false;
