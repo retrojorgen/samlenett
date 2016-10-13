@@ -66,7 +66,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/get/user/games', function (req,res,next) {
+  app.post('/api/get/user/complete', function (req,res,next) {
     dbQueries.getSettings(function (settings) {
       
       dbQueries.getUserFromSlug(req.body.nickSlug, function (user) {
@@ -108,6 +108,22 @@ module.exports = function(app, passport, dbQueries) {
     res.json({
       status: 'logged out'
     });
+  });
+
+  app.post('/api/get/me/complete', function (req,res,next) {
+    dbQueries.getSettings(function (settings) {
+        dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
+          dbQueries.getGamesForUserFromUserId(req.user_id, function (newGames) {
+            res.json({
+              games: newGames,
+              newGames: newGames,
+              user: req.user,
+              settings: settings,
+              collections: collections
+            });
+          });  
+        });
+      });
   });
 
   app.get('/api/me/collections', function (req, res, next) {

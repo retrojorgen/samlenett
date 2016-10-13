@@ -17,6 +17,12 @@ spilldb.component('user', {
 
       $scope.user = $rootScope.user;
 
+      $scope.collections = {
+        'collections': [],
+        'goals': [],
+        'sales': []
+      }
+
 
       $scope.$on('user logged in', function(next, current) { 
         $scope.user = $rootScope.user;
@@ -28,6 +34,17 @@ spilldb.component('user', {
         if($routeParams.nickSlug && $scope.user && $scope.user.slug == $routeParams.nickSlug) {
           $scope.toggles.editable = true;
         }
+      }
+
+      var getCompleteData = function () {
+        $http.post("/api/get/user/complete", { nickSlug: $routeParams.nickSlug })
+        .success(function (data) {
+          _.each(data.collections, function (collection) {
+            $scope.collections[collection.type].push(collection);
+          });
+
+          console.log($scope.collections);
+        });
       }
 
       $scope.toggleEditTab = function () {
@@ -43,7 +60,12 @@ spilldb.component('user', {
         });
       };
 
+      getCompleteData();
       setPriveleges();
+      if($routeParams.space)
+        $scope.toggleUserTab($routeParams.space);
+      else
+        $scope.toggleUserTab('overview');
     }
 });
 	

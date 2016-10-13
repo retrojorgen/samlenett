@@ -39,11 +39,11 @@
 
 
   <ul class="user-menu">
-    <li ng-click="toggleUserTab('overview')" ng-class="{selected: toggles.usermenu['overview']}">Om samlingen</li>
-    <li ng-click="toggleUserTab('photos')" ng-class="{selected: toggles.usermenu['photos']}">Bilder</li>
-    <li ng-click="toggleUserTab('collections')" ng-class="{selected: toggles.usermenu['collections']}">Samling</li>
-    <li ng-click="toggleUserTab('goals')" ng-class="{selected: toggles.usermenu['goals']}">Samlemål</li>
-    <li ng-click="toggleUserTab('sales')" ng-class="{selected: toggles.usermenu['sales']}">Kjøpslister</li>
+    <li ng-class="{selected: toggles.usermenu['overview']}"><a ng-href="/user/{{user.slug}}/profile/overview">Om samlingen</a></li>
+    <li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>
+    <li ng-class="{selected: toggles.usermenu['collections']}"><a ng-href="/user/{{user.slug}}/profile/collections">Samling</a></li>
+    <li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>
+    <li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>
 
   </ul>
 

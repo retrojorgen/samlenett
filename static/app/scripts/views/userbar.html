@@ -3,21 +3,21 @@
         <p class="collection-list-header">hovedmeny</p>
         <ul class="list-group collection-list">
         <li class="list-group-item">
-            <a ng-href="/#!/">
+            <a ng-href="/">
                 <span class="glyphicon glyphicon-home"></span>Forside
             </a>
         </li>
           <li class="list-group-item">
-            <a ng-href="#!/user/{{user.slug}}">
+            <a ng-href="/user/{{user.slug}}">
                 <span class="glyphicon glyphicon-user"></span>{{user.nick}}</li>
-            <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+            </a>
         </ul>
         <p class="collection-list-header">Din samling                 <button class="create-new-button" ng-click="addCollection('collections')">
                     <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
-                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
                     <span class="glyphicon glyphicon-floppy-disk"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
                 </a>
             </li>
@@ -27,7 +27,7 @@
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['goals']" ng-class="{selected: list.selected}">
-                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
                     <span class="glyphicon glyphicon-heart"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
                 </a>
             </li>
@@ -37,7 +37,7 @@
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['sales']" ng-class="{selected: list.selected}">
-                <a ng-href="#!/user/{{user.slug}}/{{list._id}}">
+                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
                     <span class="glyphicon glyphicon-usd"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
                 </a>
             </li>

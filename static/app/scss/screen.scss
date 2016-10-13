@@ -14,6 +14,11 @@ $textLightGrey: #fcfcfc;
 $textBlue: #66d1f2;
 $blue: #467cc6;
 
+html,
+body {
+  overflow: hidden;
+}
+
 
 body {
   background-color: #E0E1E5;
@@ -31,6 +36,10 @@ body {
 
  a {
   color: $textLightGrey;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
  }
 
 .btn {
@@ -386,7 +395,7 @@ body {
 
     .collection-photo,
     .profile-photo {
-      background-color: rgb(100,100,100);
+      background-color: $darkGrey;
       background-image: url(../images/default-collection.jpg);
       background-size: cover;
       float: left;
@@ -497,6 +506,7 @@ body {
     background-size: cover;
     background-image: url("userImages/57da923427b493018b00a314.jpg");
     padding: 17px 17px 16px 16px;
+    background-color: $textDarkGrey;
     /* width: 20px; */
     /* height: 20px; */
     background-size: cover;
@@ -514,7 +524,7 @@ body {
     margin-bottom: 6px;
     color: white;
     background-color: $blue;
-    border: 2px solid transparent;
+    border: 4px solid $blue;
     border-radius: 20px;
     padding: 8px 20px;
     outline: none;
@@ -525,7 +535,7 @@ body {
     }
     &.logout {
       border-radius: 50%;
-      padding: 4px 7px;
+      padding: 4px 6px;
     }
   }
 }

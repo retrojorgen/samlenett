@@ -2,7 +2,7 @@
     <button type="button" id="login-toggle" class="btn btn-default navbar-btn" ng-click="toggleLoginForm()">
         Logg inn
     </button>
-    <a ng-href="/#!/signup" type="button" class="btn btn-default navbar-btn" ng-click="toggleLoginForm()">
+    <a ng-href="/signup" type="button" class="btn btn-default navbar-btn" ng-click="toggleLoginForm()">
         Bli medlem
     </a>
 </div>
@@ -10,7 +10,7 @@
 <div ng-if="loggedIn" class"buttons">
 
     <p class="navbar-text">
-        Logget inn som <a ng-href="#!/user/{{user.slug}}">{{user.nick}}</a>
+        Logget inn som <a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
     </p>
      <button type="button" id="login-toggle" class="btn btn-default navbar-btn logout glyphicon glyphicon-off pull-right" ng-click="logOut()">
     </button>
