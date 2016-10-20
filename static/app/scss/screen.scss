@@ -14,9 +14,14 @@ $textLightGrey: #fcfcfc;
 $textBlue: #66d1f2;
 $blue: #467cc6;
 
+$phone: "only screen and (max-width : 800px)";
+$desktop: "only screen and (min-width : 800px)";
+
 html,
 body {
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 
@@ -26,33 +31,34 @@ body {
   color: $textDarkGrey;
   font-size: 12px;
   padding-bottom: 100px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .navbar {
-	background-color: #23323b;
+  background-color: #23323b;
   background-color: #282828;
   margin-bottom: 0;
 }
 
- a {
+a {
   color: $textLightGrey;
   text-decoration: none;
   &:hover {
     text-decoration: none;
   }
- }
+}
 
 .btn {
-	//border-radius: 0;
+  //border-radius: 0;
 }
 .form-control {
-	//border-radius: 0;
+  //border-radius: 0;
 }
 
 
 .close.inverse {
-    color: #fff; 
-    opacity: 1;
+  color: #fff;
+  opacity: 1;
 }
 
 .dropdown-menu {
@@ -64,8 +70,8 @@ body {
     background-color: #eaeaea;
   }
   li:hover {
-   background-color: #337ab7; 
-   color: white;
+    background-color: #337ab7;
+    color: white;
   }
 }
 
@@ -83,15 +89,15 @@ body {
 }
 
 .dialog-wrapper {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
   z-index: 10000;
-	align-items: center;
-	justify-content: center;
+  align-items: center;
+  justify-content: center;
   &.login-wrapper {
     display: block;
     text-align: right;
@@ -106,114 +112,118 @@ body {
   .dialog-container {
     @include border-radius(6px);
   }
-  	.cloak {
-  		position: absolute;
-  		left: 0;
-  		top: 0;
-  		width: 100%;
-  		height: 100%;
-      border-top: 50px solid transparent;
-      &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-      }
-  	}
-  	label {
-  		color: #798790;
-  	}
-    .game-title {
-      color: white; 
+  .cloak {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 50px solid transparent;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
     }
-    .form-group {
+  }
+  label {
+    color: #798790;
+  }
+  .game-title {
+    color: white;
+  }
+  .form-group {
+    color: #798790;
+  }
+  .dialog-tabs {
+    display: flex;
+    li {
+      display: block;
+      background-color: #435359;
+      color: #798790;
+      width: 100%;
+      &.active {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        color: #fff;
+      }
+    }
+
+    margin-bottom: 0;
+    width: 100%;
+    padding: 0;
+  }
+  .input-group {
+    width: 100%;
+    span {
       color: #798790;
     }
-  	.dialog-tabs {
-  		display: flex;
-  		li {
-  			display: block;
-  			background-color: #435359;
-  			color: #798790;
-  			width: 100%;
-  			&.active {
-  				background-color: #337ab7;
-				border-color: #2e6da4;
-				color: #fff;
-  			}
-  		}
+  }
+  .form-control {
+    border: 1px solid #798790;
+    color: #798790;
+    background-color: transparent;
+  }
+  .form-control-feedback {
 
-      margin-bottom: 0;
-  		width: 100%;
-  		padding: 0;
-  	}
-    .input-group {
-      width: 100%;
-      span {
-        color: #798790;
-      }
+    &.glyphicon-remove {
+      color: red;
     }
-  	.form-control {
-  		border: 1px solid #798790;
-  		color: #798790;
-  		background-color: transparent;
-  	}
-    .form-control-feedback {
-      
-      &.glyphicon-remove {
-        color: red;  
-      }
-      &.glyphicon-ok {
-        color: green;
-      }
+    &.glyphicon-ok {
+      color: green;
     }
-  	.dialog-container {
-  		max-width: 100%;
-  		width: 600px;
-  		position: relative;
-  		background-color: #23323b;
-  		padding: 20px;
-  	}
-  	.btn {
-  		text-transform: uppercase;
-  	}
+  }
+  .dialog-container {
+    max-width: 100%;
+    width: 600px;
+    position: relative;
+    background-color: #23323b;
+    padding: 20px;
+  }
+  .btn {
+    text-transform: uppercase;
+  }
 }
 
 .add-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 16px 29px 20px 29px;
-    border-radius: 50%;
-    background-color: #2b7ec6;
-    color: white;
-    border: 0;
-    font-size: 28px;
-    @include transition(0.5s);
-    outline: none;
-    &:hover {
-      box-shadow: 2px 2px 12px rgba(0,0,0,0.6);
-    }
-    &:active {
-      background-color: darken(#2b7ec6, 20%);  
-    }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 16px 29px 20px 29px;
+  border-radius: 50%;
+  background-color: #2b7ec6;
+  color: white;
+  border: 0;
+  font-size: 28px;
+  @include transition(0.5s);
+  outline: none;
+  &:hover {
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+  }
+  &:active {
+    background-color: darken(#2b7ec6, 20%);
+  }
 }
 
 .game-list.table {
   //box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
   margin-bottom: 0;
+  font-size: 11px;
   tr {
     background-color: transparent;
     &.game-row {
       &.toggled {
         background-color: transparent;
       }
+      &.selected {
+        background-color: rgba($blue,0.1);
+      }
     }
     &:hover {
-      background-color: #282828;
+      background-color: rgba(#282828, 0.5);
     }
     td,th {
       border-right: 1px solid #282828;
@@ -223,6 +233,18 @@ body {
         padding: 6px;
         outline: none;
         cursor: pointer;
+        &.selected {
+          &:before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: 2px solid #376cb3;
+            content: "";
+            pointer-events: none;
+          }
+        }
       }
     }
     .context-menu-container {
@@ -237,7 +259,7 @@ body {
           height: 100%;
           top: 0;
           left: 0;
-          border: 2px solid #376cb3;
+          border: 2px solid rgba(#376cb3, 0.5);
           content: "";
           pointer-events: none;
         }
@@ -248,7 +270,13 @@ body {
       color: #fcfcfc;
       position: relative;
       height: 26px;
-      
+
+      @media #{$phone} {
+        &:nth-child(1n+4) {
+          display: none;
+        }
+      }
+
       &.inactive {
       }
 
@@ -290,6 +318,11 @@ body {
           color: #fcfcfc;
         }
       }
+      @media #{$phone} {
+        &:nth-child(1n+4) {
+          display: none;
+        }
+      }
       &.game-list-controls {
         @include background-image(linear-gradient($blue, #376cb3));
         color: white;
@@ -300,10 +333,10 @@ body {
     td:last-child,
     th:last-child {
       border-right: 0;
-    } 
+    }
   }
-  
-    
+
+
 }
 
 .navbar-static-top {
@@ -325,159 +358,203 @@ body {
   }
 }
 
-  .context-menu-list {
-        position: absolute;
-    left: 0px;
-    bottom: 15px;
-    padding: 0;
-    min-width: 200px;
-    text-align: left;
-    letter-spacing: 0px;
+.context-menu-list {
+  position: absolute;
+  left: 0px;
+  bottom: 15px;
+  padding: 0;
+  min-width: 200px;
+  text-align: left;
+  letter-spacing: 0px;
+  display: block;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  list-style: none;
+  z-index: 10;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  li {
     display: block;
-    color: white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    list-style: none;
-    z-index: 10;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    li {
-      display: block;
-      padding: 4px;
-      font-weight: normal;
-      border-bottom: 1px solid black;
-      font-weight: normal;
-      cursor: pointer;
-      background-color: #376cb3;
-      &:hover {
-        background-color: lighten(#376cb3, 5%);
-      }
-      &:last-child {
-        border-bottom: 0;
-      }
+    padding: 4px;
+    font-weight: normal;
+    border-bottom: 1px solid black;
+    font-weight: normal;
+    cursor: pointer;
+    background-color: #376cb3;
+    &:hover {
+      background-color: lighten(#376cb3, 5%);
+    }
+    &:last-child {
+      border-bottom: 0;
     }
   }
+}
 
-    .filter-row {
-      border-top: 1px solid $darkGrey;
-      .form-control:focus {
-        color: $textLightGrey;
-        box-shadow: none;
-      }
-      .input-group-addon {
-        background-color: transparent;
-        border: 0;
-        padding: 0 14px 0 0;
-      }
-      padding: 0;
-      .form-group {
-        padding: 14px 14px;
-        position: relative;
-
-      }
-      form {
-        padding: 0;
-        margin: 0;
-        input {
-          background-color: transparent;
-          color: $textDarkGrey;
-          border: 0;
-          outline: none;
-          padding: 0;
-          box-shadow: 0;
-          display: block;
-        }
-      }
-    }
-
-
-  .collection-header {
-    margin: 0 0 14px 0;
+.filter-row {
+  border-top: 1px solid $darkGrey;
+  position: relative;
+  margin-top: 14px;
+  .form-control:focus {
+    color: $textLightGrey;
+    box-shadow: none;
+  }
+  .input-group-addon {
+    background-color: transparent;
+    border: 0;
+    padding: 0 14px 0 0;
+  }
+  padding: 0;
+  .form-group {
+    padding: 14px 14px;
     position: relative;
+    @media #{$phone} {
+      padding: 6px 6px;
+    }
 
-    .collection-photo,
-    .profile-photo {
-      background-color: $darkGrey;
-      background-image: url(../images/default-collection.jpg);
-      background-size: cover;
-      float: left;
-      margin-right: 14px;
-      width: 210px;
-      height: 210px;
+  }
+  form {
+    padding: 0;
+    margin: 0;
+    input {
+      background-color: transparent;
+      color: $textDarkGrey;
+      border: 0;
+      outline: none;
+      padding: 0;
+      box-shadow: 0;
       display: block;
     }
+  }
+}
 
-    .profile-photo {
-      border-radius: 50%;
-      width: 130px;
-      height: 130px;
-    }
 
-    .collection-title {
-      position: relative;
-      color: white;
-      outline: none;
-      .kicker {
-        text-transform: uppercase;
-        margin-bottom: 0;
-        color: $textDarkGrey;
-      }
-      .byline {
-        color: $textDarkGrey;
-        font-size: 14px;
-      }
-      .description {
-        font-size: 14px;
-        color: $textDarkGrey;
-      }
-      h1 {
-        display: inline-block;
-        outline: none;
-        margin: 0;
-        padding: 14px 0 14px;
-        font-size: 38px;
-        @include text-shadow(0 0 10px rgba(0,0,0,0.8));
-      }
-      .glyphicon {
-        position: absolute;
-        top: 4px;
-        margin-left: -5px;
-        font-size: 15px;
-      }
-    }
-    .collection-background {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
+.collection-header {
+  margin: -14px -14px 14px -14px;
+  position: relative;
+  overflow: hidden;
+  padding: 14px;
+  display: flex;
+  @media #{$phone} {
+    display: block;
+    text-align: center;
+  }
+
+  .control-buttons {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+  }
+
+  .collection-photo-cloak {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: black;
+    filter: blur(40px);
+    left: -25%;
+    top: -25%;
+    opacity: 0.2;
+  }
+  .collection-photo,
+  .profile-photo {
+    background-color: $darkGrey;
+    background-image: url(../images/default-collection.jpg);
+    background-size: cover;
+    position: relative;
+    width: 210px;
+    height: 210px;
+    display: block;
+    margin-right: 14px;
+    @media #{$phone} {
+      display: inline-block;
     }
   }
+
+  .profile-photo {
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+  }
+
+  .collection-information {
+
+  }
+
+  .collection-title {
+    position: relative;
+    color: white;
+    outline: none;
+    .kicker {
+      text-transform: uppercase;
+      margin-bottom: 0;
+      color: $textDarkGrey;
+    }
+    .byline {
+      color: $textDarkGrey;
+      font-size: 14px;
+    }
+    .description {
+      font-size: 14px;
+      color: $textDarkGrey;
+    }
+    h1 {
+      display: inline-block;
+      outline: none;
+      margin: 0;
+      padding: 14px 0 14px;
+      font-size: 38px;
+      @include text-shadow(0 0 10px rgba(0,0,0,0.8));
+      @media #{$phone} {
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+    .glyphicon {
+      position: absolute;
+      top: 4px;
+      margin-left: -5px;
+      font-size: 15px;
+    }
+  }
+  .collection-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+}
 
 .visible {
   .collection-container {
-    border-left: 200px solid transparent;
+    @media #{$desktop} {
+      border-left: 200px solid transparent;
+    }
   }
   .user-bar {
-    @include translateX(0px);
-    overflow: auto;
+
+    @media #{$desktop} {
+      @include translateX(0px);
+      overflow: auto;
+    }
   }
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
-    background:white;
-    background:linear-gradient(0deg,$darkDarkGrey,darken($darkDarkGrey, 10%));
+  width: 12px;
+  background:white;
+  background:linear-gradient(0deg,$darkDarkGrey,darken($darkDarkGrey, 10%));
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background:linear-gradient(0deg,$blue,lighten($blue, 10%),$blue);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  border-radius: 10px;
+  background:linear-gradient(0deg,$blue,lighten($blue, 10%),$blue);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .collection-container {
@@ -499,7 +576,6 @@ body {
 }
 
 .auth {
-  margin-right: -15px;
   padding-right: 15px;
   text-align: right;
   .profile-image {
@@ -513,22 +589,26 @@ body {
     border-radius: 50%;
     display: inline-block;
     /* border: 1px solid white; */
-    margin-top: 6px;
-    margin-bottom: 6px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     margin-right: 10px;
     float: right;
   }
   .btn {
-    
+
     margin-top: 6px;
     margin-bottom: 6px;
     color: white;
     background-color: $blue;
-    border: 4px solid $blue;
+    border: 2px solid $blue;
     border-radius: 20px;
     padding: 8px 20px;
     outline: none;
     @include transition(0.5s);
+    &.signup {
+      background-color: lighten(#1ba4d8, 10%);
+      border: 2px solid lighten(#1ba4d8, 10%);
+    }
     &:hover {
       border: 2px solid white;
       background: transparent;
@@ -617,11 +697,11 @@ body {
 
 
 #spilldb-logo {
-  margin-left: 15px;
+  margin-left: 0;
 }
 
 .navbar-brand {
-  @include background-image(linear-gradient($blue, #376cb3)); 
+  @include background-image(linear-gradient($blue, #376cb3));
 
   .spilldb-logo {
     position: relative;
@@ -692,40 +772,60 @@ body {
   color: $textDarkGrey;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .create-new-button {
-    background-color: transparent;
-    border: 1px solid $textDarkGrey;
-    padding: 6px 7px 3px 7px;
-    border-radius: 50%;
-    float: right;
-    margin-top: -5px;
-    @include transition(0.25s);
-    &:hover {
-      border: 1px solid $blue;
-      background-color: $blue;
-      color: white
-    }
+  background-color: transparent;
+  border: 1px solid $textDarkGrey;
+  padding: 6px 6px 3px 6px;
+  border-radius: 50%;
+  float: right;
+  margin-top: -5px;
+  outline: none;
+  @include transition(0.25s);
+  .glyphicon {
+    top: 0;
+  }
+  &:hover {
+    border: 1px solid $blue;
+    background-color: $blue;
+    color: white
+  }
 }
 
 .collection-list {
-  
+
   border-radius: 0;
   .list-group-item {
     margin-left: -15px;
     margin-right: -15px;
     border-radius: 0;
-    padding-left: 30px;
+
     color: $textDarkGrey;
     font-size: 14px;
-    padding: 8px 4px 8px 15px;
+
     border: 0;
+    padding: 0;
     cursor: pointer;
     @include transition(0.25s ease-in-out);
     background-color: transparent;
+    a {
+      display: block;
+      padding: 8px 4px 8px 15px;
+      padding-left: 30px;
+      color: $textDarkGrey;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      &:hover {
+        color: $textLightGrey;
+        text-decoration: none;
 
+      }
+    }
+    &:hover {
+      background-color: darken($darkGrey, 10%);
+    }
     &.selected {
       background-color: $darkDarkGrey;
       @include box-shadow(0 0 0 black inset);
@@ -738,16 +838,9 @@ body {
         background-color: $blue;
         top: 0;
       }
-      
-    }
-    a {
-      color: $textDarkGrey;
-      letter-spacing: 0.2px;
-      &:hover {
-        color: $textLightGrey;
+      a {
+        text-decoration: none;
       }
-    }
-    &:hover {
     }
     .glyphicon {
       padding-right: 8px;
@@ -772,11 +865,16 @@ body {
 
 
 .signup-form {
-  max-width: 640px;
-  padding: 40px;
+  position: relative;
+  max-width: 400px;
+  padding: 60px 48px;
   background-color: white;
   margin: 50px auto 0 auto;
   color: darken($textDarkGrey, 40%);
+  h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
 }
 
 .btn {
@@ -822,7 +920,7 @@ body {
   left: 0;
   padding: 14px;
   width: 100%;
-  
+
   background-color: $textDarkGrey;
   @include box-shadow(2px 2px 4px rgba(0,0,0,0.4));
   @include translateY(-100%);
@@ -863,8 +961,8 @@ body {
 
 
 .edit-button {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
 
 .game-list.table tr td[contenteditable="true"]:active,
@@ -878,9 +976,9 @@ body {
 }
 
 .clearfix:after {
-    content:" ";
-    display:table;
-    clear:both;
+  content:" ";
+  display:table;
+  clear:both;
 }
 
 
@@ -901,12 +999,16 @@ body {
     display: inline-block;
     position: relative;
     color: $textDarkGrey;
-    padding: 10px 14px;
+
     text-transform: uppercase;
     letter-spacing: 1.4px;
-    font-size: 14px;
+    font-size: 11px;
     @include transition(0.25s);
     cursor: pointer;
+    a {
+      padding: 10px 14px;
+      display: block;
+    }
     &:after {
       content :"";
       position: absolute;
@@ -927,6 +1029,88 @@ body {
     }
     &:hover {
       color: $textLightGrey;
+    }
+  }
+}
+
+
+.auth-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url(/static/images/zelda-collection-background.jpg);
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.hamburger {
+  float: left;
+  position: relative;
+  width: 40px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  &:hover {
+    .line-1,
+    .line-2,
+    .line-3 {
+      background-color: rgba(white, 0.5);
+    }
+  }
+  .line-1,
+  .line-2,
+  .line-3 {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    margin-top: -1px;
+    height: 2px;
+    background-color: $blue;
+    width: 24px;
+    @include transition(0.2s ease-in-out);
+  }
+
+  .line-2 {
+    @include translateY(-6px);
+  }
+  .line-3 {
+    @include translateY(6px);
+  }
+
+  &.user-list-hamburger {
+
+  }
+  &.selected {
+    background-color: $darkDarkGrey;
+    .line-1,
+    .line-2,
+    .line-3 {
+      @include transition(0.2s ease-in-out);
+      width: 16px;
+      left: 12px;
+      color: $blue;
+    }
+    .line-1 {
+      opacity: 0;
+    }
+    .line-2 {
+      @include transform(rotate(45deg))
+    }
+    .line-3 {
+      @include transform(rotate(-45deg))
+    }
+  }
+}
+
+.navbar-text {
+  @media #{$phone} {
+    margin-right: 10px;
+    display: inline-block;
+    span {
+      display: none;
     }
   }
 }

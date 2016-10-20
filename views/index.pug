@@ -1,64 +1,46 @@
 doctype html
 html(lang="en")
-	head
-		base(href="/")
-		meta(charset="utf-8")
-		title S
-		script(src="/static/bower_components/jquery/dist/jquery.js")
-		script(src="/static/bower_components/bootstrap/dist/js/bootstrap.js")
-		script(src="/static/bower_components/angular/angular.js")
-		script(src="/static/bower_components/angular-route/angular-route.js")
-		script(src="/static/bower_components/angular-animate/angular-animate.js")
-		script(src="/static/bower_components/angular-sanitize/angular-sanitize.js")
-		script(src="/static/bower_components/angular-bootstrap/ui-bootstrap.js")
-		script(src="/static/bower_components/underscore/underscore.js")
-		script(src="/static/bower_components/angular-underscore-module/angular-underscore-module.js")
+    head
+        base(href="/")
+        meta(charset="utf-8")
+        title S
+        script(src="/static/bower_components/jquery/dist/jquery.js")
+        script(src="/static/bower_components/bootstrap/dist/js/bootstrap.js")
+        script(src="/static/bower_components/angular/angular.js")
+        script(src="/static/bower_components/angular-route/angular-route.js")
+        script(src="/static/bower_components/angular-animate/angular-animate.js")
+        script(src="/static/bower_components/angular-sanitize/angular-sanitize.js")
+        script(src="/static/bower_components/angular-bootstrap/ui-bootstrap.js")
+        script(src="/static/bower_components/underscore/underscore.js")
+        script(src="/static/bower_components/angular-underscore-module/angular-underscore-module.js")
+        link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Montserrat")
+        link(rel="stylesheet",type="text/css",href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet",type="text/css",href="/static/css/screen.css")
+        style
+            |.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-		link(rel="stylesheet",type="text/css",href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
-		link(rel="stylesheet",type="text/css",href="/static/css/screen.css")
-		style 
-			|.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+    body(ng-app="spilldb")
+        div(ng-class="{visible: visible}")
+            userbar
 
-	body(ng-app="spilldb")
-		div(ng-class="{visible: visible}")
-			userbar
+        nav(class="navbar navbar-default navbar-static-top navbar-inverse")
 
-		nav(class="navbar navbar-default navbar-static-top navbar-inverse")
-			div(class="container-fluid")
-				div(class="navbar-header")
-					button(type="button",class="navbar-toggle collapsed",data-toggle="collapse",data-target="#bs-example-navbar-collapse-1",aria-expanded="false")
-						span(class="sr-only")
-							| Toggle navigation
-						span (class="icon-bar")
-						span (class="icon-bar")
-						span (class="icon-bar")
+                    hamburger
+                    a(id="spilldb-logo",class="navbar-brand",href="/")
+                        div(class="spilldb-logo")
 
-					a(id="spilldb-logo",class="navbar-brand",href="#")
-						div(class="spilldb-logo")
-					
+                    auth(class="auth pull-right")
 
-				div(class="collapse navbar-collapse",id="collapsed-navbar")
-					ul(class="nav navbar-nav main-menu")
-						li
-							a(href="#")
-								span(class="glyphicon glyphicon-heart")
-									| Samlemål og lister
-							
-						li
-							a(href="#")
-								span(class="glyphicon glyphicon-usd")
-									| Til salgs
-						
-					auth(class="auth pull-right")
+        div(class="main-container", ng-class="{visible: visible}")
+            ng-view
 
-		div(class="main-container", ng-class="{visible: visible}")
-			ng-view
-		
-		script(src="/static/app/scripts/app.js")
-		script(src="/static/app/scripts/components/auth.js")
-		script(src="/static/app/scripts/components/user.js")
-		script(src="/static/app/scripts/components/userbar.js")
-		script(src="/static/app/scripts/components/userlist.js")
-		script(src="/static/app/scripts/components/signup.js")
-		script(src="/static/app/scripts/directives/contenteditable.js")
-		script(src="/static/app/scripts/directives/fileDropzone.js")
+        script(src="/static/app/scripts/app.js")
+        script(src="/static/app/scripts/components/auth.js")
+        script(src="/static/app/scripts/components/user.js")
+        script(src="/static/app/scripts/components/userbar.js")
+        script(src="/static/app/scripts/components/userlist.js")
+        script(src="/static/app/scripts/components/signup.js")
+        script(src="/static/app/scripts/components/login.js")
+        script(src="/static/app/scripts/components/hamburger.js")
+        script(src="/static/app/scripts/directives/contenteditable.js")
+        script(src="/static/app/scripts/directives/fileDropzone.js")

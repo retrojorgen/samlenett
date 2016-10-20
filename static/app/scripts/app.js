@@ -1,8 +1,8 @@
 var spilldb = angular
-.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize'])
-.config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
-	$locationProvider.html5Mode(true).hashPrefix('!');
-	$routeProvider.
+	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize'])
+	.config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
+		$locationProvider.html5Mode(true).hashPrefix('!');
+		$routeProvider.
 		when('/user/:nickSlug', {
 			'template': '<user></user>'
 		}).
@@ -15,6 +15,12 @@ var spilldb = angular
 		when('/signup', {
 			'template': '<signup></signup>'
 		}).
+		when('/login', {
+			'template': '<login></login>'
+		}).
 		otherwise('/');
-}]);
+	}]);
 
+
+// file upload button
+// http://jsfiddle.net/johnwun/U47tM/

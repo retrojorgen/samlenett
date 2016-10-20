@@ -2,6 +2,10 @@ spilldb.directive("contenteditable", function() {
   return {
     restrict: "A",
     require: "ngModel",
+    scope: {
+      game: "=",
+      gameRow: "="
+    },
     link: function(scope, element, attrs, ngModel) {
 
       function read() {
@@ -10,12 +14,17 @@ spilldb.directive("contenteditable", function() {
 
       element.bind('focus', function() {
         scope.$apply(function() {
+          console.log('got focus');
+          scope.game.selected = true;
+          scope.game.rowSelected = scope.gameRow;
+          console.log(scope.game);
         });
       });
 
       element.bind('blur', function() {
         scope.$apply(function() {
-          //scope.showLog = false;
+          scope.game.selected = false;
+          scope.game.rowSelected = false;
         });
       });
 
@@ -34,7 +43,7 @@ spilldb.directive("contenteditable", function() {
 
       ngModel.$render = function() {
         if(ngModel.$viewValue)
-          ngModel.$viewValue = ngModel.$viewValue.replace(/<\/?[^>]+(>|$)/g, "");
+          ngModel.$viewValue = ngModel.$viewValue.replace(/<(?!br\s*\/?)[^>]+>/g, '');
         element.html(ngModel.$viewValue || "");
       };
 

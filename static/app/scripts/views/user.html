@@ -1,79 +1,81 @@
 <div class="fluid-container collection-container">
-  <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
-    <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
-    <button class="btn btn-primary edit-button pull-right" ng-click="updateCollection()">Lagre</button>
-    <label for="collection-image">Bilde av liste</label>
-    <div class="image-row">
-        <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
-                      file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
-          <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
-        </div>
-        <div class="image-container profile-image" ng-style="{
+    <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
+        <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
+        <button class="btn btn-primary edit-button pull-right" ng-click="updateCollection()">Lagre</button>
+        <label for="collection-image">Bilde av liste</label>
+        <div class="image-row">
+            <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
+                 file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
+                <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
+            </div>
+            <div class="image-container profile-image" ng-style="{
         'background-image': 'url(/userImages/' + editCollection.collectionImageId + '.jpg)'
         }">
+            </div>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="collection-title">Tittel på liste</label>
+                <input type="text" class="form-control" id="collection-title" placeholder="skriv inn tittel.." ng-model="editCollection.title">
+            </div>
+            <div class="form-group">
+                <label for="collection-description">Beskrivelse av liste</label>
+                <textarea type="text" class="form-control" id="collection-description" placeholder="beskrivelse.." ng-model="editCollection.description"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="fluid-container collection-header clearfix">
+
+        <div class="profile-photo" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
+        <div class="profile-photo" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(images/standard-profile.jpg)'}">
+        </div>
+        <div class="collection-information">
+            <div class="collection-title">
+                <p class="kicker">
+                    <span>Bruker</span>
+                </p>
+                <h1>{{user.nick}}</h1>
+            </div>
         </div>
     </div>
-    <form>
-        <div class="form-group">
-            <label for="collection-title">Tittel på liste</label>
-            <input type="text" class="form-control" id="collection-title" placeholder="skriv inn tittel.." ng-model="editCollection.title">
-        </div>
-        <div class="form-group">
-            <label for="collection-description">Beskrivelse av liste</label>
-            <textarea type="text" class="form-control" id="collection-description" placeholder="beskrivelse.." ng-model="editCollection.description"></textarea>
-        </div>
-    </form>
-  </div>
-  <div class="fluid-container collection-header clearfix">
-      <button ng-if="toggles.editable" class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
-      <div class="profile-photo" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
-      <div class="profile-photo" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(images/standard-profile.jpg)'}">
-      </div>
-      <div class="collection-title">
-          <p class="kicker">
-              <span>Bruker</span>
-          </p>
-          <h1>{{user.nick}}</h1>
-      </div>
-  </div>
 
 
-  <ul class="user-menu">
-    <li ng-class="{selected: toggles.usermenu['overview']}"><a ng-href="/user/{{user.slug}}/profile/overview">Om samlingen</a></li>
-    <li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>
-    <li ng-class="{selected: toggles.usermenu['collections']}"><a ng-href="/user/{{user.slug}}/profile/collections">Samling</a></li>
-    <li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>
-    <li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>
+    <ul class="user-menu">
+        <li ng-class="{selected: toggles.usermenu['overview']}"><a ng-href="/user/{{user.slug}}/profile/overview">Om samlingen</a></li>
+        <li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>
+        <li ng-class="{selected: toggles.usermenu['collections']}"><a ng-href="/user/{{user.slug}}/profile/collections">Samling</a></li>
+        <li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>
+        <li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>
 
-  </ul>
+    </ul>
 
-  <div class="user-tab" ng-class="{selected: toggles.usermenu['overview']}">
-    
-  </div>
+    <div class="user-tab" ng-class="{selected: toggles.usermenu['overview']}">
 
-  <div class="user-tab" ng-class="{selected: toggles.usermenu['photos']}">
-    <div class="image-row">
-      <div class="dropzone" file-dropzone="[image/jpeg]"
-                      file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
-          <span>Drop Image Here</span>
-      </div>
-      <div class="image-container" ng-style="{
+    </div>
+
+    <div class="user-tab" ng-class="{selected: toggles.usermenu['photos']}">
+        <div class="image-row">
+            <div class="dropzone" file-dropzone="[image/jpeg]"
+                 file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
+                <span>Drop Image Here</span>
+            </div>
+            <div class="image-container" ng-style="{
         'background-image': 'url(' + imageInfo.image + ')'
       }">
-          <span class="file-name">{{imageInfo.imageFileName}}</span>
-      </div>
+                <span class="file-name">{{imageInfo.imageFileName}}</span>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="user-tab" ng-class="{selected: toggles.usermenu['collections']}">
-    
-  </div>
+    <div class="user-tab" ng-class="{selected: toggles.usermenu['collections']}">
 
-  <div class="user-tab" ng-class="{selected: toggles.usermenu['goals']}">
-    
-  </div>
+    </div>
 
-  <div class="user-tab" ng-class="{selected: toggles.usermenu['sales']}">
-    
-  </div>
+    <div class="user-tab" ng-class="{selected: toggles.usermenu['goals']}">
+
+    </div>
+
+    <div class="user-tab" ng-class="{selected: toggles.usermenu['sales']}">
+
+    </div>
 </div>

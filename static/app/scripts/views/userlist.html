@@ -9,7 +9,7 @@
               <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
             </div>
             <div class="image-container profile-image" ng-style="{
-            'background-image': 'url(/userImages/' + editCollection.collectionImageId + '.jpg)'
+            'background-image': 'url(/static/userImages/' + editCollection.collectionImageId + '.jpg)'
             }">
             </div>
         </div>
@@ -25,29 +25,35 @@
         </form>
     </div>
     <div class="fluid-container collection-header clearfix">
-        <button ng-if="toggles.editable" class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
+
+        <div ng-if="collection.collection.collectionImageId" class="collection-photo-cloak" ng-style="
+            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+             
+        </div>
+        <div class="control-buttons">
+            <button ng-if="toggles.editable" class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
+        </div>
         <div ng-if="collection.collection.collectionImageId" class="collection-photo" ng-style="
-            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
         <div class="collection-photo" ng-if="!collection.collection.collectionImageId" ng-style="
-            {'background-image': 'url(userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
-        <div class="collection-title">
-            <p class="kicker">
-                <span ng-if="collection.collection.type == 'collections'">Samling</span>
-                <span ng-if="collection.collection.type == 'goals'">Samlemål</span>
-                <span ng-if="collection.collection.type == 'sales'">Til salgs</span>
-            </p>
-            <h1>{{collection.collection.title}}</h1>
-            <p class="description" ng-bind-html="changeToBreak(collection.collection.description)"></p>
-            <p class="byline">
-                Opprettet av: <a ng-href="/user/{{collection.user.slug}}">{{collection.user.nick}}</a>
-                &bull; {{collection.games.length-1}} spill</p>
-
-                
-
+        <div class="collection-information">
+            <div class="collection-title">
+                <p class="kicker">
+                    <span ng-if="collection.collection.type == 'collections'">Samling</span>
+                    <span ng-if="collection.collection.type == 'goals'">Samlemål</span>
+                    <span ng-if="collection.collection.type == 'sales'">Til salgs</span>
+                </p>
+                <h1>{{collection.collection.title}}</h1>
+                <p class="description" ng-bind-html="changeToBreak(collection.collection.description)"></p>
+                <p class="byline">
+                    Opprettet av: <a ng-href="/user/{{collection.user.slug}}">{{collection.user.nick}}</a>
+                    &bull; {{collection.games.length-1}} spill</p>
+            </div>
         </div>
         
 
@@ -66,7 +72,7 @@
         <table class="table game-list">
             <thead>
             	<tr>
-                    <th class="game-list-controls"><span class="glyphicon glyphicon-asterisk"></span></th>
+                    <th><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
                     <th >#</th>
             		<th ng-repeat="setting in collection.settings" ng-click="sortBy(collection.games, setting.field)">
             			{{setting.name}}
@@ -77,9 +83,14 @@
             	</tr>
             </thead>
             <tbody>
-            	<tr class="game-row" ng-repeat="game in collection.games | filter:filterPhrase as filterPhraseList" ng-class="{
-                'toggled': toggles['editGames'].indexOf(game) > -1
-            }">
+            	<tr
+                        class="game-row"
+                        ng-repeat="game in collection.games | filter:filterPhrase as filterPhraseList"
+                        ng-class="{
+                            'toggled': toggles['editGames'].indexOf(game) > -1,
+                            'selected': game.selected
+                        }"
+                >
                     <td ng-class="{
                             'inactive': game.inactive
                         }" class="game-list-controls">
@@ -112,7 +123,17 @@
                     </ul>
                     -->
                     </td>
-            		<td ng-repeat="(settingKey, setting) in collection.settings" class="editable-col" contenteditable="{{toggles.editable}}" ng-model="game[settingKey]" ng-keydown="gameKeyHandler($event, game, settingKey)" ng-change="updateGame(game, game[settingKey], settingKey)">
+            		<td
+                            ng-repeat="(settingKey, setting) in collection.settings"
+                            class="editable-col"
+                            contenteditable="{{toggles.editable}}"
+                            game="game"
+                            game-row="settingKey"
+                            ng-model="game[settingKey]"
+                            ng-keydown="gameKeyHandler($event, game, settingKey)"
+                            ng-change="updateGame(game, game[settingKey], settingKey)"
+                            ng-class="{selected: settingKey == game.rowSelected}"
+                    >
             		</td>
             	</tr>
             </tbody>

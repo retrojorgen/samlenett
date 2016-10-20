@@ -2,12 +2,16 @@
     <div class="user-body container-fluid">
         <p class="collection-list-header">hovedmeny</p>
         <ul class="list-group collection-list">
-        <li class="list-group-item">
+        <li class="list-group-item" ng-class="{
+            selected: isFrontSelected()
+            }">
             <a ng-href="/">
                 <span class="glyphicon glyphicon-home"></span>Forside
             </a>
         </li>
-          <li class="list-group-item">
+          <li class="list-group-item" ng-class="{
+            selected: isUserSelected()
+            }">
             <a ng-href="/user/{{user.slug}}">
                 <span class="glyphicon glyphicon-user"></span>{{user.nick}}</li>
             </a>
@@ -22,6 +26,7 @@
                 </a>
             </li>
         </ul>
+        <!--
         <p class="collection-list-header">Dine samlemål<button class="create-new-button" ng-click="addCollection('goals')">
                     <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
                 </button></p>
@@ -44,5 +49,6 @@
             <li class="list-group-item create-new">
             </li>
         </ul>
+        -->
     </div>
 </div>

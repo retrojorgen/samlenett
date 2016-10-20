@@ -1,11 +1,13 @@
 spilldb.component('userbar', {
 	templateUrl: '/static/app/scripts/views/userbar.html',
-  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
+  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, $location) {
 
       $scope.collections = {};
       $scope.user = {};
 
-      console.log('running again');
+      $scope.path = $location.path();
+
+      console.log($scope.path);
 
       $scope.$on("update collections", function () {
         updateCollection();
@@ -13,8 +15,21 @@ spilldb.component('userbar', {
 
       $scope.$on("user logged in", function () {
         $scope.user = $rootScope.user;
+        $rootScope.visible = true;
         updateCollection();
       });
+
+      $scope.isUserSelected = function () {
+          if($location.path().indexOf("/user") > -1 && $location.path().indexOf("/c/") == -1)
+              return true;
+          return false;
+      }
+
+      $scope.isFrontSelected = function () {
+          if($location.path() == "/")
+              return true;
+          return false;
+      }
 
       var updateCollection = function () {
         $http.get("/api/me/collections")
@@ -34,6 +49,8 @@ spilldb.component('userbar', {
         });
       };
 
+
+
       var setSelected = function (selectedId) {
         _.each($scope.collections, function (collectionList) {
           _.each(collectionList, function (collection) {
@@ -52,8 +69,7 @@ spilldb.component('userbar', {
         });
       };
 
-      $scope.$on('$routeChangeStart', function(next, current) { 
-        if(current.pathParams && current.pathParams.collectionId)
-          setSelected(current.pathParams.collectionId);
+      $scope.$on('$routeChangeStart', function(next, current) {
+          setSelected(current.pathParams.collectionId ? current.pathParams.collectionId : 0);
       });
   }});

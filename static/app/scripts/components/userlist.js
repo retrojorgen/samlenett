@@ -71,8 +71,8 @@ spilldb.component('userlist', {
 
       $scope.updateGame = function (game, row, field) {
         console.log(game.inactive, game);
-        row = row.replace(/<\/?[^>]+(>|$)/g, "");
-        game[field] = game[field].replace(/<\/?[^>]+(>|$)/g, "");
+        row = row.replace(/<(?!br\s*\/?)[^>]+>/g, '');
+        game[field] = game[field].replace(/<(?!br\s*\/?)[^>]+>/g, '');
         if(!game.inactive) {
 
           var add = false;
