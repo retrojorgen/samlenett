@@ -123,8 +123,9 @@ spilldb.component('userlist', {
 
       $scope.sortGamesBy = function (field) {
         var currentSort = $scope.toggles.sortOrder;
+        console.log(currentSort);
         if(!currentSort)
-        currentSort.replace("-", "");
+            currentSort.replace("-", "");
 
         if(currentSort == field) {
           if($scope.toggles.sortOrder.charAt(0) == "-") {
@@ -135,8 +136,6 @@ spilldb.component('userlist', {
         } else {
           $scope.toggles.sortOrder = field;
         }
-        
-        $scope.collection.games = $filter('orderBy')($scope.collection.games, $scope.toggles.sortOrder);
       };
 
       $scope.gameKeyHandler = function ($event,game, field) {

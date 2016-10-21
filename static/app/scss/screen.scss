@@ -12,7 +12,8 @@ $darkGrey: #282828;
 $darkDarkGrey: #181818;
 $textLightGrey: #fcfcfc;
 $textBlue: #66d1f2;
-$blue: #467cc6;
+$blue: #3498DB;
+$darkBlue: #2980B9;
 
 $phone: "only screen and (max-width : 800px)";
 $desktop: "only screen and (min-width : 800px)";
@@ -554,7 +555,7 @@ a {
     }
   }
   .user-bar {
-
+    @include translateX(-200px);
     @media #{$desktop} {
       @include translateX(0px);
       overflow: auto;
@@ -655,6 +656,9 @@ a {
   background-color: #f9f9f9;
   background-color: #282828;
   @include translateX(-200px);
+  @media #{$phone} {
+    @include translateX(0);
+  }
   &:after {
     content: "";
     position: absolute;
@@ -1080,6 +1084,7 @@ a {
   background-color: $darkDarkGrey;
   border: 0;
   outline: none;
+
   &:hover {
     .line-1,
     .line-2,
@@ -1113,6 +1118,9 @@ a {
   &.selected {
 
     background-color: transparent;
+    @media #{$phone} {
+      background-color: $darkDarkGrey;
+    }
     .line-1,
     .line-2,
     .line-3 {
@@ -1129,6 +1137,41 @@ a {
     }
     .line-3 {
       @include transform(rotate(-45deg))
+    }
+  }
+  @media #{$phone} {
+    background-color: transparent;
+    .line-1 {
+      opacity: 0;
+    }
+    .line-2 {
+      @include transform(rotate(45deg))
+    }
+    .line-3 {
+      @include transform(rotate(-45deg))
+    }
+    &.selected {
+      .line-1,
+      .line-2,
+      .line-3 {
+        @include transition(0.2s ease-in-out);
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        margin-top: -1px;
+        height: 2px;
+        background-color: $blue;
+        width: 24px;
+      }
+      .line-1 {
+        opacity: 1;
+      }
+      .line-2 {
+        @include translateY(-6px);
+      }
+      .line-3 {
+        @include translateY(6px);
+      }
     }
   }
 }

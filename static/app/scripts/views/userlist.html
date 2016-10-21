@@ -84,10 +84,10 @@
             	<tr>
                     <th class="game-toggle"><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
                     <th >#</th>
-            		<th ng-repeat="setting in collection.settings" ng-click="sortBy(collection.games, setting.field)">
-            			{{setting.name}}
-                        <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == setting.field"></span>
-                        <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + setting.field"></span>
+            		<th ng-repeat="(settingKey, setting) in collection.settings" ng-click="sortGamesBy(settingKey)">
+                        {{setting.name}}
+                        <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == settingKey"></span>
+                        <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + settingKey"></span>
             			<!--<p>{{setting.description}}</p>-->
             		</th>
             	</tr>
@@ -95,7 +95,7 @@
             <tbody>
             	<tr
                         class="game-row"
-                        ng-repeat="game in collection.games | filter:filterPhrase as filterPhraseList"
+                        ng-repeat="game in collection.games | filter:filterPhrase | orderBy:toggles.sortOrder as filteredList"
                         ng-class="{
                             'toggled': toggles['editGames'].indexOf(game) > -1,
                             'selected': game.selected
