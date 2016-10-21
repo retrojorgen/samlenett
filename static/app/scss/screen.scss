@@ -489,6 +489,7 @@ a {
     margin-right: 14px;
     @media #{$phone} {
       display: inline-block;
+      margin-right: 0;
     }
   }
 
@@ -556,6 +557,7 @@ a {
   }
   .user-bar {
     @include translateX(-200px);
+
     @media #{$desktop} {
       @include translateX(0px);
       overflow: auto;
@@ -658,6 +660,9 @@ a {
   @include translateX(-200px);
   @media #{$phone} {
     @include translateX(0);
+    &.mobile-hidden {
+      @include translateX(-200px);
+    }
   }
   &:after {
     content: "";
@@ -1084,7 +1089,9 @@ a {
   background-color: $darkDarkGrey;
   border: 0;
   outline: none;
-
+  &.mobile-hidden {
+    display: none;
+  }
   &:hover {
     .line-1,
     .line-2,
@@ -1121,6 +1128,7 @@ a {
     @media #{$phone} {
       background-color: $darkDarkGrey;
     }
+
     .line-1,
     .line-2,
     .line-3 {
@@ -1139,6 +1147,7 @@ a {
       @include transform(rotate(-45deg))
     }
   }
+
   @media #{$phone} {
     background-color: transparent;
     .line-1 {
@@ -1172,6 +1181,18 @@ a {
       .line-3 {
         @include translateY(6px);
       }
+    }
+  }
+  &.mobile-toggle {
+    background-color: $darkDarkGrey;
+    .line-1 {
+      opacity: 1;
+    }
+    .line-2 {
+      @include transform(translateY(-6px) rotate(0deg));
+    }
+    .line-3 {
+      @include transform(translateY(6px) rotate(0deg));
     }
   }
 }

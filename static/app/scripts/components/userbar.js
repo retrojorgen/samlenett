@@ -4,6 +4,7 @@ spilldb.component('userbar', {
 
       $scope.collections = {};
       $scope.user = {};
+        $scope.mobileHidden = true;
 
       $scope.path = $location.path();
 
@@ -16,9 +17,20 @@ spilldb.component('userbar', {
       $scope.$on("user logged in", function () {
         $scope.user = $rootScope.user;
         $rootScope.visible = true;
+          $scope.mobileHidden = false;
         updateCollection();
       });
 
+      $scope.$on('open user bar mobile', function () {
+          $scope.mobileHidden = false;
+      });
+
+
+      $scope.toggleBarMobile = function () {
+          console.log("trying to close menu");
+          $scope.mobileHidden = true;
+          $rootScope.$broadcast('mobile close user bar');
+      }
       $scope.isUserSelected = function () {
           if($location.path().indexOf("/user") > -1 && $location.path().indexOf("/c/") == -1)
               return true;

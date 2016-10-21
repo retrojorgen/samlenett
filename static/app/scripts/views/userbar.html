@@ -1,4 +1,4 @@
-<div class="user-bar">
+<div class="user-bar" ng-class="{'mobile-hidden': mobileHidden}">
     <div class="user-body container-fluid">
         <p class="collection-list-header">hovedmeny</p>
         <ul class="list-group collection-list">
@@ -12,7 +12,7 @@
           <li class="list-group-item" ng-class="{
             selected: isUserSelected()
             }">
-            <a ng-href="/user/{{user.slug}}">
+            <a ng-href="/user/{{user.slug}}" ng-click="toggleBarMobile()">
                 <span class="glyphicon glyphicon-user"></span>{{user.nick}}</li>
             </a>
         </ul>
@@ -21,7 +21,7 @@
                 </button></p>
         <ul class="list-group collection-list">
             <li class="list-group-item" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
-                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
+                <a ng-href="/user/{{user.slug}}/c/{{list._id}}" ng-click="toggleBarMobile()">
                     <span class="glyphicon glyphicon-floppy-disk"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
                 </a>
             </li>

@@ -18,6 +18,9 @@ var spilldb = angular
 		when('/login', {
 			'template': '<login></login>'
 		}).
+		when('/logout', {
+			'template': '<logout></logout>'
+		}).
 		otherwise('/');
 	}]);
 
