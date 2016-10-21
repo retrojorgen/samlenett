@@ -26,19 +26,20 @@
     </div>
     <div class="fluid-container collection-header clearfix">
 
-        <div ng-if="collection.collection.collectionImageId" class="collection-photo-cloak" ng-style="
-            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+        <div ng-if="collection.collection.collectionImageId" class="collection-photo-cloak"
+             ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
         <div class="control-buttons">
-            <button ng-if="toggles.editable" class="btn btn-default edit-button pull-right" ng-click="toggleEditTab()">Rediger</button>
+            <button ng-if="toggles.editable" class="btn btn-default edit-button" ng-click="toggleEditTab()">Rediger</button>
         </div>
-        <div ng-if="collection.collection.collectionImageId" class="collection-photo" ng-style="
-            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+        <div ng-if="collection.collection.collectionImageId" class="collection-photo"
+             ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
-        <div class="collection-photo" ng-if="!collection.collection.collectionImageId" ng-style="
-            {'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
+        <div class="collection-photo"
+             ng-if="!collection.collection.collectionImageId"
+             ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
         <div class="collection-information">
@@ -60,19 +61,28 @@
     </div>
     <div class="filter-row">
             <form class="navbar-form">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="Filter" ng-model="toggles.filterPhrase">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" class="form-control" placeholder="Filter" ng-model="toggles.filterPhrase">
+                    </div>
+                </div>
+            </form>
+            <div class="slider-container" ng-if="toggles.editable">
+                <label class="slider-label" ng-if="toggles.editStatus">Redigeringsmodus</label>
+                <label class="slider-label" ng-if="!toggles.editStatus">Publikumsmodus</label>
+                <div class="slider" ng-class="{'slider-on': toggles.editStatus}" ng-click="toggleEditStatus()">
+                    <span class="slider-dot"></span>
                 </div>
             </div>
-            </form>
+
+
     </div>
     <div class="fluid-container">
-        <table class="table game-list">
+        <table class="table game-list" ng-class="{'editable': toggles.editStatus}">
             <thead>
             	<tr>
-                    <th><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
+                    <th class="game-toggle"><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
                     <th >#</th>
             		<th ng-repeat="setting in collection.settings" ng-click="sortBy(collection.games, setting.field)">
             			{{setting.name}}
@@ -93,7 +103,7 @@
                 >
                     <td ng-class="{
                             'inactive': game.inactive
-                        }" class="game-list-controls">
+                        }" class="game-toggle">
                         <label class="game-toggle-label"  ng-if="!game.inactive">
                             <input type="checkbox" name="game-toggle" ng-click="toggleGameInEditList(game)">
                         </label>
@@ -126,7 +136,7 @@
             		<td
                             ng-repeat="(settingKey, setting) in collection.settings"
                             class="editable-col"
-                            contenteditable="{{toggles.editable}}"
+                            contenteditable="{{toggles.editStatus && toggles.editable}}"
                             game="game"
                             game-row="settingKey"
                             ng-model="game[settingKey]"

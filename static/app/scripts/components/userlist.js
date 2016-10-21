@@ -12,7 +12,8 @@ spilldb.component('userlist', {
         sortOrder: "",
         filterPhrase : "",
         editTab: false,
-        editable: false
+        editable: false,
+        editStatus: true
       };
 
       $scope.imageInfo = {
@@ -22,6 +23,11 @@ spilldb.component('userlist', {
 
       $scope.editCollection = {
 
+      };
+
+      $scope.toggleEditStatus = function () {
+        $scope.toggles.editStatus = !$scope.toggles.editStatus;
+        console.log($scope.toggles);
       };
 
       $http.post("/api/get/user/collection", {collectionId: collectionId})

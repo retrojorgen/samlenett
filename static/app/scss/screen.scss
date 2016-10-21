@@ -212,44 +212,23 @@ a {
   //box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
   margin-bottom: 0;
   font-size: 11px;
-  tr {
-    background-color: transparent;
-    &.game-row {
-      &.toggled {
-        background-color: transparent;
-      }
-      &.selected {
-        background-color: rgba($blue,0.1);
-      }
-    }
-    &:hover {
-      background-color: rgba(#282828, 0.5);
-    }
+  &.editable {
     td,th {
       border-right: 1px solid #282828;
-      border-bottom: 1px solid #282828;
-
-      &.editable-col {
-        padding: 6px;
-        outline: none;
-        cursor: pointer;
-        &.selected {
-          &:before {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            border: 2px solid #376cb3;
-            content: "";
-            pointer-events: none;
-          }
+    }
+    td {
+      &.selected {
+        &:before {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          border: 2px solid #376cb3;
+          content: "";
+          pointer-events: none;
         }
       }
-    }
-    .context-menu-container {
-      font-weight: bold;
-      padding: 4px;
     }
     td:nth-child(1n+3) {
       &:hover {
@@ -265,6 +244,43 @@ a {
         }
       }
     }
+    .game-toggle {
+      display: table-cell
+
+    }
+  }
+  .game-toggle {
+    display: none;
+    text-align: center;
+  }
+  tr {
+    background-color: transparent;
+    &.game-row {
+      &.toggled {
+        background-color: transparent;
+      }
+      &.selected {
+        background-color: rgba($blue,0.1);
+      }
+    }
+    &:hover {
+      background-color: rgba(#282828, 0.5);
+    }
+    td,th {
+
+      border-bottom: 1px solid #282828;
+
+      &.editable-col {
+        padding: 6px;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+    .context-menu-container {
+      font-weight: bold;
+      padding: 4px;
+    }
+
     td {
       padding: 0;
       color: #fcfcfc;
@@ -306,6 +322,7 @@ a {
     }
     th {
       border-bottom: 1px solid #282828;
+      border-right: 0;
       cursor:pointer;
       height: 26px;
       &:nth-child(even),
@@ -314,6 +331,9 @@ a {
         text-transform: uppercase;
         text-align: left;
         color: #a0a0a0;
+        &.game-toggle {
+          text-align: center;
+        }
         &:hover {
           color: #fcfcfc;
         }
@@ -393,6 +413,8 @@ a {
   border-top: 1px solid $darkGrey;
   position: relative;
   margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
   .form-control:focus {
     color: $textLightGrey;
     box-shadow: none;
@@ -817,6 +839,11 @@ a {
       color: $textDarkGrey;
       letter-spacing: 0.2px;
       text-decoration: none;
+      white-space: nowrap;
+      font-size: 12px;
+      overflow: hidden;
+      display: block;
+      text-overflow: ellipsis;
       &:hover {
         color: $textLightGrey;
         text-decoration: none;
@@ -1050,7 +1077,7 @@ a {
   position: relative;
   width: 40px;
   height: 50px;
-  background-color: transparent;
+  background-color: $darkDarkGrey;
   border: 0;
   outline: none;
   &:hover {
@@ -1084,7 +1111,8 @@ a {
 
   }
   &.selected {
-    background-color: $darkDarkGrey;
+
+    background-color: transparent;
     .line-1,
     .line-2,
     .line-3 {
@@ -1113,4 +1141,46 @@ a {
       display: none;
     }
   }
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  .slider-label {
+    margin-right: 10px;
+  }
+  .slider {
+    background-color: white;
+    border-radius: 28px;
+    padding: 0px;
+    border: 1px solid grey;
+    width: 64px;
+    height: 39px;
+    margin: 0;
+    @include transition(0.25s ease-in-out);
+    cursor: pointer;
+    &.slider-on {
+      background-color: $blue;
+      border: 1px solid $blue;
+
+      .slider-dot {
+        margin-left: 27px;
+      }
+    }
+    .slider-dot {
+      padding: 17px;
+      border-radius: 50%;
+      background-color: white;
+      transform: translateY(2px);
+      display: inline-block;
+      @include transition(0.25s ease-in-out);
+      @include box-shadow(1px 1px 10px rgba(0,0,0,0.4));
+    }
+  }
+}
+
+.navbar-form {
+  border-top: 0;
+  border-bottom: 0;
+  @include box-shadow(0 0 0 0 rgba(0,0,0,0));
 }
