@@ -1,6 +1,6 @@
 spilldb.component('signup', {
     templateUrl: '/static/app/scripts/views/signup.html',
-    controller: function ($scope, $http, $timeout, $location) {
+    controller: function ($scope, $http, $timeout, $location, $rootScope) {
 
         $scope.signupError = false;
         $scope.signupEmailStatus = 0;
@@ -17,6 +17,8 @@ spilldb.component('signup', {
                 nick: $scope.signupNick
             }).success(function (data) {
                 $scope.user = data.user;
+                $rootScope.user = data.user;
+                $rootScope.$broadcast("user logged in");
                 $location.path("/user/" + data.user.slug);
 
             }).error(function (data) {

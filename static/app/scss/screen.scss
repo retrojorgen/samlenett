@@ -1215,18 +1215,22 @@ a {
       }
     }
   }
-  &.mobile-toggle {
-    background-color: $darkDarkGrey;
-    .line-1 {
-      opacity: 1;
-    }
-    .line-2 {
-      @include transform(translateY(-6px) rotate(0deg));
-    }
-    .line-3 {
-      @include transform(translateY(6px) rotate(0deg));
+  @media #{$phone} {
+    &.mobile-toggle {
+
+      background-color: $darkDarkGrey;
+      .line-1 {
+        opacity: 1;
+      }
+      .line-2 {
+        @include transform(translateY(-6px) rotate(0deg));
+      }
+      .line-3 {
+        @include transform(translateY(6px) rotate(0deg));
+      }
     }
   }
+
 }
 
 .navbar-text {

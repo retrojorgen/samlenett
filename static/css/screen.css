@@ -1426,51 +1426,53 @@ a:hover {
     transform: translateY(6px);
   }
 }
-/* line 1218, ../app/scss/screen.scss */
-.hamburger.mobile-toggle {
-  background-color: #181818;
-}
-/* line 1220, ../app/scss/screen.scss */
-.hamburger.mobile-toggle .line-1 {
-  opacity: 1;
-}
-/* line 1223, ../app/scss/screen.scss */
-.hamburger.mobile-toggle .line-2 {
-  -moz-transform: translateY(-6px) rotate(0deg);
-  -ms-transform: translateY(-6px) rotate(0deg);
-  -webkit-transform: translateY(-6px) rotate(0deg);
-  transform: translateY(-6px) rotate(0deg);
-}
-/* line 1226, ../app/scss/screen.scss */
-.hamburger.mobile-toggle .line-3 {
-  -moz-transform: translateY(6px) rotate(0deg);
-  -ms-transform: translateY(6px) rotate(0deg);
-  -webkit-transform: translateY(6px) rotate(0deg);
-  transform: translateY(6px) rotate(0deg);
+@media only screen and (max-width: 800px) {
+  /* line 1219, ../app/scss/screen.scss */
+  .hamburger.mobile-toggle {
+    background-color: #181818;
+  }
+  /* line 1222, ../app/scss/screen.scss */
+  .hamburger.mobile-toggle .line-1 {
+    opacity: 1;
+  }
+  /* line 1225, ../app/scss/screen.scss */
+  .hamburger.mobile-toggle .line-2 {
+    -moz-transform: translateY(-6px) rotate(0deg);
+    -ms-transform: translateY(-6px) rotate(0deg);
+    -webkit-transform: translateY(-6px) rotate(0deg);
+    transform: translateY(-6px) rotate(0deg);
+  }
+  /* line 1228, ../app/scss/screen.scss */
+  .hamburger.mobile-toggle .line-3 {
+    -moz-transform: translateY(6px) rotate(0deg);
+    -ms-transform: translateY(6px) rotate(0deg);
+    -webkit-transform: translateY(6px) rotate(0deg);
+    transform: translateY(6px) rotate(0deg);
+  }
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 1232, ../app/scss/screen.scss */
+  /* line 1236, ../app/scss/screen.scss */
   .navbar-text {
     margin-right: 10px;
     display: inline-block;
   }
-  /* line 1236, ../app/scss/screen.scss */
+  /* line 1240, ../app/scss/screen.scss */
   .navbar-text span {
     display: none;
   }
 }
 
-/* line 1242, ../app/scss/screen.scss */
+/* line 1246, ../app/scss/screen.scss */
 .slider-container {
   display: flex;
   align-items: center;
 }
-/* line 1245, ../app/scss/screen.scss */
+/* line 1249, ../app/scss/screen.scss */
 .slider-container .slider-label {
   margin-right: 10px;
 }
-/* line 1248, ../app/scss/screen.scss */
+/* line 1252, ../app/scss/screen.scss */
 .slider-container .slider {
   background-color: white;
   border-radius: 28px;
@@ -1485,16 +1487,16 @@ a:hover {
   transition: ease-in-out 0.25s;
   cursor: pointer;
 }
-/* line 1258, ../app/scss/screen.scss */
+/* line 1262, ../app/scss/screen.scss */
 .slider-container .slider.slider-on {
   background-color: #3498DB;
   border: 1px solid #3498DB;
 }
-/* line 1262, ../app/scss/screen.scss */
+/* line 1266, ../app/scss/screen.scss */
 .slider-container .slider.slider-on .slider-dot {
   margin-left: 27px;
 }
-/* line 1266, ../app/scss/screen.scss */
+/* line 1270, ../app/scss/screen.scss */
 .slider-container .slider .slider-dot {
   padding: 17px;
   border-radius: 50%;
@@ -1510,7 +1512,7 @@ a:hover {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* line 1278, ../app/scss/screen.scss */
+/* line 1282, ../app/scss/screen.scss */
 .navbar-form {
   border-top: 0;
   border-bottom: 0;
@@ -1520,7 +1522,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 1284, ../app/scss/screen.scss */
+  /* line 1288, ../app/scss/screen.scss */
   .navbar-samledb {
     display: flex;
     justify-content: space-between;

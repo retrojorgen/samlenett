@@ -85,6 +85,8 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+
+
   app.post('/api/get/user/collection', function (req,res,next) {
     
     dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
@@ -149,6 +151,10 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.addCollection(title, req.user._id, req.body.type, function (collection) {
       res.json(collection);
     });
+  });
+
+  app.post('/api/me/upload/profilephoto', function (req, res) {
+
   });
 
 

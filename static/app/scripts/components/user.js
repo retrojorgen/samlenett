@@ -29,6 +29,11 @@ spilldb.component('user', {
         setPriveleges();
       });
 
+        $scope.uploadProfilePicture= function (file) {
+            console.log('yo')
+            //console.log(file);
+        };
+
       var setPriveleges = function () {
         console.log($routeParams);
         if($routeParams.nickSlug && $scope.user && $scope.user.slug == $routeParams.nickSlug) {

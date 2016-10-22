@@ -25,7 +25,7 @@
         </form>
     </div>
     <div class="fluid-container collection-header clearfix">
-
+        <fileupload upload-file="uploadProfilePicture"></fileupload>
         <div class="profile-photo" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
         <div class="profile-photo" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(images/standard-profile.jpg)'}">
         </div>
