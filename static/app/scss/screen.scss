@@ -936,6 +936,9 @@ a {
   background-color: white;
   margin: 50px auto 0 auto;
   color: darken($textDarkGrey, 40%);
+  @media #{$phone} {
+    padding: 46px 16px;
+  }
   h2 {
     margin-top: 0;
     margin-bottom: 40px;

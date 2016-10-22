@@ -1065,13 +1065,19 @@ a:hover {
   margin: 50px auto 0 auto;
   color: #3a3a3a;
 }
-/* line 939, ../app/scss/screen.scss */
+@media only screen and (max-width: 800px) {
+  /* line 932, ../app/scss/screen.scss */
+  .signup-form {
+    padding: 46px 16px;
+  }
+}
+/* line 942, ../app/scss/screen.scss */
 .signup-form h2 {
   margin-top: 0;
   margin-bottom: 40px;
 }
 
-/* line 945, ../app/scss/screen.scss */
+/* line 948, ../app/scss/screen.scss */
 .btn {
   font-size: 100%;
   letter-spacing: 1px;
@@ -1079,11 +1085,11 @@ a:hover {
   padding: 8px 20px;
 }
 
-/* line 954, ../app/scss/screen.scss */
+/* line 957, ../app/scss/screen.scss */
 .image-row * {
   vertical-align: top;
 }
-/* line 957, ../app/scss/screen.scss */
+/* line 960, ../app/scss/screen.scss */
 .image-row .dropzone {
   display: inline-block;
   width: 20%;
@@ -1092,25 +1098,25 @@ a:hover {
   padding: 20px;
   font-family: Arial;
 }
-/* line 964, ../app/scss/screen.scss */
+/* line 967, ../app/scss/screen.scss */
 .image-row .dropzone.profile-image {
   width: 210px;
   height: 210px;
 }
-/* line 969, ../app/scss/screen.scss */
+/* line 972, ../app/scss/screen.scss */
 .image-row .image-container {
   display: inline-block;
   width: 20%;
   height: 172px;
   background-size: cover;
 }
-/* line 974, ../app/scss/screen.scss */
+/* line 977, ../app/scss/screen.scss */
 .image-row .image-container.profile-image {
   width: 210px;
   height: 210px;
 }
 
-/* line 982, ../app/scss/screen.scss */
+/* line 985, ../app/scss/screen.scss */
 .collection-edit {
   position: absolute;
   top: 0;
@@ -1131,29 +1137,29 @@ a:hover {
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 994, ../app/scss/screen.scss */
+/* line 997, ../app/scss/screen.scss */
 .collection-edit.visible {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 998, ../app/scss/screen.scss */
+/* line 1001, ../app/scss/screen.scss */
 .collection-edit label {
   color: #3a3a3a;
 }
-/* line 1001, ../app/scss/screen.scss */
+/* line 1004, ../app/scss/screen.scss */
 .collection-edit form {
   margin-top: 14px;
 }
 
-/* line 1007, ../app/scss/screen.scss */
+/* line 1010, ../app/scss/screen.scss */
 .dropzone {
   position: relative;
   border: 0;
   padding: 30px;
 }
-/* line 1011, ../app/scss/screen.scss */
+/* line 1014, ../app/scss/screen.scss */
 .dropzone:after {
   content: "";
   position: absolute;
@@ -1163,54 +1169,54 @@ a:hover {
   top: 5%;
   left: 5%;
 }
-/* line 1020, ../app/scss/screen.scss */
+/* line 1023, ../app/scss/screen.scss */
 .dropzone span {
   color: #3a3a3a;
 }
 
-/* line 1028, ../app/scss/screen.scss */
+/* line 1031, ../app/scss/screen.scss */
 .edit-button {
   position: relative;
   z-index: 10;
 }
 
-/* line 1033, ../app/scss/screen.scss */
+/* line 1036, ../app/scss/screen.scss */
 .game-list.table tr td[contenteditable="true"]:active,
 .game-list.table tr td[contenteditable="true"]:focus {
   outline: none;
   color: #66d1f2;
 }
 
-/* line 1039, ../app/scss/screen.scss */
+/* line 1042, ../app/scss/screen.scss */
 .btn {
   outline: none;
 }
 
-/* line 1043, ../app/scss/screen.scss */
+/* line 1046, ../app/scss/screen.scss */
 .clearfix:after {
   content: " ";
   display: table;
   clear: both;
 }
 
-/* line 1050, ../app/scss/screen.scss */
+/* line 1053, ../app/scss/screen.scss */
 .user-tab {
   display: none;
   margin-top: 28px;
 }
-/* line 1053, ../app/scss/screen.scss */
+/* line 1056, ../app/scss/screen.scss */
 .user-tab.selected {
   display: block;
 }
 
-/* line 1058, ../app/scss/screen.scss */
+/* line 1061, ../app/scss/screen.scss */
 .user-menu {
   border-bottom: 1px solid #282828;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 1063, ../app/scss/screen.scss */
+/* line 1066, ../app/scss/screen.scss */
 .user-menu li {
   display: inline-block;
   position: relative;
@@ -1224,12 +1230,12 @@ a:hover {
   transition: 0.25s;
   cursor: pointer;
 }
-/* line 1073, ../app/scss/screen.scss */
+/* line 1076, ../app/scss/screen.scss */
 .user-menu li a {
   padding: 10px 14px;
   display: block;
 }
-/* line 1077, ../app/scss/screen.scss */
+/* line 1080, ../app/scss/screen.scss */
 .user-menu li:after {
   content: "";
   position: absolute;
@@ -1243,11 +1249,11 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 1087, ../app/scss/screen.scss */
+/* line 1090, ../app/scss/screen.scss */
 .user-menu li.selected {
   color: #fcfcfc;
 }
-/* line 1089, ../app/scss/screen.scss */
+/* line 1092, ../app/scss/screen.scss */
 .user-menu li.selected:after {
   background-color: #66d1f2;
   -moz-transition: 0.25s;
@@ -1255,12 +1261,12 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 1095, ../app/scss/screen.scss */
+/* line 1098, ../app/scss/screen.scss */
 .user-menu li:hover {
   color: #fcfcfc;
 }
 
-/* line 1102, ../app/scss/screen.scss */
+/* line 1105, ../app/scss/screen.scss */
 .auth-cover {
   position: absolute;
   width: 100%;
@@ -1272,7 +1278,7 @@ a:hover {
   opacity: 0.2;
 }
 
-/* line 1113, ../app/scss/screen.scss */
+/* line 1116, ../app/scss/screen.scss */
 .hamburger {
   float: left;
   position: relative;
@@ -1282,17 +1288,17 @@ a:hover {
   border: 0;
   outline: none;
 }
-/* line 1121, ../app/scss/screen.scss */
+/* line 1124, ../app/scss/screen.scss */
 .hamburger.mobile-hidden {
   display: none;
 }
-/* line 1125, ../app/scss/screen.scss */
+/* line 1128, ../app/scss/screen.scss */
 .hamburger:hover .line-1,
 .hamburger:hover .line-2,
 .hamburger:hover .line-3 {
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 1131, ../app/scss/screen.scss */
+/* line 1134, ../app/scss/screen.scss */
 .hamburger .line-1,
 .hamburger .line-2,
 .hamburger .line-3 {
@@ -1308,31 +1314,31 @@ a:hover {
   -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
-/* line 1144, ../app/scss/screen.scss */
+/* line 1147, ../app/scss/screen.scss */
 .hamburger .line-2 {
   -moz-transform: translateY(-6px);
   -ms-transform: translateY(-6px);
   -webkit-transform: translateY(-6px);
   transform: translateY(-6px);
 }
-/* line 1147, ../app/scss/screen.scss */
+/* line 1150, ../app/scss/screen.scss */
 .hamburger .line-3 {
   -moz-transform: translateY(6px);
   -ms-transform: translateY(6px);
   -webkit-transform: translateY(6px);
   transform: translateY(6px);
 }
-/* line 1154, ../app/scss/screen.scss */
+/* line 1157, ../app/scss/screen.scss */
 .hamburger.selected {
   background-color: transparent;
 }
 @media only screen and (max-width: 800px) {
-  /* line 1154, ../app/scss/screen.scss */
+  /* line 1157, ../app/scss/screen.scss */
   .hamburger.selected {
     background-color: #181818;
   }
 }
-/* line 1161, ../app/scss/screen.scss */
+/* line 1164, ../app/scss/screen.scss */
 .hamburger.selected .line-1,
 .hamburger.selected .line-2,
 .hamburger.selected .line-3 {
@@ -1344,18 +1350,18 @@ a:hover {
   left: 12px;
   color: #3498DB;
 }
-/* line 1169, ../app/scss/screen.scss */
+/* line 1172, ../app/scss/screen.scss */
 .hamburger.selected .line-1 {
   opacity: 0;
 }
-/* line 1172, ../app/scss/screen.scss */
+/* line 1175, ../app/scss/screen.scss */
 .hamburger.selected .line-2 {
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-/* line 1175, ../app/scss/screen.scss */
+/* line 1178, ../app/scss/screen.scss */
 .hamburger.selected .line-3 {
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -1363,29 +1369,29 @@ a:hover {
   transform: rotate(-45deg);
 }
 @media only screen and (max-width: 800px) {
-  /* line 1113, ../app/scss/screen.scss */
+  /* line 1116, ../app/scss/screen.scss */
   .hamburger {
     background-color: transparent;
   }
-  /* line 1182, ../app/scss/screen.scss */
+  /* line 1185, ../app/scss/screen.scss */
   .hamburger .line-1 {
     opacity: 0;
   }
-  /* line 1185, ../app/scss/screen.scss */
+  /* line 1188, ../app/scss/screen.scss */
   .hamburger .line-2 {
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-  /* line 1188, ../app/scss/screen.scss */
+  /* line 1191, ../app/scss/screen.scss */
   .hamburger .line-3 {
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
-  /* line 1192, ../app/scss/screen.scss */
+  /* line 1195, ../app/scss/screen.scss */
   .hamburger.selected .line-1,
   .hamburger.selected .line-2,
   .hamburger.selected .line-3 {
@@ -1401,18 +1407,18 @@ a:hover {
     background-color: #3498DB;
     width: 24px;
   }
-  /* line 1204, ../app/scss/screen.scss */
+  /* line 1207, ../app/scss/screen.scss */
   .hamburger.selected .line-1 {
     opacity: 1;
   }
-  /* line 1207, ../app/scss/screen.scss */
+  /* line 1210, ../app/scss/screen.scss */
   .hamburger.selected .line-2 {
     -moz-transform: translateY(-6px);
     -ms-transform: translateY(-6px);
     -webkit-transform: translateY(-6px);
     transform: translateY(-6px);
   }
-  /* line 1210, ../app/scss/screen.scss */
+  /* line 1213, ../app/scss/screen.scss */
   .hamburger.selected .line-3 {
     -moz-transform: translateY(6px);
     -ms-transform: translateY(6px);
@@ -1420,22 +1426,22 @@ a:hover {
     transform: translateY(6px);
   }
 }
-/* line 1215, ../app/scss/screen.scss */
+/* line 1218, ../app/scss/screen.scss */
 .hamburger.mobile-toggle {
   background-color: #181818;
 }
-/* line 1217, ../app/scss/screen.scss */
+/* line 1220, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-1 {
   opacity: 1;
 }
-/* line 1220, ../app/scss/screen.scss */
+/* line 1223, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-2 {
   -moz-transform: translateY(-6px) rotate(0deg);
   -ms-transform: translateY(-6px) rotate(0deg);
   -webkit-transform: translateY(-6px) rotate(0deg);
   transform: translateY(-6px) rotate(0deg);
 }
-/* line 1223, ../app/scss/screen.scss */
+/* line 1226, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-3 {
   -moz-transform: translateY(6px) rotate(0deg);
   -ms-transform: translateY(6px) rotate(0deg);
@@ -1444,27 +1450,27 @@ a:hover {
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 1229, ../app/scss/screen.scss */
+  /* line 1232, ../app/scss/screen.scss */
   .navbar-text {
     margin-right: 10px;
     display: inline-block;
   }
-  /* line 1233, ../app/scss/screen.scss */
+  /* line 1236, ../app/scss/screen.scss */
   .navbar-text span {
     display: none;
   }
 }
 
-/* line 1239, ../app/scss/screen.scss */
+/* line 1242, ../app/scss/screen.scss */
 .slider-container {
   display: flex;
   align-items: center;
 }
-/* line 1242, ../app/scss/screen.scss */
+/* line 1245, ../app/scss/screen.scss */
 .slider-container .slider-label {
   margin-right: 10px;
 }
-/* line 1245, ../app/scss/screen.scss */
+/* line 1248, ../app/scss/screen.scss */
 .slider-container .slider {
   background-color: white;
   border-radius: 28px;
@@ -1479,16 +1485,16 @@ a:hover {
   transition: ease-in-out 0.25s;
   cursor: pointer;
 }
-/* line 1255, ../app/scss/screen.scss */
+/* line 1258, ../app/scss/screen.scss */
 .slider-container .slider.slider-on {
   background-color: #3498DB;
   border: 1px solid #3498DB;
 }
-/* line 1259, ../app/scss/screen.scss */
+/* line 1262, ../app/scss/screen.scss */
 .slider-container .slider.slider-on .slider-dot {
   margin-left: 27px;
 }
-/* line 1263, ../app/scss/screen.scss */
+/* line 1266, ../app/scss/screen.scss */
 .slider-container .slider .slider-dot {
   padding: 17px;
   border-radius: 50%;
@@ -1504,7 +1510,7 @@ a:hover {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* line 1275, ../app/scss/screen.scss */
+/* line 1278, ../app/scss/screen.scss */
 .navbar-form {
   border-top: 0;
   border-bottom: 0;
@@ -1514,7 +1520,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 1281, ../app/scss/screen.scss */
+  /* line 1284, ../app/scss/screen.scss */
   .navbar-samledb {
     display: flex;
     justify-content: space-between;
