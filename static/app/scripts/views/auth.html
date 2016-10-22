@@ -1,8 +1,7 @@
-<div ng-if="!loggedIn">
-    <a ng-href="/login" type="button" class="btn btn-default navbar-btn" ng-click="toggleLoginForm()">
+<div ng-if="!loggedIn" class="login-buttons-container">
+    <a ng-href="/login" type="button" class="btn btn-default navbar-btn login" ng-click="toggleLoginForm()">
         Logg inn
-    </a>
-    <a ng-href="/signup" type="button" class="btn btn-default navbar-btn signup" ng-click="toggleLoginForm()">
+    </a><a ng-href="/signup" type="button" class="btn btn-default navbar-btn signup" ng-click="toggleLoginForm()">
         Bli medlem
     </a>
 </div>

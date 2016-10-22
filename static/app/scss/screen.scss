@@ -603,6 +603,24 @@ a {
 .auth {
   padding-right: 15px;
   text-align: right;
+  @media #{$phone} {
+    padding-right: 0;
+  }
+  .login-buttons-container {
+    @media #{$phone} {
+      padding-right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      .btn.login,
+      .btn.signup {
+        padding: 8px 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        height: 37px;
+      }
+    }
+  }
   .profile-image {
     background-size: cover;
     background-image: url("userImages/57da923427b493018b00a314.jpg");
@@ -618,9 +636,14 @@ a {
     margin-bottom: 8px;
     margin-right: 10px;
     float: right;
+    .login-buttons-container {
+      @media #{$phone} {
+        display: flex;
+      }
+    }
   }
   .btn {
-
+    cursor: pointer;
     margin-top: 6px;
     margin-bottom: 6px;
     color: white;
@@ -633,6 +656,12 @@ a {
     &.signup {
       background-color: lighten(#1ba4d8, 10%);
       border: 2px solid lighten(#1ba4d8, 10%);
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px
+    }
+    &.login {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
     &:hover {
       border: 2px solid white;
@@ -1247,4 +1276,11 @@ a {
   border-top: 0;
   border-bottom: 0;
   @include box-shadow(0 0 0 0 rgba(0,0,0,0));
+}
+
+.navbar-samledb {
+  @media #{$phone} {
+    display: flex;
+    justify-content: space-between;
+  }
 }

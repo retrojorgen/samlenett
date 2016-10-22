@@ -659,7 +659,30 @@ a:hover {
   padding-right: 15px;
   text-align: right;
 }
-/* line 606, ../app/scss/screen.scss */
+@media only screen and (max-width: 800px) {
+  /* line 603, ../app/scss/screen.scss */
+  .auth {
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 609, ../app/scss/screen.scss */
+  .auth .login-buttons-container {
+    padding-right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+  /* line 615, ../app/scss/screen.scss */
+  .auth .login-buttons-container .btn.login,
+  .auth .login-buttons-container .btn.signup {
+    padding: 8px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 37px;
+  }
+}
+/* line 624, ../app/scss/screen.scss */
 .auth .profile-image {
   background-size: cover;
   background-image: url("userImages/57da923427b493018b00a314.jpg");
@@ -676,8 +699,15 @@ a:hover {
   margin-right: 10px;
   float: right;
 }
-/* line 622, ../app/scss/screen.scss */
+@media only screen and (max-width: 800px) {
+  /* line 639, ../app/scss/screen.scss */
+  .auth .profile-image .login-buttons-container {
+    display: flex;
+  }
+}
+/* line 645, ../app/scss/screen.scss */
 .auth .btn {
+  cursor: pointer;
   margin-top: 6px;
   margin-bottom: 6px;
   color: white;
@@ -691,23 +721,30 @@ a:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-/* line 633, ../app/scss/screen.scss */
+/* line 656, ../app/scss/screen.scss */
 .auth .btn.signup {
   background-color: #3fb9e7;
   border: 2px solid #3fb9e7;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
-/* line 637, ../app/scss/screen.scss */
+/* line 662, ../app/scss/screen.scss */
+.auth .btn.login {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+/* line 666, ../app/scss/screen.scss */
 .auth .btn:hover {
   border: 2px solid white;
   background: transparent;
 }
-/* line 641, ../app/scss/screen.scss */
+/* line 670, ../app/scss/screen.scss */
 .auth .btn.logout {
   border-radius: 50%;
   padding: 4px 6px;
 }
 
-/* line 650, ../app/scss/screen.scss */
+/* line 679, ../app/scss/screen.scss */
 .user-bar {
   position: fixed;
   border-top: 50px solid transparent;
@@ -724,14 +761,14 @@ a:hover {
   transform: translateX(-200px);
 }
 @media only screen and (max-width: 800px) {
-  /* line 650, ../app/scss/screen.scss */
+  /* line 679, ../app/scss/screen.scss */
   .user-bar {
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
-  /* line 663, ../app/scss/screen.scss */
+  /* line 692, ../app/scss/screen.scss */
   .user-bar.mobile-hidden {
     -moz-transform: translateX(-200px);
     -ms-transform: translateX(-200px);
@@ -739,7 +776,7 @@ a:hover {
     transform: translateX(-200px);
   }
 }
-/* line 667, ../app/scss/screen.scss */
+/* line 696, ../app/scss/screen.scss */
 .user-bar:after {
   content: "";
   position: absolute;
@@ -749,7 +786,7 @@ a:hover {
   width: 1px;
   border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
-/* line 677, ../app/scss/screen.scss */
+/* line 706, ../app/scss/screen.scss */
 .user-bar .user-header {
   width: 100%;
   position: relative;
@@ -757,7 +794,7 @@ a:hover {
   background-color: black;
   overflow: hidden;
 }
-/* line 683, ../app/scss/screen.scss */
+/* line 712, ../app/scss/screen.scss */
 .user-bar .user-header .collection-user-profile-cover {
   position: absolute;
   width: 150%;
@@ -769,7 +806,7 @@ a:hover {
   background-image: cover;
   opacity: 0.6;
 }
-/* line 693, ../app/scss/screen.scss */
+/* line 722, ../app/scss/screen.scss */
 .user-bar .user-header .collection-user-profile-avatar {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -782,7 +819,7 @@ a:hover {
   top: 20px;
   background-size: cover;
 }
-/* line 703, ../app/scss/screen.scss */
+/* line 732, ../app/scss/screen.scss */
 .user-bar .user-header .user-name {
   position: absolute;
   bottom: 0;
@@ -801,7 +838,7 @@ a:hover {
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
 }
-/* line 716, ../app/scss/screen.scss */
+/* line 745, ../app/scss/screen.scss */
 .user-bar .user-header .user-name:after {
   content: "";
   position: absolute;
@@ -817,12 +854,12 @@ a:hover {
   background-image: linear-gradient(to right, #376cb3, #3498db, #376cb3);
 }
 
-/* line 730, ../app/scss/screen.scss */
+/* line 759, ../app/scss/screen.scss */
 #spilldb-logo {
   margin-left: 0;
 }
 
-/* line 734, ../app/scss/screen.scss */
+/* line 763, ../app/scss/screen.scss */
 .navbar-brand {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzM3NmNiMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
@@ -831,7 +868,7 @@ a:hover {
   background-image: -webkit-linear-gradient(#3498db, #376cb3);
   background-image: linear-gradient(#3498db, #376cb3);
 }
-/* line 737, ../app/scss/screen.scss */
+/* line 766, ../app/scss/screen.scss */
 .navbar-brand .spilldb-logo {
   position: relative;
   width: 90px;
@@ -840,7 +877,7 @@ a:hover {
   background-size: 100% auto;
 }
 
-/* line 746, ../app/scss/screen.scss */
+/* line 775, ../app/scss/screen.scss */
 .bottom-navbar {
   padding: 0;
   background-color: #f9f9f9;
@@ -855,53 +892,53 @@ a:hover {
   border-left: 200px solid transparent;
   min-height: 40px;
 }
-/* line 759, ../app/scss/screen.scss */
+/* line 788, ../app/scss/screen.scss */
 .bottom-navbar .container-fluid {
   padding: 0;
 }
-/* line 761, ../app/scss/screen.scss */
+/* line 790, ../app/scss/screen.scss */
 .bottom-navbar .container-fluid .btn {
   padding: 4px 11px;
   font-size: 10px;
   border-radius: 8px;
   margin-left: 10px;
 }
-/* line 769, ../app/scss/screen.scss */
+/* line 798, ../app/scss/screen.scss */
 .bottom-navbar .navbar-form {
   padding: 3px 10px;
   margin: 0;
   border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
-/* line 776, ../app/scss/screen.scss */
+/* line 805, ../app/scss/screen.scss */
 .bottom-navbar .dropdown-toggle {
   border-left: 1px solid rgba(0, 0, 0, 0.15);
   border-right: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 782, ../app/scss/screen.scss */
+/* line 811, ../app/scss/screen.scss */
 .bottom-navbar .navbar-text {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-/* line 786, ../app/scss/screen.scss */
+/* line 815, ../app/scss/screen.scss */
 .bottom-navbar .dropdown-menu {
   top: auto;
   bottom: 100%;
   padding: 0;
   border-radius: 0;
 }
-/* line 791, ../app/scss/screen.scss */
+/* line 820, ../app/scss/screen.scss */
 .bottom-navbar .dropdown-menu li {
   padding: 10px;
   color: black;
 }
-/* line 794, ../app/scss/screen.scss */
+/* line 823, ../app/scss/screen.scss */
 .bottom-navbar .dropdown-menu li:hover {
   color: white;
 }
 
-/* line 801, ../app/scss/screen.scss */
+/* line 830, ../app/scss/screen.scss */
 .collection-list-header {
   margin-top: 10px;
   color: #a0a0a0;
@@ -910,7 +947,7 @@ a:hover {
   font-size: 10px;
 }
 
-/* line 809, ../app/scss/screen.scss */
+/* line 838, ../app/scss/screen.scss */
 .create-new-button {
   background-color: transparent;
   border: 1px solid #a0a0a0;
@@ -924,22 +961,22 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 818, ../app/scss/screen.scss */
+/* line 847, ../app/scss/screen.scss */
 .create-new-button .glyphicon {
   top: 0;
 }
-/* line 821, ../app/scss/screen.scss */
+/* line 850, ../app/scss/screen.scss */
 .create-new-button:hover {
   border: 1px solid #3498DB;
   background-color: #3498DB;
   color: white;
 }
 
-/* line 828, ../app/scss/screen.scss */
+/* line 857, ../app/scss/screen.scss */
 .collection-list {
   border-radius: 0;
 }
-/* line 831, ../app/scss/screen.scss */
+/* line 860, ../app/scss/screen.scss */
 .collection-list .list-group-item {
   margin-left: -15px;
   margin-right: -15px;
@@ -955,7 +992,7 @@ a:hover {
   transition: ease-in-out 0.25s;
   background-color: transparent;
 }
-/* line 844, ../app/scss/screen.scss */
+/* line 873, ../app/scss/screen.scss */
 .collection-list .list-group-item a {
   display: block;
   padding: 8px 4px 8px 15px;
@@ -969,23 +1006,23 @@ a:hover {
   display: block;
   text-overflow: ellipsis;
 }
-/* line 856, ../app/scss/screen.scss */
+/* line 885, ../app/scss/screen.scss */
 .collection-list .list-group-item a:hover {
   color: #fcfcfc;
   text-decoration: none;
 }
-/* line 862, ../app/scss/screen.scss */
+/* line 891, ../app/scss/screen.scss */
 .collection-list .list-group-item:hover {
   background-color: #0f0f0f;
 }
-/* line 865, ../app/scss/screen.scss */
+/* line 894, ../app/scss/screen.scss */
 .collection-list .list-group-item.selected {
   background-color: #181818;
   -moz-box-shadow: 0 0 0 black inset;
   -webkit-box-shadow: 0 0 0 black inset;
   box-shadow: 0 0 0 black inset;
 }
-/* line 868, ../app/scss/screen.scss */
+/* line 897, ../app/scss/screen.scss */
 .collection-list .list-group-item.selected:before {
   content: "";
   position: absolute;
@@ -995,31 +1032,31 @@ a:hover {
   background-color: #3498DB;
   top: 0;
 }
-/* line 877, ../app/scss/screen.scss */
+/* line 906, ../app/scss/screen.scss */
 .collection-list .list-group-item.selected a {
   text-decoration: none;
 }
-/* line 881, ../app/scss/screen.scss */
+/* line 910, ../app/scss/screen.scss */
 .collection-list .list-group-item .glyphicon {
   padding-right: 8px;
 }
 
-/* line 888, ../app/scss/screen.scss */
+/* line 917, ../app/scss/screen.scss */
 .main-menu li {
   border-right: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   text-transform: uppercase;
 }
-/* line 892, ../app/scss/screen.scss */
+/* line 921, ../app/scss/screen.scss */
 .main-menu li a {
   cursor: pointer;
 }
-/* line 895, ../app/scss/screen.scss */
+/* line 924, ../app/scss/screen.scss */
 .main-menu li:hover {
   background-color: #10171b;
 }
 
-/* line 903, ../app/scss/screen.scss */
+/* line 932, ../app/scss/screen.scss */
 .signup-form {
   position: relative;
   max-width: 400px;
@@ -1028,13 +1065,13 @@ a:hover {
   margin: 50px auto 0 auto;
   color: #3a3a3a;
 }
-/* line 910, ../app/scss/screen.scss */
+/* line 939, ../app/scss/screen.scss */
 .signup-form h2 {
   margin-top: 0;
   margin-bottom: 40px;
 }
 
-/* line 916, ../app/scss/screen.scss */
+/* line 945, ../app/scss/screen.scss */
 .btn {
   font-size: 100%;
   letter-spacing: 1px;
@@ -1042,11 +1079,11 @@ a:hover {
   padding: 8px 20px;
 }
 
-/* line 925, ../app/scss/screen.scss */
+/* line 954, ../app/scss/screen.scss */
 .image-row * {
   vertical-align: top;
 }
-/* line 928, ../app/scss/screen.scss */
+/* line 957, ../app/scss/screen.scss */
 .image-row .dropzone {
   display: inline-block;
   width: 20%;
@@ -1055,25 +1092,25 @@ a:hover {
   padding: 20px;
   font-family: Arial;
 }
-/* line 935, ../app/scss/screen.scss */
+/* line 964, ../app/scss/screen.scss */
 .image-row .dropzone.profile-image {
   width: 210px;
   height: 210px;
 }
-/* line 940, ../app/scss/screen.scss */
+/* line 969, ../app/scss/screen.scss */
 .image-row .image-container {
   display: inline-block;
   width: 20%;
   height: 172px;
   background-size: cover;
 }
-/* line 945, ../app/scss/screen.scss */
+/* line 974, ../app/scss/screen.scss */
 .image-row .image-container.profile-image {
   width: 210px;
   height: 210px;
 }
 
-/* line 953, ../app/scss/screen.scss */
+/* line 982, ../app/scss/screen.scss */
 .collection-edit {
   position: absolute;
   top: 0;
@@ -1094,29 +1131,29 @@ a:hover {
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 965, ../app/scss/screen.scss */
+/* line 994, ../app/scss/screen.scss */
 .collection-edit.visible {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 969, ../app/scss/screen.scss */
+/* line 998, ../app/scss/screen.scss */
 .collection-edit label {
   color: #3a3a3a;
 }
-/* line 972, ../app/scss/screen.scss */
+/* line 1001, ../app/scss/screen.scss */
 .collection-edit form {
   margin-top: 14px;
 }
 
-/* line 978, ../app/scss/screen.scss */
+/* line 1007, ../app/scss/screen.scss */
 .dropzone {
   position: relative;
   border: 0;
   padding: 30px;
 }
-/* line 982, ../app/scss/screen.scss */
+/* line 1011, ../app/scss/screen.scss */
 .dropzone:after {
   content: "";
   position: absolute;
@@ -1126,54 +1163,54 @@ a:hover {
   top: 5%;
   left: 5%;
 }
-/* line 991, ../app/scss/screen.scss */
+/* line 1020, ../app/scss/screen.scss */
 .dropzone span {
   color: #3a3a3a;
 }
 
-/* line 999, ../app/scss/screen.scss */
+/* line 1028, ../app/scss/screen.scss */
 .edit-button {
   position: relative;
   z-index: 10;
 }
 
-/* line 1004, ../app/scss/screen.scss */
+/* line 1033, ../app/scss/screen.scss */
 .game-list.table tr td[contenteditable="true"]:active,
 .game-list.table tr td[contenteditable="true"]:focus {
   outline: none;
   color: #66d1f2;
 }
 
-/* line 1010, ../app/scss/screen.scss */
+/* line 1039, ../app/scss/screen.scss */
 .btn {
   outline: none;
 }
 
-/* line 1014, ../app/scss/screen.scss */
+/* line 1043, ../app/scss/screen.scss */
 .clearfix:after {
   content: " ";
   display: table;
   clear: both;
 }
 
-/* line 1021, ../app/scss/screen.scss */
+/* line 1050, ../app/scss/screen.scss */
 .user-tab {
   display: none;
   margin-top: 28px;
 }
-/* line 1024, ../app/scss/screen.scss */
+/* line 1053, ../app/scss/screen.scss */
 .user-tab.selected {
   display: block;
 }
 
-/* line 1029, ../app/scss/screen.scss */
+/* line 1058, ../app/scss/screen.scss */
 .user-menu {
   border-bottom: 1px solid #282828;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 1034, ../app/scss/screen.scss */
+/* line 1063, ../app/scss/screen.scss */
 .user-menu li {
   display: inline-block;
   position: relative;
@@ -1187,12 +1224,12 @@ a:hover {
   transition: 0.25s;
   cursor: pointer;
 }
-/* line 1044, ../app/scss/screen.scss */
+/* line 1073, ../app/scss/screen.scss */
 .user-menu li a {
   padding: 10px 14px;
   display: block;
 }
-/* line 1048, ../app/scss/screen.scss */
+/* line 1077, ../app/scss/screen.scss */
 .user-menu li:after {
   content: "";
   position: absolute;
@@ -1206,11 +1243,11 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 1058, ../app/scss/screen.scss */
+/* line 1087, ../app/scss/screen.scss */
 .user-menu li.selected {
   color: #fcfcfc;
 }
-/* line 1060, ../app/scss/screen.scss */
+/* line 1089, ../app/scss/screen.scss */
 .user-menu li.selected:after {
   background-color: #66d1f2;
   -moz-transition: 0.25s;
@@ -1218,12 +1255,12 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 1066, ../app/scss/screen.scss */
+/* line 1095, ../app/scss/screen.scss */
 .user-menu li:hover {
   color: #fcfcfc;
 }
 
-/* line 1073, ../app/scss/screen.scss */
+/* line 1102, ../app/scss/screen.scss */
 .auth-cover {
   position: absolute;
   width: 100%;
@@ -1235,7 +1272,7 @@ a:hover {
   opacity: 0.2;
 }
 
-/* line 1084, ../app/scss/screen.scss */
+/* line 1113, ../app/scss/screen.scss */
 .hamburger {
   float: left;
   position: relative;
@@ -1245,17 +1282,17 @@ a:hover {
   border: 0;
   outline: none;
 }
-/* line 1092, ../app/scss/screen.scss */
+/* line 1121, ../app/scss/screen.scss */
 .hamburger.mobile-hidden {
   display: none;
 }
-/* line 1096, ../app/scss/screen.scss */
+/* line 1125, ../app/scss/screen.scss */
 .hamburger:hover .line-1,
 .hamburger:hover .line-2,
 .hamburger:hover .line-3 {
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 1102, ../app/scss/screen.scss */
+/* line 1131, ../app/scss/screen.scss */
 .hamburger .line-1,
 .hamburger .line-2,
 .hamburger .line-3 {
@@ -1271,31 +1308,31 @@ a:hover {
   -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
-/* line 1115, ../app/scss/screen.scss */
+/* line 1144, ../app/scss/screen.scss */
 .hamburger .line-2 {
   -moz-transform: translateY(-6px);
   -ms-transform: translateY(-6px);
   -webkit-transform: translateY(-6px);
   transform: translateY(-6px);
 }
-/* line 1118, ../app/scss/screen.scss */
+/* line 1147, ../app/scss/screen.scss */
 .hamburger .line-3 {
   -moz-transform: translateY(6px);
   -ms-transform: translateY(6px);
   -webkit-transform: translateY(6px);
   transform: translateY(6px);
 }
-/* line 1125, ../app/scss/screen.scss */
+/* line 1154, ../app/scss/screen.scss */
 .hamburger.selected {
   background-color: transparent;
 }
 @media only screen and (max-width: 800px) {
-  /* line 1125, ../app/scss/screen.scss */
+  /* line 1154, ../app/scss/screen.scss */
   .hamburger.selected {
     background-color: #181818;
   }
 }
-/* line 1132, ../app/scss/screen.scss */
+/* line 1161, ../app/scss/screen.scss */
 .hamburger.selected .line-1,
 .hamburger.selected .line-2,
 .hamburger.selected .line-3 {
@@ -1307,18 +1344,18 @@ a:hover {
   left: 12px;
   color: #3498DB;
 }
-/* line 1140, ../app/scss/screen.scss */
+/* line 1169, ../app/scss/screen.scss */
 .hamburger.selected .line-1 {
   opacity: 0;
 }
-/* line 1143, ../app/scss/screen.scss */
+/* line 1172, ../app/scss/screen.scss */
 .hamburger.selected .line-2 {
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-/* line 1146, ../app/scss/screen.scss */
+/* line 1175, ../app/scss/screen.scss */
 .hamburger.selected .line-3 {
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -1326,29 +1363,29 @@ a:hover {
   transform: rotate(-45deg);
 }
 @media only screen and (max-width: 800px) {
-  /* line 1084, ../app/scss/screen.scss */
+  /* line 1113, ../app/scss/screen.scss */
   .hamburger {
     background-color: transparent;
   }
-  /* line 1153, ../app/scss/screen.scss */
+  /* line 1182, ../app/scss/screen.scss */
   .hamburger .line-1 {
     opacity: 0;
   }
-  /* line 1156, ../app/scss/screen.scss */
+  /* line 1185, ../app/scss/screen.scss */
   .hamburger .line-2 {
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-  /* line 1159, ../app/scss/screen.scss */
+  /* line 1188, ../app/scss/screen.scss */
   .hamburger .line-3 {
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
-  /* line 1163, ../app/scss/screen.scss */
+  /* line 1192, ../app/scss/screen.scss */
   .hamburger.selected .line-1,
   .hamburger.selected .line-2,
   .hamburger.selected .line-3 {
@@ -1364,18 +1401,18 @@ a:hover {
     background-color: #3498DB;
     width: 24px;
   }
-  /* line 1175, ../app/scss/screen.scss */
+  /* line 1204, ../app/scss/screen.scss */
   .hamburger.selected .line-1 {
     opacity: 1;
   }
-  /* line 1178, ../app/scss/screen.scss */
+  /* line 1207, ../app/scss/screen.scss */
   .hamburger.selected .line-2 {
     -moz-transform: translateY(-6px);
     -ms-transform: translateY(-6px);
     -webkit-transform: translateY(-6px);
     transform: translateY(-6px);
   }
-  /* line 1181, ../app/scss/screen.scss */
+  /* line 1210, ../app/scss/screen.scss */
   .hamburger.selected .line-3 {
     -moz-transform: translateY(6px);
     -ms-transform: translateY(6px);
@@ -1383,22 +1420,22 @@ a:hover {
     transform: translateY(6px);
   }
 }
-/* line 1186, ../app/scss/screen.scss */
+/* line 1215, ../app/scss/screen.scss */
 .hamburger.mobile-toggle {
   background-color: #181818;
 }
-/* line 1188, ../app/scss/screen.scss */
+/* line 1217, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-1 {
   opacity: 1;
 }
-/* line 1191, ../app/scss/screen.scss */
+/* line 1220, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-2 {
   -moz-transform: translateY(-6px) rotate(0deg);
   -ms-transform: translateY(-6px) rotate(0deg);
   -webkit-transform: translateY(-6px) rotate(0deg);
   transform: translateY(-6px) rotate(0deg);
 }
-/* line 1194, ../app/scss/screen.scss */
+/* line 1223, ../app/scss/screen.scss */
 .hamburger.mobile-toggle .line-3 {
   -moz-transform: translateY(6px) rotate(0deg);
   -ms-transform: translateY(6px) rotate(0deg);
@@ -1407,27 +1444,27 @@ a:hover {
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 1200, ../app/scss/screen.scss */
+  /* line 1229, ../app/scss/screen.scss */
   .navbar-text {
     margin-right: 10px;
     display: inline-block;
   }
-  /* line 1204, ../app/scss/screen.scss */
+  /* line 1233, ../app/scss/screen.scss */
   .navbar-text span {
     display: none;
   }
 }
 
-/* line 1210, ../app/scss/screen.scss */
+/* line 1239, ../app/scss/screen.scss */
 .slider-container {
   display: flex;
   align-items: center;
 }
-/* line 1213, ../app/scss/screen.scss */
+/* line 1242, ../app/scss/screen.scss */
 .slider-container .slider-label {
   margin-right: 10px;
 }
-/* line 1216, ../app/scss/screen.scss */
+/* line 1245, ../app/scss/screen.scss */
 .slider-container .slider {
   background-color: white;
   border-radius: 28px;
@@ -1442,16 +1479,16 @@ a:hover {
   transition: ease-in-out 0.25s;
   cursor: pointer;
 }
-/* line 1226, ../app/scss/screen.scss */
+/* line 1255, ../app/scss/screen.scss */
 .slider-container .slider.slider-on {
   background-color: #3498DB;
   border: 1px solid #3498DB;
 }
-/* line 1230, ../app/scss/screen.scss */
+/* line 1259, ../app/scss/screen.scss */
 .slider-container .slider.slider-on .slider-dot {
   margin-left: 27px;
 }
-/* line 1234, ../app/scss/screen.scss */
+/* line 1263, ../app/scss/screen.scss */
 .slider-container .slider .slider-dot {
   padding: 17px;
   border-radius: 50%;
@@ -1467,11 +1504,19 @@ a:hover {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* line 1246, ../app/scss/screen.scss */
+/* line 1275, ../app/scss/screen.scss */
 .navbar-form {
   border-top: 0;
   border-bottom: 0;
   -moz-box-shadow: 0 0 0 0 transparent;
   -webkit-box-shadow: 0 0 0 0 transparent;
   box-shadow: 0 0 0 0 transparent;
+}
+
+@media only screen and (max-width: 800px) {
+  /* line 1281, ../app/scss/screen.scss */
+  .navbar-samledb {
+    display: flex;
+    justify-content: space-between;
+  }
 }
