@@ -221,7 +221,7 @@ module.exports = function(app, passport, dbQueries) {
             if(!err)
               image.toBuffer('jpg', {quality: 80}, function(err, buffer){
                 fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                  lwipJpegAutorotate.autorotate(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "." + addedImage.type)
+                  lwipJpegAutorotate.autorotate(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "_hest." + addedImage.type)
                       .then(function(rotated) {
                         console.log(rotated ? 'Image rotated' : 'No rotation was needed');
                         callback(addedImage);
