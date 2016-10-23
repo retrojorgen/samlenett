@@ -1,6 +1,6 @@
 var lwip = require('lwip');
 var fs = require('fs');
-//var lwipJpegAutorotate = require('lwip-jpeg-autorotate');
+var lwipJpegAutorotate = require('lwip-jpeg-autorotate');
 
 module.exports = function(app, passport, dbQueries) {
 
