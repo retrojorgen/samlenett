@@ -1,6 +1,6 @@
 var lwip = require('lwip');
 var fs = require('fs');
-var rotator = require('auto-rotate');
+var ExifImage = require('exif').ExifImage;
 
 module.exports = function(app, passport, dbQueries) {
 
@@ -216,29 +216,21 @@ module.exports = function(app, passport, dbQueries) {
           width = 1400;
         }
 
-        if(!err) {
-          image.resize(width, height, function (err, image) {
-            if(!err)
-              image.toBuffer('jpg', {quality: 80}, function(err, buffer){
-                fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                  rotator.autoRotateFile(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "_rotated." + addedImage.type)
-                      .then(function(rotated) {
-                        console.log(rotated ? 'Image rotated fuckface' : 'No rotation was needed');
-                        if(rotated) {
-                          addedImage._id = addedImage._id + "_rotated"
-                        }
+        new ExifImage({ image : img }, function (error, exifData) {
+          if (error)
+            console.log('Error: '+error.message);
+          else
+            console.log(exifData); // Do something with your data!
+        });
 
-                        callback(addedImage);
-                        console.log(addedImage);
-                      }).catch(function(err) {
-                    console.error('Got error: '+err);
+            image.resize(width, height, function (err, image) {
+              if (!err)
+                image.toBuffer('jpg', {quality: 80}, function (err, buffer) {
+                  fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
+                    callback(addedImage);
                   });
                 });
-              });
-          });
-        } else {
-
-        }
+            });
 
       });
 
