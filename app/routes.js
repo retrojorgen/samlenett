@@ -1,5 +1,6 @@
 var lwip = require('lwip');
 var fs = require('fs');
+//var lwipJpegAutorotate = require('lwip-jpeg-autorotate');
 
 module.exports = function(app, passport, dbQueries) {
 
@@ -154,45 +155,17 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/me/upload/profilephoto', function (req, res) {
-    dbQueries.addImage(function (addedImage) {
-
-      var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,'');
-      var img = new Buffer(base64Data, 'base64');
-
-      lwip.open(img, 'jpg', function (err, image) {
-        var width = image.width();
-        var height = image.height();
-        if(width > 1400) {
-          height = (image.height() / image.width()) * 1400;
-          width = 1400;
-        }
-
-        if(!err) {
-          image.resize(width, height, function (err, image) {
-            if(!err)
-              image.toBuffer('jpg', {quality: 80}, function(err, buffer){
-                fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                  dbQueries.addProfileImageToUser(req.user._id, addedImage._id, function () {
-                    res.json({
-                      imageId: addedImage._id
-                    });
-                  });
-                });
-              });
-          });
-        } else {
-
-        }
-
+    addImage(req.body.image, function (addedImage) {
+      dbQueries.addProfileImageToUser(req.user._id, addedImage._id, function () {
+        res.json({
+          imageId: addedImage._id
+        });
       });
-
     });
   });
 
 
   app.post('/api/add/game', function (req,res,next) {
-    
-    
 
     dbQueries.addGame(req.body, function (game) {
 
@@ -216,10 +189,23 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/me/upload/image', function (req, res, next) {
+    dbQueries.addImage(req.body.image, function (addedImage) {
+      res.json({
+        imageId: addedImage._id,
+        image: addedImage
+      });
+    });
+  });
 
+  app.get('/*', function (req, res) {
+    res.render('index');
+  });
+
+
+  var addImage = function (newImageBuffer, callback) {
     dbQueries.addImage(function (addedImage) {
 
-      var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,'');
+      var base64Data = newImageBuffer.replace(/^data:image\/jpeg;base64,/,'');
       var img = new Buffer(base64Data, 'base64');
 
       lwip.open(img, 'jpg', function (err, image) {
@@ -231,30 +217,30 @@ module.exports = function(app, passport, dbQueries) {
         }
 
         if(!err) {
-            image.resize(width, height, function (err, image) {
-              if(!err)
-                image.toBuffer('jpg', {quality: 80}, function(err, buffer){
-                  fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                    res.json({
-                      image: addedImage
-                    });
+          image.resize(width, height, function (err, image) {
+            if(!err)
+              image.toBuffer('jpg', {quality: 80}, function(err, buffer){
+                fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
+                  lwipJpegAutorotate.autorotate(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "." + addedImage.type)
+                      .then(function(rotated) {
+                        console.log(rotated ? 'Image rotated' : 'No rotation was needed');
+                        callback(addedImage);
+                      }).catch(function(err) {
+                      console.error('Got error: '+err);
                   });
+
                 });
-            });
+              });
+          });
         } else {
-          
+
         }
 
       });
 
     });
 
-  });
-
-  app.get('/*', function (req, res) {
-    res.render('index');
-  });
-
+  };
 
   // route middleware to make sure
   function isLoggedIn(req, res, next) {

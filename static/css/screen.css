@@ -1569,6 +1569,10 @@ a:hover {
   /* line 1329, ../app/scss/screen.scss */
   .navbar-samledb {
     display: flex;
-    justify-content: space-between;
+  }
+  /* line 1332, ../app/scss/screen.scss */
+  .navbar-samledb .auth {
+    margin-left: 14px;
+    width: 100%;
   }
 }

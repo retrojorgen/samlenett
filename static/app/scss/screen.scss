@@ -1329,6 +1329,9 @@ a {
 .navbar-samledb {
   @media #{$phone} {
     display: flex;
-    justify-content: space-between;
+    .auth {
+      margin-left: 14px;
+      width: 100%;
+    }
   }
 }
