@@ -25,9 +25,12 @@
         </form>
     </div>
     <div class="fluid-container collection-header clearfix">
-        <fileupload upload-file="uploadProfilePicture"></fileupload>
-        <div class="profile-photo" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
-        <div class="profile-photo" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(images/standard-profile.jpg)'}">
+
+        <div class="profile-photo active" ng-if="user.profileImageId" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}">
+            <fileupload upload-file="uploadProfilePicture" class="file-upload-button-container"></fileupload>
+        </div>
+        <div class="profile-photo" ng-if="!user.profileImageId" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}">
+            <fileupload upload-file="uploadProfilePicture" class="file-upload-button-container"></fileupload>
         </div>
         <div class="collection-information">
             <div class="collection-title">

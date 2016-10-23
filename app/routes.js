@@ -154,7 +154,39 @@ module.exports = function(app, passport, dbQueries) {
   });
 
   app.post('/api/me/upload/profilephoto', function (req, res) {
+    dbQueries.addImage(function (addedImage) {
 
+      var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,'');
+      var img = new Buffer(base64Data, 'base64');
+
+      lwip.open(img, 'jpg', function (err, image) {
+        var width = image.width();
+        var height = image.height();
+        if(width > 1400) {
+          height = (image.height() / image.width()) * 1400;
+          width = 1400;
+        }
+
+        if(!err) {
+          image.resize(width, height, function (err, image) {
+            if(!err)
+              image.toBuffer('jpg', {quality: 80}, function(err, buffer){
+                fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
+                  dbQueries.addProfileImageToUser(req.user._id, addedImage._id, function () {
+                    res.json({
+                      imageId: addedImage._id
+                    });
+                  });
+                });
+              });
+          });
+        } else {
+
+        }
+
+      });
+
+    });
   });
 
 

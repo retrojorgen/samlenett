@@ -5,8 +5,8 @@ module.exports = function (dbHandler) {
 	var userSchema = dbHandler.Schema({
 	    username: String,
 	    password: String,
-	    profileImageUrl: String,
-	    coverPhotoUrl: String,
+	    profileImageId: String,
+	    coverPhotoId: String,
 	    collectionImages: [],
 	    role: String,
 	    nick: String,

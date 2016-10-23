@@ -31,7 +31,10 @@ spilldb.component('user', {
 
         $scope.uploadProfilePicture= function (file) {
             console.log('yo')
-            //console.log(file);
+            $http.post("/api/me/upload/profilephoto", {image: file})
+                .then(function (data) {
+                    $scope.user.profileImageId = data.data.imageId;
+                });
         };
 
       var setPriveleges = function () {

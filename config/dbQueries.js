@@ -155,13 +155,26 @@ module.exports = function (models, slug) {
 				}
 			});
 		},
-		addImageToUser: function (userId, image, callback) {
+		addProfileImageToUser: function (userId, imageId, callback) {
+			User.findById(userId, function (err, user) {
+				if(!err) {
+					user.profileImageId = imageId;
+
+					user.save(function (err) {
+						if(!err)
+							if(callback)
+								callback(user);
+					});
+				}
+			})
+		},
+		addImageToUser: function (userId, imageId, callback) {
 			User.findById(userId, function (err, user) {
 				if(!err) {
 					if(!user.collectionImages) {
-						user.collectionImages = [image];
+						user.collectionImages = [imageId];
 					} else {
-						user.collectionImages.push(image);
+						user.collectionImages.push(imageId);
 					}
 
 					user.save(function (err) {

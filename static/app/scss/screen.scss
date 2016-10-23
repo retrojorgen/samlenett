@@ -495,8 +495,49 @@ a {
 
   .profile-photo {
     border-radius: 50%;
-    width: 130px;
-    height: 130px;
+
+    &:hover {
+      .file-upload-button-container {
+        display: inline-block;
+      }
+    }
+    .file-upload-button-container {
+      position: absolute;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -34px;
+      margin-left: -34px;
+      display: none;
+      @media #{$phone} {
+        display: inline-block;
+        margin: 0;
+        top: 0;
+        right: 0;
+        left: auto;
+      }
+
+      .upload-photo-button {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.6);
+        color: white;
+        border: 0;
+        font-size: 24px;
+        padding: 22px;
+        outline: none;
+        &:before {
+          content: "\e046";
+        }
+      }
+    }
   }
 
   .collection-information {
