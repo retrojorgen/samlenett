@@ -1,6 +1,6 @@
 var lwip = require('lwip');
 var fs = require('fs');
-var lwipJpegAutorotate = require('lwip-jpeg-autorotate');
+var rotator = require('auto-rotate');
 
 module.exports = function(app, passport, dbQueries) {
 
@@ -221,20 +221,18 @@ module.exports = function(app, passport, dbQueries) {
             if(!err)
               image.toBuffer('jpg', {quality: 80}, function(err, buffer){
                 fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                  lwipJpegAutorotate.autorotate(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "_rotated." + addedImage.type)
+                  rotator.autoRotateFile(addedImage.location + addedImage._id + "." + addedImage.type, addedImage.location + addedImage._id + "_rotated." + addedImage.type)
                       .then(function(rotated) {
-                        console.log(rotated ? 'Image rotated' : 'No rotation was needed');
+                        console.log(rotated ? 'Image rotated fuckface' : 'No rotation was needed');
                         if(rotated) {
                           addedImage._id = addedImage._id + "_rotated"
                         }
 
                         callback(addedImage);
                         console.log(addedImage);
-
                       }).catch(function(err) {
-                      console.error('Got error: '+err);
+                    console.error('Got error: '+err);
                   });
-
                 });
               });
           });

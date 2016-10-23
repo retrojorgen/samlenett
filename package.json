@@ -15,7 +15,6 @@
     "install": "^0.8.1",
     "jade": "^1.11.0",
     "lwip": "0.0.9",
-    "lwip-jpeg-autorotate": "^0.0.2",
     "mongoose": "^4.6.0",
     "morgan": "^1.7.0",
     "mysql": "^2.10.2",
