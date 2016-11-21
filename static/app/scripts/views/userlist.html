@@ -1,46 +1,19 @@
 <div class="fluid-container collection-container">
-    <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
-        <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
-        <button class="btn btn-primary edit-button pull-right" ng-click="updateCollection()">Lagre</button>
-        <label for="collection-image">Bilde av liste</label>
-        <div class="image-row">
-            <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
-                          file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
-              <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
-            </div>
-            <div class="image-container profile-image" ng-style="{
-            'background-image': 'url(/static/userImages/' + editCollection.collectionImageId + '.jpg)'
-            }">
-            </div>
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="collection-title">Tittel på liste</label>
-                <input type="text" class="form-control" id="collection-title" placeholder="skriv inn tittel.." ng-model="editCollection.title">
-            </div>
-            <div class="form-group">
-                <label for="collection-description">Beskrivelse av liste</label>
-                <textarea type="text" class="form-control" id="collection-description" placeholder="beskrivelse.." ng-model="editCollection.description"></textarea>
-            </div>
-        </form>
-    </div>
+    <search search="toggles.search"></search>
     <div class="fluid-container collection-header clearfix">
 
         <div ng-if="collection.collection.collectionImageId" class="collection-photo-cloak"
              ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
              
         </div>
-        <div class="control-buttons">
-            <button ng-if="toggles.editable" class="btn btn-default edit-button" ng-click="toggleEditTab()">Rediger</button>
-        </div>
         <div ng-if="collection.collection.collectionImageId" class="collection-photo"
              ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
-             
+            <fileupload upload-file="uploadCollectionPhoto" class="file-upload-button-container" ng-if="toggles.editable"></fileupload>
         </div>
-        <div class="collection-photo"
+        <div class="collection-photo no-photo"
              ng-if="!collection.collection.collectionImageId"
-             ng-style="{'background-image': 'url(static/userImages/' + collection.collection.collectionImageId + '.jpg)'}">
-             
+             ng-style="">
+            <fileupload upload-file="uploadCollectionPhoto" class="file-upload-button-container" ng-if="toggles.editable"></fileupload>
         </div>
         <div class="collection-information">
             <div class="collection-title">
@@ -49,8 +22,36 @@
                     <span ng-if="collection.collection.type == 'goals'">Samlemål</span>
                     <span ng-if="collection.collection.type == 'sales'">Til salgs</span>
                 </p>
-                <h1>{{collection.collection.title}}</h1>
-                <p class="description" ng-bind-html="changeToBreak(collection.collection.description)"></p>
+
+                <h1 class="editable-field" ng-click="editField('collection title')" ng-if="!toggles.editFlags.collection.title && toggles.editable">{{collection.collection.title}}</h1>
+                <div class="editable-wrapper" ng-if="toggles.editFlags.collection.title && toggles.editable">
+                    <h1 class="editable-field" contenteditable="true" no-break="true" ng-model="editCollection.title" ng-click="toggles.editFlags.collection.title = true">{{collection.collection.title}}</h1>
+                    <div class="editable-button-container">
+                        <button class="editable-action-button" ng-click="saveField('collection title')"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="editable-action-button " ng-click="cancelField('collection title')"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </div>
+
+                <h1 ng-if="!toggles.editable">{{collection.collection.title}}</h1>
+
+                <p class="description editable-field" ng-click="editField('collection description')" ng-if="!toggles.editFlags.collection.description && toggles.editable && editCollection.description != ''" ng-bind-html="changeToBreak(collection.collection.description)"></p>
+
+                <div class="add-description-wrapper" ng-if="!toggles.editFlags.collection.description && toggles.editable && !editCollection.description">
+                    <button class="add-description-button" ng-click="editField('collection description')">Legg til beskrivelse</button>
+                </div>
+
+
+                <div class="editable-wrapper" ng-if="toggles.editFlags.collection.description && toggles.editable">
+                    <p class="description editable-field" contenteditable="true" ng-model="editCollection.description" ng-bind-html="changeToBreak(collection.collection.description)"></p>
+                    <div class="editable-button-container">
+                        <button class="editable-action-button" ng-click="saveField('collection description')"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="editable-action-button " ng-click="cancelField('collection description')"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </div>
+
+                <p class="description" ng-if="!toggles.editable" ng-bind-html="changeToBreak(collection.collection.description)"></p>
+
+
                 <p class="byline">
                     Opprettet av: <a ng-href="/user/{{collection.user.slug}}">{{collection.user.nick}}</a>
                     &bull; {{collection.games.length-1}} spill</p>
@@ -68,8 +69,8 @@
                     </div>
                 </div>
             </form>
-            <div class="slider-container" ng-if="toggles.editable">
-                <label class="slider-label" ng-if="toggles.editStatus">Redigeringsmodus</label>
+            <div class="slider-container" ng-if="toggles.editable && !toggles.mobileFlag">
+                <label class="slider-label" ng-if="toggles.editStatus">Hurtigredigering</label>
                 <label class="slider-label" ng-if="!toggles.editStatus">Publikumsmodus</label>
                 <div class="slider" ng-class="{'slider-on': toggles.editStatus}" ng-click="toggleEditStatus()">
                     <span class="slider-dot"></span>
@@ -79,12 +80,13 @@
 
     </div>
     <div class="fluid-container">
-        <table class="table game-list" ng-class="{'editable': toggles.editStatus}">
+
+        <table class="table game-list" ng-class="{'editable': toggles.editStatus && !toggles.mobileFlag}">
             <thead>
             	<tr>
                     <th class="game-toggle"><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
-                    <th >#</th>
-            		<th ng-repeat="(settingKey, setting) in collection.settings" ng-click="sortGamesBy(settingKey)">
+                    <th class="mobile">#</th>
+            		<th ng-repeat="(settingKey, setting) in collection.settings" ng-click="sortGamesBy(settingKey)" ng-class="{mobile: setting.mobile}">
                         {{setting.name}}
                         <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == settingKey"></span>
                         <span class="glyphicon glyphicon-menu-up pull-right" ng-if="toggles.sortOrder == '-' + settingKey"></span>
@@ -95,7 +97,7 @@
             <tbody>
             	<tr
                         class="game-row"
-                        ng-repeat="game in collection.games | filter:filterPhrase | orderBy:toggles.sortOrder as filteredList"
+                        ng-repeat="game in collection.games | filter:toggles.filterPhrase | orderBy:toggles.sortOrder | limitTo: toggles.listLimit as filteredList"
                         ng-class="{
                             'toggled': toggles['editGames'].indexOf(game) > -1,
                             'selected': game.selected
@@ -110,7 +112,7 @@
                     </td>
                     <td ng-class="{
                             'inactive': game.inactive
-                        }" class="context-menu-container"><span ng-if="!game.inactive">{{$index+1}}</span>
+                        }" class="context-menu-container mobile"><span ng-if="!game.inactive">{{$index+1}}</span>
                     <!--    
                     <button class="context-menu glyphicon glyphicon-menu-hamburger" ng-class="{
                         'selected': toggles['contextMenu'] == game._id
@@ -133,21 +135,45 @@
                     </ul>
                     -->
                     </td>
-            		<td
-                            ng-repeat="(settingKey, setting) in collection.settings"
+            		<td ng-repeat="(settingKey, setting) in collection.settings"
+                    >
+                        <div
                             class="editable-col"
-                            contenteditable="{{toggles.editStatus && toggles.editable}}"
+                            contenteditable="{{toggles.editStatus && toggles.editable && !toggles.mobileFlag}}"
                             game="game"
+                            no-break="true"
                             game-row="settingKey"
                             ng-model="game[settingKey]"
                             ng-keydown="gameKeyHandler($event, game, settingKey)"
                             ng-change="updateGame(game, game[settingKey], settingKey)"
-                            ng-class="{selected: settingKey == game.rowSelected}"
+                            ng-if="toggles.editStatus"
+                            ng-class="{
+                            selected: settingKey == game.rowSelected,
+                            mobile: setting.mobile,
+                            visible: toggles.editable
+                            }">
+
+                        </div>
+                        <search game="game" game-row="settingKey" class="search-wrapper"></search>
+                        <div
+                             class="noeditable-col {{settingKey}}"
+                             ng-if="!toggles.editStatus"
+                             ng-class="{
+                                selected: settingKey == game.rowSelected,
+                                mobile: setting.mobile
+                            }">
+                                {{game[settingKey]}}
+                        </div>
+                    </td>
+
+
                     >
-            		</td>
+                        <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}" ng-bind-html="game[settingKey]"></a>
+                    </td>
             	</tr>
             </tbody>
         </table>
+        <button class="show-more" ng-if="collection.games.length > toggles.listLimit" ng-click="increaseListLimit()">Vis flere rader</button>
     </div> 
 </div>
 

@@ -1,29 +1,4 @@
 <div class="fluid-container collection-container">
-    <div class="fluid-container collection-edit" ng-class="{visible: toggles.editTab}">
-        <button class="btn btn-danger edit-button pull-right" ng-click="toggleEditTab()">Angre</button>
-        <button class="btn btn-primary edit-button pull-right" ng-click="updateCollection()">Lagre</button>
-        <label for="collection-image">Bilde av liste</label>
-        <div class="image-row">
-            <div class="dropzone profile-image" file-dropzone="[image/jpeg]"
-                 file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
-                <span>Dra inn bilde her. Anbefalt oppløsning 400x400.</span>
-            </div>
-            <div class="image-container profile-image" ng-style="{
-        'background-image': 'url(/userImages/' + editCollection.collectionImageId + '.jpg)'
-        }">
-            </div>
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="collection-title">Tittel på liste</label>
-                <input type="text" class="form-control" id="collection-title" placeholder="skriv inn tittel.." ng-model="editCollection.title">
-            </div>
-            <div class="form-group">
-                <label for="collection-description">Beskrivelse av liste</label>
-                <textarea type="text" class="form-control" id="collection-description" placeholder="beskrivelse.." ng-model="editCollection.description"></textarea>
-            </div>
-        </form>
-    </div>
     <div class="fluid-container collection-header clearfix">
 
         <div class="profile-photo active" ng-if="user.profileImageId" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}">
@@ -45,40 +20,56 @@
 
     <ul class="user-menu">
         <li ng-class="{selected: toggles.usermenu['overview']}"><a ng-href="/user/{{user.slug}}/profile/overview">Om samlingen</a></li>
-        <li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>
+        <!--<li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>-->
         <li ng-class="{selected: toggles.usermenu['collections']}"><a ng-href="/user/{{user.slug}}/profile/collections">Samling</a></li>
-        <li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>
-        <li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>
+        <!--<li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>-->
+        <!--<li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>-->
 
     </ul>
 
     <div class="user-tab" ng-class="{selected: toggles.usermenu['overview']}">
+        <div class="flexible">
+            <div class="big-col">
+                <h2 class="user-tab-title">Om meg og samlingen min</h2>
+                <div class="user-description">
+                    <div class="add-description-wrapper" ng-if="!toggles.editFlags.description && toggles.editable && !editUser.description">
+                        <button class="add-description-button" ng-click="editField('user description')">Legg til beskrivelse</button>
+                    </div>
+                    <div ng-if="!toggles.editFlags.description && user.description && !toggles.editable" ng-bind-html="user.description">
+                    </div>
+                    <div ng-if="!toggles.editFlags.description && user.description && toggles.editable" ng-click="editField('user description')" ng-bind-html="user.description">
+                    </div>
+                    <div class="editable-wrapper" ng-if="toggles.editFlags.description && toggles.editable" style="display: flex">
+                        <p class="editable description" ng-model="editUser.description" ng-bind-html="user.description" contenteditable="true">
 
-    </div>
-
-    <div class="user-tab" ng-class="{selected: toggles.usermenu['photos']}">
-        <div class="image-row">
-            <div class="dropzone" file-dropzone="[image/jpeg]"
-                 file="imageInfo.image" file-name="imageInfo.imageFileName" data-max-file-size="5" report="reportImage">
-                <span>Drop Image Here</span>
+                        </p>
+                        <div class="editable-button-container">
+                            <button class="editable-action-button" ng-click="saveField('user description')"><span class="glyphicon glyphicon-ok"></span></button>
+                            <button class="editable-action-button " ng-click="cancelField('user description')"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="image-container" ng-style="{
-        'background-image': 'url(' + imageInfo.image + ')'
-      }">
-                <span class="file-name">{{imageInfo.imageFileName}}</span>
+            <div class="medium-col">
+
+                <h2 class="user-tab-title">Bilder
+                    <fileupload icon="'camera'" upload-text="'Legg til '" upload-file="uploadUserPhoto"></fileupload>
+                </h2>
+                <div class="user-images">
+
+                    <div ng-repeat="image in user.collectionImages"  class="image-container">
+                        <div class="user-images-action-buttons">
+                            <button ng-if="toggles.editable"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-click="openGallery(image, user.collectionImages)"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        </div>
+                        <img ng-src="/static/userImages/{{image}}.jpg">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="user-tab" ng-class="{selected: toggles.usermenu['collections']}">
+        <image-gallery gallery-config="imageGalleryConfig">
 
-    </div>
-
-    <div class="user-tab" ng-class="{selected: toggles.usermenu['goals']}">
-
-    </div>
-
-    <div class="user-tab" ng-class="{selected: toggles.usermenu['sales']}">
-
+        </image-gallery>
     </div>
 </div>

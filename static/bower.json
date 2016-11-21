@@ -18,6 +18,9 @@
     "underscore": "~1.8.3",
     "angular-underscore-module": "~1.0.3",
     "jquery": "^3.1.1",
-    "jQuery": "^3.1.1"
+    "jQuery": "^3.1.1",
+    "owl.carousel": "^2.2.0",
+    "angular-owl-carousel": "^0.2.3",
+    "ng-repeat-owl-carousel": "*"
   }
 }

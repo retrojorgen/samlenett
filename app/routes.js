@@ -57,6 +57,14 @@ module.exports = function(app, passport, dbQueries) {
     }
   });
 
+  app.get('/api/search/console/:phrase', function (req, res, next) {
+
+    var searchPhrase = req.params.phrase;
+    dbQueries.searchConsoles(searchPhrase, function (results) {
+      res.json(results);
+    });
+  });
+
   app.post('/api/check/username', function (req,res,next) {
     dbQueries.getUserFromUsername(req.body.username, function (user) {
 
@@ -154,6 +162,34 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.post("/api/me/update/description", function (req, res) {
+    dbQueries.updateDescription(req.user._id, req.body.description, function () {
+      res.json({
+        description: req.body.description
+      })
+    });
+  });
+
+  app.post('/api/me/upload/userphoto', function (req, res) {
+    console.log('kukken server');
+    addImage(req.body.image, function (addedImage) {
+      dbQueries.addImageToUser(req.user._id, addedImage._id, function () {
+        res.json({
+          imageId: addedImage._id
+        });
+      });
+    });
+  });
+
+  app.post('/api/me/remove/userphoto', function (req, res) {
+      dbQueries.removeImageFromUser(req.user._id, req.body.imageId, function () {
+        res.json({
+          imageId: req.body.imageId
+        });
+    });
+  });
+
+
   app.post('/api/me/upload/profilephoto', function (req, res) {
     addImage(req.body.image, function (addedImage) {
       dbQueries.addProfileImageToUser(req.user._id, addedImage._id, function () {
@@ -161,6 +197,31 @@ module.exports = function(app, passport, dbQueries) {
           imageId: addedImage._id
         });
       });
+    });
+  });
+
+  app.post('/api/me/upload/collectionphoto', function (req, res) {
+    console.log('kom hit 0', req.body.collectionId);
+    dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
+
+      if(req.user._id.toString() == collection.collection.userId.toString()) {
+
+        addImage(req.body.image, function (addedImage) {
+          dbQueries.addCollectionPhotoToCollection(collection.collection._id, addedImage._id, function () {
+            console.log('kom hit 2');
+            res.json({
+              imageId: addedImage._id
+            });
+          });
+        });
+
+      }
+    });
+  });
+
+  app.get("/api/add/consoles", function (req,res) {
+    dbQueries.addConsoles(function (docs) {
+      res.json(docs);
     });
   });
 
@@ -201,41 +262,131 @@ module.exports = function(app, passport, dbQueries) {
     res.render('index');
   });
 
+  var writeImageToFile = function (image, addedImage, callback) {
+    image.toBuffer('jpg', {quality: 80}, function (err, buffer) {
+      fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
+        callback(addedImage);
+      });
+    });
+  };
+
+  var constrainImage = function (image, callback) {
+    var width = image.width();
+    var height = image.height();
+    if(width > 1400) {
+      height = (image.height() / image.width()) * 1400;
+      width = 1400;
+    }
+    image.resize(width, height, function (err, image) {
+      callback(image);
+    });
+  }
+
 
   var addImage = function (newImageBuffer, callback) {
     dbQueries.addImage(function (addedImage) {
 
-      var base64Data = newImageBuffer.replace(/^data:image\/jpeg;base64,/,'');
+      var base64Data = newImageBuffer.replace(/^data:image\/jpeg;base64,/, '');
       var img = new Buffer(base64Data, 'base64');
 
       lwip.open(img, 'jpg', function (err, image) {
-        var width = image.width();
-        var height = image.height();
-        if(width > 1400) {
-          height = (image.height() / image.width()) * 1400;
-          width = 1400;
-        }
 
-        new ExifImage({ image : img }, function (error, exifData) {
-          if (error)
-            console.log('Error: '+error.message);
-          else
-            console.log(exifData); // Do something with your data!
-        });
-
-            image.resize(width, height, function (err, image) {
-              if (!err)
-                image.toBuffer('jpg', {quality: 80}, function (err, buffer) {
-                  fs.writeFile(addedImage.location + addedImage._id + "." + addedImage.type, buffer, function (err) {
-                    callback(addedImage);
+        new ExifImage({image: img}, function (error, exifData) {
+          if(exifData && exifData.image) {
+            if (exifData.image.Orientation == 2) {
+              image.mirror("x", function (err, image) {
+                constrainImage(image, function (image) {
+                  writeImageToFile(image, addedImage, function (image) {
+                    callback(image);
                   });
                 });
+              });
+            }
+
+            else if (exifData.image.Orientation == 3) {
+              image.mirror("xy", function (err, image) {
+                constrainImage(image, function (image) {
+                  writeImageToFile(image, addedImage, function (image) {
+                    callback(image);
+                  });
+                });
+              });
+            }
+
+            else if (exifData.image.Orientation == 4) {
+              image.mirror("y", function (err, image) {
+                constrainImage(image, function (image) {
+                  writeImageToFile(image, addedImage, function (image) {
+                    callback(image);
+                  });
+                });
+              });
+            }
+
+            else if (exifData.image.Orientation == 5) {
+              image.rotate(90, function (err, image) {
+                image.mirror("x", function (err, image) {
+                  constrainImage(image, function (image) {
+                    writeImageToFile(image, addedImage, function (image) {
+                      callback(image);
+                    });
+                  });
+                });
+              });
+            }
+
+            else if (exifData.image.Orientation == 6) {
+              image.rotate(90, function (err, image) {
+                constrainImage(image, function (image) {
+                  writeImageToFile(image, addedImage, function (image) {
+                    callback(image);
+                  });
+                });
+              });
+            }
+
+            else if (exifData.image.Orientation == 7) {
+              image.rotate(-90, function (err, image) {
+                image.mirror("x", function (err, image) {
+                  constrainImage(image, function (image) {
+                    writeImageToFile(image, addedImage, function (image) {
+                      callback(image);
+                    });
+                  });
+                });
+              });
+            }
+
+            else if (exifData.image.Orientation == 8) {
+              image.rotate(-90, function (err, image) {
+                constrainImage(image, function (image) {
+                  writeImageToFile(image, addedImage, function (image) {
+                    callback(image);
+                  });
+                });
+              });
+            }
+
+            else {
+              constrainImage(image, function (image) {
+
+                writeImageToFile(image, addedImage, function (image) {
+                  callback(image);
+                });
+              });
+            }
+          } else {
+            constrainImage(image, function (image) {
+
+              writeImageToFile(image, addedImage, function (image) {
+                callback(image);
+              });
             });
+          }
 
+        });
       });
-
     });
-
   };
 
   // route middleware to make sure

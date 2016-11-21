@@ -10,22 +10,54 @@ spilldb.component('user', {
           'collections': false,
           'goals': false,
           'sales': false
+        },
+        editFlags: {
+            description: false
         }
       };
 
       $scope.user = {};
+        $scope.loggedInUser = $rootScope.user;
 
-      $scope.user = $rootScope.user;
 
       $scope.collections = {
         'collections': [],
         'goals': [],
         'sales': []
-      }
+      };
+
+
+      $scope.imageGalleryConfig = {
+        imageGallery : [],
+          on: false,
+          current: undefined
+      };
+
+      $scope.openGallery = function (imageId, images) {
+        $scope.imageGalleryConfig.imageGallery = images;
+        $scope.imageGalleryConfig.current = imageId;
+        $scope.imageGalleryConfig.on = true;
+      };
+
+
+        $scope.funks = ["item 1", "item 2"];
+        $scope.carouselInitializer = function() {
+            $(".about-carousel").owlCarousel({
+                items: 3,
+                navigation: true,
+                pagination: false,
+                navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
+            });
+        };
 
 
       $scope.$on('user logged in', function(next, current) { 
-        $scope.user = $rootScope.user;
+        $scope.loggedInUser = $rootScope.user;
+        if($rootScope.user && $scope.user && $rootScope.user._id == $scope.user._id) {
+            $scope.toggles.editable = true;
+        } else {
+            $scope.toggles.editable = false;
+        }
         setPriveleges();
       });
 
@@ -51,7 +83,15 @@ spilldb.component('user', {
             $scope.collections[collection.type].push(collection);
           });
 
-          console.log($scope.collections);
+          $scope.user = data.user;
+          $scope.editUser = angular.copy(data.user);
+
+            if($rootScope.user && $scope.user && $rootScope.user._id == $scope.user._id) {
+                $scope.toggles.editable = true;
+            } else {
+                $scope.toggles.editable = false;
+            }
+
         });
       }
 
@@ -68,6 +108,66 @@ spilldb.component('user', {
         });
       };
 
+        updateUserDescription = function () {
+
+
+
+            $http.post("/api/me/update/description", {description: $scope.editUser.description})
+                .then(function (data) {
+                });
+        };
+
+        $scope.editField = function (toggleCase) {
+            switch(toggleCase) {
+                case 'user description':
+                    $scope.toggles.editFlags.description = true;
+                    if($scope.user.description)
+                        $scope.editUser.description = $scope.user.description;
+                    else
+                        $scope.editUser.description = "";
+                    break;
+            }
+        };
+
+        $scope.cancelField = function (toggleCase) {
+            switch(toggleCase) {
+                case 'collection description':
+                    $scope.toggles.editFlags.description = false;
+                    if($scope.user.description)
+                        $scope.editUser.description = $scope.user.description;
+                    else
+                        $scope.editUser.description = "";
+                    break;
+            }
+        };
+
+        $scope.saveField = function (toggleCase) {
+            switch(toggleCase) {
+                case 'user description':
+                    $scope.user.description = $scope.editUser.description;
+                    $scope.toggles.editFlags.description = false;
+
+                    break;
+            }
+
+            updateUserDescription();
+        };
+
+        $scope.uploadUserPhoto = function (file) {
+            console.log('kukken');
+
+
+            $http.post("/api/me/upload/userphoto", {image: file})
+                .then(function (data) {
+                    if(data.data.imageId) {
+                        if($scope.user.collectionImages) {
+                            $scope.user.collectionImages.push(data.data.imageId);
+                        } else {
+                            $scope.user.collectionImages = [data.data.imageId];
+                        }
+                    }
+                });
+        };
       getCompleteData();
       setPriveleges();
       if($routeParams.space)

@@ -1,4 +1,4 @@
-<div ng-if="!loggedIn" class="login-buttons-container">
+<div ng-if="!loggedIn && ready" class="login-buttons-container">
     <a ng-href="/login" type="button" class="btn btn-default navbar-btn login" ng-click="toggleLoginForm()">
         Logg inn
     </a><a ng-href="/signup" type="button" class="btn btn-default navbar-btn signup" ng-click="toggleLoginForm()">
@@ -6,12 +6,12 @@
     </a>
 </div>
 
-<div ng-if="loggedIn" class"buttons">
+<div ng-if="loggedIn && ready" class"buttons">
 
     <p class="navbar-text">
         <span>Logget inn som </span><a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
     </p>
-    <div class="profile-image" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(userImages/' + user.profileImageUrl + '.jpg)'}"></div>
+    <div class="profile-image" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(static/userImages/' + user.profileImageUrl + '.jpg)'}"></div>
 
-    <div class="profile-image" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(images/standard-profile.jpg)'}"></div>
+    <div class="profile-image" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}"></div>
 </div>

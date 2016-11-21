@@ -1,5 +1,10 @@
+var mobileThreshold = (window.innerWidth < 800);
+
 var spilldb = angular
 	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize'])
+	.constant("appConst", {
+		"mobileThreshold": window.mobileThreshold
+	})
 	.config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
 		$locationProvider.html5Mode(true).hashPrefix('!');
 		$routeProvider.
@@ -11,6 +16,9 @@ var spilldb = angular
 		}).
 		when('/user/:nickSlug/c/:collectionId', {
 			'template': '<userlist></userlist>'
+		}).
+		when('/user/:nickSlug/c/:collectionId/g/:gameId', {
+			'template': '<game></game>'
 		}).
 		when('/signup', {
 			'template': '<signup></signup>'

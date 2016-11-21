@@ -11,9 +11,16 @@ module.exports = function (dbHandler) {
 	    role: String,
 	    nick: String,
 	    slug: String,
+		description: String,
 	    mainCollectionId:Schema.Types.ObjectId,
 	    created: { type: Date, default: Date.now },
 	});
+
+	var consoleSchema = dbHandler.Schema({
+		console: String
+	});
+
+	consoleSchema.index({ console: 'text'});
 
 	var settingsSchema = dbHandler.Schema({
 	    type: String,
@@ -53,8 +60,8 @@ module.exports = function (dbHandler) {
 	});
 
 	var collectionSchema = dbHandler.Schema({
-			type: String,
-			userId: Schema.Types.ObjectId,
+		type: String,
+		userId: Schema.Types.ObjectId,
 	    title: String,
 	    slug: String,
 	    collectionImageId: String,
@@ -75,6 +82,7 @@ module.exports = function (dbHandler) {
 		Settings : dbHandler.model('Settings', settingsSchema),
 		Game: dbHandler.model('Game', gameSchema),
 		Collection: dbHandler.model('Collection', collectionSchema),
-		ImageObj: dbHandler.model('Image', imageSchema)
+		ImageObj: dbHandler.model('Image', imageSchema),
+		Console: dbHandler.model('Console', consoleSchema)
 	}
 }

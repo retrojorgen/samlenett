@@ -12,6 +12,8 @@ spilldb.component('auth', {
             showLogin: false
         };
 
+        $scope.ready = false;
+
         $scope.toggleLoginForm = function () {
             console.log('toggling');
             $scope.toggles.showLogin = !$scope.toggles.showLogin;
@@ -66,12 +68,14 @@ spilldb.component('auth', {
                     $rootScope.$broadcast("user logged in");
                     $rootScope.visible = true;
                     console.log('emitted event');
+                    $scope.ready = true;
                 })
                 .error(function (data) {
                     $scope.loggedIn = false;
                     $scope.user = undefined;
                     $rootScope.user = undefined;
                     $rootScope.visible = false;
+                    $scope.ready = true;
                 });
         };
 

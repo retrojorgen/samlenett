@@ -7,41 +7,53 @@
 
 
 spilldb.component('fileupload', {
-    template: '<input type="file" id="uploadFileInput" style="display: none" /><button class="upload-photo-button" ng-click="startUpload()"></button>',
+    template: '<input type="file" class="uploadFileInput" style="display: none" /><button class="upload-photo-button" ng-click="startUpload()"></button>',
     bindings: {
-        uploadFile: "="
+        uploadFile: "=",
+        icon: "=",
+        uploadText: "=",
+        buttonclass: "="
     },
-    controller: function ($scope, $rootScope) {
+    controller: function ($scope, $element, $timeout) {
 
         var scope = this;
 
-        $scope.startUpload = function () {
-            console.log(angular.element('#uploadFileInput'));
-            angular.element('#uploadFileInput').trigger('click');
+        var thisElement = angular.element($element).find(".uploadFileInput");
 
+        console.log(angular.element($element));
+
+
+        $scope.startUpload = function () {
+            thisElement.trigger('click');
+
+        }
+
+
+        if(scope.uploadText) {
+            $element.find(".upload-photo-button").text(scope.text).addClass('add-description-button').append($('<span>').addClass("glyphicon glyphicon-" + scope.icon));
         }
 
 
 
 
-        angular.element('#uploadFileInput').change(function () {
+        thisElement.change(function () {
+                var file = angular.element($element).find(".uploadFileInput")[0].files[0];
+                var name = file.name;
+                var type = file.type;
+                var size = file.size;
+                var sizeInMB = (size / (1024*1024)).toFixed(2);
 
-            var file = document.getElementById('uploadFileInput').files[0];
-            var name = file.name;
-            var type = file.type;
-            var size = file.size;
-            var sizeInMB = (size / (1024*1024)).toFixed(2);
-
-            reader = new FileReader();
-            reader.onload = function(evt) {
-                if(type != "image/jpeg" && parseFloat(sizeInMB) <= 5)
-                    alert("Bilde må være jpg og være mindre enn 5 mb");
-                else
-                    scope.uploadFile(evt.target.result);
-            };
+                reader = new FileReader();
+                reader.onload = function(evt) {
+                    if(type != "image/jpeg" && parseFloat(sizeInMB) <= 5)
+                        alert("Bilde må være jpg og være mindre enn 5 mb");
+                    else
+                        scope.uploadFile(evt.target.result);
+                };
 
 
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
+
         });
 
     }});
