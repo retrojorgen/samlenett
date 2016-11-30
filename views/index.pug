@@ -12,7 +12,9 @@ html(lang="en")
         script(src="/static/bower_components/angular-animate/angular-animate.js")
         script(src="/static/bower_components/angular-sanitize/angular-sanitize.js")
         script(src="/static/bower_components/angular-bootstrap/ui-bootstrap.js")
+
         script(src="/static/bower_components/underscore/underscore.js")
+        script(src="/static/bower_components/angular-elastic-input/dist/angular-elastic-input.js")
         script(src="/static/bower_components/angular-underscore-module/angular-underscore-module.js")
         link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Montserrat")
         link(rel="stylesheet",type="text/css",href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
@@ -21,6 +23,7 @@ html(lang="en")
             |.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
     body(ng-app="spilldb")
+        gamedialog(class="test")
         div(ng-class="{visible: visible}")
             userbar
 
@@ -44,6 +47,8 @@ html(lang="en")
         script(src="/static/app/scripts/components/signup.js")
         script(src="/static/app/scripts/components/login.js")
         script(src="/static/app/scripts/components/logout.js")
+        script(src="/static/app/scripts/components/dialog.js")
+        script(src="/static/app/scripts/components/dialogService.js")
         script(src="/static/app/scripts/components/game.js")
         script(src="/static/app/scripts/components/imageGallery.js")
         script(src="/static/app/scripts/components/hamburger.js")

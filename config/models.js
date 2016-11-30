@@ -20,6 +20,16 @@ module.exports = function (dbHandler) {
 		console: String
 	});
 
+	var publisherSchema = dbHandler.Schema({
+		publisher: String
+	});
+
+	var gameSearchSchema = dbHandler.Schema({
+		title: String,
+		publisher: String,
+		console: String
+	});
+
 	consoleSchema.index({ console: 'text'});
 
 	var settingsSchema = dbHandler.Schema({
@@ -37,6 +47,8 @@ module.exports = function (dbHandler) {
 	    askingPrice: Object,
 	    soldForPrice: Object
 	});
+
+
 
 	var gameSchema = dbHandler.Schema({
 		userId: Schema.Types.ObjectId,
@@ -76,6 +88,10 @@ module.exports = function (dbHandler) {
 	});	
 
 
+	var convertToObjectId = function (idString) {
+		return dbHandler.Types.ObjectId(idString);
+	};
+
 
 	return {
 		User : dbHandler.model('User', userSchema),
@@ -83,6 +99,9 @@ module.exports = function (dbHandler) {
 		Game: dbHandler.model('Game', gameSchema),
 		Collection: dbHandler.model('Collection', collectionSchema),
 		ImageObj: dbHandler.model('Image', imageSchema),
-		Console: dbHandler.model('Console', consoleSchema)
+		Console: dbHandler.model('Console', consoleSchema),
+		Publisher: dbHandler.model('Publisher', publisherSchema),
+		GameSearch: dbHandler.model('GameSearch', gameSearchSchema),
+		convertToObjectId: convertToObjectId
 	}
 }

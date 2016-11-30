@@ -65,6 +65,22 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.get('/api/search/publisher/:phrase', function (req, res, next) {
+
+    var searchPhrase = req.params.phrase;
+    dbQueries.searchPublishers(searchPhrase, function (results) {
+      res.json(results);
+    });
+  });
+
+  app.get('/api/search/title/:phrase', function (req, res, next) {
+
+    var searchPhrase = req.params.phrase;
+    dbQueries.searchGames(searchPhrase, function (results) {
+      res.json(results);
+    });
+  });
+
   app.post('/api/check/username', function (req,res,next) {
     dbQueries.getUserFromUsername(req.body.username, function (user) {
 
@@ -141,6 +157,29 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
       
       res.json(collections);
+    });
+  });
+
+  app.post('/api/me/bulk/delete', function (req, res) {
+    var ids = req.body;
+    dbQueries.deleteGames(ids, function (response) {
+      res.json(response);
+    });
+  });
+
+  app.post('/api/me/bulk/move', function (req, res) {
+    var ids = req.body.games;
+    var collectionId = req.body.collectionId;
+    dbQueries.moveGames(ids, collectionId, function (response) {
+      res.json(response);
+    });
+  });
+
+  app.post('/api/me/bulk/copy', function (req, res) {
+    var ids = req.body.games;
+    var collectionId = req.body.collectionId;
+    dbQueries.copyGames(ids, collectionId, function (response) {
+      res.json(response);
     });
   });
 
@@ -225,6 +264,18 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.get("/api/add/publishers", function (req,res) {
+    dbQueries.addPublishers(function (docs) {
+      res.json(docs);
+    });
+  });
+
+  app.get("/api/add/games", function (req,res) {
+    dbQueries.addGames(function (docs) {
+      res.json(docs);
+    });
+  });
+
 
   app.post('/api/add/game', function (req,res,next) {
 
@@ -236,7 +287,7 @@ module.exports = function(app, passport, dbQueries) {
 
   app.post('/api/update/game', function (req,res,next) {
 
-    dbQueries.updateGame(req.body.gameId, req.body.newValue, req.body.field, function (game) {
+    dbQueries.updateGame(req.body, function (game) {
       res.json(game);
     });
   });

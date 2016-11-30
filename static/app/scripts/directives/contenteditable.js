@@ -12,20 +12,26 @@ spilldb.directive("contenteditable", function($rootScope) {
         ngModel.$setViewValue(element.html());
       };
 
+      scope.typingTimer = undefined;
+      scope.doneTypingInterval = 500;
+
       element.bind('focus', function() {
         scope.$apply(function() {
           scope.game.selectedRow = scope.gameRow;
-
+          scope.game.canSearch = true;
         });
       });
 
       element.bind('blur', function() {
         scope.$apply(function() {
+          scope.game.canSearch = false;
         });
       });
 
       element.bind('keyup', function() {
         scope.$apply(function() {
+          clearTimeout(scope.typingTimer);
+          scope.typingTimer = setTimeout(scope.doneTyping, scope.doneTypingInterval);
         });
       });
 
@@ -33,6 +39,13 @@ spilldb.directive("contenteditable", function($rootScope) {
         scope.$apply(function() {
         });
       });
+
+      scope.doneTyping = function () {
+        scope.$apply(function () {
+          console.log('done typing');
+          scope.canSearch = true;
+        });
+      };
 
       ngModel.$render = function() {
         if(ngModel.$viewValue && !scope.noBreak) {

@@ -76,11 +76,8 @@
                     <span class="slider-dot"></span>
                 </div>
             </div>
-
-
     </div>
     <div class="fluid-container">
-
         <table class="table game-list" ng-class="{'editable': toggles.editStatus && !toggles.mobileFlag}">
             <thead>
             	<tr>
@@ -95,80 +92,64 @@
             	</tr>
             </thead>
             <tbody>
-            	<tr
-                        class="game-row"
+            	<tr class="game-row"
                         ng-repeat="game in collection.games | filter:toggles.filterPhrase | orderBy:toggles.sortOrder | limitTo: toggles.listLimit as filteredList"
                         ng-class="{
                             'toggled': toggles['editGames'].indexOf(game) > -1,
                             'selected': game.selected
                         }"
-                >
+                        ng-if="!game.hidden">
                     <td ng-class="{
                             'inactive': game.inactive
                         }" class="game-toggle">
                         <label class="game-toggle-label"  ng-if="!game.inactive">
                             <input type="checkbox" name="game-toggle" ng-click="toggleGameInEditList(game)">
                         </label>
+
                     </td>
                     <td ng-class="{
                             'inactive': game.inactive
-                        }" class="context-menu-container mobile"><span ng-if="!game.inactive">{{$index+1}}</span>
-                    <!--    
-                    <button class="context-menu glyphicon glyphicon-menu-hamburger" ng-class="{
-                        'selected': toggles['contextMenu'] == game._id
-                    }" ng-click="toggleGameToggle(game._id, 'contextMenu')" ng-if="!game.inactive">
-                    </button>
-                    
-                    <ul class="context-menu-list" ng-show="toggles['contextMenu'] == game._id">
-                        <li ng-click="removeGame(game)">
-                            <span class="description"><span class="glyphicon glyphicon-remove"> </span> Slett rad</span>
-                        </li>
-                        <li>
-                            <span class="description"><span class="glyphicon glyphicon-share-alt"></span> Flytt rad til annen liste</span>
-                        </li>
-                        <li>
-                            <span class="description"><span class="glyphicon glyphicon-copy"></span> Kopier rad til annen liste</span>
-                        </li>
-                        <li>
-                            <span class="description"><span class="glyphicon glyphicon-duplicate"></span> Dupliker rad i denne listen</span>
-                        </li>
-                    </ul>
-                    -->
+                        }" class="context-menu-container mobile">
+                            <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}">
+                                <span ng-if="!game.inactive">
+                                    {{$index+1}}
+                                </span>
+                            </a>
                     </td>
-            		<td ng-repeat="(settingKey, setting) in collection.settings"
-                    >
+            		<td ng-repeat="(settingKey, setting) in collection.settings" ng-class="{mobile: setting.mobile}">
                         <div
                             class="editable-col"
-                            contenteditable="{{toggles.editStatus && toggles.editable && !toggles.mobileFlag}}"
-                            game="game"
-                            no-break="true"
-                            game-row="settingKey"
-                            ng-model="game[settingKey]"
-                            ng-keydown="gameKeyHandler($event, game, settingKey)"
-                            ng-change="updateGame(game, game[settingKey], settingKey)"
-                            ng-if="toggles.editStatus"
+                            ng-if="toggles.editStatus && !toggles.mobileFlag"
+
                             ng-class="{
                             selected: settingKey == game.rowSelected,
                             mobile: setting.mobile,
                             visible: toggles.editable
                             }">
-
+                            <input type="text" ng-change="reIndexColSearch(settingKey, game[settingKey]); updateGame(game)" ng-focus="toggleSearch(game, settingKey, true)" ng-blur="toggleSearch('','',false)" ng-model="game[settingKey]" class="editable-col-user-input">
+                            <div class="search-wrapper" ng-if="toggles.search.game == game && toggles.search.key == settingKey && toggles.search.visible && toggles.search.searchResults.length">
+                                <div class="search-container">
+                                    <ul class="search-list">
+                                        <li ng-repeat="search in toggles.search.searchResults | limitTo: 14" ng-click="setValueFromSearch(search, game)">
+                                            {{search[settingKey]}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <search game="game" game-row="settingKey" class="search-wrapper"></search>
                         <div
                              class="noeditable-col {{settingKey}}"
-                             ng-if="!toggles.editStatus"
+                             ng-if="!toggles.editStatus || toggles.mobileFlag"
                              ng-class="{
                                 selected: settingKey == game.rowSelected,
                                 mobile: setting.mobile
                             }">
-                                {{game[settingKey]}}
+                            <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}">{{game[settingKey]}}</a>
                         </div>
                     </td>
 
 
-                    >
-                        <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}" ng-bind-html="game[settingKey]"></a>
+
                     </td>
             	</tr>
             </tbody>
@@ -181,13 +162,20 @@
             <div class="container-fluid">
             <p class="navbar-text">
             {{toggles['editGames'].length}} rader valgt</p>
-            <select ng-model="bulkSettings.action">
+            <select ng-model="toggles.bulkSettings.action">
                 <option value="" selected>Velg operasjon</option>
                 <option value="delete">Slett rad(er)</option>
                 <option value="move">Flytt rad(er)</option>
                 <option value="copy">Kopier rad(er)</option>
                 <option value="edit">Endre rad(er)</option>
             </select>
-            <button type="button" class="btn btn-default navbar-btn">Utfør</button>
+            <select ng-model="toggles.bulkSettings.collectionId" ng-if="toggles.bulkSettings.action == 'move' || toggles.bulkSettings.action == 'copy'">
+                <option value="" selected>Velg samling</option>
+                <option ng-repeat="coll in collections" ng-value="coll._id">{{coll.title}}</option>
+            </select>
+            <div ng-if="">
+
+            </div>
+            <button type="button" class="btn btn-default navbar-btn" ng-click="doBulk()">Utfør</button>
             </div>
         </nav>

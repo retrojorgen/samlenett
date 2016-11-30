@@ -11,7 +11,7 @@
     <p class="navbar-text">
         <span>Logget inn som </span><a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
     </p>
-    <div class="profile-image" ng-if="user.profileImageUrl" ng-style="{'background-image': 'url(static/userImages/' + user.profileImageUrl + '.jpg)'}"></div>
+    <div class="profile-image" ng-if="user.profileImageId" ng-style="{'background-image': 'url(static/userImages/' + user.profileImageId + '.jpg)'}"></div>
 
-    <div class="profile-image" ng-if="!user.profileImageUrl" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}"></div>
+    <div class="profile-image" ng-if="!user.profileImageId" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}"></div>
 </div>

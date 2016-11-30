@@ -1,6 +1,6 @@
 spilldb.component('userlist', {
     templateUrl: '/static/app/scripts/views/userlist.html',
-    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst) {
+    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst, dialogService) {
 
 
 
@@ -9,6 +9,8 @@ spilldb.component('userlist', {
         $scope.collection = {};
 
         $scope.selectedGame = {};
+
+        $scope.collections = [];
 
         $scope.toggles = {
             contextMenu: 0,
@@ -27,10 +29,14 @@ spilldb.component('userlist', {
             },
             listLimit: 40,
             search: {
-                positionLeft: 0,
-                positionTop: 0,
-                phrase: "",
-                type: ""
+                game: {},
+                key: "",
+                visible: false,
+                searchResults : []
+            },
+            bulkSettings: {
+                action: "",
+                collectionId: ""
             }
         };
 
@@ -119,46 +125,15 @@ spilldb.component('userlist', {
             });
         };
 
-        $scope.updateGame = function (game, row, field) {
-            row = row.replace(/<(?!br\s*\/?)[^>]+>/g, '');
-            game[field] = game[field].replace(/<(?!br\s*\/?)[^>]+>/g, '');
-            if(!game.inactive) {
-
-
-                var add = _.find(game, function (row) {
-                    if(row != "")
-                        return row;
-                });
-
-                if(add) {
-                    $http.post("/api/update/game", {
-                        gameId: game._id,
-                        newValue : row,
-                        field: field
-                    })
-                        .success(function (data) {
-                        });
-                }
-
+        $scope.updateGame = function (game) {
+            if(game && game._id) {
+                $http.post("/api/update/game", game);
             } else {
-
-                var add = _.find(game, function (row, key) {
-                    if(row != "" && key != "$$hashKey" && key != "collectionId" && key != "userId" && key != "inactive")
-                        return row;
-                });
-
-
-
-                if(add) {
-
-                    delete game.inactive;
-
-                    $http.post("/api/add/game", game)
-                        .success(function (dbGame) {
-                            game._id = dbGame._id;
+                $http.post("/api/add/game", game)
+                    .success(function (dbGame) {
+                        game._id = dbGame._id;
                     });
 
-                }
             }
         };
 
@@ -296,6 +271,141 @@ spilldb.component('userlist', {
             }
             return "";
         }
+
+        $(document).on("keydown", function (e) {
+            $scope.$apply(function () {
+                console.log(e, e.keyCode);
+                if(e.keyCode == 27) {
+                    if($scope.toggles.search.visible) {
+                        $scope.toggles.search.visible = false;
+                    }
+                };
+            });
+        });
+
+        $scope.reIndexColSearch = function (key, phrase) {
+            if(key && phrase) {
+                if(key == 'title' || key == 'publisher' || key == 'console') {
+                    $http.get("/api/search/" + key + "/" + encodeURIComponent(phrase))
+                        .then(function (data) {
+                            $scope.toggles.search.searchResults = data.data;
+                            $scope.toggles.search.visible = true;
+                        });
+                }
+                if(key == 'region') {
+                    $scope.toggles.search.searchResults = [{'region': 'NTSC'}, {'region': 'PAL'}, {'region': 'PAL-A'}, {'region': 'PAL-B'}, {'region': 'NTSC-J'}];
+                    $scope.toggles.search.visible = true;
+                }
+                if(key == 'condition') {
+                    $scope.toggles.search.searchResults = [{'condition': 'CIB'},{'condition': 'NIB'}, {'condition': 'Cart'}];
+                    $scope.toggles.search.visible = true;
+                }
+            }
+
+        };
+
+        $scope.toggleSearch = function (game, settingKey, toggle) {
+            if(toggle) {
+                $scope.toggles.search.searchResults = [];
+                $scope.toggles.search.game = game;
+                $scope.toggles.search.key = settingKey;
+                $scope.toggles.search.visible = true;
+                $scope.reIndexColSearch(settingKey, game[settingKey]);
+            }
+
+        };
+
+        $scope.setValueFromSearch = function (configObject, game) {
+            delete configObject._id;
+            angular.extend(game, configObject);
+            $scope.toggles.search.visible = false;
+            $scope.toggles.search.searchResults = [];
+            $scope.updateGame(game);
+        };
+
+        $scope.getCollections = function () {
+            $http.get("/api/me/collections")
+                .then(function (data) {
+                    $scope.collections = data.data;
+                });
+        }
+
+        $scope.doBulk = function () {
+          if($scope.toggles.bulkSettings.action) {
+
+              if($scope.toggles.bulkSettings.action == "delete") {
+                  dialogService.openDialog("Vil du virkelig slette " + $scope.toggles['editGames'].length + " spill fra " + $scope.collection.collection.title)
+                    .then(function () {
+                        $http.post("/api/me/bulk/delete", $scope.toggles['editGames'])
+                            .then(function (data) {
+                                if(data.data.length) {
+                                    _.each($scope.collection.games, function (collection, index) {
+                                        console.log('looping collection', collection._id);
+
+                                        if(data.data.indexOf(collection._id) > -1) {
+                                            collection.hidden = true;
+                                        }
+                                    });
+                                }
+                                $scope.toggles['editGames'] = [];
+                            });
+                    });
+              }
+
+              if($scope.toggles.bulkSettings.action == 'move') {
+                  if($scope.toggles.bulkSettings.collectionId) {
+                      var collection = _.find($scope.collections, function (collection) {
+                          return collection._id == $scope.toggles.bulkSettings.collectionId;
+                      });
+
+                      dialogService.openDialog("Vil du virkelig flytte " + $scope.toggles['editGames'].length + " spill til " + collection.title)
+                          .then(function () {
+                              console.log('moving games, ', $scope.toggles['editGames'])
+                              $http.post("/api/me/bulk/move", {
+                                  'collectionId': $scope.toggles.bulkSettings.collectionId,
+                                  'games': $scope.toggles['editGames']
+                              })
+                                  .then(function (data) {
+                                      if(data.data.length) {
+                                          _.each($scope.collection.games, function (collection, index) {
+                                              console.log('looping collection', collection._id);
+
+                                              if(data.data.indexOf(collection._id) > -1) {
+                                                  collection.hidden = true;
+                                              }
+                                          });
+                                      }
+                                      $scope.toggles['editGames'] = [];
+                                  });
+                          });
+
+                  }
+              }
+
+              if($scope.toggles.bulkSettings.action == 'copy') {
+                  if($scope.toggles.bulkSettings.collectionId) {
+
+                      var collection = _.find($scope.collections, function (collection) {
+                          return collection._id == $scope.toggles.bulkSettings.collectionId;
+                      });
+
+                      dialogService.openDialog("Vil du kopiere " + $scope.toggles['editGames'].length + " spill til " + collection.title)
+                          .then(function () {
+                              $http.post("/api/me/bulk/copy", {
+                                  'collectionId': collection._id,
+                                  'games': $scope.toggles['editGames']
+                              })
+                                  .then(function (data) {
+                                      $scope.toggles['editGames'] = [];
+                                  });
+                          });
+
+                  }
+              }
+          }
+        };
+
+        $scope.getCollections();
     }
 });
 	

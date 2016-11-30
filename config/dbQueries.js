@@ -1,4 +1,8 @@
 var shortid = require('shortid');
+var _ = require('underscore');
+var publishers = require('./../data/publishers.json');
+var consoles = require('./../data/consoles.json');
+var games = require('./../data/games.json');
 
 module.exports = function (models, slug) {
 
@@ -10,6 +14,8 @@ module.exports = function (models, slug) {
 	var Collection = models.Collection;
 	var ImageObj = models.ImageObj;
 	var Console = models.Console;
+	var Publisher = models.Publisher;
+	var GameSearch = models.GameSearch;
 
 
 	return {
@@ -135,14 +141,33 @@ module.exports = function (models, slug) {
 			});
 		},
 
-		updateGame: function (gameId, newValue, row, callback) {
-			Game.findById(gameId, function (err, foundGame) {
-				foundGame[row] = newValue;
-				foundGame.save(function (err) {
-					if(!err)
-						callback(foundGame);
-				})
+		updateGame: function (game, callback) {
+			var id = game._id;
+
+			delete game._id;
+			delete game.collectionId;
+
+			console.log('leter etter spill ', id);
+			Game.findById(id, function (err, foundGame) {
+				if(err) {
+					console.log('error', err);
+				} else {
+					console.log('found game: ', foundGame);
+					_.extend(foundGame, game);
+
+					console.log('utvidet game: ', foundGame);
+
+
+					foundGame.save(function (err) {
+						if(err)
+							callback('no luck');
+						else
+							callback(foundGame);
+					})
+				}
+				//{"_id": ObjectId("582451d5d69d2068e11d6cfb")}
 			});
+
 		},
 		removeGame: function (gameId, callback) {
 			Game.findByIdAndRemove(gameId, function (err) {
@@ -238,149 +263,97 @@ module.exports = function (models, slug) {
 			);
 		},
 
+		searchPublishers: function (phrase, callback) {
+
+			Publisher.find(
+				{ "publisher": { "$regex": phrase, "$options": "i" } },
+				function(err,results) {
+					if(err) {
+						callback([]);
+						console.log(err);
+					}
+					else {
+						callback(results);
+					}
+				}
+			);
+		},
+		searchGames: function (phrase, callback) {
+
+			GameSearch.find(
+				{ "title": { "$regex": phrase, "$options": "i" } },
+				function(err,results) {
+					if(err) {
+						callback([]);
+						console.log(err);
+					}
+					else {
+						callback(results);
+					}
+				}
+			);
+		},
+
+		deleteGames: function (ids, callback) {
+			var cleanIds = [];
+			_.each(ids, function (id) {
+				cleanIds.push(models.convertToObjectId(id._id));
+			});
+			Game.remove({
+				_id: {
+					$in: cleanIds
+				}
+			}, function (err) {
+				if(!err)
+					callback(cleanIds);
+				else
+					callback([]);
+			});
+		},
+
+		moveGames: function (ids, collectionId, callback) {
+			var cleanIds = [];
+			_.each(ids, function (id) {
+				cleanIds.push(models.convertToObjectId(id._id));
+			});
+			Game.update(
+				{
+					_id: {
+						$in: cleanIds
+					}
+				},
+				{
+					$set: { collectionId: collectionId }
+				},
+				{
+					multi: true
+				},
+				function (err) {
+					if(!err)
+						callback(cleanIds);
+					else
+						callback([]);
+				}
+			);
+		},
+		copyGames: function (games, collectionId, callback) {
+
+			_.each(games, function (game) {
+				delete game._id;
+				game.collectionId = collectionId;
+			});
+
+			Game.collection.insert(games, function (err, docs) {
+				if(!err) {
+					callback(docs);
+				} else {
+					callback([]);
+				}
+			})
+		},
+
+
 		addConsoles: function (callback) {
-			var consoles = [
-				{console: "Magnavox Odyssey" },
-				{console: "Ping-O-Tronic" },
-				{console: "Atari PONG" },
-				{console: "PC-50X Family" },
-				{console: "Tele-Spiel" },
-				{console: "Video 2000" },
-				{console: "Philips Odyssey" },
-				{console: "Coleco Telstar Arcade" },
-				{console: "Color TV Game" },
-				{console: "Fairchild Channel F" },
-				{console: "APF-MP1000" },
-				{console: "RCA Studio II" },
-				{console: "Atari 2600" },
-				{console: "Bally Astrocade" },
-				{console: "VC 4000" },
-				{console: "Magnavox Odyssey²" },
-				{console: "APF Imagination Machine" },
-				{console: "Intellivision" },
-				{console: "PlayCable" },
-				{console: "Bandai Super Vision 8000" },
-				{console: "VTech CreatiVision" },
-				{console: "Epoch Cassette Vision" },
-				{console: "Arcadia 2001 (Leisure Vision in Canada)" },
-				{console: "Atari 5200 (US Only)" },
-				{console: "ColecoVision" },
-				{console: "Entex Adventure Vision" },
-				{console: "Vectrex" },
-				{console: "Compact Vision TV-Boy" },
-				{console: "Pyuuta Jr." },
-				{console: "RDI Halcyon" },
-				{console: "PV-1000" },
-				{console: "Videopac G7400" },
-				{console: "Commodore 64 Games System" },
-				{console: "Amstrad GX4000" },
-				{console: "Atari 7800" },
-				{console: "Atari XEGS" },
-				{console: "Sega SG-1000" },
-				{console: "Sega Master System" },
-				{console: "NES" },
-				{console: "FAMICOM" },
-				{console: "FAMICOM Disk System" },
-				{console: "My Vision" },
-				{console: "Super Cassette Vision" },
-				{console: "Zemmix" },
-				{console: "Bridge Companion" },
-				{console: "Videosmarts" },
-				{console: "ComputerSmarts" },
-				{console: "Action Max" },
-				{console: "Video Challenger" },
-				{console: "Video Art" },
-				{console: "Sega Genesis" },
-				{console: "Sega Mega Drive" },
-				{console: "Sega CD" },
-				{console: "Sega Mega CD" },
-				{console: "Sega 32X" },
-				{console: "PC Engine" },
-				{console: "TurboGrafx-16" },
-				{console: "PC Engine2" },
-				{console: "SuperGrafx" },
-				{console: "Interactive Vision" },
-				{console: "Socrates" },
-				{console: "Terebikko" },
-				{console: "Konix Multisystem" },
-				{console: "Neo-Geo" },
-				{console: "Sega Pico" },
-				{console: "Neo Geo CD" },
-				{console: "Commodore CDTV" },
-				{console: "Memorex VIS" },
-				{console: "Super NES" },
-				{console: "Super Famicom" },
-				{console: "Satellaview" },
-				{console: "Dreamcast" },
-				{console: "CD-i" },
-				{console: "TurboDuo" },
-				{console: "PC Engine Duo" },
-				{console: "Super A'Can" },
-				{console: "Pioneer LaserActive" },
-				{console: "FM Towns Marty" },
-				{console: "Apple Bandai Pippin" },
-				{console: "PC-FX" },
-				{console: "Atari Panther" },
-				{console: "Atari Jaguar" },
-				{console: "Atari Jaguar CD" },
-				{console: "PlayStation" },
-				{console: "Net Yaroze" },
-				{console: "Sega Saturn" },
-				{console: "3DO Interactive Multiplayer" },
-				{console: "Amiga CD32" },
-				{console: "Casio Loopy" },
-				{console: "Playdia" },
-				{console: "CPS Changer" },
-				{console: "Nintendo 64" },
-				{console: "Nintendo 64DD" },
-				{console: "Nuon" },
-				{console: "PlayStation 2" },
-				{console: "L600" },
-				{console: "MoMA Eve" },
-				{console: "GameCube" },
-				{console: "Game Boy Player" },
-				{console: "iQue Player" },
-				{console: "Panasonic M2" },
-				{console: "Panasonic Q/Q Game Boy Player" },
-				{console: "Xbox" },
-				{console: "PSX" },
-				{console: "XaviX Port" },
-				{console: "DISCover" },
-				{console: "Leapster TV" },
-				{console: "V.Smile" },
-				{console: "GoGo TV Video Vision" },
-				{console: "Buzztime Home Trivia System" },
-				{console: "Sega Beena" },
-				{console: "Game Wave" },
-				{console: "Xbox 360" },
-				{console: "HyperScan" },
-				{console: "ION" },
-				{console: "Wii" },
-				{console: "PlayStation 3" },
-				{console: "I Can Play Piano" },
-				{console: "V.Flash" },
-				{console: "V.Smile V-Motion" },
-				{console: "V.Smile Baby" },
-				{console: "Vmigo TV Docking System" },
-				{console: "Telestory" },
-				{console: "Clickstart My First Computer" },
-				{console: "I Can Play Guitar" },
-				{console: "Smart Cycle" },
-				{console: "EVO Smart Console" },
-				{console: "Sega Firecore" },
-				{console: "Zeebo" },
-				{console: "Zippity" },
-				{console: "Sega Zone" },
-				{console: "Eedoo CT510" },
-				{console: "Wii U" },
-				{console: "PlayStation 4" },
-				{console: "Xbox One" },
-				{console: "RetroN 5" },
-				{console: "LeapTV" },
-				{console: "Karaoke Ranking Party" },
-				{console: "InnoTV" },
-				{console: "Tomahawk F1" }
-			];
 
 			Console.collection.insert(consoles, function (err, docs) {
 				if(!err)
@@ -388,7 +361,26 @@ module.exports = function (models, slug) {
 				else
 					callback(docs);
 			});
+		},
+		addPublishers: function (callback) {
+
+			Publisher.collection.insert(publishers, function (err, docs) {
+				if(!err)
+					callback([]);
+				else
+					callback(docs);
+			});
+		},
+		addGames: function (callback) {
+
+			GameSearch.collection.insert(games, function (err, docs) {
+				if(!err)
+					callback([]);
+				else
+					callback(docs);
+			});
 		}
+
 	}
 }
 

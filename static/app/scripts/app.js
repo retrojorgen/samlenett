@@ -1,7 +1,7 @@
 var mobileThreshold = (window.innerWidth < 800);
 
 var spilldb = angular
-	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize'])
+	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'puElasticInput'])
 	.constant("appConst", {
 		"mobileThreshold": window.mobileThreshold
 	})
