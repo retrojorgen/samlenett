@@ -25,22 +25,20 @@ html(lang="en")
     body(ng-app="spilldb")
         gamedialog(class="test")
         div(ng-class="{visible: visible}")
-            userbar
-
         nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb")
-
-                    hamburger
                     a(id="spilldb-logo",class="navbar-brand",href="/")
                         div(class="spilldb-logo")
-
+                    userbar
                     auth(class="auth pull-right")
 
         div(class="main-container", ng-class="{visible: visible}")
             ng-view
 
+        addgame
         script(src="/static/app/scripts/app.js")
         script(src="/static/app/scripts/components/fileUpload.js")
         script(src="/static/app/scripts/components/auth.js")
+        script(src="/static/app/scripts/components/resetPassword.js")
         script(src="/static/app/scripts/components/user.js")
         script(src="/static/app/scripts/components/userbar.js")
         script(src="/static/app/scripts/components/userlist.js")
@@ -52,6 +50,7 @@ html(lang="en")
         script(src="/static/app/scripts/components/game.js")
         script(src="/static/app/scripts/components/imageGallery.js")
         script(src="/static/app/scripts/components/hamburger.js")
+        script(src="/static/app/scripts/components/addGame.js")
         script(src="/static/app/scripts/directives/search.js")
         script(src="/static/app/scripts/directives/contenteditable.js")
         script(src="/static/app/scripts/directives/fileDropzone.js")

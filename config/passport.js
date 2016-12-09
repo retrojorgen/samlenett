@@ -45,7 +45,7 @@ module.exports = function(passport, models, dbQueries) {
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) { // callback with email and password from our form
-            console.log('logging in');
+            console.log('logging in', username, password);
             User.findOne({'username': username}, function (err, user) {
                 if(err)
                     return done(err);
@@ -101,14 +101,7 @@ module.exports = function(passport, models, dbQueries) {
                     newUser.save(function(err) {
                         if(err)
                             throw err;
-                        dbQueries.addCollection("Spill", newUser._id, "collections", function () {
-                            dbQueries.addCollection("Ønskeliste", newUser._id, "goals", function () {
-                                dbQueries.addCollection("Salgsliste", newUser._id, "sales", function () {
-                                    return done(null, newUser);
-                                });
-                            });
-                        });
-                        
+                        return done(null, newUser);
                     });
                 }
             });

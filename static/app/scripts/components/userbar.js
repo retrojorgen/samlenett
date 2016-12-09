@@ -3,12 +3,27 @@ spilldb.component('userbar', {
   	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, $location) {
 
       $scope.collections = {};
-      $scope.user = {};
-        $scope.mobileHidden = true;
+      $scope.user = undefined;
 
       $scope.path = $location.path();
 
-      console.log($scope.path);
+      $scope.currentCollection = undefined;
+      $scope.expanded = false;
+
+      $(document).on('click', function (e) {
+          var container = $("#user-bar");
+
+          if (!container.is(e.target) // if the target of the click isn't the container...
+              && container.has(e.target).length === 0) // ... nor a descendant of the container
+          {
+              $timeout(function() {
+                  // anything you want can go here and will safely be run on the next digest.
+                  $scope.expanded = false;
+              })
+
+          }
+      });
+
 
       $scope.$on("update collections", function () {
         updateCollection();
@@ -16,32 +31,8 @@ spilldb.component('userbar', {
 
       $scope.$on("user logged in", function () {
         $scope.user = $rootScope.user;
-        $rootScope.visible = true;
-          $scope.mobileHidden = false;
         updateCollection();
       });
-
-      $scope.$on('open user bar mobile', function () {
-          $scope.mobileHidden = false;
-      });
-
-
-      $scope.toggleBarMobile = function () {
-          console.log("trying to close menu");
-          $scope.mobileHidden = true;
-          $rootScope.$broadcast('mobile close user bar');
-      }
-      $scope.isUserSelected = function () {
-          if($location.path().indexOf("/user") > -1 && $location.path().indexOf("/c/") == -1)
-              return true;
-          return false;
-      }
-
-      $scope.isFrontSelected = function () {
-          if($location.path() == "/")
-              return true;
-          return false;
-      }
 
       var updateCollection = function () {
         $http.get("/api/me/collections")
@@ -53,32 +44,32 @@ spilldb.component('userbar', {
             'sales': []
           };
           _.each(collections, function (collection) {
-            $scope.collections[collection.type].push(collection);
+              if(collection.type)
+                  $scope.collections[collection.type].push(collection);
           });
 
           if($routeParams.collectionId)
             setSelected($routeParams.collectionId);
         });
+
+       $rootScope.collections = $scope.collections.collections;
       };
 
-
-
       var setSelected = function (selectedId) {
-        _.each($scope.collections, function (collectionList) {
-          _.each(collectionList, function (collection) {
-            if(collection._id == selectedId)
-              collection.selected = true;
-            else
-              collection.selected = false;
+          $scope.currentCollection = _.find($scope.collections.collections, function (collection) {
+            return collection._id == selectedId;
           });
-        });
-      }
+      };
 
       $scope.addCollection = function (type) {
         $http.post("/api/me/create/collection", {type: type})
         .success(function (collection) {
           $scope.collections[type].push(collection);
         });
+      };
+
+      $scope.toggleExpanded = function () {
+          $scope.expanded = !$scope.expanded;
       };
 
       $scope.$on('$routeChangeStart', function(next, current) {

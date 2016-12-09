@@ -1,12 +1,13 @@
-var shortid = require('shortid');
+var crypto = require('crypto');
 var _ = require('underscore');
+var bcrypt = require('bcrypt-nodejs');
+
 var publishers = require('./../data/publishers.json');
 var consoles = require('./../data/consoles.json');
 var games = require('./../data/games.json');
 
 module.exports = function (models, slug) {
 
-	shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 	
 	var User = models.User;
 	var Game = models.Game;
@@ -16,6 +17,14 @@ module.exports = function (models, slug) {
 	var Console = models.Console;
 	var Publisher = models.Publisher;
 	var GameSearch = models.GameSearch;
+
+	var ResetPassword = models.ResetPasswordSchema;
+
+	function generateSecureVal(callback) {
+		crypto.randomBytes(3, function(err, buffer) {
+			callback(parseInt(buffer.toString('hex'), 16).toString().substr(0,6));
+		});
+	};
 
 
 	return {
@@ -29,6 +38,15 @@ module.exports = function (models, slug) {
 			 		callback(user);
 			 });
 		},
+		getUserFromId: function (userId, callback) {
+			User.findById(userId, function (err, user) {
+				if(!err) {
+					callback(user);
+				} else {
+					callback(false);
+				}
+			})
+		},
 		getUserFromUsername: function (username, callback) {
 			 User.findOne({ 'username' :  username }, function(err, user) {
 			 	if(err)
@@ -39,6 +57,92 @@ module.exports = function (models, slug) {
 			 		callback(user);
 			});
 		},
+
+		setPasswordCode: function (email, callback) {
+			User.findOne({username: email}, function (err, user) {
+
+				if(!err) {
+					generateSecureVal(function (secureVal) {
+						var newPasswordCode = new ResetPassword({
+							userId: user._id,
+							generatedKey: secureVal
+						});
+
+						newPasswordCode.save(function (err) {
+							if(!err) {
+								callback({
+									status: true,
+									email: user.username,
+									code: newPasswordCode.generatedKey
+								});
+							} else {
+								callback({
+									status: false
+								});
+							}
+						});
+					});
+
+				} else {
+					callback({
+						status: false
+					});
+				}
+			});
+		},
+
+		setPasswordFromCodeAndEmail: function (email, code, newPassword) {
+			this.verifyPasswordCode(email, code, true, function (response) {
+				if(response.status) {
+					response.user.password = bcrypt.hashSync(newPassword);
+					response.user.save(function (err) {
+						if(!err) {
+							callback({
+								status: true,
+								statusMessage: "Passordet har blitt resatt"
+							});
+						} else {
+							callback({
+								status: false,
+								statusMessage: "Kunne ikke lagre passordet. Prøv igjen"
+							});
+						}
+					});
+				} else {
+					callback({
+						status: false,
+						statusMessage: "Kunne ikke verifisere kode"
+					})
+				}
+			});
+		},
+
+		verifyPasswordCode: function (email, code, userReturnToggle, callback) {
+			User.findOne({username: email}, function (err, user) {
+				if(!err) {
+					ResetPassword.findOne({userId: user._id, generatedKey: code}, null, {sort: {date: -1}},	 function (err, resetPasswordCode) {
+						if(!err) {
+							callback({
+									status: true,
+									statusMessage: "Fant kode",
+									user: userReturnToggle ? user : false
+								});
+						} else {
+							callback({
+								status: false,
+								statusMessage: "Fant ikke kode"
+							});
+						}
+					});
+				} else {
+					callback({
+						status: false,
+						statusMessage: "Fant ikke bruker"
+					});
+				}
+			});
+		},
+
 		getUserFromSlug: function (nickSlug, callback) {
 			User.findOne({'slug': nickSlug}, function (err, user) {
 				if(err)
@@ -60,6 +164,16 @@ module.exports = function (models, slug) {
 				}
 					
 			});
+		},
+
+		getGameFromId: function (gameId, callback) {
+			Game.findById(gameId, function (err, game) {
+				if(!err) {
+					callback(game);
+				} else {
+					callback(false);
+				}
+			})
 		},
 
 		updateDescription : function (userId, description, callback) {
@@ -138,6 +252,8 @@ module.exports = function (models, slug) {
 			game.save(function (err) {
 				if(!err)
 					callback(game);
+				else
+					callback(err);
 			});
 		},
 

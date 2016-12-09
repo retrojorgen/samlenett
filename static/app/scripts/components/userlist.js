@@ -128,12 +128,6 @@ spilldb.component('userlist', {
         $scope.updateGame = function (game) {
             if(game && game._id) {
                 $http.post("/api/update/game", game);
-            } else {
-                $http.post("/api/add/game", game)
-                    .success(function (dbGame) {
-                        game._id = dbGame._id;
-                    });
-
             }
         };
 
@@ -274,7 +268,6 @@ spilldb.component('userlist', {
 
         $(document).on("keydown", function (e) {
             $scope.$apply(function () {
-                console.log(e, e.keyCode);
                 if(e.keyCode == 27) {
                     if($scope.toggles.search.visible) {
                         $scope.toggles.search.visible = false;
@@ -328,7 +321,13 @@ spilldb.component('userlist', {
                 .then(function (data) {
                     $scope.collections = data.data;
                 });
-        }
+        };
+
+        $scope.$on('add to active collection',
+            function (event, dbGame) {
+                $scope.collection.games.push(dbGame);
+            }
+        );
 
         $scope.doBulk = function () {
           if($scope.toggles.bulkSettings.action) {
@@ -340,7 +339,7 @@ spilldb.component('userlist', {
                             .then(function (data) {
                                 if(data.data.length) {
                                     _.each($scope.collection.games, function (collection, index) {
-                                        console.log('looping collection', collection._id);
+
 
                                         if(data.data.indexOf(collection._id) > -1) {
                                             collection.hidden = true;
@@ -360,7 +359,7 @@ spilldb.component('userlist', {
 
                       dialogService.openDialog("Vil du virkelig flytte " + $scope.toggles['editGames'].length + " spill til " + collection.title)
                           .then(function () {
-                              console.log('moving games, ', $scope.toggles['editGames'])
+
                               $http.post("/api/me/bulk/move", {
                                   'collectionId': $scope.toggles.bulkSettings.collectionId,
                                   'games': $scope.toggles['editGames']

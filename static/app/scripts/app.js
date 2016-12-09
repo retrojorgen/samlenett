@@ -23,6 +23,12 @@ var spilldb = angular
 		when('/signup', {
 			'template': '<signup></signup>'
 		}).
+		when('/reset', {
+			'template': '<resetpassword></resetpassword>'
+		}).
+		when('/reset/:email', {
+			'template': '<resetpassword></resetpassword>'
+		}).
 		when('/login', {
 			'template': '<login></login>'
 		}).

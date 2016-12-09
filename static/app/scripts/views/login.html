@@ -1,5 +1,5 @@
 <div class="auth-cover"></div>
-<div class="container">
+<div class="form-full container">
     <div class="signup-form">
         <h2>Logg inn</h2>
         <form ng-submit="submitLoginForm()">
@@ -14,13 +14,18 @@
                 <label for="password-login">Passord</label>
                 <input ng-model="LoginPassword" class="form-control" id="password-login" type="password" placeholder="Passord">
             </div>
+            <div class="reset-password">
+                <a ng-href="/reset">Glemt passord?</a>
+            </div>
             <div class="alert alert-danger" role="alert" ng-if="loginError">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
                 E-posten eller brukernavnet stemmer ikke. Vennligst prøv igjen eller tilbakestill passordet.
             </div>
             <div ng-if="statusMessage" class="alert alert-danger" role="alert">{{statusMessage}}</div>
-            <button type="submit" class="btn btn-primary btn-block btn-lg">Logg inn</button>
+            <div class="form-controls">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Logg inn</button>
+            </div>
         </form>
     </div>
 </div>

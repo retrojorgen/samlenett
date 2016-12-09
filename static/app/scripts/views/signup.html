@@ -1,5 +1,5 @@
 <div class="auth-cover"></div>
-<div class="container">
+<div class="form-full container">
     <div class="signup-form">
         <h2>Bli medlem</h2>
         <form ng-submit="submitSignupForm()">
@@ -30,8 +30,8 @@
                 'has-success': signupNickStatus == 1,
                 'has-error': signupNickStatus == 2,
             }">
-                <label for="username-signup" class="control-label">Nick</label>
-                    <input ng-model="signupNick" ng-keyup="typingProxy(checkNick, signupNick, 'signupNick')" class="form-control" id="username-signup" type="text" placeholder="Nick">
+                <label for="nick-signup" class="control-label">Nick</label>
+                    <input ng-model="signupNick" ng-keyup="typingProxy(checkNick, signupNick, 'signupNick')" class="form-control" id="nick-signup" type="text" placeholder="Nick">
                     <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 2"></span>
                     <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 1"></span>
             </div>
@@ -79,7 +79,9 @@
                     Passordet stemmer ikke overens med det første
                 </span>
             </div>
-            <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="isSignupValid()">Bli medlem</button>
+            <div class="form-controls">
+                <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="isSignupValid()">Bli medlem</button>
+            </div>
 
         </form> 
     </div>

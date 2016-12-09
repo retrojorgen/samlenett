@@ -1,0 +1,90 @@
+.signup-form {
+  position: relative;
+  max-width: 400px;
+  padding: 60px 48px;
+  background-color: white;
+  margin: 50px auto 0 auto;
+  color: darken($textDarkGrey, 40%);
+  @media #{$phone} {
+    padding: 16px 16px 60px 16px;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+}
+
+.form-full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  overflow: auto;
+  z-index: 1001;
+  margin: 0;
+  padding: 0;
+  a {
+    color: $blue;
+    cursor: pointer;
+  }
+  .form-controls {
+    @media #{$phone} {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px;
+      background-color: #f5f5f5;
+    }
+
+  }
+}
+
+.send-new-password-container {
+  margin-left: -16px;
+  margin-right: -16px;
+  padding: 16px 16px 16px 16px;
+  background-color: #f5f5f5;
+}
+
+.details-wrapper {
+  margin-bottom: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.details-view {
+  padding: 30px 20px 20px 20px;
+  margin-top: -10px;
+  background-color: darken($darkDarkBlue, 5%);
+}
+
+
+.details-showbutton-container {
+  position: relative;
+  &:before {
+    border-top: 1px solid $blue;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+  }
+
+
+  .details-showbutton {
+    background-color: $blue;
+    color: white;
+    border-radius: 20px;
+    border: 0;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 4px 10px;
+    position: relative;
+    outline: none;
+    &:hover {
+      background-color: darken($blue, 5%);
+    }
+  }
+}

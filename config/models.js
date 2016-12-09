@@ -30,7 +30,11 @@ module.exports = function (dbHandler) {
 		console: String
 	});
 
-	consoleSchema.index({ console: 'text'});
+	var resetPasswordSchema = dbHandler.Schema({
+		userId: Schema.Types.ObjectId,
+		generatedKey: Number,
+		created: { type: Date, default: Date.now }
+	});
 
 	var settingsSchema = dbHandler.Schema({
 	    type: String,
@@ -47,8 +51,6 @@ module.exports = function (dbHandler) {
 	    askingPrice: Object,
 	    soldForPrice: Object
 	});
-
-
 
 	var gameSchema = dbHandler.Schema({
 		userId: Schema.Types.ObjectId,
@@ -68,6 +70,7 @@ module.exports = function (dbHandler) {
 	    acquiredStatus: Boolean,
 	    askingPrice: Number,
 	    soldForPrice: Number,
+		gameRefId: Schema.Types.ObjectId,
 	    images: []
 	});
 
@@ -102,6 +105,7 @@ module.exports = function (dbHandler) {
 		Console: dbHandler.model('Console', consoleSchema),
 		Publisher: dbHandler.model('Publisher', publisherSchema),
 		GameSearch: dbHandler.model('GameSearch', gameSearchSchema),
+		ResetPasswordSchema: dbHandler.model('resetPassword', resetPasswordSchema),
 		convertToObjectId: convertToObjectId
 	}
 }

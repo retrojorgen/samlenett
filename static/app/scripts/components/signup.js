@@ -19,6 +19,7 @@ spilldb.component('signup', {
                 $scope.user = data.user;
                 $rootScope.user = data.user;
                 $rootScope.$broadcast("user logged in");
+                $rootScope.$broadcast("user logged in from form");
                 $location.path("/user/" + data.user.slug);
 
             }).error(function (data) {

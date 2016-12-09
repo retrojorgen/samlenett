@@ -28,6 +28,7 @@ spilldb.component('login', {
             }).success(function (data) {
                 $rootScope.user = data.user;
                 $rootScope.$broadcast("user logged in");
+                $rootScope.$broadcast("user logged in from form");
                 $location.path("/");
             }).error(function (data) {
                 $scope.statusMessage = "Brukernavn eller passord er feil..";

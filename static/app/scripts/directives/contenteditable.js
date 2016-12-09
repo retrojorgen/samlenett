@@ -17,14 +17,18 @@ spilldb.directive("contenteditable", function($rootScope) {
 
       element.bind('focus', function() {
         scope.$apply(function() {
-          scope.game.selectedRow = scope.gameRow;
-          scope.game.canSearch = true;
+          if(scope.game) {
+            scope.game.selectedRow = scope.gameRow;
+            scope.game.canSearch = true;
+          }
         });
       });
 
       element.bind('blur', function() {
         scope.$apply(function() {
-          scope.game.canSearch = false;
+          if(scope.game) {
+            scope.game.canSearch = false;
+          }
         });
       });
 
@@ -64,7 +68,8 @@ spilldb.directive("contenteditable", function($rootScope) {
 
       element.bind("blur keyup change focus", function() {
         scope.$apply(read);
-        scope.game.changeHandler[scope.gameRow](scope.gameRow, scope.game[scope.gameRow]);
+        if(scope.game && scope.game.changeHandler)
+          scope.game.changeHandler[scope.gameRow](scope.gameRow, scope.game[scope.gameRow]);
       });
     }
   };

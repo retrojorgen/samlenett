@@ -14,34 +14,17 @@ spilldb.component('auth', {
 
         $scope.ready = false;
 
+        $scope.expanded = false;
+
+        $scope.toggleExpanded = function () {
+            $scope.expanded = !$scope.expanded;
+        };
+
         $scope.toggleLoginForm = function () {
             console.log('toggling');
             $scope.toggles.showLogin = !$scope.toggles.showLogin;
         };
 
-        $scope.submitLoginForm = function () {
-            $scope.loginError = false;
-            $http.post('/api/login',{
-                username: $scope.loginUsername,
-                password: $scope.LoginPassword
-            }).success(function (data) {
-                $scope.loggedIn = true;
-                $scope.user = true;
-                $scope.showLoginForm = false;
-                console.log('logget inn');
-                $scope.user = data.user;
-                $rootScope.user = data.user;
-                $rootScope.$broadcast("user logged in");
-                console.log('emitted event');
-                $rootScope.visible = true;
-                $scope.toggleLoginForm();
-            }).error(function (data) {
-                $scope.loggedIn = false;
-                $scope.user = undefined;
-                $scope.loginError = true;
-                $rootScope.visible = false;
-            });
-        };
 
         $scope.logOut = function () {
             $http.get('/api/logout')
@@ -67,10 +50,11 @@ spilldb.component('auth', {
                     $rootScope.user = data.user;
                     $rootScope.$broadcast("user logged in");
                     $rootScope.visible = true;
-                    console.log('emitted event');
+                    console.log('emitted event user logged in');
                     $scope.ready = true;
                 })
                 .error(function (data) {
+                    console.log('user not logged in');
                     $scope.loggedIn = false;
                     $scope.user = undefined;
                     $rootScope.user = undefined;
@@ -78,6 +62,11 @@ spilldb.component('auth', {
                     $scope.ready = true;
                 });
         };
+
+        $scope.$on('user logged in from form', function () {
+
+            $scope.checkLogin();
+        });
 
         $scope.checkLogin();
 

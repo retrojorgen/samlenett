@@ -1,6 +1,42 @@
 var lwip = require('lwip');
 var fs = require('fs');
+var Mailgun = require('mailgun-js');
 var ExifImage = require('exif').ExifImage;
+
+//Your api key, from Mailgun’s Control Panel
+var api_key = 'key-67450a7ebf6ca4d9b351030681b8f1d5';
+
+//Your domain, from the Mailgun Control Panel
+var domain = 'email.samledb.com';
+
+//Your sending email address
+var noReplyAddress = 'no-reply@samledb.com';
+
+var sendCodeMail = function (email, code, callback) {
+  var mailgun = new Mailgun({apiKey: api_key, domain: domain});
+  var data = {
+    from: noReplyAddress,
+    to: email,
+    subject: 'Ny passordkode fra samledb',
+    html: 'Heisann, skriv inn denne koden på reset-passordsiden <b>' + code + '</b><br><br>Hilsen SamleDB'
+  };
+
+  console.log(data);
+
+  mailgun.messages().send(data, function (err, body) {
+    //If there is an error, render the error page
+    if (err) {
+      callback({
+        status: false
+      });
+    }
+    else {
+      callback({
+        status: true
+      });
+    }
+  });
+};
 
 module.exports = function(app, passport, dbQueries) {
 
@@ -73,6 +109,48 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.get('/api/reset/password/:email', function (req, res) {
+    dbQueries.setPasswordCode(req.params.email, function (response){
+      if(response.status) {
+        sendCodeMail(response.email, response.code, function(mailResponse) {
+          if(mailResponse.status) {
+            res.json({
+              status: true,
+              statusMessage: "E-post sendt"
+            });
+          } else {
+            res.json({
+              status: false,
+              statusMessage: "Kunne ikke sende e-post"
+            });
+          }
+        });
+      } else {
+
+      }
+    });
+  });
+
+  app.get('/api/reset/password/verify/:email/:code', function (req, res) {
+    dbQueries.verifyPasswordCode(req.params.email, req.params.code, false, function (response) {
+      res.json(response);
+    });
+  });
+
+  app.post("/api/reset/password", function (req, res) {
+    dbQueries.setPasswordFromCodeAndEmail(req.body.email, req.body.code, req.body.newPassword, function (response) {
+      if(response.status) {
+        res.json({
+          status: true
+        });
+      } else {
+        res.json({
+          status: false
+        });
+      }
+    })
+  });
+
   app.get('/api/search/title/:phrase', function (req, res, next) {
 
     var searchPhrase = req.params.phrase;
@@ -113,9 +191,24 @@ module.exports = function(app, passport, dbQueries) {
 
 
   app.post('/api/get/user/collection', function (req,res,next) {
-    
     dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
       res.json(collection);
+    });
+  });
+
+  app.get('/api/get/user/game/:gameId', function (req, res) {
+    dbQueries.getGameFromId(req.params.gameId, function (game) {
+      if(game) {
+        dbQueries.getUserFromId(game.userId, function (user) {
+          dbQueries.getCollectionFromId(game.collectionId, function (collection) {
+            res.json({
+              game: game,
+              user: user,
+              collection: collection
+            })
+          });
+        });
+      }
     });
   });
 
@@ -220,6 +313,16 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
+  app.post('/api/me/upload/photo', function (req, res) {
+    console.log('uploaded photo');
+    addImage(req.body.image, function (addedImage) {
+        res.json({
+          imageId: addedImage._id
+        });
+    });
+  });
+
+
   app.post('/api/me/remove/userphoto', function (req, res) {
       dbQueries.removeImageFromUser(req.user._id, req.body.imageId, function () {
         res.json({
@@ -278,9 +381,8 @@ module.exports = function(app, passport, dbQueries) {
 
 
   app.post('/api/add/game', function (req,res,next) {
-
+    console.log('legger til spill');
     dbQueries.addGame(req.body, function (game) {
-
       res.json(game);
     });
   });
@@ -306,6 +408,38 @@ module.exports = function(app, passport, dbQueries) {
         imageId: addedImage._id,
         image: addedImage
       });
+    });
+  });
+
+
+
+  app.get('/api/send/testemail', function (req, res) {
+    var mailgun = new Mailgun({apiKey: api_key, domain: domain});
+
+    var data = {
+      //Specify email data
+      from: noReplyAddress,
+      //The email to contact
+      to: "jorgeja@gmail.com",
+      //Subject and text data
+      subject: 'Hello from Mailgun',
+      html: 'Hello, This is not a plain-text email, I wanted to test some spicy Mailgun sauce in NodeJS! <a href="http://0.0.0.0:3030/validate?jorgeja@gmail.com">Click here to add your email address to a mailing list</a>'
+    }
+
+    //Invokes the method to send emails given the above data with the helper library
+    mailgun.messages().send(data, function (err, body) {
+      //If there is an error, render the error page
+      if (err) {
+        console.log("got an error: ", err);
+        res.json('fail');
+      }
+      //Else we can greet    and leave
+      else {
+        //Here "submitted.jade" is the view file for this landing page
+        //We pass the variable "email" from the url parameter in an object rendered by Jade
+        res.json('success');
+        console.log(body);
+      }
     });
   });
 

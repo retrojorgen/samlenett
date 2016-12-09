@@ -12,7 +12,8 @@ spilldb.component('fileupload', {
         uploadFile: "=",
         icon: "=",
         uploadText: "=",
-        buttonclass: "="
+        buttonclass: "=",
+        reference: "="
     },
     controller: function ($scope, $element, $timeout) {
 
@@ -48,7 +49,7 @@ spilldb.component('fileupload', {
                     if(type != "image/jpeg" && parseFloat(sizeInMB) <= 5)
                         alert("Bilde må være jpg og være mindre enn 5 mb");
                     else
-                        scope.uploadFile(evt.target.result);
+                        scope.uploadFile(evt.target.result, scope.reference);
                 };
 
 

@@ -1,54 +1,18 @@
-<div class="user-bar" ng-class="{'mobile-hidden': mobileHidden}">
-    <div class="user-body container-fluid">
-        <p class="collection-list-header">hovedmeny</p>
-        <ul class="list-group collection-list">
-        <li class="list-group-item" ng-class="{
-            selected: isFrontSelected()
-            }">
-            <a ng-href="/">
-                <span class="glyphicon glyphicon-home"></span>Forside
-            </a>
-        </li>
-          <li class="list-group-item" ng-class="{
-            selected: isUserSelected()
-            }">
-            <a ng-href="/user/{{user.slug}}" ng-click="toggleBarMobile()">
-                <span class="glyphicon glyphicon-user"></span>{{user.nick}}</li>
-            </a>
-        </ul>
-        <p class="collection-list-header">Din samling                 <button class="create-new-button" ng-click="addCollection('collections')">
-                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
-                </button></p>
-        <ul class="list-group collection-list">
-            <li class="list-group-item" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
-                <a ng-href="/user/{{user.slug}}/c/{{list._id}}" ng-click="toggleBarMobile()">
-                    <span class="glyphicon glyphicon-floppy-disk"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
-                </a>
+<div id="user-bar" class="user-bar" ng-if="user" ng-click="toggleExpanded()" ng-class="{
+    'expanded': expanded
+}">
+        <ul class="collection-list">
+            <li class="current-collection">
+                <span ng-if="currentCollection">{{currentCollection.title}}</span>
+                <span ng-if="!currentCollection">Velg samling</span>
             </li>
-        </ul>
-        <!--
-        <p class="collection-list-header">Dine samlemål<button class="create-new-button" ng-click="addCollection('goals')">
-                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
-                </button></p>
-        <ul class="list-group collection-list">
-            <li class="list-group-item" ng-repeat="list in collections['goals']" ng-class="{selected: list.selected}">
+            <li class="collection-list-item" ng-if="list._id != currentCollection._id" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
                 <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
-                    <span class="glyphicon glyphicon-heart"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
+                    <span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
                 </a>
             </li>
-        </ul>
-        <p class="collection-list-header">Til salgs                 <button class="create-new-button" ng-click="addCollection('sales')">
-                    <span class="glyphicon glyphicon-plus"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>
-                </button></p>
-        <ul class="list-group collection-list">
-            <li class="list-group-item" ng-repeat="list in collections['sales']" ng-class="{selected: list.selected}">
-                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
-                    <span class="glyphicon glyphicon-usd"></span><span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
-                </a>
-            </li>
-            <li class="list-group-item create-new">
+            <li class="collection-list-item add-list-button" ng-click="openAddCollectionDialog()">
+                <span>+ Ny samling</span>
             </li>
         </ul>
-        -->
-    </div>
 </div>

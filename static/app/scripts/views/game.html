@@ -1,3 +1,72 @@
-<div class="fluid-container collection-container">
-test
+<a class="back-to" ng-href="/user/{{user.slug}}/c/{{collection._id}}">
+    <span class="glyphicon glyphicon-menu-left"></span>
+    Til samlingen {{collection.title}}
+</a>
+<div class="fluid-container collection-wrapper no-space-top">
+    <div class="fluid-container collection-container">
+        <div class="margin-container">
+            <div class="user-tab game-tab" ng-class="{selected: true}">
+                <div class="flexible">
+                    <div class="big-col">
+                        <div class="owner">
+                            <p>
+                                Eier <a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
+                            </p>
+                        </div>
+                        <h2 class="user-tab-title">
+                            {{game.title}}
+                            <span class="title-console" ng-if="game.console">{{game.console}}</span>
+                        </h2>
+                        <table class="game-attributes-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    <th>
+                                        Egenskap
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(gameAttribute, key) in game"
+                                    ng-if="
+                                        gameAttribute != '_id' &&
+                                        gameAttribute != 'userId' &&
+                                        gameAttribute != 'collectionId' &&
+                                        gameAttribute != 'title' &&
+                                        gameAttribute != '__v' &&
+                                        gameAttribute != 'images' &&
+                                        gameAttribute != 'gameAdded'
+
+                                    ">
+                                    <td>
+                                        {{settings[gameAttribute].name}}
+                                    </td>
+                                    <td>
+                                        {{key}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="medium-col">
+
+                    </div>
+                    {{toggles.editable}}
+                    <div class="update-button-container" ng-if="toggles.editable">
+                        <div ng-if="!toggles.isEditing">
+                            <button ng-click="deleteGame()">Slett</button>
+                        </div>
+                        <div ng-if="toggles.isEditing">
+                            <button ng-click="updateeGame()">Oppdater</button>
+                            <button ng-click="updateeGame()">Lukk</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

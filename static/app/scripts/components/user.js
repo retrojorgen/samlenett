@@ -80,7 +80,9 @@ spilldb.component('user', {
         $http.post("/api/get/user/complete", { nickSlug: $routeParams.nickSlug })
         .success(function (data) {
           _.each(data.collections, function (collection) {
-            $scope.collections[collection.type].push(collection);
+              if(collection.type) {
+                  $scope.collections[collection.type].push(collection);
+              }
           });
 
           $scope.user = data.user;
