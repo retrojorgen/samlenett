@@ -26,10 +26,9 @@
       font-size: 26px;
     }
     .title-console {
-      display: block;
       color: $blue;
       font-size: 28px;
-      margin-top: 4px;
+      margin-left: 10px;
       @media #{$phone} {
         font-size: 20px;
       }
@@ -47,6 +46,7 @@
   table-layout: fixed;
   th,td {
     padding: 4px;
+    min-height: 25px;
   }
 
   th:nth-child(2) {
@@ -89,6 +89,9 @@
     &:active {
       background-color: darken($blue, 20%);
     }
+    &.delete {
+      background-color: red;
+    }
     &.cancel {
       background-color: lightyellow;
 
@@ -101,4 +104,9 @@
       }
     }
   }
+}
+
+.game-update-dialog {
+  padding-top: 14px;
+  text-align: center;
 }

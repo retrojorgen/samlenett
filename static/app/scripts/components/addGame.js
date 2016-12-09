@@ -121,7 +121,7 @@ spilldb.component('addgame', {
         $scope.setValueFromSearch = function (key, game) {
             _.each(game, function (field, key) {
                 _.each($scope.game, function (newgameTitle, newGameKey) {
-                    if(newGameKey == key) {
+                    if(newGameKey == key && newGameKey != '_id' && newGameKey != '__v') {
                         $scope.game[newGameKey] = field;
                     }
                 });
@@ -149,6 +149,7 @@ spilldb.component('addgame', {
 
         $scope.$on("user logged in", function () {
             $scope.user = $rootScope.user;
+            $scope.game.userId = $scope.user._id;
             getCollections();
         });
 

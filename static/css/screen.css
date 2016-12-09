@@ -10,6 +10,7 @@
 /* line 1, ../app/scss/auth.scss */
 .auth {
   text-align: right;
+  padding-right: 15px;
 }
 @media only screen and (max-width: 800px) {
   /* line 1, ../app/scss/auth.scss */
@@ -18,12 +19,12 @@
   }
 }
 @media only screen and (max-width: 800px) {
-  /* line 6, ../app/scss/auth.scss */
+  /* line 7, ../app/scss/auth.scss */
   .auth .login-buttons-container {
     padding-right: 0;
     padding: 6px 6px;
   }
-  /* line 10, ../app/scss/auth.scss */
+  /* line 11, ../app/scss/auth.scss */
   .auth .login-buttons-container .btn.login,
   .auth .login-buttons-container .btn.signup {
     padding: 8px 10px;
@@ -33,12 +34,12 @@
   }
 }
 @media only screen and (max-width: 800px) {
-  /* line 21, ../app/scss/auth.scss */
+  /* line 22, ../app/scss/auth.scss */
   .auth .profile-info .navbar-text {
     display: none;
   }
 }
-/* line 26, ../app/scss/auth.scss */
+/* line 27, ../app/scss/auth.scss */
 .auth .profile-image {
   background-size: cover;
   background-image: url("userImages/57da923427b493018b00a314.jpg");
@@ -56,19 +57,19 @@
   float: right;
 }
 @media only screen and (max-width: 800px) {
-  /* line 41, ../app/scss/auth.scss */
+  /* line 42, ../app/scss/auth.scss */
   .auth .profile-image .login-buttons-container {
     display: flex;
   }
 }
-/* line 47, ../app/scss/auth.scss */
+/* line 48, ../app/scss/auth.scss */
 .auth .btn {
   cursor: pointer;
   margin-top: 6px;
   margin-bottom: 6px;
   color: white;
-  background-color: #3498DB;
-  border: 2px solid #3498DB;
+  background-color: transparent;
+  border: 0;
   border-radius: 20px;
   padding: 8px 20px;
   outline: none;
@@ -77,46 +78,39 @@
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-/* line 58, ../app/scss/auth.scss */
+/* line 59, ../app/scss/auth.scss */
 .auth .btn.signup {
-  background-color: #3fb9e7;
-  border: 2px solid #3fb9e7;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  background-color: #3498DB;
+  border: 0;
 }
-/* line 64, ../app/scss/auth.scss */
+/* line 63, ../app/scss/auth.scss */
 .auth .btn.login {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 68, ../app/scss/auth.scss */
-.auth .btn:hover {
-  border: 2px solid white;
-  background: transparent;
-}
-/* line 72, ../app/scss/auth.scss */
+/* line 70, ../app/scss/auth.scss */
 .auth .btn.logout {
   border-radius: 50%;
   padding: 4px 6px;
 }
 
-/* line 81, ../app/scss/auth.scss */
+/* line 79, ../app/scss/auth.scss */
 .user-bar {
   position: relative;
   float: left;
 }
 @media only screen and (max-width: 800px) {
-  /* line 81, ../app/scss/auth.scss */
+  /* line 79, ../app/scss/auth.scss */
   .user-bar {
     float: none;
     width: 150px;
   }
 }
-/* line 89, ../app/scss/auth.scss */
+/* line 87, ../app/scss/auth.scss */
 .user-bar.expanded ul {
   height: auto;
 }
-/* line 93, ../app/scss/auth.scss */
+/* line 91, ../app/scss/auth.scss */
 .user-bar.expanded ul li.current-collection:after {
   -moz-transform: rotate(-180deg) translateY(2px);
   -ms-transform: rotate(-180deg) translateY(2px);
@@ -127,7 +121,7 @@
   -webkit-transition: 0.1s;
   transition: 0.1s;
 }
-/* line 101, ../app/scss/auth.scss */
+/* line 99, ../app/scss/auth.scss */
 .user-bar ul {
   position: absolute;
   left: 0;
@@ -144,20 +138,20 @@
   transition: 0.1s;
 }
 @media only screen and (max-width: 800px) {
-  /* line 101, ../app/scss/auth.scss */
+  /* line 99, ../app/scss/auth.scss */
   .user-bar ul {
     width: 150px;
     min-width: 150px;
   }
 }
-/* line 118, ../app/scss/auth.scss */
+/* line 116, ../app/scss/auth.scss */
 .user-bar ul li {
   display: block;
   width: 100%;
   font-size: 14px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 118, ../app/scss/auth.scss */
+  /* line 116, ../app/scss/auth.scss */
   .user-bar ul li {
     font-size: 12px;
     text-overflow: ellipsis;
@@ -165,7 +159,7 @@
     overflow: hidden;
   }
 }
-/* line 128, ../app/scss/auth.scss */
+/* line 126, ../app/scss/auth.scss */
 .user-bar ul li.current-collection {
   padding: 15px;
   cursor: pointer;
@@ -174,17 +168,17 @@
   position: relative;
 }
 @media only screen and (max-width: 800px) {
-  /* line 128, ../app/scss/auth.scss */
+  /* line 126, ../app/scss/auth.scss */
   .user-bar ul li.current-collection {
-    padding: 16px 28px 17px 15px;
+    padding: 16px 20px 17px 15px;
   }
 }
-/* line 137, ../app/scss/auth.scss */
+/* line 135, ../app/scss/auth.scss */
 .user-bar ul li.current-collection:hover {
   background-color: #1f2125;
   color: white;
 }
-/* line 141, ../app/scss/auth.scss */
+/* line 139, ../app/scss/auth.scss */
 .user-bar ul li.current-collection:after {
   top: 50%;
   right: 10px;
@@ -208,14 +202,14 @@
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 159, ../app/scss/auth.scss */
+/* line 157, ../app/scss/auth.scss */
 .user-bar ul li a {
   padding: 15px 15px 15px 28px;
   display: block;
   background-color: #2f3137;
 }
 @media only screen and (max-width: 800px) {
-  /* line 159, ../app/scss/auth.scss */
+  /* line 157, ../app/scss/auth.scss */
   .user-bar ul li a {
     font-size: 12px;
     text-overflow: ellipsis;
@@ -224,13 +218,13 @@
     padding: 15px 15px 15px 15px;
   }
 }
-/* line 172, ../app/scss/auth.scss */
+/* line 170, ../app/scss/auth.scss */
 .user-bar ul li a:hover {
   background-color: #1f2125;
   color: white;
 }
 
-/* line 183, ../app/scss/auth.scss */
+/* line 181, ../app/scss/auth.scss */
 .auth-cover {
   position: absolute;
   width: 100%;
@@ -242,7 +236,7 @@
   opacity: 0.2;
 }
 @media only screen and (max-width: 800px) {
-  /* line 183, ../app/scss/auth.scss */
+  /* line 181, ../app/scss/auth.scss */
   .auth-cover {
     position: fixed;
     top: 0;
@@ -2195,10 +2189,9 @@ a:hover {
 }
 /* line 28, ../app/scss/game.scss */
 .game-tab .user-tab-title .title-console {
-  display: block;
   color: #3498DB;
   font-size: 28px;
-  margin-top: 4px;
+  margin-left: 10px;
 }
 @media only screen and (max-width: 800px) {
   /* line 28, ../app/scss/game.scss */
@@ -2207,14 +2200,15 @@ a:hover {
   }
 }
 
-/* line 45, ../app/scss/game.scss */
+/* line 44, ../app/scss/game.scss */
 .game-attributes-table {
   width: 100%;
   table-layout: fixed;
 }
-/* line 48, ../app/scss/game.scss */
+/* line 47, ../app/scss/game.scss */
 .game-attributes-table th, .game-attributes-table td {
   padding: 4px;
+  min-height: 25px;
 }
 /* line 52, ../app/scss/game.scss */
 .game-attributes-table th:nth-child(2) {
@@ -2260,15 +2254,74 @@ a:hover {
   background-color: #196090;
 }
 /* line 92, ../app/scss/game.scss */
+.update-button-container button.delete {
+  background-color: red;
+}
+/* line 95, ../app/scss/game.scss */
 .update-button-container button.cancel {
   background-color: lightyellow;
   color: #3498DB;
 }
-/* line 96, ../app/scss/game.scss */
+/* line 99, ../app/scss/game.scss */
 .update-button-container button.cancel:hover {
   background-color: #ffffad;
 }
-/* line 99, ../app/scss/game.scss */
+/* line 102, ../app/scss/game.scss */
 .update-button-container button.cancel:active {
   background-color: #ffff7a;
+}
+
+/* line 109, ../app/scss/game.scss */
+.game-update-dialog {
+  padding-top: 14px;
+  text-align: center;
+}
+
+/* line 1, ../app/scss/slider.scss */
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+/* line 4, ../app/scss/slider.scss */
+.slider-container .slider-label {
+  margin-right: 10px;
+}
+/* line 7, ../app/scss/slider.scss */
+.slider-container .slider {
+  background-color: white;
+  border-radius: 28px;
+  padding: 0px;
+  border: 1px solid grey;
+  width: 47px;
+  height: 28px;
+  margin: 0;
+  -moz-transition: ease-in-out 0.1s;
+  -o-transition: ease-in-out 0.1s;
+  -webkit-transition: ease-in-out 0.1s;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+/* line 17, ../app/scss/slider.scss */
+.slider-container .slider.slider-on {
+  background-color: #3498DB;
+  border: 1px solid #3498DB;
+}
+/* line 21, ../app/scss/slider.scss */
+.slider-container .slider.slider-on .slider-dot {
+  margin-left: 22px;
+}
+/* line 25, ../app/scss/slider.scss */
+.slider-container .slider .slider-dot {
+  padding: 11px;
+  border-radius: 50%;
+  background-color: white;
+  transform: translateY(2px);
+  display: inline-block;
+  -moz-transition: ease-in-out 0.1s;
+  -o-transition: ease-in-out 0.1s;
+  -webkit-transition: ease-in-out 0.1s;
+  transition: ease-in-out 0.1s;
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
