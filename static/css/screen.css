@@ -760,20 +760,21 @@
   left: 0;
   top: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   padding: 14px 0 80px 0;
 }
-/* line 203, ../app/scss/collection.scss */
+/* line 204, ../app/scss/collection.scss */
 .collection-wrapper.no-back {
   border-top: 50px solid transparent;
 }
-/* line 207, ../app/scss/collection.scss */
+/* line 208, ../app/scss/collection.scss */
 .collection-wrapper .collection-container {
   background-color: #181818;
   padding: 0 14px 0 14px;
 }
 
-/* line 214, ../app/scss/collection.scss */
+/* line 215, ../app/scss/collection.scss */
 .collection-list-header {
   margin-top: 10px;
   color: #a0a0a0;
@@ -782,35 +783,35 @@
   font-size: 10px;
 }
 
-/* line 223, ../app/scss/collection.scss */
+/* line 224, ../app/scss/collection.scss */
 .collection-list-item.add-list-button {
   background-color: #3498DB;
   color: white;
   padding: 15px;
   cursor: pointer;
 }
-/* line 228, ../app/scss/collection.scss */
+/* line 229, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:hover {
   background-color: #217dbb;
 }
-/* line 231, ../app/scss/collection.scss */
+/* line 232, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:active {
   background-color: #196090;
 }
 
-/* line 237, ../app/scss/collection.scss */
+/* line 238, ../app/scss/collection.scss */
 .add-description-wrapper {
   margin-bottom: 14px;
 }
 
-/* line 242, ../app/scss/collection.scss */
+/* line 243, ../app/scss/collection.scss */
 .collection-selector-container {
   background-color: #1f2125;
   border: 1px solid #3498DB;
   margin-bottom: 20px;
   position: relative;
 }
-/* line 247, ../app/scss/collection.scss */
+/* line 248, ../app/scss/collection.scss */
 .collection-selector-container .game-input {
   font-size: 16px;
   background-color: transparent;
@@ -820,34 +821,34 @@
   margin: 0;
   outline: none;
 }
-/* line 256, ../app/scss/collection.scss */
+/* line 257, ../app/scss/collection.scss */
 .collection-selector-container .search-wrapper {
   border-left: 1px solid #3498DB;
   border-bottom: 1px solid #3498DB;
   border-right: 1px solid #3498DB;
   text-align: left;
 }
-/* line 262, ../app/scss/collection.scss */
+/* line 263, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 266, ../app/scss/collection.scss */
+/* line 267, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li {
   padding: 10px;
   text-align: left;
   cursor: pointer;
 }
-/* line 270, ../app/scss/collection.scss */
+/* line 271, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li:hover {
   background-color: #080809;
 }
-/* line 275, ../app/scss/collection.scss */
+/* line 276, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected {
   position: relative;
 }
-/* line 277, ../app/scss/collection.scss */
+/* line 278, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected:after {
   top: 50%;
   right: 10px;
@@ -872,7 +873,7 @@
   transition: 0.25s;
 }
 
-/* line 298, ../app/scss/collection.scss */
+/* line 299, ../app/scss/collection.scss */
 .back-to {
   display: block;
   width: 100%;
@@ -887,7 +888,7 @@
   margin: 0 auto;
 }
 @media only screen and (max-width: 800px) {
-  /* line 298, ../app/scss/collection.scss */
+  /* line 299, ../app/scss/collection.scss */
   .back-to {
     display: block;
     width: 100%;
@@ -1157,17 +1158,18 @@
   top: 0;
   height: 100%;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 1001;
   margin: 0;
   padding: 0;
 }
-/* line 26, ../app/scss/forms.scss */
+/* line 27, ../app/scss/forms.scss */
 .form-full a {
   color: #3498DB;
   cursor: pointer;
 }
 @media only screen and (max-width: 800px) {
-  /* line 30, ../app/scss/forms.scss */
+  /* line 31, ../app/scss/forms.scss */
   .form-full .form-controls {
     position: fixed;
     bottom: 0;
@@ -1178,7 +1180,7 @@
   }
 }
 
-/* line 43, ../app/scss/forms.scss */
+/* line 44, ../app/scss/forms.scss */
 .send-new-password-container {
   margin-left: -16px;
   margin-right: -16px;
@@ -1186,25 +1188,25 @@
   background-color: #f5f5f5;
 }
 
-/* line 50, ../app/scss/forms.scss */
+/* line 51, ../app/scss/forms.scss */
 .details-wrapper {
   margin-bottom: 20px;
   margin-left: -20px;
   margin-right: -20px;
 }
 
-/* line 56, ../app/scss/forms.scss */
+/* line 57, ../app/scss/forms.scss */
 .details-view {
   padding: 30px 20px 20px 20px;
   margin-top: -10px;
   background-color: #1a242b;
 }
 
-/* line 63, ../app/scss/forms.scss */
+/* line 64, ../app/scss/forms.scss */
 .details-showbutton-container {
   position: relative;
 }
-/* line 65, ../app/scss/forms.scss */
+/* line 66, ../app/scss/forms.scss */
 .details-showbutton-container:before {
   border-top: 1px solid #3498DB;
   position: absolute;
@@ -1214,7 +1216,7 @@
   height: 50%;
   width: 100%;
 }
-/* line 76, ../app/scss/forms.scss */
+/* line 77, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton {
   background-color: #3498DB;
   color: white;
@@ -1226,7 +1228,7 @@
   position: relative;
   outline: none;
 }
-/* line 86, ../app/scss/forms.scss */
+/* line 87, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton:hover {
   background-color: #258cd1;
 }
@@ -2116,14 +2118,15 @@ a:hover {
     width: 100%;
     height: auto;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     margin: 0 0 14px 0;
   }
 }
-/* line 40, ../app/scss/userTab.scss */
+/* line 41, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container:hover .user-images-action-buttons {
   opacity: 1;
 }
-/* line 44, ../app/scss/userTab.scss */
+/* line 45, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container .user-images-action-buttons {
   display: flex;
   vertical-align: middle;
@@ -2143,18 +2146,18 @@ a:hover {
   -webkit-box-shadow: 0 0 40px 0 black inset;
   box-shadow: 0 0 40px 0 black inset;
 }
-/* line 57, ../app/scss/userTab.scss */
+/* line 58, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container .user-images-action-buttons button {
   background-color: transparent;
   border: 0;
   color: white;
   font-size: 16px;
 }
-/* line 68, ../app/scss/userTab.scss */
+/* line 69, ../app/scss/userTab.scss */
 .user-tab.selected {
   display: block;
 }
-/* line 71, ../app/scss/userTab.scss */
+/* line 72, ../app/scss/userTab.scss */
 .user-tab .description {
   font-size: 14px;
   color: #a0a0a0;
