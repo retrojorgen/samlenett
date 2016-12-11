@@ -358,6 +358,11 @@
   }
 }
 
+/* line 95, ../app/scss/bootstrapOverrides.scss */
+.form-control {
+  font-size: 16px;
+}
+
 /* line 1, ../app/scss/bottomNavbar.scss */
 .bottom-navbar {
   padding: 0;
@@ -807,6 +812,7 @@
 }
 /* line 247, ../app/scss/collection.scss */
 .collection-selector-container .game-input {
+  font-size: 16px;
   background-color: transparent;
   width: 100%;
   padding: 10px;
@@ -814,34 +820,34 @@
   margin: 0;
   outline: none;
 }
-/* line 255, ../app/scss/collection.scss */
+/* line 256, ../app/scss/collection.scss */
 .collection-selector-container .search-wrapper {
   border-left: 1px solid #3498DB;
   border-bottom: 1px solid #3498DB;
   border-right: 1px solid #3498DB;
   text-align: left;
 }
-/* line 261, ../app/scss/collection.scss */
+/* line 262, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 265, ../app/scss/collection.scss */
+/* line 266, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li {
   padding: 10px;
   text-align: left;
   cursor: pointer;
 }
-/* line 269, ../app/scss/collection.scss */
+/* line 270, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li:hover {
   background-color: #080809;
 }
-/* line 274, ../app/scss/collection.scss */
+/* line 275, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected {
   position: relative;
 }
-/* line 276, ../app/scss/collection.scss */
+/* line 277, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected:after {
   top: 50%;
   right: 10px;
@@ -866,7 +872,7 @@
   transition: 0.25s;
 }
 
-/* line 297, ../app/scss/collection.scss */
+/* line 298, ../app/scss/collection.scss */
 .back-to {
   display: block;
   width: 100%;
@@ -881,7 +887,7 @@
   margin: 0 auto;
 }
 @media only screen and (max-width: 800px) {
-  /* line 297, ../app/scss/collection.scss */
+  /* line 298, ../app/scss/collection.scss */
   .back-to {
     display: block;
     width: 100%;
