@@ -1,3 +1,4 @@
+var bcrypt = require('bcrypt-nodejs');
 module.exports = function (dbHandler) {
 
 	var Schema = dbHandler.Schema;
@@ -15,6 +16,33 @@ module.exports = function (dbHandler) {
 	    mainCollectionId:Schema.Types.ObjectId,
 	    created: { type: Date, default: Date.now },
 	});
+
+
+	userSchema.pre('save', function (next) {
+		var user = this;
+
+
+		if (this.isModified('password') || this.isNew) {
+			console.log('user is ', user, user.password);
+			user.password = bcrypt.hashSync(user.password);
+			next();
+		} else {
+			return next();
+		}
+	});
+
+	userSchema.methods.comparePassword = function (passw, cb) {
+		bcrypt.compare(passw, this.password, function (err, isMatch) {
+			if (err) {
+				return cb(err);
+			}
+			cb(null, isMatch);
+		});
+	};
+
+
+
+
 
 	var consoleSchema = dbHandler.Schema({
 		console: String
@@ -50,6 +78,17 @@ module.exports = function (dbHandler) {
 	    notePrivat: Object,
 	    askingPrice: Object,
 	    soldForPrice: Object
+	});
+
+	var eventSchema = dbHandler.Schema({
+		type: String,
+		referenceObject: Object,
+		referenceId: Schema.Types.ObjectId,
+		referenceUserSlug: String,
+		referenceUserNick: String,
+		referenceUserProfileImageId: String,
+		referenceUserId: String,
+		created: { type: Date, default: Date.now }
 	});
 
 	var gameSchema = dbHandler.Schema({
@@ -105,6 +144,7 @@ module.exports = function (dbHandler) {
 		Console: dbHandler.model('Console', consoleSchema),
 		Publisher: dbHandler.model('Publisher', publisherSchema),
 		GameSearch: dbHandler.model('GameSearch', gameSearchSchema),
+		Event: dbHandler.model('Event', eventSchema),
 		ResetPasswordSchema: dbHandler.model('resetPassword', resetPasswordSchema),
 		convertToObjectId: convertToObjectId
 	}

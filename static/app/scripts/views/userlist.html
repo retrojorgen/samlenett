@@ -75,10 +75,12 @@
                     </div>
                 </form>
                 <div class="slider-container" ng-if="toggles.editable && !toggles.mobileFlag">
-                    <label class="slider-label" ng-if="toggles.editStatus">Hurtigredigering</label>
-                    <label class="slider-label" ng-if="!toggles.editStatus">Publikumsmodus</label>
+                    <label class="slider-label">Hurtigredigering</label>
                     <div class="slider" ng-class="{'slider-on': toggles.editStatus}" ng-click="toggleEditStatus()">
+                        <span class="slider-on slider-label" ng-class="{active: toggles.editStatus}">På</span>
+                        <span class="slider-off slider-label" ng-class="{active: !toggles.editStatus}">Av</span>
                         <span class="slider-dot"></span>
+
                     </div>
                 </div>
         </div>
@@ -87,7 +89,7 @@
                 <thead>
                     <tr>
                         <th class="game-toggle"><input type="checkbox" name="game-toggle" ng-click="toggleAllGamesInList()"></th>
-                        <th class="mobile">#</th>
+                        <th class="mobile context-menu-header">#</th>
                         <th ng-repeat="(settingKey, setting) in collection.settings" ng-click="sortGamesBy(settingKey)" ng-class="{mobile: setting.mobile, '{{settingKey}}': true}">
                             {{setting.name}}
                             <span class="glyphicon glyphicon-menu-down pull-right" ng-if="toggles.sortOrder == settingKey"></span>
@@ -150,14 +152,14 @@
                                     mobile: setting.mobile
                                 }">
                                 <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}">{{game[settingKey]}}</a>
-                                <div class="additional-properties">
+                                <div class="additional-properties" ng-if="toggles.mobileFlag">
                                     <span ng-if="game['console']">{{game['console']}} -</span>
                                     <span ng-if="game['publisher']">{{game['publisher']}} -</span>
                                     <span ng-if="game['front']">{{game['front']}} -</span>
                                     <span ng-if="game['back']">{{game['back']}} -</span>
                                     <span ng-if="game['region']">{{game['region']}} -</span>
                                     <span ng-if="game['condition']">{{game['condition']}} -</span>
-
+                                </div>
                             </div>
                         </td>
 

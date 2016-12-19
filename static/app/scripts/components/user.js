@@ -1,6 +1,6 @@
 spilldb.component('user', {
 	templateUrl: '/static/app/scripts/views/user.html',
-  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope) {
+  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, authService, eventService) {
       $scope.toggles = {
         editable: false,
         editTab: false,
@@ -63,7 +63,7 @@ spilldb.component('user', {
 
         $scope.uploadProfilePicture= function (file) {
             console.log('yo')
-            $http.post("/api/me/upload/profilephoto", {image: file})
+            authService.signedPost("/api/jwt/me/upload/profilephoto", {image: file})
                 .then(function (data) {
                     $scope.user.profileImageId = data.data.imageId;
                 });
@@ -95,7 +95,17 @@ spilldb.component('user', {
             }
 
         });
-      }
+      };
+
+      $scope.removeImage = function (imageId) {
+        authService.signedPost("/api/jwt/me/remove/userphoto", {imageId: imageId})
+            .then(function (data) {
+                console.log($scope.user.collectionImages, data);
+                var imageIndex = $scope.user.collectionImages.indexOf(imageId);
+                console.log('image index ',imageIndex);
+                $scope.user.collectionImages.splice(imageIndex, 1);
+            });
+      };
 
       $scope.toggleEditTab = function () {
         $scope.toggles.editTab = !$scope.toggles.editTab;
@@ -114,7 +124,7 @@ spilldb.component('user', {
 
 
 
-            $http.post("/api/me/update/description", {description: $scope.editUser.description})
+            authService.signedPost("/api/jwt/me/update/description", {description: $scope.editUser.description})
                 .then(function (data) {
                 });
         };
@@ -156,10 +166,10 @@ spilldb.component('user', {
         };
 
         $scope.uploadUserPhoto = function (file) {
-            console.log('kukken');
+            $rootScope.$broadcast("loading on", "Laster opp bilde");
 
 
-            $http.post("/api/me/upload/userphoto", {image: file})
+            authService.signedPost("/api/jwt/me/upload/userphoto", {image: file})
                 .then(function (data) {
                     if(data.data.imageId) {
                         if($scope.user.collectionImages) {
@@ -168,6 +178,11 @@ spilldb.component('user', {
                             $scope.user.collectionImages = [data.data.imageId];
                         }
                     }
+                    $rootScope.$broadcast("loading off");
+                    eventService.postEvent({
+                        type: "new user photo",
+                        referenceId: data.data.imageId
+                    });
                 });
         };
       getCompleteData();

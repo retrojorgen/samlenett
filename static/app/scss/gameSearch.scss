@@ -1,0 +1,68 @@
+.game-search-wrapper {
+    float: left;
+    border-right: 1px solid $darkDarkGrey;
+    padding: 7px 10px 5px 10px;
+    position: relative;
+}
+
+.game-search-container {
+    background-color: $darkBackground;
+    border-radius: 8px;
+    position: relative;
+    .glyphicon {
+        position: absolute;
+        right: 10px;
+        top: 14px;
+    }
+    input {
+        background-color: transparent;
+        border: 0;
+        font-size: 16px;
+        padding: 8px 34px 8px 8px;
+        width: 400px;
+        outline: none;
+    }
+}
+
+.game-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $darkBackground;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .results-counter {
+        background-color: $darkGrey;
+        color: white;
+        padding: 10px 14px;
+    }
+    .results {
+        position: relative;
+        a {
+            color: $textGrey;
+            padding: 10px 10px 10px 28px;
+            cursor: pointer;
+            display: block;
+        }
+        .glyphicon {
+            margin-right: 6px;
+            vertical-align: middle;
+            position: absolute;
+            left: 9px;
+            top: 50%;
+            margin-top: -6px;
+        }
+        .game-title {
+            font-size: 14px;
+            color: white;
+        }
+        .additional-properties {
+            font-size: 10px;
+        }
+        &:hover {
+            background-color: $darkGrey;
+        }
+    }
+}

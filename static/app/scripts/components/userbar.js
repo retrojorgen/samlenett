@@ -1,6 +1,6 @@
 spilldb.component('userbar', {
 	templateUrl: '/static/app/scripts/views/userbar.html',
-  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, $location) {
+  	controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, $location, authService) {
 
       $scope.collections = {};
       $scope.user = undefined;
@@ -24,6 +24,17 @@ spilldb.component('userbar', {
           }
       });
 
+        $(document).on('keydown', function (e) {
+            $scope.$apply(function () {
+                if($scope.expanded)  {
+                    if(e.which == 27) {
+                        $scope.toggleExpanded();
+                    }
+                }
+            });
+
+        });
+
 
       $scope.$on("update collections", function () {
         updateCollection();
@@ -35,24 +46,25 @@ spilldb.component('userbar', {
       });
 
       var updateCollection = function () {
-        $http.get("/api/me/collections")
-        .success(function (collections) {
+          authService.signedGet("/api/jwt/me/collections")
+              .then(function (data) {
+                  $scope.collections = {
+                      'collections': [],
+                      'goals': [],
+                      'sales': []
+                  };
+                  _.each(data.data, function (collection) {
+                      if(collection.type)
+                          $scope.collections[collection.type].push(collection);
+                  });
 
-          $scope.collections = {
-            'collections': [],
-            'goals': [],
-            'sales': []
-          };
-          _.each(collections, function (collection) {
-              if(collection.type)
-                  $scope.collections[collection.type].push(collection);
-          });
+                  if($routeParams.collectionId)
+                      setSelected($routeParams.collectionId);
 
-          if($routeParams.collectionId)
-            setSelected($routeParams.collectionId);
-        });
+                  $rootScope.collections = $scope.collections.collections;
+              });
 
-       $rootScope.collections = $scope.collections.collections;
+
       };
 
       var setSelected = function (selectedId) {
@@ -62,8 +74,8 @@ spilldb.component('userbar', {
       };
 
       $scope.addCollection = function (type) {
-        $http.post("/api/me/create/collection", {type: type})
-        .success(function (collection) {
+        authService.signedPost("/api/jwt/me/create/collection", {type: type})
+        .then(function (collection) {
           $scope.collections[type].push(collection);
         });
       };
@@ -75,4 +87,9 @@ spilldb.component('userbar', {
       $scope.$on('$routeChangeStart', function(next, current) {
           setSelected(current.pathParams.collectionId ? current.pathParams.collectionId : 0);
       });
+
+      authService.authReady
+          .then(function () {
+              updateCollection();
+          });
   }});

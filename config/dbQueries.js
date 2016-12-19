@@ -17,6 +17,7 @@ module.exports = function (models, slug) {
 	var Console = models.Console;
 	var Publisher = models.Publisher;
 	var GameSearch = models.GameSearch;
+	var Event = models.Event;
 
 	var ResetPassword = models.ResetPasswordSchema;
 
@@ -28,6 +29,21 @@ module.exports = function (models, slug) {
 
 
 	return {
+		createUser: function (username, password, nick, callback) {
+			var newUser = new User({
+				username: username,
+				password: password,
+				nick: nick
+			});
+			newUser.save(function (err) {
+				if(!err) {
+					callback(newUser);
+				} else {
+					callback(false);
+				}
+			});
+		},
+
 		getUserFromNick: function (nick, callback) {
 			User.findOne({ 'slug' :  slug(nick) }, function(err, user) {
 			 	if(err)
@@ -46,6 +62,25 @@ module.exports = function (models, slug) {
 					callback(false);
 				}
 			})
+		},
+		getEvents : function (callback) {
+			Event.find({}, function (err, events) {
+				if(!err) {
+					callback(events);
+				} else {
+					callback(false);
+				}
+			});
+		},
+		insertEvent : function (event, callback) {
+			var newEvent = new Event(event);
+			newEvent.save(function (err) {
+				if(!err) {
+					callback(newEvent);
+				} else {
+					callback(false);
+				}
+			});
 		},
 		getUserFromUsername: function (username, callback) {
 			 User.findOne({ 'username' :  username }, function(err, user) {

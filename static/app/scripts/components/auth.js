@@ -1,6 +1,7 @@
 spilldb.component('auth', {
     templateUrl: '/static/app/scripts/views/auth.html',
-    controller: function ($scope, $http, $timeout, $location, $rootScope, $log) {
+    controller: function ($scope, $http, $timeout, $location, $rootScope, $log, authService) {
+        console.log('hei:', authService);
         $scope.loggedIn = false;
         $scope.user = undefined;
         $scope.loginFormTab = 'login';
@@ -40,35 +41,32 @@ spilldb.component('auth', {
             $log.log($location.path());
         });
 
-
-
-        $scope.checkLogin = function () {
-            $http.get('/api/auth')
-                .success(function (data) {
-                    $scope.loggedIn = true;
-                    $scope.user = data.user;
-                    $rootScope.user = data.user;
-                    $rootScope.$broadcast("user logged in");
-                    $rootScope.visible = true;
-                    console.log('emitted event user logged in');
-                    $scope.ready = true;
-                })
-                .error(function (data) {
-                    console.log('user not logged in');
-                    $scope.loggedIn = false;
-                    $scope.user = undefined;
-                    $rootScope.user = undefined;
-                    $rootScope.visible = false;
-                    $scope.ready = true;
-                });
-        };
+        console.log('auth:', authService);
+        authService.authReady
+            .then(function () {
+                console.log('hey');
+                $scope.loggedIn = true;
+                $scope.user = authService.getLoggedInUser();
+                $rootScope.user = authService.getLoggedInUser();
+                $rootScope.$broadcast("user logged in");
+                $rootScope.visible = true;
+                console.log('user logged in', $rootScope.user);
+            }, function () {
+                console.log('user not logged in');
+                $scope.loggedIn = false;
+                $scope.user = undefined;
+                $rootScope.user = undefined;
+                $rootScope.visible = false;
+                $scope.ready = true;
+            });
 
         $scope.$on('user logged in from form', function () {
-
-            $scope.checkLogin();
+            $scope.loggedIn = true;
+            $scope.user = authService.getLoggedInUser();
+            $rootScope.user = authService.getLoggedInUser();
+            $rootScope.visible = true;
         });
 
-        $scope.checkLogin();
 
 
     }

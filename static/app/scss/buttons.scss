@@ -63,8 +63,13 @@
   text-transform: uppercase;
   padding: 10px 29px;
   outline: none;
+  @include transition(0.25s ease-in-out);
   &:hover {
     background-color: darken($blue, 10%);
+    @include box-shadow(8px 6px 20px 0px rgba(0, 0, 0, 0.3));
+    @include transition(0.25s ease-in-out);
+    bottom: 14px;
+
   }
   &:active {
     background-color: darken($blue, 20%);

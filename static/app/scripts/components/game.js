@@ -1,6 +1,6 @@
 spilldb.component('game', {
     templateUrl: '/static/app/scripts/views/game.html',
-    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst) {
+    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst, authService) {
 
         $scope.game = {};
         $scope.editGame = {};
@@ -48,11 +48,9 @@ spilldb.component('game', {
 
 
         $scope.uploadGamePhoto = function (file) {
-            $http.post("/api/me/upload/photo", {image: file})
+            authService.signedPost("/api/jwt/me/upload/photo", {image: file})
                 .then(function (data) {
-
                     $scope.editGame.images.push(data.data.imageId);
-                    console.log('hey', $scope.editGame);
                 });
         };
 
@@ -107,7 +105,7 @@ spilldb.component('game', {
         };
 
         var getCollections = function () {
-            $http.get('/api/me/collections')
+            authService.signedGet('/api/jwt/me/collections')
                 .then(function (data) {
                     $scope.collections.collections = data.data;
                     if($routeParams.collectionId) {

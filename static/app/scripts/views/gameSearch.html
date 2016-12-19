@@ -1,0 +1,37 @@
+<div class="game-search-wrapper" ng-if="user">
+    <form>
+        <div class="game-search-container">
+            <input type="text" ng-model="toggles.searchInput" placeholder="Søk i dine spill, konsoller, koder, notater..">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </form>
+
+    <ul class="game-search-results" ng-if="toggles.searchInput.length > 2">
+        <li class="results-counter">
+            Søk etter "{{toggles.searchInput}}"
+        </li>
+        <li class="results" ng-repeat="game in gamesSearchResults | filter: toggles.searchInput | limitTo: 14">
+            <a ng-href="/user/{{user.slug}}/c/{{game.collectionId}}/g/{{game._id}}" ng-click="wipeSearch()">
+                <span class="glyphicon glyphicon-search"></span>
+                <div class="game-title">{{game.title}}</div>
+                <div class="additional-properties" ng-if="
+                    game['console'] ||
+                    game['publisher'] ||
+                    game['front'] ||
+                    game['back'] ||
+                    game['region'] ||
+                    game['condition']
+                    ">
+                    <span ng-if="game['console']">{{game['console']}} -</span>
+                    <span ng-if="game['publisher']">{{game['publisher']}} -</span>
+                    <span ng-if="game['front']">{{game['front']}} -</span>
+                    <span ng-if="game['back']">{{game['back']}} -</span>
+                    <span ng-if="game['region']">{{game['region']}} -</span>
+                    <span ng-if="game['condition']">{{game['condition']}}</span>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+
+</div>

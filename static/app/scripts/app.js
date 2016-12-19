@@ -1,7 +1,7 @@
 var mobileThreshold = (window.innerWidth < 800);
 
 var spilldb = angular
-	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'puElasticInput'])
+	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'puElasticInput', 'angular-storage'])
 	.constant("appConst", {
 		"mobileThreshold": window.mobileThreshold
 	})
@@ -29,13 +29,25 @@ var spilldb = angular
 		when('/reset/:email', {
 			'template': '<resetpassword></resetpassword>'
 		}).
+		when('/create/collection', {
+			'template': '<createcollection></createcollection>'
+		}).
+		when('/signup/wizard/profile', {
+			'template': '<createcollection></createcollection>'
+		}).
+		when('/signup/wizard/signup', {
+			'template': '<createcollection></createcollection>'
+		}).
 		when('/login', {
 			'template': '<login></login>'
 		}).
 		when('/logout', {
 			'template': '<logout></logout>'
 		}).
-		otherwise('/');
+		when('/front', {
+			'template': '<front></front>'
+		}).
+		otherwise('/front');
 	}]);
 
 

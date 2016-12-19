@@ -31,9 +31,11 @@
     background-image: url(../images/default-collection.jpg);
     background-size: cover;
     position: relative;
+    background-repeat: no-repeat;
     width: 210px;
     height: 210px;
     display: block;
+    border-radius: 20px;
     margin-right: 14px;
     @media #{$phone} {
       display: inline-block;
@@ -79,6 +81,7 @@
         font-size: 20px;
         padding: 12px;
         outline: none;
+        border-radius: 20px;
         &:before {
           content: "\e046";
         }
@@ -86,11 +89,6 @@
     }
   }
 
-  .profile-photo {
-    border-radius: 50%;
-
-
-  }
 
   .collection-information {
     min-width: 60%;
@@ -110,7 +108,7 @@
       font-size: 14px;
     }
     .description {
-      font-size: 14px;
+      font-size: 16px;
       color: $textDarkGrey;
     }
     h1 {

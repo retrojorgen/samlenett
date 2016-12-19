@@ -1,0 +1,20 @@
+<div class="auth-cover"></div>
+<div class="form-full container">
+
+    <div class="signup-form slim">
+        <div class="form-header-image image-three-games">
+        </div>
+        <h2>Ny samling!</h2>
+        <h3>Du kan lage så mange samlinger du vil! Hva med å lage en per konsoll f.eks? Eller en egen for Street Fighter-samlingen din?</h3>
+        <form ng-submit="createCollection()">
+            <div class="form-group">
+                <label for="gametitle">Samlingtittel</label>
+                <input ng-model="toggles.gameTitle" class="form-control" id="gametitle" type="text" placeholder="Tittel på samling">
+            </div>
+            <div class="form-controls">
+                <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="!user || toggles.gameTitle.length == 0">Opprett</button>
+            </div>
+
+        </form>
+    </div>
+</div>

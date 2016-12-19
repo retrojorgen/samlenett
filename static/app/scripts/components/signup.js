@@ -1,6 +1,6 @@
 spilldb.component('signup', {
     templateUrl: '/static/app/scripts/views/signup.html',
-    controller: function ($scope, $http, $timeout, $location, $rootScope) {
+    controller: function ($scope, $http, $timeout, $location, $rootScope, authService) {
 
         $scope.signupError = false;
         $scope.signupEmailStatus = 0;
@@ -11,21 +11,23 @@ spilldb.component('signup', {
 
         $scope.submitSignupForm = function () {
             $scope.signupError = false;
-            $http.post('/api/signup', {
+            authService.signedPost('/api/signup', {
                 username: $scope.signupUsername,
                 password: $scope.signupPassword,
                 nick: $scope.signupNick
-            }).success(function (data) {
-                $scope.user = data.user;
-                $rootScope.user = data.user;
-                $rootScope.$broadcast("user logged in");
-                $rootScope.$broadcast("user logged in from form");
-                $location.path("/user/" + data.user.slug);
-
-            }).error(function (data) {
-                $scope.signupError = true;
+            })
+                .then(function (response) {
+                    if(response) {
+                        $scope.user = authService.getLoggedInUser();
+                        $rootScope.user = authService.getLoggedInUser();
+                        $rootScope.$broadcast("user logged in");
+                        $rootScope.$broadcast("user logged in from form");
+                        $location.path("/user/" + data.user.slug);
+                    } else {
+                        $scope.signupError = true;
+                    }
             });
-        }
+        };
 
         $scope.typingProxy = function(toCall, parameter, typingTimeout) {
 

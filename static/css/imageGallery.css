@@ -1,23 +1,23 @@
 /*
 Error: Undefined mixin 'translateY'.
-        on line 10 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss, in `translateY'
-        from line 10 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss
+        on line 18 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss, in `translateY'
+        from line 18 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss
 
-5:   width: 100%;
-6:   height: 100%;
-7:   overflow: hidden;
-8:   display: none;
-9:   z-index: 4000;
-10:   @include translateY(100px);
-11:   @include transition(0.25s ease-in-out);
-12:   &.active {
-13:     display: block;
-14:     @include translateY(0);
-15:     .image-gallery-container {
+13:   width: 100%;
+14:   height: 100%;
+15:   overflow: hidden;
+16:   display: none;
+17:   z-index: 4000;
+18:   @include translateY(100px);
+19:   @include transition(0.25s ease-in-out);
+20:   &.active {
+21:     display: block;
+22:     @include translateY(0);
+23:     .image-gallery-container {
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss:10:in `translateY'
-/Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss:10
+/Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss:18:in `translateY'
+/Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss:18
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:351:in `block in visit_mixin'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:98:in `block in with_mixin'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
@@ -74,4 +74,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'translateY'.\A         on line 10 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss, in `translateY'\A         from line 10 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss\A \A 5:   width: 100%;\A 6:   height: 100%;\A 7:   overflow: hidden;\A 8:   display: none;\A 9:   z-index: 4000;\A 10:   @include translateY(100px);\A 11:   @include transition(0.25s ease-in-out);\A 12:   &.active {\A 13:     display: block;\A 14:     @include translateY(0);\A 15:     .image-gallery-container {"; }
+  content: "Error: Undefined mixin 'translateY'.\A         on line 18 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss, in `translateY'\A         from line 18 of /Users/jorjacob/Repos/samlenett/static/app/scss/imageGallery.scss\A \A 13:   width: 100%;\A 14:   height: 100%;\A 15:   overflow: hidden;\A 16:   display: none;\A 17:   z-index: 4000;\A 18:   @include translateY(100px);\A 19:   @include transition(0.25s ease-in-out);\A 20:   &.active {\A 21:     display: block;\A 22:     @include translateY(0);\A 23:     .image-gallery-container {"; }

@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$textDarkGrey".
-        on line 7 of /Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss
+        on line 8 of /Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss
 
-2:   position: relative;
 3:   max-width: 400px;
-4:   padding: 60px 48px;
+4:   padding: 40px;
 5:   background-color: white;
 6:   margin: 50px auto 0 auto;
-7:   color: darken($textDarkGrey, 40%);
-8:   @media #{$phone} {
-9:     padding: 16px 16px 60px 16px;
-10:   }
-11:   h2 {
-12:     margin-top: 0;
+7:   border-radius: 4px;
+8:   color: darken($textDarkGrey, 40%);
+9:   overflow: hidden;
+10:   @include box-shadow(3px 5px 20px rgba(0,0,0,0.14));
+11:   .form-control {
+12:     width: 100%;
+13:   }
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss:7
+/Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss:8
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/funcall.rb:173:in `perform_arg'
@@ -78,4 +78,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$textDarkGrey\".\A         on line 7 of /Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss\A \A 2:   position: relative;\A 3:   max-width: 400px;\A 4:   padding: 60px 48px;\A 5:   background-color: white;\A 6:   margin: 50px auto 0 auto;\A 7:   color: darken($textDarkGrey, 40%);\A 8:   @media #{$phone} {\A 9:     padding: 16px 16px 60px 16px;\A 10:   }\A 11:   h2 {\A 12:     margin-top: 0;"; }
+  content: "Error: Undefined variable: \"$textDarkGrey\".\A         on line 8 of /Users/jorjacob/Repos/samlenett/static/app/scss/forms.scss\A \A 3:   max-width: 400px;\A 4:   padding: 40px;\A 5:   background-color: white;\A 6:   margin: 50px auto 0 auto;\A 7:   border-radius: 4px;\A 8:   color: darken($textDarkGrey, 40%);\A 9:   overflow: hidden;\A 10:   @include box-shadow(3px 5px 20px rgba(0,0,0,0.14));\A 11:   .form-control {\A 12:     width: 100%;\A 13:   }"; }

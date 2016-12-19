@@ -59,12 +59,11 @@
                         </h2>
                         <div class="user-images">
 
-                            <div ng-repeat="image in user.collectionImages"  class="image-container">
-                                <div class="user-images-action-buttons">
-                                    <button ng-if="toggles.editable" ng-if="toggles.editable"   ><span class="glyphicon glyphicon-remove"></span></button>
-                                    <button ng-click="openGallery(image, user.collectionImages)"><span class="glyphicon glyphicon-eye-open"></span></button>
-                                </div>
-                                <img ng-src="/static/userImages/{{image}}.jpg">
+                            <div ng-repeat="image in user.collectionImages"  class="image-container" ng-style="{
+                            'background-image': 'url(/static/userImages/' + image + '.jpg)'
+                            }">
+                                <div class="gallery-desktop-overlay" ng-click="openGallery(image, user.collectionImages)"></div>
+                                <button ng-if="toggles.editable" ng-if="toggles.editable" class="remove-image" ng-click="removeImage(image)"><span class="glyphicon glyphicon-remove"></span></button>
                             </div>
                         </div>
                     </div>

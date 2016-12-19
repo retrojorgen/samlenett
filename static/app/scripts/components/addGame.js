@@ -3,22 +3,11 @@
  */
 spilldb.component('addgame', {
     templateUrl: '/static/app/scripts/views/addGame.html',
-    controller: function ($scope, $routeParams, _, $rootScope, $http, $timeout) {
+    controller: function ($scope, $routeParams, _, $rootScope, $http, $timeout, authService, eventService) {
 
-        $scope.game = {
-            title: '',
-            console: '',
-            publisher: '',
-            front: '',
-            back: '',
-            region: '',
-            condition: '',
-            status: '',
-            notePublic: '',
-            notePrivat: '',
-            gameAdded: new Date(),
-            images: []
-        };
+        $scope.game = {};
+
+
 
         $scope.main =
             [
@@ -68,30 +57,53 @@ spilldb.component('addgame', {
 
         $scope.settings = {};
 
-        $scope.toggles = {
-          collectionSelector: false,
-          search: {},
-          showDialog: false,
-          showDetails: false
+        $scope.toggles = {};
+
+
+
+        $scope.viewReset = function (callback) {
+            var collectionId = $scope.game.collectionId ? $scope.game.collectionId : undefined;
+            $scope.game = {
+                title: '',
+                collectionId: collectionId,
+                console: '',
+                publisher: '',
+                front: '',
+                back: '',
+                region: '',
+                condition: '',
+                status: '',
+                notePublic: '',
+                notePrivat: '',
+                gameAdded: new Date(),
+                images: []
+            };
+            $scope.toggles = {
+                collectionSelector: false,
+                search: {},
+                showDialog: false,
+                showDetails: false
+            };
+            if(callback)
+                callback();
         };
 
 
-
-        var getCollections = function () {
-            $http.get('/api/me/collections')
+        var getCollections = function (callback) {
+            authService.signedGet('/api/jwt/me/collections')
                 .then(function (data) {
                     $scope.collections.collections = data.data;
-                    if($routeParams.collectionId) {
+                    if ($routeParams.collectionId) {
                         $scope.collections.selectedCollection = _.find($scope.collections.collections, function (collection) {
                             return collection._id == $routeParams.collectionId;
                         });
                         $scope.game.collectionId = $scope.collections.selectedCollection._id;
                     }
+                    if(callback) {
+                        callback();
+                    }
                 });
-
         };
-
-
 
         var setSelectedCollectionFromRouteParams = function () {
             $scope.collections.selectedCollection = _.find($scope.collections.collections, function (collection) {
@@ -135,6 +147,11 @@ spilldb.component('addgame', {
                 .success(function (dbGame) {
                     $scope.toggles.showDialog = false;
                     $rootScope.$broadcast('add to active collection', dbGame);
+                    eventService.postEvent({
+                        type: "new game",
+                        referenceId: dbGame._id,
+                        referenceObject: dbGame
+                    });
                 });
         }
 
@@ -153,19 +170,18 @@ spilldb.component('addgame', {
             getCollections();
         });
 
-        $scope.uploadGamePhoto = function (file, reference) {
-            console.log('gikk hit:', reference);
-        };
 
         $scope.uploadGamePhoto = function (file) {
-            $http.post("/api/me/upload/photo", {image: file})
+            $rootScope.$broadcast("loading on", "Laster opp bilde");
+            authService.signedPost("/api/jwt/me/upload/photo", {image: file})
                 .then(function (data) {
 
                     $scope.game.images.push(data.data.imageId);
+                    $rootScope.$broadcast("loading off");
                 });
         };
 
-        getCollections();
+
 
 
         $scope.removeImage = function (image) {
@@ -180,23 +196,18 @@ spilldb.component('addgame', {
                 setSelectedCollectionFromRouteParams();
             }
         });
-        /**
-        $(document).on('click', function (e) {
-            var container = $("#addgame-form");
-            var button = $("#add-game-button");
 
-            if (
-                !container.is(e.target)
-                && !button.is(e.target) // if the target of the click isn't the container...
-                && container.has(e.target).length === 0) // ... nor a descendant of the container
-            {
-                $timeout(function() {
-                    // anything you want can go here and will safely be run on the next digest.
-                    $scope.toggles.showDialog = false;
-                })
-
+        $scope.toggleAddGameDialog = function () {
+            if(!$scope.toggles.showDialog) {
+                $rootScope.$broadcast("loading on");
+                $scope.viewReset(function () {
+                    getCollections(function () {
+                        $rootScope.$broadcast("loading off");
+                        $scope.toggles.showDialog = true;
+                    });
+                });
+            } else {
+                $scope.toggles.showDialog = false;
             }
-        });
-         **/
-
+        }
     }});

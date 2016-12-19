@@ -1,23 +1,23 @@
 /*
 Error: Undefined mixin 'transition'.
-        on line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss, in `transition'
-        from line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss
+        on line 16 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss, in `transition'
+        from line 16 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss
 
-10:     padding: 0px;
-11:     border: 1px solid grey;
-12:     width: 47px;
-13:     height: 28px;
-14:     margin: 0;
-15:     @include transition(0.1s ease-in-out);
-16:     cursor: pointer;
-17:     &.slider-on {
-18:       background-color: $blue;
-19:       border: 1px solid $blue;
-20: 
+11:     position: relative;
+12:     border: 1px solid grey;
+13:     width: 47px;
+14:     height: 28px;
+15:     margin: 0;
+16:     @include transition(0.1s ease-in-out);
+17:     cursor: pointer;
+18:     &.slider-on {
+19:       background-color: $blue;
+20:       border: 1px solid $blue;
+21: 
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss:15:in `transition'
-/Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss:15
+/Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss:16:in `transition'
+/Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss:16
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:351:in `block in visit_mixin'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:98:in `block in with_mixin'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
@@ -85,4 +85,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'transition'.\A         on line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss, in `transition'\A         from line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss\A \A 10:     padding: 0px;\A 11:     border: 1px solid grey;\A 12:     width: 47px;\A 13:     height: 28px;\A 14:     margin: 0;\A 15:     @include transition(0.1s ease-in-out);\A 16:     cursor: pointer;\A 17:     &.slider-on {\A 18:       background-color: $blue;\A 19:       border: 1px solid $blue;\A 20: "; }
+  content: "Error: Undefined mixin 'transition'.\A         on line 16 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss, in `transition'\A         from line 16 of /Users/jorjacob/Repos/samlenett/static/app/scss/slider.scss\A \A 11:     position: relative;\A 12:     border: 1px solid grey;\A 13:     width: 47px;\A 14:     height: 28px;\A 15:     margin: 0;\A 16:     @include transition(0.1s ease-in-out);\A 17:     cursor: pointer;\A 18:     &.slider-on {\A 19:       background-color: $blue;\A 20:       border: 1px solid $blue;\A 21: "; }

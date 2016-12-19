@@ -3,6 +3,11 @@
   height: 50px;
   padding-right: 15px;
   cursor: pointer;
+  @media #{$phone} {
+    position: absolute;
+    right: 0;
+    padding-left: 14px;
+  }
   &:hover {
     background-color: $darkDarkGrey;
     .attribute-list {
@@ -21,7 +26,8 @@
     margin: 0;
     @media #{$phone} {
       width: 140px;
-      left: -54px;
+      right: 0;
+      left: auto;
     }
     li {
 

@@ -38,7 +38,7 @@ var sendCodeMail = function (email, code, callback) {
   });
 };
 
-module.exports = function(app, passport, dbQueries) {
+module.exports = function(app, passport, dbQueries, config) {
 
   app.get('/api', function (req, res, next) {
     
@@ -49,49 +49,47 @@ module.exports = function(app, passport, dbQueries) {
         res.send("error");
   });
 
-  // process the login form
-  app.post('/api/login', passport.authenticate('local-login', {
-            successRedirect : '/api/auth/success', // In both cases redirect to auth
-            failureRedirect : '/api/auth/fail', // 
-            failureFlash : true // allow flash messages
-    }));
-
-
-  app.post('/api/signup', passport.authenticate('local-signup', {
-    successRedirect : '/api/auth', // redirect to the secure profile section
-    failureRedirect : '/api/auth', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
-
-  app.get('/api/auth', function (req, res, next) {
-
-    var status = {
-      status: req.isAuthenticated(),
-      user: req.user || undefined
-    };
-
-    
-    if(!req.isAuthenticated()) {
-      res.status(401).json(status);
+  app.post('/api/signup', function(req, res) {
+    if (!req.body.username || !req.body.password || !req.body.nick) {
+      res.json({success: false, msg: 'Please pass name and password.'});
     } else {
-      res.json(status);  
+      dbQueries.createUser(req.body.username, req.body.password, req.body.nick, function (user) {
+        var token = jwt.encode(user, config.secret);
+        if(user) {
+          res.json({success: true, msg: 'Successful created new user.', token: 'JWT ' + token, user: user});
+        } else {
+          res.json({success: false, msg: 'Username already exists.'});
+        }
+      });
     }
   });
 
-  app.get('/api/auth/:status', function (req, res, next) {
 
-    var status = {
-      status: req.isAuthenticated(),
-      user: req.user || undefined
-    };
-
-    
-    if(!req.isAuthenticated()) {
-      res.status(401).json(status);
-    } else {
-      res.json(status);  
-    }
+  app.post('/api/authenticate', function(req, res) {
+    dbQueries.getUserFromUsername(req.body.username, function (user) {
+      if(user) {
+        user.comparePassword(req.body.password, function (err, isMatch) {
+          if (isMatch && !err) {
+            // if user is found and password is right create a token
+            var token = jwt.encode(user, config.secret);
+            // return the information including token as JSON
+            res.json({success: true, token: 'JWT ' + token, user: user});
+          } else {
+            res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+          }
+        });
+      } else {
+        res.send({success: false, msg: 'Authentication failed. User not found.'});
+      }
+    });
   });
+
+
+  app.get('/api/jwt/me', passport.authenticate('jwt', { session: false}), function(req, res) {
+    res.json(req.user);
+  });
+
+
 
   app.get('/api/search/console/:phrase', function (req, res, next) {
 
@@ -157,6 +155,24 @@ module.exports = function(app, passport, dbQueries) {
     dbQueries.searchGames(searchPhrase, function (results) {
       res.json(results);
     });
+  });
+
+  app.get('/api/events/get', function (req, res) {
+    dbQueries.getEvents(function (events) {
+      res.json(events);
+    });
+  });
+
+  app.post('/api/jwt/event', passport.authenticate('jwt', { session: false}), function (req,res) {
+    var event = req.body.event;
+    event.referenceUserSlug = req.user.slug;
+    event.referenceUserNick = req.user.nick;
+    event.referenceUserId = req.user._id;
+    event.referenceUserProfileImageId = req.user.profileImageId;
+
+    dbQueries.insertEvent(event, function (event) {
+      res.json(event);
+    })
   });
 
   app.post('/api/check/username', function (req,res,next) {
@@ -230,10 +246,10 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/get/me/complete', function (req,res,next) {
+  app.get('/api/jwt/me/complete', passport.authenticate('jwt', { session: false}), function (req,res,next) {
     dbQueries.getSettings(function (settings) {
         dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
-          dbQueries.getGamesForUserFromUserId(req.user_id, function (newGames) {
+          dbQueries.getGamesForUserFromUserId(req.user._id, function (newGames) {
             res.json({
               games: newGames,
               newGames: newGames,
@@ -246,21 +262,20 @@ module.exports = function(app, passport, dbQueries) {
       });
   });
 
-  app.get('/api/me/collections', function (req, res, next) {
+  app.get('/api/jwt/me/collections', passport.authenticate('jwt', { session: false}), function (req, res, next) {
     dbQueries.getCollectionsFromUserId(req.user._id, function (collections) {
-      
       res.json(collections);
     });
   });
 
-  app.post('/api/me/bulk/delete', function (req, res) {
+  app.post('/api/jwt/me/bulk/delete', passport.authenticate('jwt', { session: false}), function (req, res) {
     var ids = req.body;
     dbQueries.deleteGames(ids, function (response) {
       res.json(response);
     });
   });
 
-  app.post('/api/me/bulk/move', function (req, res) {
+  app.post('/api/jwt/me/bulk/move', passport.authenticate('jwt', { session: false}), function (req, res) {
     var ids = req.body.games;
     var collectionId = req.body.collectionId;
     dbQueries.moveGames(ids, collectionId, function (response) {
@@ -268,7 +283,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/bulk/copy', function (req, res) {
+  app.post('/api/jwt/me/bulk/copy', passport.authenticate('jwt', { session: false}), function (req, res) {
     var ids = req.body.games;
     var collectionId = req.body.collectionId;
     dbQueries.copyGames(ids, collectionId, function (response) {
@@ -276,7 +291,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/update/collection', function (req, res) {
+  app.post('/api/jwt/me/update/collection', passport.authenticate('jwt', { session: false}), function (req, res) {
     console.log(req.body.collection);
     
     dbQueries.updateCollection(req.body.collection, function (collection) {
@@ -284,17 +299,15 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/create/collection', function (req, res) {
-    var title = "ny liste";
-    if(req.body.type == "collections") title = "Ny samling";
-    if(req.body.type == "goals") title = "Nye mål";
-    if(req.body.type == "sales") title = "Ny salgsliste";
-    dbQueries.addCollection(title, req.user._id, req.body.type, function (collection) {
+  app.post('/api/jwt/me/create/collection', passport.authenticate('jwt', { session: false}), function (req, res) {
+    var title = req.body.title;
+    var type = req.body.type;
+    dbQueries.addCollection(title, req.user._id, type, function (collection) {
       res.json(collection);
     });
   });
 
-  app.post("/api/me/update/description", function (req, res) {
+  app.post("/api/jwt/me/update/description", passport.authenticate('jwt', { session: false}), function (req, res) {
     dbQueries.updateDescription(req.user._id, req.body.description, function () {
       res.json({
         description: req.body.description
@@ -302,7 +315,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/upload/userphoto', function (req, res) {
+  app.post('/api/jwt/me/upload/userphoto', passport.authenticate('jwt', { session: false}), function (req, res) {
     console.log('kukken server');
     addImage(req.body.image, function (addedImage) {
       dbQueries.addImageToUser(req.user._id, addedImage._id, function () {
@@ -313,7 +326,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/upload/photo', function (req, res) {
+  app.post('/api/jwt/me/upload/photo', passport.authenticate('jwt', { session: false}), function (req, res) {
     console.log('uploaded photo');
     addImage(req.body.image, function (addedImage) {
         res.json({
@@ -323,7 +336,7 @@ module.exports = function(app, passport, dbQueries) {
   });
 
 
-  app.post('/api/me/remove/userphoto', function (req, res) {
+  app.post('/api/jwt/me/remove/userphoto', passport.authenticate('jwt', { session: false}), function (req, res) {
       dbQueries.removeImageFromUser(req.user._id, req.body.imageId, function () {
         res.json({
           imageId: req.body.imageId
@@ -332,7 +345,7 @@ module.exports = function(app, passport, dbQueries) {
   });
 
 
-  app.post('/api/me/upload/profilephoto', function (req, res) {
+  app.post('/api/jwt/me/upload/profilephoto', passport.authenticate('jwt', { session: false}), function (req, res) {
     addImage(req.body.image, function (addedImage) {
       dbQueries.addProfileImageToUser(req.user._id, addedImage._id, function () {
         res.json({
@@ -342,7 +355,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/upload/collectionphoto', function (req, res) {
+  app.post('/api/jwt/me/upload/collectionphoto', passport.authenticate('jwt', { session: false}), function (req, res) {
     console.log('kom hit 0', req.body.collectionId);
     dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
 
@@ -402,7 +415,7 @@ module.exports = function(app, passport, dbQueries) {
     });
   });
 
-  app.post('/api/me/upload/image', function (req, res, next) {
+  app.post('/api/jwt/me/upload/image', passport.authenticate('jwt', { session: false}), function (req, res, next) {
     dbQueries.addImage(req.body.image, function (addedImage) {
       res.json({
         imageId: addedImage._id,

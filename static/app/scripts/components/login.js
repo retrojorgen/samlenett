@@ -4,7 +4,7 @@
 
 spilldb.component('login', {
     templateUrl: '/static/app/scripts/views/login.html',
-    controller: function ($scope, $http, $timeout, $rootScope, $location) {
+    controller: function ($scope, $http, $timeout, $rootScope, $location, authService) {
 
         $scope.typingTimeouts = {};
 
@@ -22,17 +22,16 @@ spilldb.component('login', {
 
         $scope.submitLoginForm = function () {
             $scope.loginError = false;
-            $http.post('/api/login',{
-                username: $scope.loginUsername,
-                password: $scope.LoginPassword
-            }).success(function (data) {
-                $rootScope.user = data.user;
-                $rootScope.$broadcast("user logged in");
-                $rootScope.$broadcast("user logged in from form");
-                $location.path("/");
-            }).error(function (data) {
-                $scope.statusMessage = "Brukernavn eller passord er feil..";
+            authService.login($scope.loginUsername, $scope.loginPassword, function (response) {
+                if(response) {
+                    $rootScope.user = authService.getLoggedInUser();
+                    $rootScope.$broadcast("user logged in");
+                    $rootScope.$broadcast("user logged in from form");
+                    //$location.path("/");
+                } else {
+                    $scope.statusMessage = "Brukernavn eller passord er feil..";
+                }
+
             });
         };
-
     }});

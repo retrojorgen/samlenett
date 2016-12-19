@@ -62,19 +62,20 @@
                 </div>
             </div>
             <div class="image-wrapper" ng-repeat="image in game.images">
-                <div class="image-container">
+                <div class="image-container" ng-style="{
+                    'background-image': 'url(/static/userImages/' + image + '.jpg)'
+                }">
                     <button class="image-delete-button" ng-click="removeImage(image)"><span class="glyphicon glyphicon-remove"></span></button>
-                    <img ng-if="image" ng-src="static/userImages/{{image}}.jpg">
                 </div>
             </div>
         </div>
 
         <div class="button-container">
-
+            <div>{{game.collectionId}} | {{game.title.length}}</div>
             <button class="dialog-button" ng-click="addGame()" ng-disabled="!game.collectionId || game.title.length == 0">Lagre</button>
             <button class="dialog-button cancel" ng-click="toggles.showDialog = false;">Avbryt</button>
         </div>
     </div>
 </div>
 
-<button class="add-game-button" id="add-game-button" ng-click="toggles.showDialog = true;" ng-if="user">+ legg til spill</button>
+<button class="add-game-button" id="add-game-button" ng-click="toggleAddGameDialog()" ng-if="user">+ legg til spill</button>

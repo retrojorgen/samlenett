@@ -42,13 +42,18 @@
 /* line 27, ../app/scss/auth.scss */
 .auth .profile-image {
   background-size: cover;
-  background-image: url("userImages/57da923427b493018b00a314.jpg");
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzIzMzIzYiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3498db), color-stop(100%, #23323b));
+  background-image: -moz-linear-gradient(#3498db, #23323b);
+  background-image: -webkit-linear-gradient(#3498db, #23323b);
+  background-image: linear-gradient(#3498db, #23323b);
   padding: 17px 17px 16px 16px;
   background-color: #a0a0a0;
   /* width: 20px; */
   /* height: 20px; */
   background-size: cover;
-  border-radius: 50%;
+  border-radius: 10px;
   display: inline-block;
   /* border: 1px solid white; */
   margin-top: 8px;
@@ -57,12 +62,18 @@
   float: right;
 }
 @media only screen and (max-width: 800px) {
-  /* line 42, ../app/scss/auth.scss */
+  /* line 27, ../app/scss/auth.scss */
+  .auth .profile-image {
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 45, ../app/scss/auth.scss */
   .auth .profile-image .login-buttons-container {
     display: flex;
   }
 }
-/* line 48, ../app/scss/auth.scss */
+/* line 51, ../app/scss/auth.scss */
 .auth .btn {
   cursor: pointer;
   margin-top: 6px;
@@ -70,7 +81,7 @@
   color: white;
   background-color: transparent;
   border: 0;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 8px 20px;
   outline: none;
   -moz-transition: 0.5s;
@@ -78,165 +89,40 @@
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-/* line 59, ../app/scss/auth.scss */
+/* line 62, ../app/scss/auth.scss */
 .auth .btn.signup {
   background-color: #3498DB;
   border: 0;
 }
-/* line 63, ../app/scss/auth.scss */
+/* line 66, ../app/scss/auth.scss */
 .auth .btn.login {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 70, ../app/scss/auth.scss */
+/* line 73, ../app/scss/auth.scss */
 .auth .btn.logout {
-  border-radius: 50%;
+  border-radius: 4px;
   padding: 4px 6px;
 }
 
-/* line 79, ../app/scss/auth.scss */
-.user-bar {
-  position: relative;
-  float: left;
-}
-@media only screen and (max-width: 800px) {
-  /* line 79, ../app/scss/auth.scss */
-  .user-bar {
-    float: none;
-    width: 150px;
-  }
-}
-/* line 87, ../app/scss/auth.scss */
-.user-bar.expanded ul {
-  height: auto;
-}
-/* line 91, ../app/scss/auth.scss */
-.user-bar.expanded ul li.current-collection:after {
-  -moz-transform: rotate(-180deg) translateY(2px);
-  -ms-transform: rotate(-180deg) translateY(2px);
-  -webkit-transform: rotate(-180deg) translateY(2px);
-  transform: rotate(-180deg) translateY(2px);
-  -moz-transition: 0.1s;
-  -o-transition: 0.1s;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-/* line 99, ../app/scss/auth.scss */
-.user-bar ul {
-  position: absolute;
-  left: 0;
-  top: 0;
-  min-width: 200px;
-  height: 50px;
-  overflow: hidden;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  -moz-transition: 0.1s;
-  -o-transition: 0.1s;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-@media only screen and (max-width: 800px) {
-  /* line 99, ../app/scss/auth.scss */
-  .user-bar ul {
-    width: 150px;
-    min-width: 150px;
-  }
-}
-/* line 116, ../app/scss/auth.scss */
-.user-bar ul li {
-  display: block;
-  width: 100%;
-  font-size: 14px;
-}
-@media only screen and (max-width: 800px) {
-  /* line 116, ../app/scss/auth.scss */
-  .user-bar ul li {
-    font-size: 12px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-}
-/* line 126, ../app/scss/auth.scss */
-.user-bar ul li.current-collection {
-  padding: 15px;
-  cursor: pointer;
-  background-color: #2f3137;
-  border-right: 1px solid #1f2125;
-  position: relative;
-}
-@media only screen and (max-width: 800px) {
-  /* line 126, ../app/scss/auth.scss */
-  .user-bar ul li.current-collection {
-    padding: 16px 20px 17px 15px;
-  }
-}
-/* line 135, ../app/scss/auth.scss */
-.user-bar ul li.current-collection:hover {
-  background-color: #1f2125;
-  color: white;
-}
-/* line 139, ../app/scss/auth.scss */
-.user-bar ul li.current-collection:after {
-  top: 50%;
-  right: 10px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(52, 152, 219, 0);
-  border-top-color: #3498DB;
-  border-width: 4px;
-  margin-left: -8px;
-  margin-top: -2px;
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-}
-/* line 157, ../app/scss/auth.scss */
-.user-bar ul li a {
-  padding: 15px 15px 15px 28px;
-  display: block;
-  background-color: #2f3137;
-}
-@media only screen and (max-width: 800px) {
-  /* line 157, ../app/scss/auth.scss */
-  .user-bar ul li a {
-    font-size: 12px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 15px 15px 15px 15px;
-  }
-}
-/* line 170, ../app/scss/auth.scss */
-.user-bar ul li a:hover {
-  background-color: #1f2125;
-  color: white;
-}
-
-/* line 181, ../app/scss/auth.scss */
+/* line 83, ../app/scss/auth.scss */
 .auth-cover {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-image: url(/static/images/zelda-collection-background.jpg);
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzI5ODBiOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3498db), color-stop(100%, #2980b9));
+  background-image: -moz-linear-gradient(#3498db, #2980b9);
+  background-image: -webkit-linear-gradient(#3498db, #2980b9);
+  background-image: linear-gradient(#3498db, #2980b9);
   background-size: cover;
-  opacity: 0.2;
+  opacity: 1;
 }
 @media only screen and (max-width: 800px) {
-  /* line 181, ../app/scss/auth.scss */
+  /* line 83, ../app/scss/auth.scss */
   .auth-cover {
     position: fixed;
     top: 0;
@@ -263,35 +149,27 @@
 
 /* line 19, ../app/scss/bootstrapOverrides.scss */
 .btn {
-  border-radius: 20px;
-}
-
-/* line 23, ../app/scss/bootstrapOverrides.scss */
-.btn {
+  border-radius: 4px;
   font-size: 100%;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 8px 20px;
-}
-
-/* line 30, ../app/scss/bootstrapOverrides.scss */
-.btn {
   outline: none;
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 34, ../app/scss/bootstrapOverrides.scss */
+  /* line 29, ../app/scss/bootstrapOverrides.scss */
   .navbar-text {
     margin-right: 10px;
     display: inline-block;
   }
-  /* line 38, ../app/scss/bootstrapOverrides.scss */
+  /* line 33, ../app/scss/bootstrapOverrides.scss */
   .navbar-text span {
     display: none;
   }
 }
 
-/* line 44, ../app/scss/bootstrapOverrides.scss */
+/* line 39, ../app/scss/bootstrapOverrides.scss */
 .navbar-form {
   border-top: 0;
   border-bottom: 0;
@@ -300,24 +178,24 @@
   box-shadow: 0 0 0 0 transparent;
 }
 
-/* line 50, ../app/scss/bootstrapOverrides.scss */
+/* line 45, ../app/scss/bootstrapOverrides.scss */
 .navbar-samledb {
   border: 0;
 }
 @media only screen and (max-width: 800px) {
-  /* line 50, ../app/scss/bootstrapOverrides.scss */
+  /* line 45, ../app/scss/bootstrapOverrides.scss */
   .navbar-samledb {
     display: flex;
     z-index: 2000;
   }
-  /* line 55, ../app/scss/bootstrapOverrides.scss */
+  /* line 50, ../app/scss/bootstrapOverrides.scss */
   .navbar-samledb .auth {
     margin-left: 14px;
     width: 100%;
   }
 }
 
-/* line 62, ../app/scss/bootstrapOverrides.scss */
+/* line 57, ../app/scss/bootstrapOverrides.scss */
 .input-label {
   text-transform: uppercase;
   color: #3498DB;
@@ -326,19 +204,23 @@
   margin: 4px 0 4px 0;
 }
 
-/* line 70, ../app/scss/bootstrapOverrides.scss */
+/* line 65, ../app/scss/bootstrapOverrides.scss */
 .navbar-brand {
   background-color: #3498DB;
 }
+/* line 67, ../app/scss/bootstrapOverrides.scss */
+.navbar-brand:hover {
+  background-color: #3498DB;
+}
 @media only screen and (max-width: 800px) {
-  /* line 70, ../app/scss/bootstrapOverrides.scss */
+  /* line 65, ../app/scss/bootstrapOverrides.scss */
   .navbar-brand {
     padding: 10px;
     background-color: transparent;
     border-right: 1px solid #1f2125;
   }
 }
-/* line 77, ../app/scss/bootstrapOverrides.scss */
+/* line 75, ../app/scss/bootstrapOverrides.scss */
 .navbar-brand .spilldb-logo {
   position: relative;
   width: 90px;
@@ -347,7 +229,7 @@
   background-size: 100% auto;
 }
 @media only screen and (max-width: 800px) {
-  /* line 77, ../app/scss/bootstrapOverrides.scss */
+  /* line 75, ../app/scss/bootstrapOverrides.scss */
   .navbar-brand .spilldb-logo {
     background-image: url("../images/samledbmobilelogohvit.svg");
     background-size: 100% auto;
@@ -358,7 +240,7 @@
   }
 }
 
-/* line 95, ../app/scss/bootstrapOverrides.scss */
+/* line 93, ../app/scss/bootstrapOverrides.scss */
 .form-control {
   font-size: 16px;
 }
@@ -393,7 +275,7 @@
 .bottom-navbar .container-fluid .btn {
   padding: 4px 11px;
   font-size: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-left: 10px;
 }
 /* line 30, ../app/scss/bottomNavbar.scss */
@@ -511,12 +393,24 @@
   text-transform: uppercase;
   padding: 10px 29px;
   outline: none;
+  -moz-transition: ease-in-out 0.25s;
+  -o-transition: ease-in-out 0.25s;
+  -webkit-transition: ease-in-out 0.25s;
+  transition: ease-in-out 0.25s;
 }
-/* line 66, ../app/scss/buttons.scss */
+/* line 67, ../app/scss/buttons.scss */
 .add-game-button:hover {
   background-color: #217dbb;
+  -moz-box-shadow: 8px 6px 20px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 8px 6px 20px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 8px 6px 20px 0px rgba(0, 0, 0, 0.3);
+  -moz-transition: ease-in-out 0.25s;
+  -o-transition: ease-in-out 0.25s;
+  -webkit-transition: ease-in-out 0.25s;
+  transition: ease-in-out 0.25s;
+  bottom: 14px;
 }
-/* line 69, ../app/scss/buttons.scss */
+/* line 74, ../app/scss/buttons.scss */
 .add-game-button:active {
   background-color: #196090;
 }
@@ -560,9 +454,11 @@
   background-image: url(../images/default-collection.jpg);
   background-size: cover;
   position: relative;
+  background-repeat: no-repeat;
   width: 210px;
   height: 210px;
   display: block;
+  border-radius: 20px;
   margin-right: 14px;
 }
 @media only screen and (max-width: 800px) {
@@ -573,17 +469,17 @@
     margin-right: 0;
   }
 }
-/* line 43, ../app/scss/collection.scss */
+/* line 45, ../app/scss/collection.scss */
 .collection-header .collection-photo.no-photo .file-upload-button-container,
 .collection-header .profile-photo.no-photo .file-upload-button-container {
   display: inline-block;
 }
-/* line 48, ../app/scss/collection.scss */
+/* line 50, ../app/scss/collection.scss */
 .collection-header .collection-photo:hover .file-upload-button-container,
 .collection-header .profile-photo:hover .file-upload-button-container {
   display: inline-block;
 }
-/* line 53, ../app/scss/collection.scss */
+/* line 55, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container,
 .collection-header .profile-photo .file-upload-button-container {
   position: absolute;
@@ -593,7 +489,7 @@
   margin-left: -34px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 53, ../app/scss/collection.scss */
+  /* line 55, ../app/scss/collection.scss */
   .collection-header .collection-photo .file-upload-button-container,
   .collection-header .profile-photo .file-upload-button-container {
     display: inline-block;
@@ -603,7 +499,7 @@
     left: auto;
   }
 }
-/* line 67, ../app/scss/collection.scss */
+/* line 69, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container .upload-photo-button,
 .collection-header .profile-photo .file-upload-button-container .upload-photo-button {
   position: relative;
@@ -620,43 +516,40 @@
   font-size: 20px;
   padding: 12px;
   outline: none;
+  border-radius: 20px;
 }
-/* line 82, ../app/scss/collection.scss */
+/* line 85, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container .upload-photo-button:before,
 .collection-header .profile-photo .file-upload-button-container .upload-photo-button:before {
   content: "\e046";
 }
-/* line 89, ../app/scss/collection.scss */
-.collection-header .profile-photo {
-  border-radius: 50%;
-}
-/* line 95, ../app/scss/collection.scss */
+/* line 93, ../app/scss/collection.scss */
 .collection-header .collection-information {
   min-width: 60%;
 }
-/* line 99, ../app/scss/collection.scss */
+/* line 97, ../app/scss/collection.scss */
 .collection-header .collection-title {
   position: relative;
   color: white;
   outline: none;
 }
-/* line 103, ../app/scss/collection.scss */
+/* line 101, ../app/scss/collection.scss */
 .collection-header .collection-title .kicker {
   text-transform: uppercase;
   margin-bottom: 0;
   color: #a0a0a0;
 }
-/* line 108, ../app/scss/collection.scss */
+/* line 106, ../app/scss/collection.scss */
 .collection-header .collection-title .byline {
   color: #a0a0a0;
   font-size: 14px;
 }
-/* line 112, ../app/scss/collection.scss */
+/* line 110, ../app/scss/collection.scss */
 .collection-header .collection-title .description {
-  font-size: 14px;
+  font-size: 16px;
   color: #a0a0a0;
 }
-/* line 116, ../app/scss/collection.scss */
+/* line 114, ../app/scss/collection.scss */
 .collection-header .collection-title h1 {
   display: inline-block;
   outline: none;
@@ -666,13 +559,13 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 @media only screen and (max-width: 800px) {
-  /* line 116, ../app/scss/collection.scss */
+  /* line 114, ../app/scss/collection.scss */
   .collection-header .collection-title h1 {
     font-size: 22px;
     font-weight: bold;
   }
 }
-/* line 129, ../app/scss/collection.scss */
+/* line 127, ../app/scss/collection.scss */
 .collection-header .collection-background {
   position: absolute;
   left: 0;
@@ -682,7 +575,7 @@
   background-size: cover;
 }
 
-/* line 139, ../app/scss/collection.scss */
+/* line 137, ../app/scss/collection.scss */
 .collection-edit {
   position: absolute;
   top: 0;
@@ -703,23 +596,23 @@
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 151, ../app/scss/collection.scss */
+/* line 149, ../app/scss/collection.scss */
 .collection-edit.visible {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 155, ../app/scss/collection.scss */
+/* line 153, ../app/scss/collection.scss */
 .collection-edit label {
   color: #3a3a3a;
 }
-/* line 158, ../app/scss/collection.scss */
+/* line 156, ../app/scss/collection.scss */
 .collection-edit form {
   margin-top: 14px;
 }
 
-/* line 164, ../app/scss/collection.scss */
+/* line 162, ../app/scss/collection.scss */
 .editable-wrapper {
   border-bottom: 2px solid #3498DB;
   background-color: #0D3349;
@@ -727,11 +620,11 @@
   position: relative;
   outline: none;
 }
-/* line 170, ../app/scss/collection.scss */
+/* line 168, ../app/scss/collection.scss */
 .editable-wrapper > * {
   outline: none;
 }
-/* line 173, ../app/scss/collection.scss */
+/* line 171, ../app/scss/collection.scss */
 .editable-wrapper .editable-button-container {
   position: absolute;
   top: 100%;
@@ -739,7 +632,7 @@
   width: 100%;
   text-align: right;
 }
-/* line 180, ../app/scss/collection.scss */
+/* line 178, ../app/scss/collection.scss */
 .editable-wrapper .editable-action-button {
   font-size: 11px;
   color: black;
@@ -750,7 +643,7 @@
   outline: none;
 }
 
-/* line 192, ../app/scss/collection.scss */
+/* line 190, ../app/scss/collection.scss */
 .collection-wrapper {
   border-left: 0 solid transparent;
   border-top: 84px solid transparent;
@@ -764,17 +657,17 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   padding: 14px 0 80px 0;
 }
-/* line 204, ../app/scss/collection.scss */
+/* line 202, ../app/scss/collection.scss */
 .collection-wrapper.no-back {
   border-top: 50px solid transparent;
 }
-/* line 208, ../app/scss/collection.scss */
+/* line 206, ../app/scss/collection.scss */
 .collection-wrapper .collection-container {
   background-color: #181818;
   padding: 0 14px 0 14px;
 }
 
-/* line 215, ../app/scss/collection.scss */
+/* line 213, ../app/scss/collection.scss */
 .collection-list-header {
   margin-top: 10px;
   color: #a0a0a0;
@@ -783,35 +676,35 @@
   font-size: 10px;
 }
 
-/* line 224, ../app/scss/collection.scss */
+/* line 222, ../app/scss/collection.scss */
 .collection-list-item.add-list-button {
   background-color: #3498DB;
   color: white;
   padding: 15px;
   cursor: pointer;
 }
-/* line 229, ../app/scss/collection.scss */
+/* line 227, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:hover {
   background-color: #217dbb;
 }
-/* line 232, ../app/scss/collection.scss */
+/* line 230, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:active {
   background-color: #196090;
 }
 
-/* line 238, ../app/scss/collection.scss */
+/* line 236, ../app/scss/collection.scss */
 .add-description-wrapper {
   margin-bottom: 14px;
 }
 
-/* line 243, ../app/scss/collection.scss */
+/* line 241, ../app/scss/collection.scss */
 .collection-selector-container {
   background-color: #1f2125;
   border: 1px solid #3498DB;
   margin-bottom: 20px;
   position: relative;
 }
-/* line 248, ../app/scss/collection.scss */
+/* line 246, ../app/scss/collection.scss */
 .collection-selector-container .game-input {
   font-size: 16px;
   background-color: transparent;
@@ -821,34 +714,34 @@
   margin: 0;
   outline: none;
 }
-/* line 257, ../app/scss/collection.scss */
+/* line 255, ../app/scss/collection.scss */
 .collection-selector-container .search-wrapper {
   border-left: 1px solid #3498DB;
   border-bottom: 1px solid #3498DB;
   border-right: 1px solid #3498DB;
   text-align: left;
 }
-/* line 263, ../app/scss/collection.scss */
+/* line 261, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 267, ../app/scss/collection.scss */
+/* line 265, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li {
   padding: 10px;
   text-align: left;
   cursor: pointer;
 }
-/* line 271, ../app/scss/collection.scss */
+/* line 269, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li:hover {
   background-color: #080809;
 }
-/* line 276, ../app/scss/collection.scss */
+/* line 274, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected {
   position: relative;
 }
-/* line 278, ../app/scss/collection.scss */
+/* line 276, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected:after {
   top: 50%;
   right: 10px;
@@ -873,7 +766,7 @@
   transition: 0.25s;
 }
 
-/* line 299, ../app/scss/collection.scss */
+/* line 297, ../app/scss/collection.scss */
 .back-to {
   display: block;
   width: 100%;
@@ -888,7 +781,7 @@
   margin: 0 auto;
 }
 @media only screen and (max-width: 800px) {
-  /* line 299, ../app/scss/collection.scss */
+  /* line 297, ../app/scss/collection.scss */
   .back-to {
     display: block;
     width: 100%;
@@ -911,7 +804,7 @@
   top: 0;
   left: 0;
   display: flex;
-  z-index: 10000;
+  z-index: 4004;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.4);
@@ -1042,7 +935,7 @@
 }
 /* line 115, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button {
-  border-radius: 20px;
+  border-radius: 4px;
   background-color: #3498DB;
   color: white;
   padding: 8px 40px;
@@ -1134,42 +1027,88 @@
 .signup-form {
   position: relative;
   max-width: 400px;
-  padding: 60px 48px;
+  padding: 40px;
   background-color: white;
   margin: 50px auto 0 auto;
+  border-radius: 4px;
   color: #3a3a3a;
+  overflow: hidden;
+  -moz-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
+  -webkit-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
+}
+/* line 11, ../app/scss/forms.scss */
+.signup-form .form-control {
+  width: 100%;
+}
+/* line 14, ../app/scss/forms.scss */
+.signup-form.slim {
+  max-width: 320px;
+}
+/* line 17, ../app/scss/forms.scss */
+.signup-form label {
+  display: none;
 }
 @media only screen and (max-width: 800px) {
   /* line 1, ../app/scss/forms.scss */
   .signup-form {
     padding: 16px 16px 60px 16px;
+    border-radius: 0;
   }
 }
-/* line 11, ../app/scss/forms.scss */
+/* line 24, ../app/scss/forms.scss */
 .signup-form h2 {
   margin-top: 0;
   margin-bottom: 16px;
+  text-align: center;
+}
+/* line 30, ../app/scss/forms.scss */
+.signup-form h3 {
+  font-weight: normal;
+  color: #bdbdbd;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+/* line 38, ../app/scss/forms.scss */
+.signup-form .reset-password {
+  text-align: center;
+  padding: 14px;
+}
+/* line 42, ../app/scss/forms.scss */
+.signup-form a {
+  text-align: center;
 }
 
-/* line 17, ../app/scss/forms.scss */
+/* line 47, ../app/scss/forms.scss */
 .form-full {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
+  width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 1001;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
-/* line 27, ../app/scss/forms.scss */
+@media only screen and (max-width: 800px) {
+  /* line 47, ../app/scss/forms.scss */
+  .form-full {
+    display: block;
+  }
+}
+/* line 65, ../app/scss/forms.scss */
 .form-full a {
   color: #3498DB;
   cursor: pointer;
 }
 @media only screen and (max-width: 800px) {
-  /* line 31, ../app/scss/forms.scss */
+  /* line 69, ../app/scss/forms.scss */
   .form-full .form-controls {
     position: fixed;
     bottom: 0;
@@ -1180,7 +1119,7 @@
   }
 }
 
-/* line 44, ../app/scss/forms.scss */
+/* line 82, ../app/scss/forms.scss */
 .send-new-password-container {
   margin-left: -16px;
   margin-right: -16px;
@@ -1188,25 +1127,25 @@
   background-color: #f5f5f5;
 }
 
-/* line 51, ../app/scss/forms.scss */
+/* line 89, ../app/scss/forms.scss */
 .details-wrapper {
   margin-bottom: 20px;
   margin-left: -20px;
   margin-right: -20px;
 }
 
-/* line 57, ../app/scss/forms.scss */
+/* line 95, ../app/scss/forms.scss */
 .details-view {
   padding: 30px 20px 20px 20px;
   margin-top: -10px;
   background-color: #1a242b;
 }
 
-/* line 64, ../app/scss/forms.scss */
+/* line 102, ../app/scss/forms.scss */
 .details-showbutton-container {
   position: relative;
 }
-/* line 66, ../app/scss/forms.scss */
+/* line 104, ../app/scss/forms.scss */
 .details-showbutton-container:before {
   border-top: 1px solid #3498DB;
   position: absolute;
@@ -1216,11 +1155,11 @@
   height: 50%;
   width: 100%;
 }
-/* line 77, ../app/scss/forms.scss */
+/* line 115, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton {
   background-color: #3498DB;
   color: white;
-  border-radius: 20px;
+  border-radius: 4px;
   border: 0;
   text-transform: uppercase;
   font-size: 10px;
@@ -1228,9 +1167,21 @@
   position: relative;
   outline: none;
 }
-/* line 87, ../app/scss/forms.scss */
+/* line 125, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton:hover {
   background-color: #258cd1;
+}
+
+/* line 132, ../app/scss/forms.scss */
+.form-header-image {
+  background-image: url(/static/images/createCollection.png);
+  background-size: cover;
+  background-position: top center;
+  margin-top: -40px;
+  margin-left: -40px;
+  margin-right: -40px;
+  margin-bottom: 20px;
+  height: 140px;
 }
 
 /* line 1, ../app/scss/gamelist.scss */
@@ -1268,12 +1219,18 @@
   border-bottom: 1px solid #37383f;
   pointer-events: none;
 }
-/* line 30, ../app/scss/gamelist.scss */
+@media only screen and (max-width: 800px) {
+  /* line 17, ../app/scss/gamelist.scss */
+  .game-list.table.editable th:before {
+    border: 0;
+  }
+}
+/* line 33, ../app/scss/gamelist.scss */
 .game-list.table.editable td {
   border: 0;
   padding: 0;
 }
-/* line 34, ../app/scss/gamelist.scss */
+/* line 37, ../app/scss/gamelist.scss */
 .game-list.table.editable td:before {
   position: absolute;
   content: "";
@@ -1285,7 +1242,7 @@
   border-bottom: 1px solid #37383f;
   pointer-events: none;
 }
-/* line 49, ../app/scss/gamelist.scss */
+/* line 52, ../app/scss/gamelist.scss */
 .game-list.table.editable td .editable-col .editable-col-user-input {
   padding: 6px;
   outline: none;
@@ -1295,16 +1252,16 @@
   background-color: transparent;
   border: 0;
 }
-/* line 61, ../app/scss/gamelist.scss */
+/* line 64, ../app/scss/gamelist.scss */
 .game-list.table.editable td .editable-col:hover:before {
   border-bottom: 1px solid rgba(55, 108, 179, 0.5);
   border-right: 1px solid rgba(55, 108, 179, 0.5);
 }
-/* line 67, ../app/scss/gamelist.scss */
+/* line 70, ../app/scss/gamelist.scss */
 .game-list.table.editable td .editable-col.selected td:first-child {
   position: relative;
 }
-/* line 76, ../app/scss/gamelist.scss */
+/* line 79, ../app/scss/gamelist.scss */
 .game-list.table.editable td:nth-child(1n+3):hover:after {
   position: absolute;
   width: 100%;
@@ -1316,33 +1273,39 @@
   content: "";
   pointer-events: none;
 }
-/* line 89, ../app/scss/gamelist.scss */
+@media only screen and (max-width: 800px) {
+  /* line 79, ../app/scss/gamelist.scss */
+  .game-list.table.editable td:nth-child(1n+3):hover:after {
+    border: 0;
+  }
+}
+/* line 95, ../app/scss/gamelist.scss */
 .game-list.table.editable .game-toggle {
   display: table-cell;
 }
-/* line 94, ../app/scss/gamelist.scss */
+/* line 100, ../app/scss/gamelist.scss */
 .game-list.table .game-toggle {
   display: none;
   text-align: center;
 }
-/* line 98, ../app/scss/gamelist.scss */
+/* line 104, ../app/scss/gamelist.scss */
 .game-list.table tr {
   background-color: transparent;
   position: relative;
 }
-/* line 102, ../app/scss/gamelist.scss */
+/* line 108, ../app/scss/gamelist.scss */
 .game-list.table tr.game-row.toggled {
   background-color: transparent;
 }
-/* line 105, ../app/scss/gamelist.scss */
+/* line 111, ../app/scss/gamelist.scss */
 .game-list.table tr.game-row.selected {
   background-color: #1f2125;
 }
-/* line 107, ../app/scss/gamelist.scss */
+/* line 113, ../app/scss/gamelist.scss */
 .game-list.table tr.game-row.selected td:first-child {
   position: relative;
 }
-/* line 109, ../app/scss/gamelist.scss */
+/* line 115, ../app/scss/gamelist.scss */
 .game-list.table tr.game-row.selected td:first-child:before {
   content: "";
   left: -8px;
@@ -1353,26 +1316,34 @@
   background-color: #3498db;
   z-index: 1000;
 }
-/* line 122, ../app/scss/gamelist.scss */
+/* line 128, ../app/scss/gamelist.scss */
 .game-list.table tr:hover {
   background-color: rgba(55, 56, 63, 0.5);
 }
-/* line 127, ../app/scss/gamelist.scss */
-.game-list.table tr .context-menu-container {
+/* line 133, ../app/scss/gamelist.scss */
+.game-list.table tr td.context-menu-container {
   font-weight: bold;
   padding: 4px;
+  width: 30px;
+  text-align: center;
+  vertical-align: middle;
 }
 @media only screen and (max-width: 800px) {
-  /* line 127, ../app/scss/gamelist.scss */
-  .game-list.table tr .context-menu-container {
+  /* line 133, ../app/scss/gamelist.scss */
+  .game-list.table tr td.context-menu-container {
     padding: 10px 4px;
   }
+  /* line 142, ../app/scss/gamelist.scss */
+  .game-list.table tr td.context-menu-container a {
+    color: #676875;
+    font-size: 12px !important;
+  }
 }
-/* line 135, ../app/scss/gamelist.scss */
+/* line 149, ../app/scss/gamelist.scss */
 .game-list.table tr th {
   position: relative;
 }
-/* line 137, ../app/scss/gamelist.scss */
+/* line 151, ../app/scss/gamelist.scss */
 .game-list.table tr th:before {
   position: absolute;
   content: "";
@@ -1383,7 +1354,12 @@
   border-bottom: 1px solid #37383f;
   pointer-events: none;
 }
-/* line 149, ../app/scss/gamelist.scss */
+/* line 161, ../app/scss/gamelist.scss */
+.game-list.table tr th.context-menu-header {
+  width: 30px;
+  text-align: center;
+}
+/* line 167, ../app/scss/gamelist.scss */
 .game-list.table tr td {
   padding: 10px 4px;
   color: #fcfcfc;
@@ -1391,7 +1367,7 @@
   height: 26px;
   border: 0;
 }
-/* line 155, ../app/scss/gamelist.scss */
+/* line 173, ../app/scss/gamelist.scss */
 .game-list.table tr td:before {
   position: absolute;
   content: "";
@@ -1402,56 +1378,62 @@
   border-bottom: 1px solid #37383f;
   pointer-events: none;
 }
-/* line 170, ../app/scss/gamelist.scss */
+@media only screen and (max-width: 800px) {
+  /* line 173, ../app/scss/gamelist.scss */
+  .game-list.table tr td:before {
+    border: 0;
+  }
+}
+/* line 191, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls {
   padding: 0;
 }
-/* line 172, ../app/scss/gamelist.scss */
+/* line 193, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls .game-toggle-label {
   width: 100%;
   padding: 4px 0;
   margin: 0;
   text-align: center;
 }
-/* line 177, ../app/scss/gamelist.scss */
+/* line 198, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls .game-toggle-label input {
   margin: 0;
 }
-/* line 181, ../app/scss/gamelist.scss */
+/* line 202, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls .glyphicon {
   cursor: pointer;
 }
-/* line 183, ../app/scss/gamelist.scss */
+/* line 204, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls .glyphicon:hover {
   color: #3498DB;
 }
-/* line 185, ../app/scss/gamelist.scss */
+/* line 206, ../app/scss/gamelist.scss */
 .game-list.table tr td.game-list-controls .glyphicon:hover .description {
   display: inline-block;
 }
-/* line 193, ../app/scss/gamelist.scss */
+/* line 214, ../app/scss/gamelist.scss */
 .game-list.table tr th {
   border-bottom: 1px solid #37383f;
   border-right: 0;
   cursor: pointer;
   height: 26px;
 }
-/* line 198, ../app/scss/gamelist.scss */
+/* line 219, ../app/scss/gamelist.scss */
 .game-list.table tr th:nth-child(even), .game-list.table tr th:nth-child(odd) {
   font-weight: normal;
   text-transform: uppercase;
   text-align: left;
   color: #a0a0a0;
 }
-/* line 204, ../app/scss/gamelist.scss */
+/* line 225, ../app/scss/gamelist.scss */
 .game-list.table tr th:nth-child(even).game-toggle, .game-list.table tr th:nth-child(odd).game-toggle {
   text-align: center;
 }
-/* line 207, ../app/scss/gamelist.scss */
+/* line 228, ../app/scss/gamelist.scss */
 .game-list.table tr th:nth-child(even):hover, .game-list.table tr th:nth-child(odd):hover {
   color: #fcfcfc;
 }
-/* line 211, ../app/scss/gamelist.scss */
+/* line 232, ../app/scss/gamelist.scss */
 .game-list.table tr th.game-list-controls {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzM3NmNiMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
@@ -1462,45 +1444,47 @@
   color: white;
   border-top: 0;
 }
-/* line 218, ../app/scss/gamelist.scss */
+/* line 239, ../app/scss/gamelist.scss */
 .game-list.table tr td:last-child,
 .game-list.table tr th:last-child {
   border-right: 0;
 }
 @media only screen and (max-width: 800px) {
-  /* line 224, ../app/scss/gamelist.scss */
+  /* line 245, ../app/scss/gamelist.scss */
   .game-list.table tr td, .game-list.table tr th {
     display: none;
   }
-  /* line 226, ../app/scss/gamelist.scss */
+  /* line 247, ../app/scss/gamelist.scss */
   .game-list.table tr td.mobile, .game-list.table tr th.mobile {
     display: table-cell;
   }
-  /* line 228, ../app/scss/gamelist.scss */
+  /* line 249, ../app/scss/gamelist.scss */
   .game-list.table tr td.mobile a, .game-list.table tr th.mobile a {
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
   }
-  /* line 235, ../app/scss/gamelist.scss */
+  /* line 257, ../app/scss/gamelist.scss */
   .game-list.table tr td.title, .game-list.table tr th.title {
     width: 90%;
   }
-  /* line 237, ../app/scss/gamelist.scss */
+  /* line 259, ../app/scss/gamelist.scss */
   .game-list.table tr td.title .additional-properties, .game-list.table tr th.title .additional-properties {
-    color: #3498DB;
+    color: #676875;
+    font-size: 10px;
   }
 }
 
-/* line 246, ../app/scss/gamelist.scss */
+/* line 269, ../app/scss/gamelist.scss */
 .game-list.table tr td[contenteditable="true"]:active,
 .game-list.table tr td[contenteditable="true"]:focus {
   outline: none;
   color: #66d1f2;
 }
 
-/* line 253, ../app/scss/gamelist.scss */
+/* line 276, ../app/scss/gamelist.scss */
 .filter-row {
   border-top: 1px solid #2f3137;
   position: relative;
@@ -1509,34 +1493,34 @@
   justify-content: space-between;
   padding: 0;
 }
-/* line 259, ../app/scss/gamelist.scss */
+/* line 282, ../app/scss/gamelist.scss */
 .filter-row .form-control:focus {
   color: #fcfcfc;
   box-shadow: none;
 }
-/* line 263, ../app/scss/gamelist.scss */
+/* line 286, ../app/scss/gamelist.scss */
 .filter-row .input-group-addon {
   background-color: transparent;
   border: 0;
   padding: 0 14px 0 0;
 }
-/* line 269, ../app/scss/gamelist.scss */
+/* line 292, ../app/scss/gamelist.scss */
 .filter-row .form-group {
   padding: 14px 14px;
   position: relative;
 }
 @media only screen and (max-width: 800px) {
-  /* line 269, ../app/scss/gamelist.scss */
+  /* line 292, ../app/scss/gamelist.scss */
   .filter-row .form-group {
     padding: 6px 6px;
   }
 }
-/* line 277, ../app/scss/gamelist.scss */
+/* line 300, ../app/scss/gamelist.scss */
 .filter-row form {
   padding: 0;
   margin: 0;
 }
-/* line 280, ../app/scss/gamelist.scss */
+/* line 303, ../app/scss/gamelist.scss */
 .filter-row form input {
   background-color: transparent;
   color: #a0a0a0;
@@ -1547,7 +1531,7 @@
   display: block;
 }
 
-/* line 292, ../app/scss/gamelist.scss */
+/* line 315, ../app/scss/gamelist.scss */
 .show-more {
   width: 100%;
   background-color: #2980B9;
@@ -1556,16 +1540,34 @@
   border: 0;
   padding: 10px;
 }
-/* line 299, ../app/scss/gamelist.scss */
+/* line 322, ../app/scss/gamelist.scss */
 .show-more:hover {
   background-color: #20638f;
 }
-/* line 302, ../app/scss/gamelist.scss */
+/* line 325, ../app/scss/gamelist.scss */
 .show-more:active {
   background-color: #164666;
 }
 
+/* line 331, ../app/scss/gamelist.scss */
+.noeditable-col a {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* line 1, ../app/scss/imageGallery.scss */
+.gallery-desktop-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* line 9, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper {
   position: fixed;
   top: 0;
@@ -1584,7 +1586,7 @@
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 12, ../app/scss/imageGallery.scss */
+/* line 20, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper.active {
   display: block;
   -moz-transform: translateY(0);
@@ -1592,7 +1594,7 @@
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-/* line 15, ../app/scss/imageGallery.scss */
+/* line 23, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper.active .image-gallery-container {
   -moz-transform: translateY(0px);
   -ms-transform: translateY(0px);
@@ -1604,7 +1606,7 @@
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 21, ../app/scss/imageGallery.scss */
+/* line 29, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-cloak {
   position: fixed;
   left: 0;
@@ -1613,7 +1615,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 }
-/* line 29, ../app/scss/imageGallery.scss */
+/* line 37, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-container {
   position: absolute;
   width: 100%;
@@ -1631,7 +1633,7 @@
   transition: ease-in-out 0.25s;
   overflow: hidden;
 }
-/* line 39, ../app/scss/imageGallery.scss */
+/* line 47, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-container .image-gallery-image {
   position: absolute;
   left: 0;
@@ -1646,16 +1648,16 @@
   -webkit-transition: ease-in-out 0.5s;
   transition: ease-in-out 0.5s;
 }
-/* line 51, ../app/scss/imageGallery.scss */
+/* line 59, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-container .image-gallery-image.current {
   opacity: 1;
 }
-/* line 55, ../app/scss/imageGallery.scss */
+/* line 63, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-container .image-gallery-image img {
   max-width: 100%;
   max-height: 100%;
 }
-/* line 61, ../app/scss/imageGallery.scss */
+/* line 69, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-thumbnails {
   position: absolute;
   bottom: 0;
@@ -1664,7 +1666,7 @@
   height: 100px;
   text-align: center;
 }
-/* line 68, ../app/scss/imageGallery.scss */
+/* line 76, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-thumbnails .image-gallery-thumbnail {
   width: 70px;
   height: 100px;
@@ -1674,19 +1676,19 @@
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 76, ../app/scss/imageGallery.scss */
+/* line 84, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-thumbnails .image-gallery-thumbnail:hover {
   opacity: 0.7;
 }
-/* line 79, ../app/scss/imageGallery.scss */
+/* line 87, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-thumbnails .image-gallery-thumbnail.current {
   opacity: 1;
 }
-/* line 82, ../app/scss/imageGallery.scss */
+/* line 90, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .image-gallery-thumbnails .image-gallery-thumbnail img {
   max-height: 100%;
 }
-/* line 87, ../app/scss/imageGallery.scss */
+/* line 95, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .gallery-button {
   position: absolute;
   background: transparent;
@@ -1697,29 +1699,29 @@
   transform: translateY(-40px);
   outline: none;
 }
-/* line 96, ../app/scss/imageGallery.scss */
+/* line 104, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .gallery-button:hover {
   color: white;
 }
-/* line 99, ../app/scss/imageGallery.scss */
+/* line 107, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .gallery-button.prev-button {
   left: 0;
   right: auto;
 }
-/* line 103, ../app/scss/imageGallery.scss */
+/* line 111, ../app/scss/imageGallery.scss */
 .image-gallery-wrapper .gallery-button.close-button {
   right: 0;
   top: 0;
   transform: translateY(0px);
 }
 
-/* line 114, ../app/scss/imageGallery.scss */
+/* line 122, ../app/scss/imageGallery.scss */
 .images-wrapper {
   margin-bottom: 20px;
   text-align: left;
   vertical-align: top;
 }
-/* line 118, ../app/scss/imageGallery.scss */
+/* line 126, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper {
   width: 25%;
   min-height: 75px;
@@ -1729,27 +1731,31 @@
   position: relative;
   text-align: center;
 }
-/* line 126, ../app/scss/imageGallery.scss */
+/* line 134, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .image-container {
   border: 1px solid #3498DB;
   background-color: #1f2125;
+  background-size: cover;
+  background-position: top center;
   width: 100%;
-  min-height: 65px;
+  min-height: 84px;
   position: relative;
 }
-/* line 132, ../app/scss/imageGallery.scss */
+/* line 142, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .image-container img {
   width: 100%;
 }
-/* line 135, ../app/scss/imageGallery.scss */
+/* line 145, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .image-container p {
   font-size: 10px;
   text-transform: uppercase;
   color: #3498DB;
 }
-/* line 141, ../app/scss/imageGallery.scss */
+/* line 151, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .image-delete-button {
-  border-radius: 50%;
+  border-radius: 10px;
+  width: 28px;
+  height: 28px;
   border: 1px solid #3498DB;
   color: white;
   background-color: #1f2125;
@@ -1758,7 +1764,7 @@
   top: -10px;
   outline: none;
 }
-/* line 152, ../app/scss/imageGallery.scss */
+/* line 164, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .upload-photo-button {
   position: relative;
   top: 1px;
@@ -1775,16 +1781,16 @@
   padding: 12px;
   outline: none;
 }
-/* line 167, ../app/scss/imageGallery.scss */
+/* line 179, ../app/scss/imageGallery.scss */
 .images-wrapper .image-wrapper .upload-photo-button:before {
   content: "\e046";
 }
 
-/* line 175, ../app/scss/imageGallery.scss */
+/* line 187, ../app/scss/imageGallery.scss */
 .image-row * {
   vertical-align: top;
 }
-/* line 178, ../app/scss/imageGallery.scss */
+/* line 190, ../app/scss/imageGallery.scss */
 .image-row .image-container {
   display: inline-block;
   width: 20%;
@@ -1792,7 +1798,7 @@
   background-size: cover;
   position: relative;
 }
-/* line 185, ../app/scss/imageGallery.scss */
+/* line 197, ../app/scss/imageGallery.scss */
 .image-row .image-container.profile-image {
   width: 210px;
   height: 210px;
@@ -2033,15 +2039,23 @@ a:hover {
   padding-right: 15px;
   cursor: pointer;
 }
-/* line 6, ../app/scss/userProfile.scss */
+@media only screen and (max-width: 800px) {
+  /* line 1, ../app/scss/userProfile.scss */
+  .user-profile {
+    position: absolute;
+    right: 0;
+    padding-left: 14px;
+  }
+}
+/* line 11, ../app/scss/userProfile.scss */
 .user-profile:hover {
   background-color: #1f2125;
 }
-/* line 8, ../app/scss/userProfile.scss */
+/* line 13, ../app/scss/userProfile.scss */
 .user-profile:hover .attribute-list {
   display: block;
 }
-/* line 13, ../app/scss/userProfile.scss */
+/* line 18, ../app/scss/userProfile.scss */
 .user-profile .attribute-list {
   position: absolute;
   display: none;
@@ -2053,24 +2067,25 @@ a:hover {
   margin: 0;
 }
 @media only screen and (max-width: 800px) {
-  /* line 13, ../app/scss/userProfile.scss */
+  /* line 18, ../app/scss/userProfile.scss */
   .user-profile .attribute-list {
     width: 140px;
-    left: -54px;
+    right: 0;
+    left: auto;
   }
 }
-/* line 26, ../app/scss/userProfile.scss */
+/* line 32, ../app/scss/userProfile.scss */
 .user-profile .attribute-list li {
   text-align: left;
 }
-/* line 30, ../app/scss/userProfile.scss */
+/* line 36, ../app/scss/userProfile.scss */
 .user-profile .attribute-list li a {
   display: block;
   padding: 10px 10px 10px 14px;
   background-color: #1f2125;
   cursor: pointer;
 }
-/* line 35, ../app/scss/userProfile.scss */
+/* line 41, ../app/scss/userProfile.scss */
 .user-profile .attribute-list li a:hover {
   background-color: #080809;
 }
@@ -2098,7 +2113,14 @@ a:hover {
   font-size: 12px;
   margin-top: -4px;
 }
-/* line 22, ../app/scss/userTab.scss */
+@media only screen and (max-width: 800px) {
+  /* line 21, ../app/scss/userTab.scss */
+  .user-tab .user-images {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+}
+/* line 26, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container {
   display: inline-block;
   width: 49%;
@@ -2107,13 +2129,30 @@ a:hover {
   height: 130px;
   overflow: hidden;
   padding: 4px;
+  background-size: cover;
+  background-position: top center;
 }
-/* line 30, ../app/scss/userTab.scss */
+/* line 36, ../app/scss/userTab.scss */
+.user-tab .user-images .image-container .remove-image {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  font-size: 12px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+/* line 45, ../app/scss/userTab.scss */
+.user-tab .user-images .image-container .remove-image:hover {
+  background-color: black;
+}
+/* line 49, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container img {
   max-width: 100%;
 }
 @media only screen and (max-width: 800px) {
-  /* line 22, ../app/scss/userTab.scss */
+  /* line 26, ../app/scss/userTab.scss */
   .user-tab .user-images .image-container {
     width: 100%;
     height: auto;
@@ -2122,42 +2161,11 @@ a:hover {
     margin: 0 0 14px 0;
   }
 }
-/* line 41, ../app/scss/userTab.scss */
-.user-tab .user-images .image-container:hover .user-images-action-buttons {
-  opacity: 1;
-}
-/* line 45, ../app/scss/userTab.scss */
-.user-tab .user-images .image-container .user-images-action-buttons {
-  display: flex;
-  vertical-align: middle;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  -moz-transition: ease-in-out 0.25s;
-  -o-transition: ease-in-out 0.25s;
-  -webkit-transition: ease-in-out 0.25s;
-  transition: ease-in-out 0.25s;
-  background-color: rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 40px 0 black inset;
-  -webkit-box-shadow: 0 0 40px 0 black inset;
-  box-shadow: 0 0 40px 0 black inset;
-}
-/* line 58, ../app/scss/userTab.scss */
-.user-tab .user-images .image-container .user-images-action-buttons button {
-  background-color: transparent;
-  border: 0;
-  color: white;
-  font-size: 16px;
-}
-/* line 69, ../app/scss/userTab.scss */
+/* line 63, ../app/scss/userTab.scss */
 .user-tab.selected {
   display: block;
 }
-/* line 72, ../app/scss/userTab.scss */
+/* line 66, ../app/scss/userTab.scss */
 .user-tab .description {
   font-size: 14px;
   color: #a0a0a0;
@@ -2246,7 +2254,7 @@ a:hover {
 }
 /* line 78, ../app/scss/game.scss */
 .update-button-container button {
-  border-radius: 20px;
+  border-radius: 4px;
   background-color: #3498DB;
   color: white;
   padding: 8px 40px;
@@ -2300,6 +2308,7 @@ a:hover {
   background-color: white;
   border-radius: 28px;
   padding: 0px;
+  position: relative;
   border: 1px solid grey;
   width: 47px;
   height: 28px;
@@ -2310,16 +2319,37 @@ a:hover {
   transition: ease-in-out 0.1s;
   cursor: pointer;
 }
-/* line 17, ../app/scss/slider.scss */
+/* line 18, ../app/scss/slider.scss */
 .slider-container .slider.slider-on {
   background-color: #3498DB;
   border: 1px solid #3498DB;
 }
-/* line 21, ../app/scss/slider.scss */
+/* line 22, ../app/scss/slider.scss */
 .slider-container .slider.slider-on .slider-dot {
   margin-left: 22px;
 }
-/* line 25, ../app/scss/slider.scss */
+/* line 26, ../app/scss/slider.scss */
+.slider-container .slider .slider-label {
+  position: absolute;
+  display: inline-block;
+  color: white;
+  left: 4px;
+  top: 7px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0;
+}
+/* line 36, ../app/scss/slider.scss */
+.slider-container .slider .slider-label.slider-off {
+  color: #3498DB;
+  left: 26px;
+}
+/* line 40, ../app/scss/slider.scss */
+.slider-container .slider .slider-label.active {
+  opacity: 1;
+}
+/* line 44, ../app/scss/slider.scss */
 .slider-container .slider .slider-dot {
   padding: 11px;
   border-radius: 50%;
@@ -2333,4 +2363,333 @@ a:hover {
   -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* line 1, ../app/scss/gameSearch.scss */
+.game-search-wrapper {
+  float: left;
+  border-right: 1px solid #1f2125;
+  padding: 7px 10px 5px 10px;
+  position: relative;
+}
+
+/* line 8, ../app/scss/gameSearch.scss */
+.game-search-container {
+  background-color: #181818;
+  border-radius: 8px;
+  position: relative;
+}
+/* line 12, ../app/scss/gameSearch.scss */
+.game-search-container .glyphicon {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+}
+/* line 17, ../app/scss/gameSearch.scss */
+.game-search-container input {
+  background-color: transparent;
+  border: 0;
+  font-size: 16px;
+  padding: 8px 34px 8px 8px;
+  width: 400px;
+  outline: none;
+}
+
+/* line 27, ../app/scss/gameSearch.scss */
+.game-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #181818;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 36, ../app/scss/gameSearch.scss */
+.game-search-results .results-counter {
+  background-color: #2f3137;
+  color: white;
+  padding: 10px 14px;
+}
+/* line 41, ../app/scss/gameSearch.scss */
+.game-search-results .results {
+  position: relative;
+}
+/* line 43, ../app/scss/gameSearch.scss */
+.game-search-results .results a {
+  color: #bdbdbd;
+  padding: 10px 10px 10px 28px;
+  cursor: pointer;
+  display: block;
+}
+/* line 49, ../app/scss/gameSearch.scss */
+.game-search-results .results .glyphicon {
+  margin-right: 6px;
+  vertical-align: middle;
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  margin-top: -6px;
+}
+/* line 57, ../app/scss/gameSearch.scss */
+.game-search-results .results .game-title {
+  font-size: 14px;
+  color: white;
+}
+/* line 61, ../app/scss/gameSearch.scss */
+.game-search-results .results .additional-properties {
+  font-size: 10px;
+}
+/* line 64, ../app/scss/gameSearch.scss */
+.game-search-results .results:hover {
+  background-color: #2f3137;
+}
+
+/* line 1, ../app/scss/userBar.scss */
+.user-bar {
+  position: relative;
+  float: left;
+}
+@media only screen and (max-width: 800px) {
+  /* line 1, ../app/scss/userBar.scss */
+  .user-bar {
+    float: none;
+    width: 150px;
+  }
+}
+/* line 9, ../app/scss/userBar.scss */
+.user-bar.expanded ul {
+  height: auto;
+}
+/* line 13, ../app/scss/userBar.scss */
+.user-bar.expanded ul li.current-collection:after {
+  -moz-transform: rotate(-180deg) translateY(2px);
+  -ms-transform: rotate(-180deg) translateY(2px);
+  -webkit-transform: rotate(-180deg) translateY(2px);
+  transform: rotate(-180deg) translateY(2px);
+  -moz-transition: 0.1s;
+  -o-transition: 0.1s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+/* line 21, ../app/scss/userBar.scss */
+.user-bar ul {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 280px;
+  height: 50px;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  -moz-transition: 0.1s;
+  -o-transition: 0.1s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+@media only screen and (max-width: 800px) {
+  /* line 21, ../app/scss/userBar.scss */
+  .user-bar ul {
+    width: 150px;
+    min-width: 150px;
+  }
+}
+/* line 38, ../app/scss/userBar.scss */
+.user-bar ul li {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  position: relative;
+}
+/* line 43, ../app/scss/userBar.scss */
+.user-bar ul li .collection-image {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  left: 16px;
+  top: 50%;
+  margin-top: -15px;
+  border-radius: 10px;
+  background-color: #2f3137;
+}
+@media only screen and (max-width: 800px) {
+  /* line 38, ../app/scss/userBar.scss */
+  .user-bar ul li {
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+/* line 60, ../app/scss/userBar.scss */
+.user-bar ul li.current-collection {
+  padding: 15px;
+  cursor: pointer;
+  background-color: #2f3137;
+  border-right: 1px solid #1f2125;
+  position: relative;
+}
+/* line 66, ../app/scss/userBar.scss */
+.user-bar ul li.current-collection span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 226px;
+  display: inline-block;
+}
+@media only screen and (max-width: 800px) {
+  /* line 60, ../app/scss/userBar.scss */
+  .user-bar ul li.current-collection {
+    padding: 16px 20px 17px 15px;
+  }
+}
+/* line 76, ../app/scss/userBar.scss */
+.user-bar ul li.current-collection:hover {
+  background-color: #1f2125;
+  color: white;
+}
+/* line 80, ../app/scss/userBar.scss */
+.user-bar ul li.current-collection:after {
+  top: 50%;
+  right: 10px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(52, 152, 219, 0);
+  border-top-color: #3498DB;
+  border-width: 4px;
+  margin-left: -8px;
+  margin-top: -2px;
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+/* line 98, ../app/scss/userBar.scss */
+.user-bar ul li a {
+  padding: 15px 15px 15px 60px;
+  display: block;
+  background-color: #1f2125;
+}
+@media only screen and (max-width: 800px) {
+  /* line 98, ../app/scss/userBar.scss */
+  .user-bar ul li a {
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 15px 15px 15px 15px;
+  }
+}
+/* line 111, ../app/scss/userBar.scss */
+.user-bar ul li a:hover {
+  background-color: #2f3137;
+  color: white;
+}
+/* line 114, ../app/scss/userBar.scss */
+.user-bar ul li a:hover .collection-image {
+  background-color: #1f2125;
+}
+
+/* line 1, ../app/scss/navbar.scss */
+userbar {
+  display: inline-block;
+  float: left;
+  width: 280px;
+  height: 50px;
+}
+
+/* line 1, ../app/scss/loading.scss */
+.loading-wrapper {
+  position: fixed;
+  z-index: 4004;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* line 12, ../app/scss/loading.scss */
+.loading-wrapper .loading-circle {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 49;
+  animation: dash 2s linear infinite;
+}
+/* line 17, ../app/scss/loading.scss */
+.loading-wrapper .loading-circle-container {
+  animation: rotate 2s linear infinite;
+}
+/* line 20, ../app/scss/loading.scss */
+.loading-wrapper .loading-container {
+  text-align: center;
+}
+
+@keyframes dash {
+  50% {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 10;
+  }
+  100% {
+    stroke-dasharray: 100;
+  }
+}
+@keyframes rotate {
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* line 1, ../app/scss/feed.scss */
+.feed-item {
+  padding: 14px;
+  background-color: #2f3137;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  border: 1px solid #000;
+}
+/* line 7, ../app/scss/feed.scss */
+.feed-item a {
+  cursor: pointer;
+}
+
+/* line 12, ../app/scss/feed.scss */
+.feed-item-header {
+  padding-left: 46px;
+  margin-bottom: 14px;
+  position: relative;
+}
+/* line 16, ../app/scss/feed.scss */
+.feed-item-header .profile-image {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  background-size: cover;
+  background-color: #1f2125;
+  border-radius: 10px;
+}
+/* line 26, ../app/scss/feed.scss */
+.feed-item-header .title {
+  font-size: 14px;
+}
+
+/* line 33, ../app/scss/feed.scss */
+.feed-item-body .feed-photo img {
+  max-width: 100%;
 }

@@ -3,7 +3,7 @@ Error: Undefined variable: "$phone".
         on line 12 of /Users/jorjacob/Repos/samlenett/static/app/scss/dialog.scss
 
 7:   display: flex;
-8:   z-index: 10000;
+8:   z-index: 4004;
 9:   align-items: center;
 10:   justify-content: center;
 11:   background-color: rgba(0, 0, 0, 0.4);
@@ -76,4 +76,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$phone\".\A         on line 12 of /Users/jorjacob/Repos/samlenett/static/app/scss/dialog.scss\A \A 7:   display: flex;\A 8:   z-index: 10000;\A 9:   align-items: center;\A 10:   justify-content: center;\A 11:   background-color: rgba(0, 0, 0, 0.4);\A 12:   @media #{$phone} {\A 13:     justify-content: flex-start;\A 14:   }\A 15: \A 16: \A 17:   .dialog-container {"; }
+  content: "Error: Undefined variable: \"$phone\".\A         on line 12 of /Users/jorjacob/Repos/samlenett/static/app/scss/dialog.scss\A \A 7:   display: flex;\A 8:   z-index: 4004;\A 9:   align-items: center;\A 10:   justify-content: center;\A 11:   background-color: rgba(0, 0, 0, 0.4);\A 12:   @media #{$phone} {\A 13:     justify-content: flex-start;\A 14:   }\A 15: \A 16: \A 17:   .dialog-container {"; }

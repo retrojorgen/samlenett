@@ -1,6 +1,6 @@
 spilldb.component('userlist', {
     templateUrl: '/static/app/scripts/views/userlist.html',
-    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst, dialogService) {
+    controller: function ($scope, $http, $timeout, $routeParams, $filter, _, $window, $rootScope, appConst, dialogService, authService) {
 
 
 
@@ -56,10 +56,12 @@ spilldb.component('userlist', {
         };
 
         $scope.uploadCollectionPhoto = function (file) {
-            $http.post("/api/me/upload/collectionphoto", {image: file, collectionId: $scope.collection.collection._id})
+            $rootScope.$broadcast("loading on", "Laster opp samling-bilde");
+            authService.signedPost("/api/jwt/me/upload/collectionphoto", {image: file, collectionId: $scope.collection.collection._id})
                 .then(function (data) {
 
                     $scope.collection.collection.collectionImageId = data.data.imageId;
+                    $rootScope.$broadcast("loading off");
                 });
         };
 
@@ -90,7 +92,7 @@ spilldb.component('userlist', {
             if($rootScope.user && $scope.collection.collection && $rootScope.user._id == $scope.collection.collection.userId)
             {
                 $scope.toggles.editable = true;
-                $scope.toggles.editStatus = true;
+                //$scope.toggles.editStatus = true;
             }
         });
 
@@ -98,7 +100,7 @@ spilldb.component('userlist', {
             if($rootScope.user && $scope.collection.collection && $rootScope.user._id == $scope.collection.collection.userId)
             {
                 $scope.toggles.editable = true;
-                $scope.toggles.editStatus = true;
+                //$scope.toggles.editStatus = true;
             }
         });
 
@@ -174,10 +176,10 @@ spilldb.component('userlist', {
 
         var updateCollection = function () {
 
-            $http.post("/api/me/update/collection", {collection: $scope.editCollection})
-                .success(function (collection) {
-                    $scope.collection.collection = collection;
-
+            authService.signedPost("/api/jwt/me/update/collection", {collection: $scope.editCollection})
+                .then(function (data) {
+                    console.log('data hey', data);
+                    $scope.collection.collection = data.data;
                     $rootScope.$broadcast("update collections");
                 });
 
@@ -235,14 +237,14 @@ spilldb.component('userlist', {
 
 
         $scope.reportImage = function (image) {
-
-            $http.post("/api/me/upload/image", {
+            $rootScope.$broadcast("loading on", "Laster opp samling-bilde");
+            authService.signedPost("/api/jwt/me/upload/image", {
                 image: image
             })
-                .success(function (image) {
+                .then(function (image) {
 
                     $scope.editCollection.collectionImageId = image.image._id;
-
+                    $rootScope.$broadcast("loading off");
                 });
         };
 
@@ -317,7 +319,7 @@ spilldb.component('userlist', {
         };
 
         $scope.getCollections = function () {
-            $http.get("/api/me/collections")
+            authService.signedGet("/api/jwt/me/collections")
                 .then(function (data) {
                     $scope.collections = data.data;
                 });
@@ -335,7 +337,7 @@ spilldb.component('userlist', {
               if($scope.toggles.bulkSettings.action == "delete") {
                   dialogService.openDialog("Vil du virkelig slette " + $scope.toggles['editGames'].length + " spill fra " + $scope.collection.collection.title)
                     .then(function () {
-                        $http.post("/api/me/bulk/delete", $scope.toggles['editGames'])
+                        authService.signedPost("/api/jwt/me/bulk/delete", $scope.toggles['editGames'])
                             .then(function (data) {
                                 if(data.data.length) {
                                     _.each($scope.collection.games, function (collection, index) {
@@ -359,11 +361,10 @@ spilldb.component('userlist', {
 
                       dialogService.openDialog("Vil du virkelig flytte " + $scope.toggles['editGames'].length + " spill til " + collection.title)
                           .then(function () {
-
-                              $http.post("/api/me/bulk/move", {
-                                  'collectionId': $scope.toggles.bulkSettings.collectionId,
-                                  'games': $scope.toggles['editGames']
-                              })
+                            authService.signedPost("/api/jwt/me/bulk/move", {
+                                'collectionId': $scope.toggles.bulkSettings.collectionId,
+                                'games': $scope.toggles['editGames']
+                            })
                                   .then(function (data) {
                                       if(data.data.length) {
                                           _.each($scope.collection.games, function (collection, index) {
@@ -390,13 +391,13 @@ spilldb.component('userlist', {
 
                       dialogService.openDialog("Vil du kopiere " + $scope.toggles['editGames'].length + " spill til " + collection.title)
                           .then(function () {
-                              $http.post("/api/me/bulk/copy", {
+                              authService.signedPost("/api/jwt/me/bulk/copy", {
                                   'collectionId': collection._id,
                                   'games': $scope.toggles['editGames']
                               })
-                                  .then(function (data) {
-                                      $scope.toggles['editGames'] = [];
-                                  });
+                              .then(function (data) {
+                                  $scope.toggles['editGames'] = [];
+                              });
                           });
 
                   }

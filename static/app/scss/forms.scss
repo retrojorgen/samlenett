@@ -1,16 +1,46 @@
 .signup-form {
   position: relative;
   max-width: 400px;
-  padding: 60px 48px;
+  padding: 40px;
   background-color: white;
   margin: 50px auto 0 auto;
+  border-radius: 4px;
   color: darken($textDarkGrey, 40%);
+  overflow: hidden;
+  @include box-shadow(3px 5px 20px rgba(0,0,0,0.14));
+  .form-control {
+    width: 100%;
+  }
+  &.slim {
+    max-width: 320px;
+  }
+  label {
+    display: none;
+  }
   @media #{$phone} {
     padding: 16px 16px 60px 16px;
+    border-radius: 0;
   }
   h2 {
     margin-top: 0;
     margin-bottom: 16px;
+    text-align: center;
+  }
+
+  h3 {
+    font-weight: normal;
+    color: $textGrey;
+    font-size: 14px;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 40px;
+  }
+  .reset-password {
+    text-align: center;
+    padding: 14px;
+  }
+  a {
+    text-align: center;
   }
 }
 
@@ -19,11 +49,19 @@
   left: 0;
   top: 0;
   height: 100%;
+  width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 1001;
   margin: 0;
   padding: 0;
+
+
+  display: flex;
+  align-items: center;
+  @media #{$phone} {
+    display: block;
+  }
   a {
     color: $blue;
     cursor: pointer;
@@ -77,7 +115,7 @@
   .details-showbutton {
     background-color: $blue;
     color: white;
-    border-radius: 20px;
+    border-radius: 4px;
     border: 0;
     text-transform: uppercase;
     font-size: 10px;
@@ -88,4 +126,16 @@
       background-color: darken($blue, 5%);
     }
   }
+}
+
+
+.form-header-image {
+  background-image: url(/static/images/createCollection.png);
+  background-size: cover;
+  background-position: top center;
+  margin-top: -40px;
+  margin-left: -40px;
+  margin-right: -40px;
+  margin-bottom: 20px;
+  height: 140px;
 }
