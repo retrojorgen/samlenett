@@ -6,8 +6,10 @@
   @media #{$phone} {
     position: absolute;
     right: 0;
+    top: 0;
     padding-left: 14px;
   }
+  
   &:hover {
     background-color: $darkDarkGrey;
     .attribute-list {

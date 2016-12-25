@@ -11,8 +11,9 @@
   background-color: rgba(0, 0, 0, 0.4);
   @media #{$phone} {
     justify-content: flex-start;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
   }
-
 
   .dialog-container {
     @include border-radius(6px);
