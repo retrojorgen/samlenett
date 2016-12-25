@@ -23,6 +23,9 @@
     "angular-owl-carousel": "^0.2.3",
     "ng-repeat-owl-carousel": "*",
     "angular-elastic-input": "^2.4.0",
-    "a0-angular-storage": "^0.0.15"
+    "a0-angular-storage": "^0.0.15",
+    "angular-moment": "^1.0.1",
+    "moment": "momentjs#^2.17.1",
+    "angular-click-outside": "^2.10.1"
   }
 }

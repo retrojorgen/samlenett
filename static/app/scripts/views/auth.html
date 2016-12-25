@@ -1,21 +1,13 @@
-<div ng-if="!loggedIn" class="login-buttons-container">
-    <a ng-href="/login" type="button" class="btn btn-default navbar-btn login" ng-click="toggleLoginForm()">
-        Logg inn
-    </a><a ng-href="/signup" type="button" class="btn btn-default navbar-btn signup" ng-click="toggleLoginForm()">
-        Bli medlem
-    </a>
-</div>
-
 <div ng-if="loggedIn" class="user-profile" ng-click="toggleExpanded()" ng-class="{
     'expanded': expanded
 }">
     <div class="profile-info">
-            <p class="navbar-text">
-                <span>Logget inn som </span><a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
-            </p>
-            <div class="profile-image" ng-if="user.profileImageId" ng-style="{'background-image': 'url(static/userImages/' + user.profileImageId + '.jpg)'}"></div>
 
-            <div class="profile-image" ng-if="!user.profileImageId" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}"></div>
+            <div class="profile-image" ng-style="{'background-image': 'url(static/userImages/' + user.profileImageId + '.jpg)'}" ng-class="{'no-photo': !user.profileImageId || user.profileImageId == ''}"></div>
+
+            <p class="navbar-text">
+                <a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
+            </p>
     </div>
     <ul class="attribute-list">
         <li>

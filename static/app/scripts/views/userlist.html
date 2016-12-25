@@ -1,9 +1,9 @@
-<a class="back-to" ng-href="/user/{{collection.user.slug}}">
-    <span class="glyphicon glyphicon-menu-left"></span>
-    Til {{collection.user.nick}}s side
-</a>
-<div class="fluid-container collection-wrapper">
 
+<div class="fluid-container collection-wrapper no-space-top">
+    <a class="back-to" ng-href="/user/{{collection.user.slug}}">
+        <span class="glyphicon glyphicon-menu-left"></span>
+        Til {{collection.user.nick}}s side
+    </a>
     <div class="collection-container">
         <div class="fluid-container collection-header clearfix">
 
@@ -153,12 +153,12 @@
                                 }">
                                 <a ng-href="/user/{{collection.user.slug}}/c/{{collection.collection._id}}/g/{{game._id}}">{{game[settingKey]}}</a>
                                 <div class="additional-properties" ng-if="toggles.mobileFlag">
-                                    <span ng-if="game['console']">{{game['console']}} -</span>
-                                    <span ng-if="game['publisher']">{{game['publisher']}} -</span>
-                                    <span ng-if="game['front']">{{game['front']}} -</span>
-                                    <span ng-if="game['back']">{{game['back']}} -</span>
-                                    <span ng-if="game['region']">{{game['region']}} -</span>
-                                    <span ng-if="game['condition']">{{game['condition']}} -</span>
+                                    <span ng-if="game['console']">{{game['console']}} &#183;</span>
+                                    <span ng-if="game['publisher']">{{game['publisher']}} &#183;</span>
+                                    <span ng-if="game['front']">{{game['front']}} &#183;</span>
+                                    <span ng-if="game['back']">{{game['back']}} &#183;</span>
+                                    <span ng-if="game['region']">{{game['region']}} &#183;</span>
+                                    <span ng-if="game['condition']">{{game['condition']}}</span>
                                 </div>
                             </div>
                         </td>

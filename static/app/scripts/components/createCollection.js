@@ -6,11 +6,15 @@ spilldb.component('createcollection', {
     controller: function ($scope, $http, $timeout, $location, $rootScope, $log, $location, authService) {
 
         $scope.toggles = {
-            gameTitle: ""
+            gameTitle: "",
+            newUser : false
         };
 
         $scope.user = undefined;
 
+        if($location.path() == "/wizard/collection") {
+            $scope.toggles.newUser = true;
+        };
 
         $scope.createCollection = function () {
             authService.signedPost("/api/jwt/me/create/collection", {
@@ -19,6 +23,7 @@ spilldb.component('createcollection', {
             })
                 .then(function (data) {
                     $location.path("/user/" + $scope.user.slug + "/c/" + data.data._id);
+                    $rootScope.$broadcast('update collections');
                 });
         };
 
@@ -27,6 +32,10 @@ spilldb.component('createcollection', {
             $scope.user = $rootScope.user;
         });
 
+
+        if($rootScope.user) {
+            $scope.user = $rootScope.user;
+        }
         $scope.$on('user logged in from form', function () {
 
         });

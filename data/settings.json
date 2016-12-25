@@ -1,0 +1,185 @@
+[{
+    "type" : "collections",
+    "title" : {
+        "name" : "Tittel",
+        "type" : "String",
+        "description" : "",
+        "mobile" : true,
+        "status" : "public"
+    },
+    "console" : {
+        "name" : "Konsoll",
+        "type" : "String",
+        "description" : "",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "publisher" : {
+        "name" : "Utgiver",
+        "type" : "String",
+        "description" : "",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "front" : {
+        "name" : "Kode foran",
+        "type" : "String",
+        "description" : "Kode foran på kassette eller eske",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "back" : {
+        "name" : "Kode bak",
+        "type" : "String",
+        "description" : "Kode bak på kassette eller eske",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "region" : {
+        "name" : "Region",
+        "type" : "String",
+        "description" : "Regionen til spillet",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "condition" : {
+        "name" : "Tilstand",
+        "type" : "String",
+        "description" : "eks. CIB, kun kassett etc..",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "notePublic" : {
+        "name" : "Notat (offentlig)",
+        "type" : "String",
+        "description" : "Synlig for andre brukere",
+        "mobile" : false,
+        "status" : "public"
+    },
+    "notePrivat" : {
+        "name" : "Notat (privat)",
+        "type" : "String",
+        "description" : "Kun synlig for deg",
+        "color" : "private",
+        "mobile" : false,
+        "status" : "private"
+    }
+},
+{
+    "type" : "sales",
+    "title" : {
+        "name" : "Tittel",
+        "type" : "String",
+        "description" : ""
+    },
+    "console" : {
+        "name" : "Konsoll",
+        "type" : "String",
+        "description" : ""
+    },
+    "publisher" : {
+        "name" : "Utgiver",
+        "type" : "String",
+        "description" : ""
+    },
+    "front" : {
+        "name" : "Kjennetegn foran",
+        "type" : "String",
+        "description" : "Kode foran på kassette eller eske"
+    },
+    "back" : {
+        "name" : "Kjennetegn bak",
+        "type" : "String",
+        "description" : "Kode bak på kassette eller eske"
+    },
+    "region" : {
+        "name" : "Region",
+        "type" : "String",
+        "description" : "Regionen til spillet"
+    },
+    "condition" : {
+        "name" : "Tilstand",
+        "type" : "String",
+        "description" : "eks. CIB, kun kassett etc.."
+    },
+    "notePublic" : {
+        "name" : "Notat (offentlig)",
+        "type" : "String",
+        "description" : "Synlig for andre brukere"
+    },
+    "notePrivat" : {
+        "name" : "Notat (privat)",
+        "type" : "String",
+        "description" : "Kun synlig for deg",
+        "color" : "private"
+    },
+    "salesStatus" : {
+        "name" : "Solgt",
+        "type" : "Boolean",
+        "description" : "Er denne solgt?"
+    },
+    "askingPrice" : {
+        "name" : "Pris (NOK)",
+        "type" : "Number",
+        "description" : "Prisen til kunden"
+    },
+    "soldForPrice" : {
+        "name" : "Solgt for (NOK)",
+        "type" : "Number",
+        "description" : "Prisen kunden betalte"
+    }
+},
+{
+    "type" : "goals",
+    "title" : {
+        "name" : "Tittel",
+        "type" : "String",
+        "description" : ""
+    },
+    "console" : {
+        "name" : "Konsoll",
+        "type" : "String",
+        "description" : ""
+    },
+    "publisher" : {
+        "name" : "Utgiver",
+        "type" : "String",
+        "description" : ""
+    },
+    "front" : {
+        "name" : "Kjennetegn foran",
+        "type" : "String",
+        "description" : "Kode foran på kassette eller eske"
+    },
+    "back" : {
+        "name" : "Kjennetegn bak",
+        "type" : "String",
+        "description" : "Kode bak på kassette eller eske"
+    },
+    "region" : {
+        "name" : "Region",
+        "type" : "String",
+        "description" : "Regionen til spillet"
+    },
+    "condition" : {
+        "name" : "Tilstand",
+        "type" : "String",
+        "description" : "eks. CIB, kun kassett etc.."
+    },
+    "notePublic" : {
+        "name" : "Notat (offentlig)",
+        "type" : "String",
+        "description" : "Synlig for andre brukere"
+    },
+    "notePrivat" : {
+        "name" : "Notat (privat)",
+        "type" : "String",
+        "description" : "Kun synlig for deg",
+        "color" : "private"
+    },
+    "acquiredStatus" : {
+        "name" : "Har",
+        "type" : "Boolean",
+        "description" : "Har du spillet?"
+    }
+}]

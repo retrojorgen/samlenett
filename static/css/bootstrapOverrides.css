@@ -5,10 +5,10 @@ Error: Undefined variable: "$darkGrey".
 1: .navbar {
 2:   background-color: $darkGrey;
 3:   margin-bottom: 0;
-4: }
-5: 
-6: .btn {
-7:   //border-radius: 0;
+4:   @include box-shadow(0 0 10px 1px rgba(0,0,0,0.6));
+5: }
+6: 
+7: .btn {
 
 Backtrace:
 /Users/jorjacob/Repos/samlenett/static/app/scss/bootstrapOverrides.scss:2
@@ -66,4 +66,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$darkGrey\".\A         on line 2 of /Users/jorjacob/Repos/samlenett/static/app/scss/bootstrapOverrides.scss\A \A 1: .navbar {\A 2:   background-color: $darkGrey;\A 3:   margin-bottom: 0;\A 4: }\A 5: \A 6: .btn {\A 7:   //border-radius: 0;"; }
+  content: "Error: Undefined variable: \"$darkGrey\".\A         on line 2 of /Users/jorjacob/Repos/samlenett/static/app/scss/bootstrapOverrides.scss\A \A 1: .navbar {\A 2:   background-color: $darkGrey;\A 3:   margin-bottom: 0;\A 4:   @include box-shadow(0 0 10px 1px rgba(0,0,0,0.6));\A 5: }\A 6: \A 7: .btn {"; }

@@ -11,21 +11,12 @@ spilldb.component('signup', {
 
         $scope.submitSignupForm = function () {
             $scope.signupError = false;
-            authService.signedPost('/api/signup', {
-                username: $scope.signupUsername,
-                password: $scope.signupPassword,
-                nick: $scope.signupNick
-            })
-                .then(function (response) {
-                    if(response) {
-                        $scope.user = authService.getLoggedInUser();
-                        $rootScope.user = authService.getLoggedInUser();
-                        $rootScope.$broadcast("user logged in");
-                        $rootScope.$broadcast("user logged in from form");
-                        $location.path("/user/" + data.user.slug);
-                    } else {
-                        $scope.signupError = true;
-                    }
+            authService.signup($scope.signupUsername, $scope.signupPassword, $scope.signupNick, function (response) {
+                if(response) {
+                    $scope.user = authService.getLoggedInUser();
+                } else {
+                    $scope.signupError = true;
+                }
             });
         };
 
@@ -76,12 +67,6 @@ spilldb.component('signup', {
                 $scope.signupPasswordStatus = 1;
         }
 
-        $scope.CheckPasswordEqual = function (password) {
-            if(password == $scope.signupPassword)
-                $scope.signupPasswordRepeatStatus = 1;
-            else
-                $scope.signupPasswordRepeatStatus = 2;
-        }
 
         $scope.isSignupValid = function () {
             if($scope.signupUsername == '')
@@ -90,15 +75,11 @@ spilldb.component('signup', {
                 return true;
             if($scope.signupPassword == '')
                 return true;
-            if($scope.signupPasswordRepeat == '')
-                return true;
             if($scope.signupEmailStatus > 1 || $scope.signupEmailStatus == 0)
                 return true;
             if($scope.signupNickStatus > 1 || $scope.signupNickStatus == 0)
                 return true;
             if($scope.signupPasswordStatus > 1 || $scope.signupPasswordStatus == 0)
-                return true;
-            if($scope.signupPasswordRepeatStatus > 1 || $scope.signupPasswordRepeatStatus == 0)
                 return true;
 
             return false;

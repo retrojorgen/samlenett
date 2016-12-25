@@ -4,7 +4,7 @@
     , flash             = require('connect-flash')
     , logger            = require('morgan')
       config            = require('./config/database')
-    , port              = process.env.PORT || 3000
+    , port              = process.env.PORT || 4444
     , app               = express()
     , mongoose          = require('mongoose')
     , slug              = require('slug')
@@ -21,11 +21,11 @@ var db = mongoose.connection;
 var models = require('./config/models')(mongoose);
 
 var dbQueries = require('./config/dbQueries.js')(models, slug); // pass passport for configuration
-require('./config/passport-jwtl')(passport, models, dbQueries); // pass passport for configuration
+require('./config/passport-jwtl')(passport, models, dbQueries, config); // pass passport for configuration
 
 
 
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: false,
   limit: '50mb'
@@ -52,7 +52,7 @@ app.use('/static', express.static(__dirname + '/static'));
 require('./app/routes.js')(app, passport, dbQueries, config);
 
 app.listen(port, function () {
-  console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
+  console.log('Listening on http://localhost:' + (process.env.PORT || 4444))
 });
 
 

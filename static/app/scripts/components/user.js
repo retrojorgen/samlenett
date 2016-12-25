@@ -66,6 +66,8 @@ spilldb.component('user', {
             authService.signedPost("/api/jwt/me/upload/profilephoto", {image: file})
                 .then(function (data) {
                     $scope.user.profileImageId = data.data.imageId;
+                    $rootScope.user.profileImageId = data.data.imageId;
+                    $rootScope.$broadcast("user updated");
                 });
         };
 

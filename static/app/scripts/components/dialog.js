@@ -7,8 +7,13 @@ spilldb.component('gamedialog', {
 
         $scope.dialog = {
             visible: false,
-            message: ""
+            message: "",
+            small: true
         };
+
+
+
+        $scope.toggles = {};
 
         $scope.click = function (state) {
             console.log('registering click');
@@ -20,10 +25,15 @@ spilldb.component('gamedialog', {
                 $scope.dialog.visible = false;
             }
         };
-        $scope.$on('open dialog', function ($event, message) {
-            console.log('opening dialog');
+        $scope.$on('open dialog', function ($event, message, toggles) {
             $scope.dialog.visible = true;
             $scope.dialog.message = message;
+            if(toggles) {
+
+                $scope.toggles = toggles;
+            }
+            console.log(toggles);
+            console.log($scope.toggles);
         });
     }
 });

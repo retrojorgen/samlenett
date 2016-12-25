@@ -3,10 +3,10 @@
  */
 spilldb.factory('dialogService', function($rootScope, $q) {
 
-    var openDialog = function (message) {
+    var openDialog = function (message, toggles) {
         var deferred = $q.defer();
         console.log(message);
-        $rootScope.$broadcast('open dialog', message);
+        $rootScope.$broadcast('open dialog', message, toggles);
 
         $rootScope.$on("yes dialog", function () {
             deferred.resolve();

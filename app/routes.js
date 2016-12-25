@@ -21,7 +21,6 @@ var sendCodeMail = function (email, code, callback) {
     html: 'Heisann, skriv inn denne koden på reset-passordsiden <b>' + code + '</b><br><br>Hilsen SamleDB'
   };
 
-  console.log(data);
 
   mailgun.messages().send(data, function (err, body) {
     //If there is an error, render the error page
@@ -292,7 +291,6 @@ module.exports = function(app, passport, dbQueries, config) {
   });
 
   app.post('/api/jwt/me/update/collection', passport.authenticate('jwt', { session: false}), function (req, res) {
-    console.log(req.body.collection);
     
     dbQueries.updateCollection(req.body.collection, function (collection) {
       res.json(collection);
@@ -316,7 +314,6 @@ module.exports = function(app, passport, dbQueries, config) {
   });
 
   app.post('/api/jwt/me/upload/userphoto', passport.authenticate('jwt', { session: false}), function (req, res) {
-    console.log('kukken server');
     addImage(req.body.image, function (addedImage) {
       dbQueries.addImageToUser(req.user._id, addedImage._id, function () {
         res.json({
@@ -327,7 +324,6 @@ module.exports = function(app, passport, dbQueries, config) {
   });
 
   app.post('/api/jwt/me/upload/photo', passport.authenticate('jwt', { session: false}), function (req, res) {
-    console.log('uploaded photo');
     addImage(req.body.image, function (addedImage) {
         res.json({
           imageId: addedImage._id
@@ -356,14 +352,12 @@ module.exports = function(app, passport, dbQueries, config) {
   });
 
   app.post('/api/jwt/me/upload/collectionphoto', passport.authenticate('jwt', { session: false}), function (req, res) {
-    console.log('kom hit 0', req.body.collectionId);
     dbQueries.getCollectionFromId(req.body.collectionId, function (collection) {
 
       if(req.user._id.toString() == collection.collection.userId.toString()) {
 
         addImage(req.body.image, function (addedImage) {
           dbQueries.addCollectionPhotoToCollection(collection.collection._id, addedImage._id, function () {
-            console.log('kom hit 2');
             res.json({
               imageId: addedImage._id
             });
@@ -392,9 +386,14 @@ module.exports = function(app, passport, dbQueries, config) {
     });
   });
 
+  app.get("/api/add/settings", function (req,res) {
+    dbQueries.addSettings(function (docs) {
+      res.json(docs);
+    });
+  });
+
 
   app.post('/api/add/game', function (req,res,next) {
-    console.log('legger til spill');
     dbQueries.addGame(req.body, function (game) {
       res.json(game);
     });
@@ -424,6 +423,12 @@ module.exports = function(app, passport, dbQueries, config) {
     });
   });
 
+  app.post('/api/jwt/me/set/profilephoto/:avatarnr', passport.authenticate('jwt', { session: false}), function (req, res, next) {
+    dbQueries.setProfilePhotoAvatar(req.user._id, "avatar-" + req.params.avatarnr, function (avatarString) {
+      res.json(avatarString);
+    });
+  });
+
 
 
   app.get('/api/send/testemail', function (req, res) {
@@ -443,7 +448,6 @@ module.exports = function(app, passport, dbQueries, config) {
     mailgun.messages().send(data, function (err, body) {
       //If there is an error, render the error page
       if (err) {
-        console.log("got an error: ", err);
         res.json('fail');
       }
       //Else we can greet    and leave
@@ -451,7 +455,6 @@ module.exports = function(app, passport, dbQueries, config) {
         //Here "submitted.jade" is the view file for this landing page
         //We pass the variable "email" from the url parameter in an object rendered by Jade
         res.json('success');
-        console.log(body);
       }
     });
   });
@@ -586,31 +589,4 @@ module.exports = function(app, passport, dbQueries, config) {
       });
     });
   };
-
-  // route middleware to make sure
-  function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-      return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-  }
-
-  function isLoggedInBoolean(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-      return true;
-    return false;
-  }
-
-  function validateEmail(email) 
-{
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-}
-
-
 }

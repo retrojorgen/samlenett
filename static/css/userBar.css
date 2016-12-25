@@ -1,19 +1,21 @@
 /*
 Error: Undefined variable: "$phone".
-        on line 4 of /Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss
+        on line 12 of /Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss
 
-1: .user-bar {
-2:     position: relative;
-3:     float: left;
-4:     @media #{$phone} {
-5:         float: none;
-6:         width: 150px;
-7:     }
-8:     &.expanded {
-9:         ul {
+7: 
+8: .user-bar {
+9:     width: 280px;
+10:     position: relative;
+11:     float: left;
+12:     @media #{$phone} {
+13:         float: none;
+14:         width: 150px;
+15:     }
+16:     &.expanded {
+17: 
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss:4
+/Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss:12
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/interpolation.rb:170:in `_perform'
@@ -74,4 +76,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$phone\".\A         on line 4 of /Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss\A \A 1: .user-bar {\A 2:     position: relative;\A 3:     float: left;\A 4:     @media #{$phone} {\A 5:         float: none;\A 6:         width: 150px;\A 7:     }\A 8:     &.expanded {\A 9:         ul {"; }
+  content: "Error: Undefined variable: \"$phone\".\A         on line 12 of /Users/jorjacob/Repos/samlenett/static/app/scss/userBar.scss\A \A 7: \A 8: .user-bar {\A 9:     width: 280px;\A 10:     position: relative;\A 11:     float: left;\A 12:     @media #{$phone} {\A 13:         float: none;\A 14:         width: 150px;\A 15:     }\A 16:     &.expanded {\A 17: "; }

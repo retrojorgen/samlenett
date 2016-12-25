@@ -1,9 +1,12 @@
 var mobileThreshold = (window.innerWidth < 800);
 
 var spilldb = angular
-	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'puElasticInput', 'angular-storage'])
+	.module('spilldb', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'puElasticInput', 'angular-storage', 'angularMoment', 'angular-click-outside'])
 	.constant("appConst", {
 		"mobileThreshold": window.mobileThreshold
+	})
+	.run(function(amMoment) {
+		amMoment.changeLocale('no');
 	})
 	.config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
 		$locationProvider.html5Mode(true).hashPrefix('!');
@@ -32,14 +35,17 @@ var spilldb = angular
 		when('/create/collection', {
 			'template': '<createcollection></createcollection>'
 		}).
-		when('/signup/wizard/profile', {
+		when('/wizard/collection', {
 			'template': '<createcollection></createcollection>'
 		}).
-		when('/signup/wizard/signup', {
-			'template': '<createcollection></createcollection>'
+		when('/wizard/avatar', {
+			'template': '<createprofilephoto></createprofilephoto>'
 		}).
 		when('/login', {
 			'template': '<login></login>'
+		}).
+		when('/flush/all', {
+			'template': '<flush></flush>'
 		}).
 		when('/logout', {
 			'template': '<logout></logout>'

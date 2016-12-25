@@ -1,4 +1,12 @@
+userbar {
+    display: inline-block;
+    float: left;
+    width: 280px;
+    height: 50px;
+}
+
 .user-bar {
+    width: 280px;
     position: relative;
     float: left;
     @media #{$phone} {
@@ -6,6 +14,7 @@
         width: 150px;
     }
     &.expanded {
+
         ul {
             height: auto;
             li {
@@ -14,24 +23,38 @@
                         @include transform(rotate(-180deg) translateY(2px));
                         @include transition(0.1s);
                     }
+                    @media #{$phone} {
+                        background-color: $darkGrey;
+                        span {
+                            width: 80%;
+                        }
+
+                    }
                 }
             }
         }
+        @media #{$phone} {
+            position: absolute;
+            left: 0;
+            width: 100%;
+        }
+
     }
     ul {
         position: absolute;
         left: 0;
         top: 0;
-        min-width: 280px;
+        min-width: 100%;
+        width: 100%;
         height: 50px;
         overflow: hidden;
         list-style: none;
         padding: 0;
         margin: 0;
 
+        z-index: 100;
+
         @media #{$phone} {
-            width: 150px;
-            min-width: 150px;
         }
 
         @include transition(0.1s);
@@ -69,6 +92,9 @@
                     text-overflow: ellipsis;
                     width: 226px;
                     display: inline-block;
+                    @media #{$phone} {
+                        width: 110px;
+                    }
                 }
                 @media #{$phone} {
                     padding: 16px 20px 17px 15px;
@@ -106,7 +132,6 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
-                    padding: 15px 15px 15px 15px;
                 }
                 &:hover {
                     background-color: $darkGrey;
@@ -114,6 +139,12 @@
                     .collection-image {
                         background-color: $darkDarkGrey;
                     }
+                }
+            }
+
+            &.new-collection-item {
+                a {
+                    background-color: $blue;
                 }
             }
 

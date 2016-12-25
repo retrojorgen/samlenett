@@ -1,19 +1,20 @@
 /*
 Error: Undefined variable: "$phone".
-        on line 4 of /Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss
+        on line 5 of /Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss
 
 1: .auth {
 2:   text-align: right;
-3:   padding-right: 15px;
-4:   @media #{$phone} {
-5:     padding-right: 0;
-6:   }
-7:   .login-buttons-container {
-8:     @media #{$phone} {
-9:       padding-right: 0;
+3: 
+4:   .profile-info {
+5:     @media #{$phone} {
+6:       .navbar-text {
+7:         display: none;
+8:       }
+9:     }
+10:   }
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss:4
+/Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss:5
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/interpolation.rb:170:in `_perform'
@@ -23,6 +24,17 @@ Backtrace:
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:540:in `run_interp_no_strip'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:547:in `run_interp'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:512:in `visit_media'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `map'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
@@ -74,4 +86,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$phone\".\A         on line 4 of /Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss\A \A 1: .auth {\A 2:   text-align: right;\A 3:   padding-right: 15px;\A 4:   @media #{$phone} {\A 5:     padding-right: 0;\A 6:   }\A 7:   .login-buttons-container {\A 8:     @media #{$phone} {\A 9:       padding-right: 0;"; }
+  content: "Error: Undefined variable: \"$phone\".\A         on line 5 of /Users/jorjacob/Repos/samlenett/static/app/scss/auth.scss\A \A 1: .auth {\A 2:   text-align: right;\A 3: \A 4:   .profile-info {\A 5:     @media #{$phone} {\A 6:       .navbar-text {\A 7:         display: none;\A 8:       }\A 9:     }\A 10:   }"; }

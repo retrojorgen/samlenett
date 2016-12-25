@@ -3,10 +3,7 @@
         <div class="margin-container">
             <div class="fluid-container collection-header clearfix">
 
-                <div class="profile-photo active" ng-if="user.profileImageId" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}">
-                    <fileupload upload-file="uploadProfilePicture" ng-if="toggles.editable" class="file-upload-button-container"></fileupload>
-                </div>
-                <div class="profile-photo" ng-if="!user.profileImageId" ng-style="{'background-image': 'url(static/images/standard-profile.jpg)'}">
+                <div class="profile-photo active" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}" ng-class="{'no-photo': !user.profileImageId || user.profileImageId == ''}">
                     <fileupload upload-file="uploadProfilePicture" ng-if="toggles.editable" class="file-upload-button-container"></fileupload>
                 </div>
                 <div class="collection-information">

@@ -1,24 +1,41 @@
 /*
-Error: Undefined variable: "$textLight".
-        on line 6 of /Users/jorjacob/Repos/samlenett/static/app/scss/userTab.scss
+Error: Undefined variable: "$phone".
+        on line 13 of /Users/jorjacob/Repos/samlenett/static/app/scss/front.scss
 
-1: .user-tab {
-2:   display: none;
-3: 
-4:   .user-tab-title {
-5:     word-wrap: break-word;
-6:     color: $textLight;
-7:     font-size: 16px;
-8:     border-bottom: 1px solid $lightGrey;
-9:     padding-bottom: 14px;
-10:     margin-bottom: 20px;
-11:     position: relative;
+8:     text-align: center;
+9:     overflow: hidden;
+10:     img {
+11:       width: 100%;
+12:       max-width: 1100px;
+13:       @media #{$phone} {
+14:         width: 150%;
+15:       }
+16:     }
+17:     @media #{$phone} {
+18:       height: 190px;
 
 Backtrace:
-/Users/jorjacob/Repos/samlenett/static/app/scss/userTab.scss:6
+/Users/jorjacob/Repos/samlenett/static/app/scss/front.scss:13
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
-/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/interpolation.rb:170:in `_perform'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:542:in `block in run_interp_no_strip'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:540:in `map'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:540:in `run_interp_no_strip'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:547:in `run_interp'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:512:in `visit_media'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `map'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
 /Users/jorjacob/.gem/ruby/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
@@ -81,4 +98,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$textLight\".\A         on line 6 of /Users/jorjacob/Repos/samlenett/static/app/scss/userTab.scss\A \A 1: .user-tab {\A 2:   display: none;\A 3: \A 4:   .user-tab-title {\A 5:     word-wrap: break-word;\A 6:     color: $textLight;\A 7:     font-size: 16px;\A 8:     border-bottom: 1px solid $lightGrey;\A 9:     padding-bottom: 14px;\A 10:     margin-bottom: 20px;\A 11:     position: relative;"; }
+  content: "Error: Undefined variable: \"$phone\".\A         on line 13 of /Users/jorjacob/Repos/samlenett/static/app/scss/front.scss\A \A 8:     text-align: center;\A 9:     overflow: hidden;\A 10:     img {\A 11:       width: 100%;\A 12:       max-width: 1100px;\A 13:       @media #{$phone} {\A 14:         width: 150%;\A 15:       }\A 16:     }\A 17:     @media #{$phone} {\A 18:       height: 190px;"; }

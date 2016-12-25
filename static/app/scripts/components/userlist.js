@@ -61,6 +61,7 @@ spilldb.component('userlist', {
                 .then(function (data) {
 
                     $scope.collection.collection.collectionImageId = data.data.imageId;
+                    $scope.editCollection.collectionImageId = data.data.imageId;
                     $rootScope.$broadcast("loading off");
                 });
         };
@@ -78,6 +79,10 @@ spilldb.component('userlist', {
             .success(function (collection) {
                 $scope.collection = collection;
                 $scope.editCollection = angular.copy(collection.collection);
+
+                if(!$scope.collection.games.length) {
+                    dialogService.openDialog("Velkommen til din første samling! Trykk på knappen nede til høyre for å legge til ditt første spill.", {okayOnly: true});
+                }
 
 
                 delete $scope.collection.settings._id;

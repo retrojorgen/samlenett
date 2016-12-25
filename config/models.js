@@ -23,7 +23,6 @@ module.exports = function (dbHandler) {
 
 
 		if (this.isModified('password') || this.isNew) {
-			console.log('user is ', user, user.password);
 			user.password = bcrypt.hashSync(user.password);
 			next();
 		} else {

@@ -7,10 +7,14 @@ spilldb.component('gamesearch', {
 
         $scope.gamesSearchResults = [];
         $scope.toggles = {
-            showLogin: false
+            showLogin: false,
+            showSearchMobile: false
         };
 
         $scope.user = undefined;
+
+        var currentOffset = window.pageYOffset;
+        console.log('current offset:', currentOffset);
 
         var updateGameSearch = function () {
             authService.signedGet("/api/jwt/me/complete")
@@ -19,13 +23,15 @@ spilldb.component('gamesearch', {
                 });
         };
 
+
+
         $scope.wipeSearch = function () {
           $scope.toggles.searchInput = "";
         };
 
         $(document).on('keydown', function (e) {
             $scope.$apply(function () {
-                if($scope.toggles.searchInput.length)  {
+                if($scope.toggles.searchInput && $scope.toggles.searchInput.length)  {
                     if(e.which == 27) {
                         $scope.wipeSearch();
                     }
@@ -42,6 +48,14 @@ spilldb.component('gamesearch', {
 
         $scope.$on('user logged in from form', function () {
 
+        });
+
+        $scope.toggleSearchMobile = function () {
+            $scope.toggles.showSearchMobile = !$scope.toggles.showSearchMobile;
+        };
+
+
+        $(window).on('touchstart', function () {
         });
     }
 });

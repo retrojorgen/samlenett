@@ -10,6 +10,10 @@ html(lang="en")
         script(src="/static/bower_components/angular/angular.js")
         script(src="/static/bower_components/angular-route/angular-route.js")
         script(src="/static/bower_components/angular-animate/angular-animate.js")
+        script(src="/static/bower_components/moment/moment.js")
+        script(src="/static/bower_components/angular-click-outside/clickoutside.directive.js")
+        script(src="/static/bower_components/moment/locale/nb.js")
+        script(src="/static/bower_components/angular-moment/angular-moment.js")
         script(src="/static/bower_components/angular-sanitize/angular-sanitize.js")
         script(src="/static/bower_components/angular-bootstrap/ui-bootstrap.js")
         script(src="/static/bower_components/a0-angular-storage/dist/angular-storage.js")
@@ -17,21 +21,29 @@ html(lang="en")
         script(src="/static/bower_components/underscore/underscore.js")
         script(src="/static/bower_components/angular-elastic-input/dist/angular-elastic-input.js")
         script(src="/static/bower_components/angular-underscore-module/angular-underscore-module.js")
-        link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Montserrat")
         link(rel="stylesheet",type="text/css",href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Open+Sans")
         link(rel="stylesheet",type="text/css",href="/static/css/screen.css")
         style
             |.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-    body(ng-app="spilldb")
+    body(ng-app="spilldb" ng-class="{'logged-in-theme': user}")
         gamedialog(class="test")
         div(ng-class="{visible: visible}")
-        nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb")
+        nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb", ng-class="{visible: user}")
                     a(id="spilldb-logo",class="navbar-brand",href="/")
                         div(class="spilldb-logo")
                     userbar
                     gamesearch
                     auth(class="auth pull-right")
+        nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb-not-logged-in", ng-class="{visible: !user}")
+
+                            div(class="login-buttons-container")
+                                a(href="/login", class="btn btn-default navbar-btn login")
+                                    | Logg inn
+                                a(href="/signup", class="btn btn-default navbar-btn signup")
+                                    | Bli medlem
+
 
         div(class="main-container", ng-class="{visible: visible}")
             ng-view
@@ -56,9 +68,11 @@ html(lang="en")
         script(src="/static/app/scripts/components/game.js")
         script(src="/static/app/scripts/components/imageGallery.js")
         script(src="/static/app/scripts/components/createCollection.js")
+        script(src="/static/app/scripts/components/createProfilePhoto.js")
         script(src="/static/app/scripts/components/loading.js")
         script(src="/static/app/scripts/components/hamburger.js")
         script(src="/static/app/scripts/components/addGame.js")
+        script(src="/static/app/scripts/components/flush.js")
         script(src="/static/app/scripts/components/gameSearch.js")
         script(src="/static/app/scripts/directives/search.js")
         script(src="/static/app/scripts/directives/contenteditable.js")

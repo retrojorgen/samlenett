@@ -60,6 +60,9 @@ spilldb.component('auth', {
                 $scope.ready = true;
             });
 
+        $scope.$on("user updated", function () {
+            $scope.user == $rootScope.user;
+        })
         $scope.$on('user logged in from form', function () {
             $scope.loggedIn = true;
             $scope.user = authService.getLoggedInUser();

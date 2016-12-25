@@ -93,14 +93,14 @@
       background-color: red;
     }
     &.cancel {
-      background-color: lightyellow;
+      background-color: white;
 
       color: $blue;
       &:hover {
-        background-color: darken(lightyellow, 10%);
+        background-color: white;
       }
       &:active {
-        background-color: darken(lightyellow, 20%);
+        background-color: white;
       }
     }
   }

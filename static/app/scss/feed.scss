@@ -1,5 +1,7 @@
 .feed-item {
   padding: 14px;
+  margin-left: -14px;
+  margin-right: -14px;
   background-color: $darkGrey;
   margin-bottom: 14px;
   border-radius: 4px;
@@ -33,6 +35,21 @@
     img {
       max-width: 100%;
     }
-
+    h2 {
+      font-size: 22px;
+      color: white;
+      @media #{$phone} {
+        font-size: 16px;
+      }
+    }
+    h3 {
+      font-size: 14px;
+      color: $textGrey;
+      margin-top: -3px;
+      margin-bottom: 14px;
+      @media #{$phone} {
+        font-size: 10px;
+      }
+    }
   }
 }

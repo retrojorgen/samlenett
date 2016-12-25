@@ -1,6 +1,5 @@
 .user-tab {
   display: none;
-  margin-top: 14px*2;
 
   .user-tab-title {
     word-wrap: break-word;
@@ -51,8 +50,8 @@
       }
       @media #{$phone} {
         width: 100%;
-        height: auto;
-        overflow: auto;
+        height: 315px;
+        overflow: hidden;
         -webkit-overflow-scrolling: touch;
         margin: 0 0 14px 0;
       }

@@ -11,18 +11,18 @@ spilldb.component('addgame', {
 
         $scope.main =
             [
-                {'key': 'title', 'title': 'Tittel', 'description': ''},
-                {
-                    'key': 'console',
-                    'title': 'Konsoll',
-                    'description': ''
-                }
+                {'key': 'title', 'title': 'Spill-tittel', 'description': ''},
+
             ]
         ;
 
         $scope.details =
             [
-
+                {
+                    'key': 'console',
+                    'title': 'Konsoll',
+                    'description': ''
+                },
                 {
                     'key': 'publisher',
                     'title': 'Utgiver',
@@ -66,6 +66,7 @@ spilldb.component('addgame', {
             $scope.game = {
                 title: '',
                 collectionId: collectionId,
+                userId: $scope.user._id,
                 console: '',
                 publisher: '',
                 front: '',
@@ -82,7 +83,8 @@ spilldb.component('addgame', {
                 collectionSelector: false,
                 search: {},
                 showDialog: false,
-                showDetails: false
+                showDetails: false,
+                currentInput: undefined
             };
             if(callback)
                 callback();
@@ -141,12 +143,18 @@ spilldb.component('addgame', {
             $scope.toggles.search[key] = undefined;
         };
 
+        $scope.wipeSearch = function (key) {
+            $scope.toggles.search[key] = undefined;
+            $scope.toggles.currentInput = undefined;
+        };
+
         $scope.addGame = function () {
             console.log('legger til spill');
             $http.post("/api/add/game", $scope.game)
                 .success(function (dbGame) {
                     $scope.toggles.showDialog = false;
                     $rootScope.$broadcast('add to active collection', dbGame);
+                    dbGame.collection = $scope.collections.selectedCollection;
                     eventService.postEvent({
                         type: "new game",
                         referenceId: dbGame._id,
@@ -208,6 +216,25 @@ spilldb.component('addgame', {
                 });
             } else {
                 $scope.toggles.showDialog = false;
+                $scope.viewReset();
             }
+        };
+
+        if($rootScope.user) {
+            $scope.user = $rootScope.user;
+            $scope.game.userId = $scope.user._id;
         }
+
+        $(document).on('keydown', function (e) {
+            $scope.$apply(function () {
+                    if(e.which == 27) {
+                        if($scope.toggles.currentInput) {
+                            $scope.wipeSearch($scope.toggles.currentInput);
+                        }
+                        if($scope.toggles.showDialog) {
+                            $scope.toggleAddGameDialog();
+                        }
+                    }
+                });
+            });
     }});

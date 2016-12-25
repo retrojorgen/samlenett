@@ -10,36 +10,14 @@
 /* line 1, ../app/scss/auth.scss */
 .auth {
   text-align: right;
-  padding-right: 15px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 1, ../app/scss/auth.scss */
-  .auth {
-    padding-right: 0;
-  }
-}
-@media only screen and (max-width: 800px) {
-  /* line 7, ../app/scss/auth.scss */
-  .auth .login-buttons-container {
-    padding-right: 0;
-    padding: 6px 6px;
-  }
-  /* line 11, ../app/scss/auth.scss */
-  .auth .login-buttons-container .btn.login,
-  .auth .login-buttons-container .btn.signup {
-    padding: 8px 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    height: 37px;
-  }
-}
-@media only screen and (max-width: 800px) {
-  /* line 22, ../app/scss/auth.scss */
+  /* line 6, ../app/scss/auth.scss */
   .auth .profile-info .navbar-text {
     display: none;
   }
 }
-/* line 27, ../app/scss/auth.scss */
+/* line 11, ../app/scss/auth.scss */
 .auth .profile-image {
   background-size: cover;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzIzMzIzYiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
@@ -49,7 +27,7 @@
   background-image: -webkit-linear-gradient(#3498db, #23323b);
   background-image: linear-gradient(#3498db, #23323b);
   padding: 17px 17px 16px 16px;
-  background-color: #a0a0a0;
+  background-color: transparent;
   /* width: 20px; */
   /* height: 20px; */
   background-size: cover;
@@ -58,79 +36,43 @@
   /* border: 1px solid white; */
   margin-top: 8px;
   margin-bottom: 8px;
-  margin-right: 10px;
+  margin-left: 1px;
+  margin-rightr: 1px;
   float: right;
 }
-@media only screen and (max-width: 800px) {
-  /* line 27, ../app/scss/auth.scss */
-  .auth .profile-image {
-    margin-right: 0;
-  }
+/* line 27, ../app/scss/auth.scss */
+.auth .profile-image.no-photo {
+  border: 1px solid rgba(255, 255, 255, 0.47);
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 45, ../app/scss/auth.scss */
+  /* line 34, ../app/scss/auth.scss */
   .auth .profile-image .login-buttons-container {
     display: flex;
   }
 }
-/* line 51, ../app/scss/auth.scss */
-.auth .btn {
-  cursor: pointer;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  color: white;
-  background-color: transparent;
-  border: 0;
-  border-radius: 4px;
-  padding: 8px 20px;
-  outline: none;
-  -moz-transition: 0.5s;
-  -o-transition: 0.5s;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-/* line 62, ../app/scss/auth.scss */
-.auth .btn.signup {
-  background-color: #3498DB;
-  border: 0;
-}
-/* line 66, ../app/scss/auth.scss */
-.auth .btn.login {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-/* line 73, ../app/scss/auth.scss */
-.auth .btn.logout {
-  border-radius: 4px;
-  padding: 4px 6px;
-}
 
-/* line 83, ../app/scss/auth.scss */
+/* line 43, ../app/scss/auth.scss */
 .auth-cover {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzI5ODBiOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3498db), color-stop(100%, #2980b9));
-  background-image: -moz-linear-gradient(#3498db, #2980b9);
-  background-image: -webkit-linear-gradient(#3498db, #2980b9);
-  background-image: linear-gradient(#3498db, #2980b9);
+  z-index: 60000;
+  background-color: #3498DB;
   background-size: cover;
   opacity: 1;
 }
 @media only screen and (max-width: 800px) {
-  /* line 83, ../app/scss/auth.scss */
+  /* line 43, ../app/scss/auth.scss */
   .auth-cover {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
-    background-image: none;
     opacity: 1;
   }
 }
@@ -139,15 +81,18 @@
 .navbar {
   background-color: #2f3137;
   margin-bottom: 0;
+  -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.6);
 }
 
-/* line 14, ../app/scss/bootstrapOverrides.scss */
+/* line 15, ../app/scss/bootstrapOverrides.scss */
 .close.inverse {
   color: #fff;
   opacity: 1;
 }
 
-/* line 19, ../app/scss/bootstrapOverrides.scss */
+/* line 20, ../app/scss/bootstrapOverrides.scss */
 .btn {
   border-radius: 4px;
   font-size: 100%;
@@ -158,18 +103,18 @@
 }
 
 @media only screen and (max-width: 800px) {
-  /* line 29, ../app/scss/bootstrapOverrides.scss */
+  /* line 30, ../app/scss/bootstrapOverrides.scss */
   .navbar-text {
     margin-right: 10px;
     display: inline-block;
   }
-  /* line 33, ../app/scss/bootstrapOverrides.scss */
+  /* line 34, ../app/scss/bootstrapOverrides.scss */
   .navbar-text span {
     display: none;
   }
 }
 
-/* line 39, ../app/scss/bootstrapOverrides.scss */
+/* line 40, ../app/scss/bootstrapOverrides.scss */
 .navbar-form {
   border-top: 0;
   border-bottom: 0;
@@ -178,24 +123,24 @@
   box-shadow: 0 0 0 0 transparent;
 }
 
-/* line 45, ../app/scss/bootstrapOverrides.scss */
+/* line 46, ../app/scss/bootstrapOverrides.scss */
 .navbar-samledb {
   border: 0;
 }
 @media only screen and (max-width: 800px) {
-  /* line 45, ../app/scss/bootstrapOverrides.scss */
+  /* line 46, ../app/scss/bootstrapOverrides.scss */
   .navbar-samledb {
     display: flex;
     z-index: 2000;
   }
-  /* line 50, ../app/scss/bootstrapOverrides.scss */
+  /* line 51, ../app/scss/bootstrapOverrides.scss */
   .navbar-samledb .auth {
     margin-left: 14px;
     width: 100%;
   }
 }
 
-/* line 57, ../app/scss/bootstrapOverrides.scss */
+/* line 58, ../app/scss/bootstrapOverrides.scss */
 .input-label {
   text-transform: uppercase;
   color: #3498DB;
@@ -204,23 +149,23 @@
   margin: 4px 0 4px 0;
 }
 
-/* line 65, ../app/scss/bootstrapOverrides.scss */
+/* line 66, ../app/scss/bootstrapOverrides.scss */
 .navbar-brand {
   background-color: #3498DB;
 }
-/* line 67, ../app/scss/bootstrapOverrides.scss */
+/* line 68, ../app/scss/bootstrapOverrides.scss */
 .navbar-brand:hover {
   background-color: #3498DB;
 }
 @media only screen and (max-width: 800px) {
-  /* line 65, ../app/scss/bootstrapOverrides.scss */
+  /* line 66, ../app/scss/bootstrapOverrides.scss */
   .navbar-brand {
     padding: 10px;
     background-color: transparent;
     border-right: 1px solid #1f2125;
   }
 }
-/* line 75, ../app/scss/bootstrapOverrides.scss */
+/* line 76, ../app/scss/bootstrapOverrides.scss */
 .navbar-brand .spilldb-logo {
   position: relative;
   width: 90px;
@@ -228,8 +173,25 @@
   background-image: url("../images/samledb-hvit.svg");
   background-size: 100% auto;
 }
+/* line 82, ../app/scss/bootstrapOverrides.scss */
+.navbar-brand .spilldb-logo:after {
+  content: "beta 0.0.1";
+  color: white;
+  font-size: 8px;
+  position: absolute;
+  top: 18px;
+  left: 23px;
+}
 @media only screen and (max-width: 800px) {
-  /* line 75, ../app/scss/bootstrapOverrides.scss */
+  /* line 82, ../app/scss/bootstrapOverrides.scss */
+  .navbar-brand .spilldb-logo:after {
+    top: 23px;
+    left: 8px;
+    width: 40px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 76, ../app/scss/bootstrapOverrides.scss */
   .navbar-brand .spilldb-logo {
     background-image: url("../images/samledbmobilelogohvit.svg");
     background-size: 100% auto;
@@ -240,9 +202,44 @@
   }
 }
 
-/* line 93, ../app/scss/bootstrapOverrides.scss */
+/* line 107, ../app/scss/bootstrapOverrides.scss */
 .form-control {
   font-size: 16px;
+}
+
+/* line 112, ../app/scss/bootstrapOverrides.scss */
+.navbar-static-top {
+  z-index: 8000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  -moz-transform: translateY(-60px);
+  -ms-transform: translateY(-60px);
+  -webkit-transform: translateY(-60px);
+  transform: translateY(-60px);
+  -moz-transition: ease-in-out 0.25s;
+  -o-transition: ease-in-out 0.25s;
+  -webkit-transition: ease-in-out 0.25s;
+  transition: ease-in-out 0.25s;
+}
+/* line 120, ../app/scss/bootstrapOverrides.scss */
+.navbar-static-top.visible {
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -moz-transition: ease-in-out 0.25s;
+  -o-transition: ease-in-out 0.25s;
+  -webkit-transition: ease-in-out 0.25s;
+  transition: ease-in-out 0.25s;
+}
+
+/* line 126, ../app/scss/bootstrapOverrides.scss */
+.navbar-samledb-not-logged-in {
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
 }
 
 /* line 1, ../app/scss/bottomNavbar.scss */
@@ -417,10 +414,10 @@
 
 /* line 1, ../app/scss/collection.scss */
 .collection-header {
-  margin: -14px -14px 14px -14px;
+  margin: 0 -14px 14px -14px;
   position: relative;
   overflow: hidden;
-  padding: 14px;
+  padding: 50px 14px 14px 14px;
   display: flex;
 }
 @media only screen and (max-width: 800px) {
@@ -447,11 +444,16 @@
   top: -25%;
   opacity: 0.1;
 }
-/* line 28, ../app/scss/collection.scss */
+@media only screen and (max-width: 800px) {
+  /* line 18, ../app/scss/collection.scss */
+  .collection-header .collection-photo-cloak {
+    opacity: 0.3;
+  }
+}
+/* line 32, ../app/scss/collection.scss */
 .collection-header .collection-photo,
 .collection-header .profile-photo {
-  background-color: #2f3137;
-  background-image: url(../images/default-collection.jpg);
+  background-color: transparent;
   background-size: cover;
   position: relative;
   background-repeat: no-repeat;
@@ -462,24 +464,29 @@
   margin-right: 14px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 28, ../app/scss/collection.scss */
+  /* line 32, ../app/scss/collection.scss */
   .collection-header .collection-photo,
   .collection-header .profile-photo {
     display: inline-block;
     margin-right: 0;
   }
 }
-/* line 45, ../app/scss/collection.scss */
+/* line 47, ../app/scss/collection.scss */
+.collection-header .collection-photo.no-photo,
+.collection-header .profile-photo.no-photo {
+  border: 1px solid rgba(255, 255, 255, 0.47);
+}
+/* line 49, ../app/scss/collection.scss */
 .collection-header .collection-photo.no-photo .file-upload-button-container,
 .collection-header .profile-photo.no-photo .file-upload-button-container {
   display: inline-block;
 }
-/* line 50, ../app/scss/collection.scss */
+/* line 54, ../app/scss/collection.scss */
 .collection-header .collection-photo:hover .file-upload-button-container,
 .collection-header .profile-photo:hover .file-upload-button-container {
   display: inline-block;
 }
-/* line 55, ../app/scss/collection.scss */
+/* line 59, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container,
 .collection-header .profile-photo .file-upload-button-container {
   position: absolute;
@@ -489,7 +496,7 @@
   margin-left: -34px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 55, ../app/scss/collection.scss */
+  /* line 59, ../app/scss/collection.scss */
   .collection-header .collection-photo .file-upload-button-container,
   .collection-header .profile-photo .file-upload-button-container {
     display: inline-block;
@@ -499,7 +506,7 @@
     left: auto;
   }
 }
-/* line 69, ../app/scss/collection.scss */
+/* line 73, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container .upload-photo-button,
 .collection-header .profile-photo .file-upload-button-container .upload-photo-button {
   position: relative;
@@ -517,39 +524,41 @@
   padding: 12px;
   outline: none;
   border-radius: 20px;
+  margin: -1px;
+  border: 1px solid rgba(255, 255, 255, 0.47);
 }
-/* line 85, ../app/scss/collection.scss */
+/* line 91, ../app/scss/collection.scss */
 .collection-header .collection-photo .file-upload-button-container .upload-photo-button:before,
 .collection-header .profile-photo .file-upload-button-container .upload-photo-button:before {
   content: "\e046";
 }
-/* line 93, ../app/scss/collection.scss */
+/* line 99, ../app/scss/collection.scss */
 .collection-header .collection-information {
   min-width: 60%;
 }
-/* line 97, ../app/scss/collection.scss */
+/* line 103, ../app/scss/collection.scss */
 .collection-header .collection-title {
   position: relative;
   color: white;
   outline: none;
 }
-/* line 101, ../app/scss/collection.scss */
+/* line 107, ../app/scss/collection.scss */
 .collection-header .collection-title .kicker {
   text-transform: uppercase;
   margin-bottom: 0;
   color: #a0a0a0;
 }
-/* line 106, ../app/scss/collection.scss */
+/* line 112, ../app/scss/collection.scss */
 .collection-header .collection-title .byline {
   color: #a0a0a0;
   font-size: 14px;
 }
-/* line 110, ../app/scss/collection.scss */
+/* line 116, ../app/scss/collection.scss */
 .collection-header .collection-title .description {
   font-size: 16px;
   color: #a0a0a0;
 }
-/* line 114, ../app/scss/collection.scss */
+/* line 120, ../app/scss/collection.scss */
 .collection-header .collection-title h1 {
   display: inline-block;
   outline: none;
@@ -559,13 +568,13 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 @media only screen and (max-width: 800px) {
-  /* line 114, ../app/scss/collection.scss */
+  /* line 120, ../app/scss/collection.scss */
   .collection-header .collection-title h1 {
     font-size: 22px;
     font-weight: bold;
   }
 }
-/* line 127, ../app/scss/collection.scss */
+/* line 133, ../app/scss/collection.scss */
 .collection-header .collection-background {
   position: absolute;
   left: 0;
@@ -575,7 +584,7 @@
   background-size: cover;
 }
 
-/* line 137, ../app/scss/collection.scss */
+/* line 143, ../app/scss/collection.scss */
 .collection-edit {
   position: absolute;
   top: 0;
@@ -596,23 +605,23 @@
   -webkit-transition: ease-in-out 0.25s;
   transition: ease-in-out 0.25s;
 }
-/* line 149, ../app/scss/collection.scss */
+/* line 155, ../app/scss/collection.scss */
 .collection-edit.visible {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 153, ../app/scss/collection.scss */
+/* line 159, ../app/scss/collection.scss */
 .collection-edit label {
   color: #3a3a3a;
 }
-/* line 156, ../app/scss/collection.scss */
+/* line 162, ../app/scss/collection.scss */
 .collection-edit form {
   margin-top: 14px;
 }
 
-/* line 162, ../app/scss/collection.scss */
+/* line 168, ../app/scss/collection.scss */
 .editable-wrapper {
   border-bottom: 2px solid #3498DB;
   background-color: #0D3349;
@@ -620,11 +629,11 @@
   position: relative;
   outline: none;
 }
-/* line 168, ../app/scss/collection.scss */
+/* line 174, ../app/scss/collection.scss */
 .editable-wrapper > * {
   outline: none;
 }
-/* line 171, ../app/scss/collection.scss */
+/* line 177, ../app/scss/collection.scss */
 .editable-wrapper .editable-button-container {
   position: absolute;
   top: 100%;
@@ -632,7 +641,7 @@
   width: 100%;
   text-align: right;
 }
-/* line 178, ../app/scss/collection.scss */
+/* line 184, ../app/scss/collection.scss */
 .editable-wrapper .editable-action-button {
   font-size: 11px;
   color: black;
@@ -643,10 +652,10 @@
   outline: none;
 }
 
-/* line 190, ../app/scss/collection.scss */
+/* line 196, ../app/scss/collection.scss */
 .collection-wrapper {
   border-left: 0 solid transparent;
-  border-top: 84px solid transparent;
+  border-top: 50px solid transparent;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -655,19 +664,31 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-  padding: 14px 0 80px 0;
+  padding: 56px 0 80px 0;
 }
-/* line 202, ../app/scss/collection.scss */
+/* line 208, ../app/scss/collection.scss */
 .collection-wrapper.no-back {
   border-top: 50px solid transparent;
+  padding-top: 0;
 }
-/* line 206, ../app/scss/collection.scss */
+/* line 212, ../app/scss/collection.scss */
+.collection-wrapper.no-space-top {
+  padding-top: 0;
+}
+@media only screen and (max-width: 800px) {
+  /* line 196, ../app/scss/collection.scss */
+  .collection-wrapper {
+    border-top: 52px solid transparent;
+    padding-top: 34px;
+  }
+}
+/* line 221, ../app/scss/collection.scss */
 .collection-wrapper .collection-container {
   background-color: #181818;
   padding: 0 14px 0 14px;
 }
 
-/* line 213, ../app/scss/collection.scss */
+/* line 228, ../app/scss/collection.scss */
 .collection-list-header {
   margin-top: 10px;
   color: #a0a0a0;
@@ -676,35 +697,36 @@
   font-size: 10px;
 }
 
-/* line 222, ../app/scss/collection.scss */
+/* line 237, ../app/scss/collection.scss */
 .collection-list-item.add-list-button {
   background-color: #3498DB;
   color: white;
   padding: 15px;
   cursor: pointer;
 }
-/* line 227, ../app/scss/collection.scss */
+/* line 242, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:hover {
   background-color: #217dbb;
 }
-/* line 230, ../app/scss/collection.scss */
+/* line 245, ../app/scss/collection.scss */
 .collection-list-item.add-list-button:active {
   background-color: #196090;
 }
 
-/* line 236, ../app/scss/collection.scss */
+/* line 251, ../app/scss/collection.scss */
 .add-description-wrapper {
   margin-bottom: 14px;
 }
 
-/* line 241, ../app/scss/collection.scss */
+/* line 256, ../app/scss/collection.scss */
 .collection-selector-container {
   background-color: #1f2125;
   border: 1px solid #3498DB;
   margin-bottom: 20px;
   position: relative;
+  font-size: 16px;
 }
-/* line 246, ../app/scss/collection.scss */
+/* line 262, ../app/scss/collection.scss */
 .collection-selector-container .game-input {
   font-size: 16px;
   background-color: transparent;
@@ -714,34 +736,40 @@
   margin: 0;
   outline: none;
 }
-/* line 255, ../app/scss/collection.scss */
+/* line 271, ../app/scss/collection.scss */
 .collection-selector-container .search-wrapper {
   border-left: 1px solid #3498DB;
   border-bottom: 1px solid #3498DB;
   border-right: 1px solid #3498DB;
   text-align: left;
 }
-/* line 261, ../app/scss/collection.scss */
+/* line 277, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 265, ../app/scss/collection.scss */
+/* line 281, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li {
   padding: 10px;
   text-align: left;
   cursor: pointer;
 }
-/* line 269, ../app/scss/collection.scss */
+/* line 285, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list li:hover {
   background-color: #080809;
 }
-/* line 274, ../app/scss/collection.scss */
+@media only screen and (max-width: 800px) {
+  /* line 281, ../app/scss/collection.scss */
+  .collection-selector-container .collection-selector-list li {
+    font-size: 16px;
+  }
+}
+/* line 292, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected {
   position: relative;
 }
-/* line 276, ../app/scss/collection.scss */
+/* line 294, ../app/scss/collection.scss */
 .collection-selector-container .collection-selector-list .collection-selector-selected:after {
   top: 50%;
   right: 10px;
@@ -766,33 +794,26 @@
   transition: 0.25s;
 }
 
-/* line 297, ../app/scss/collection.scss */
+/* line 315, ../app/scss/collection.scss */
 .back-to {
   display: block;
   width: 100%;
   padding: 10px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   text-align: center;
   text-transform: uppercase;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.4);
   font-size: 10px;
   z-index: 400;
-  max-width: 900px;
-  margin: 0 auto;
 }
 @media only screen and (max-width: 800px) {
-  /* line 297, ../app/scss/collection.scss */
+  /* line 315, ../app/scss/collection.scss */
   .back-to {
     display: block;
     width: 100%;
-    position: absolute;
-    top: 50px;
-    padding: 10px;
-    text-align: center;
-    text-transform: uppercase;
     background-color: #3498DB;
-    font-size: 10px;
-    z-index: 400;
   }
 }
 
@@ -904,7 +925,7 @@
   padding: 20px;
   color: white;
   text-align: center;
-  max-height: 90%;
+  max-height: 80%;
   overflow-y: auto;
 }
 @media only screen and (max-width: 800px) {
@@ -913,16 +934,40 @@
     border-radius: 0;
     border: 0;
     min-height: 100%;
+    width: 100%;
     z-index: 10001;
+    padding-top: 70px;
     padding-bottom: 70px;
   }
+  /* line 104, ../app/scss/dialog.scss */
+  .dialog-wrapper .dialog-container.not-fixed {
+    border: 1px solid #49687b;
+    max-width: 90%;
+    border: 1px solid #49687b;
+    min-height: auto;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
-/* line 104, ../app/scss/dialog.scss */
+@media only screen and (max-width: 800px) and (max-width: 800px) {
+  /* line 113, ../app/scss/dialog.scss */
+  .dialog-wrapper .dialog-container.not-fixed .button-container {
+    position: relative;
+    bottom: auto;
+    background-color: transparent;
+    margin: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* line 125, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container {
   text-align: center;
 }
 @media only screen and (max-width: 800px) {
-  /* line 104, ../app/scss/dialog.scss */
+  /* line 125, ../app/scss/dialog.scss */
   .dialog-wrapper .button-container {
     position: fixed;
     bottom: 0;
@@ -933,7 +978,7 @@
     padding: 8px;
   }
 }
-/* line 115, ../app/scss/dialog.scss */
+/* line 137, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button {
   border-radius: 4px;
   background-color: #3498DB;
@@ -943,28 +988,28 @@
   border: 0;
   outline: none;
 }
-/* line 123, ../app/scss/dialog.scss */
+/* line 145, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button:hover {
   background-color: #217dbb;
 }
-/* line 126, ../app/scss/dialog.scss */
+/* line 148, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button:active {
   background-color: #196090;
 }
-/* line 129, ../app/scss/dialog.scss */
+/* line 151, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button.cancel {
-  background-color: lightyellow;
+  background-color: white;
   color: #3498DB;
 }
-/* line 133, ../app/scss/dialog.scss */
+/* line 155, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button.cancel:hover {
-  background-color: #ffffad;
+  background-color: white;
 }
-/* line 136, ../app/scss/dialog.scss */
+/* line 158, ../app/scss/dialog.scss */
 .dialog-wrapper .button-container button.cancel:active {
-  background-color: #ffff7a;
+  background-color: white;
 }
-/* line 142, ../app/scss/dialog.scss */
+/* line 164, ../app/scss/dialog.scss */
 .dialog-wrapper .btn {
   text-transform: uppercase;
 }
@@ -1018,34 +1063,124 @@
   }
 }
 
-/* line 38, ../app/scss/flexCols.scss */
-.no-space-top {
-  padding-top: 0;
-}
-
 /* line 1, ../app/scss/forms.scss */
 .signup-form {
   position: relative;
   max-width: 400px;
-  padding: 40px;
-  background-color: white;
   margin: 50px auto 0 auto;
-  border-radius: 4px;
   color: #3a3a3a;
   overflow: hidden;
-  -moz-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
-  -webkit-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.14);
 }
-/* line 11, ../app/scss/forms.scss */
+/* line 8, ../app/scss/forms.scss */
+.signup-form .form-inner-wrapper {
+  border-top: 1px solid white;
+  padding: 40px;
+}
+@media only screen and (max-width: 800px) {
+  /* line 8, ../app/scss/forms.scss */
+  .signup-form .form-inner-wrapper {
+    padding: 14px;
+  }
+}
+/* line 16, ../app/scss/forms.scss */
+.signup-form .btn {
+  color: white;
+}
+/* line 19, ../app/scss/forms.scss */
+.signup-form .profile-photo {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  background-size: cover;
+  background-position: top center;
+}
+/* line 28, ../app/scss/forms.scss */
+.signup-form .profile-photo.no-photo {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.47);
+}
+/* line 33, ../app/scss/forms.scss */
+.signup-form .avatar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+/* line 39, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container {
+  display: inline-block;
+  width: 70px;
+  width: 70px;
+  position: relative;
+  text-align: center;
+  margin: 0px 2px 14px 2px;
+}
+/* line 47, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: top center;
+}
+/* line 53, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.selected {
+  border: 2px solid white;
+}
+/* line 56, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-1 {
+  background-image: url(/static/userImages/avatar-1.jpg);
+}
+/* line 59, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-2 {
+  background-image: url(/static/userImages/avatar-2.jpg);
+}
+/* line 62, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-3 {
+  background-image: url(/static/userImages/avatar-3.jpg);
+}
+/* line 65, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-4 {
+  background-image: url(/static/userImages/avatar-4.jpg);
+}
+/* line 68, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-5 {
+  background-image: url(/static/userImages/avatar-5.jpg);
+}
+/* line 71, ../app/scss/forms.scss */
+.signup-form .avatar-thumb-container .avatar-thumb.avatar-6 {
+  background-image: url(/static/userImages/avatar-6.jpg);
+}
+/* line 76, ../app/scss/forms.scss */
+.signup-form .upload-photo-button {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 14px;
+  background-color: white;
+  border-radius: 4px;
+  /* content: "heisann"; */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border: 0;
+}
+/* line 87, ../app/scss/forms.scss */
+.signup-form .upload-photo-button:after {
+  content: "Last opp bilde";
+}
+/* line 91, ../app/scss/forms.scss */
 .signup-form .form-control {
   width: 100%;
+  text-align: center;
 }
-/* line 14, ../app/scss/forms.scss */
+/* line 95, ../app/scss/forms.scss */
 .signup-form.slim {
   max-width: 320px;
 }
-/* line 17, ../app/scss/forms.scss */
+/* line 98, ../app/scss/forms.scss */
 .signup-form label {
   display: none;
 }
@@ -1056,32 +1191,46 @@
     border-radius: 0;
   }
 }
-/* line 24, ../app/scss/forms.scss */
-.signup-form h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  text-align: center;
+/* line 106, ../app/scss/forms.scss */
+.signup-form .form-control-feedback {
+  top: 0 !important;
 }
-/* line 30, ../app/scss/forms.scss */
-.signup-form h3 {
-  font-weight: normal;
-  color: #bdbdbd;
-  font-size: 14px;
-  text-align: center;
-  margin-top: -10px;
-  margin-bottom: 40px;
-}
-/* line 38, ../app/scss/forms.scss */
+/* line 110, ../app/scss/forms.scss */
 .signup-form .reset-password {
   text-align: center;
   padding: 14px;
 }
-/* line 42, ../app/scss/forms.scss */
+/* line 113, ../app/scss/forms.scss */
+.signup-form .reset-password a {
+  color: white;
+}
+/* line 117, ../app/scss/forms.scss */
 .signup-form a {
   text-align: center;
 }
 
-/* line 47, ../app/scss/forms.scss */
+/* line 122, ../app/scss/forms.scss */
+.form-header {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+}
+
+/* line 131, ../app/scss/forms.scss */
+.form-description {
+  font-weight: normal;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* line 141, ../app/scss/forms.scss */
 .form-full {
   position: absolute;
   left: 0;
@@ -1097,18 +1246,18 @@
   align-items: center;
 }
 @media only screen and (max-width: 800px) {
-  /* line 47, ../app/scss/forms.scss */
+  /* line 141, ../app/scss/forms.scss */
   .form-full {
     display: block;
   }
 }
-/* line 65, ../app/scss/forms.scss */
+/* line 159, ../app/scss/forms.scss */
 .form-full a {
   color: #3498DB;
   cursor: pointer;
 }
 @media only screen and (max-width: 800px) {
-  /* line 69, ../app/scss/forms.scss */
+  /* line 163, ../app/scss/forms.scss */
   .form-full .form-controls {
     position: fixed;
     bottom: 0;
@@ -1119,7 +1268,7 @@
   }
 }
 
-/* line 82, ../app/scss/forms.scss */
+/* line 176, ../app/scss/forms.scss */
 .send-new-password-container {
   margin-left: -16px;
   margin-right: -16px;
@@ -1127,25 +1276,25 @@
   background-color: #f5f5f5;
 }
 
-/* line 89, ../app/scss/forms.scss */
+/* line 183, ../app/scss/forms.scss */
 .details-wrapper {
   margin-bottom: 20px;
   margin-left: -20px;
   margin-right: -20px;
 }
 
-/* line 95, ../app/scss/forms.scss */
+/* line 189, ../app/scss/forms.scss */
 .details-view {
   padding: 30px 20px 20px 20px;
   margin-top: -10px;
   background-color: #1a242b;
 }
 
-/* line 102, ../app/scss/forms.scss */
+/* line 196, ../app/scss/forms.scss */
 .details-showbutton-container {
   position: relative;
 }
-/* line 104, ../app/scss/forms.scss */
+/* line 198, ../app/scss/forms.scss */
 .details-showbutton-container:before {
   border-top: 1px solid #3498DB;
   position: absolute;
@@ -1155,7 +1304,7 @@
   height: 50%;
   width: 100%;
 }
-/* line 115, ../app/scss/forms.scss */
+/* line 209, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton {
   background-color: #3498DB;
   color: white;
@@ -1167,21 +1316,69 @@
   position: relative;
   outline: none;
 }
-/* line 125, ../app/scss/forms.scss */
+/* line 219, ../app/scss/forms.scss */
 .details-showbutton-container .details-showbutton:hover {
   background-color: #258cd1;
 }
 
-/* line 132, ../app/scss/forms.scss */
+/* line 225, ../app/scss/forms.scss */
 .form-header-image {
-  background-image: url(/static/images/createCollection.png);
-  background-size: cover;
-  background-position: top center;
-  margin-top: -40px;
-  margin-left: -40px;
-  margin-right: -40px;
-  margin-bottom: 20px;
-  height: 140px;
+  margin-top: 0;
+  width: 100%;
+}
+
+/* line 230, ../app/scss/forms.scss */
+.login-buttons-container {
+  vertical-align: middle;
+  float: right;
+  margin-right: 14px;
+}
+/* line 234, ../app/scss/forms.scss */
+.login-buttons-container .btn {
+  cursor: pointer;
+  margin-top: 9px;
+  margin-bottom: 8px;
+  color: white;
+  background-color: transparent;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 20px;
+  outline: none;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+/* line 245, ../app/scss/forms.scss */
+.login-buttons-container .btn.signup {
+  background-color: #196090;
+  border: 0;
+}
+/* line 249, ../app/scss/forms.scss */
+.login-buttons-container .btn.login {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+/* line 256, ../app/scss/forms.scss */
+.login-buttons-container .btn.logout {
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+@media only screen and (max-width: 800px) {
+  /* line 230, ../app/scss/forms.scss */
+  .login-buttons-container {
+    padding-right: 0;
+    padding: 6px 6px;
+    margin-right: 0;
+  }
+  /* line 265, ../app/scss/forms.scss */
+  .login-buttons-container .btn.login,
+  .login-buttons-container .btn.signup {
+    padding: 8px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 37px;
+  }
 }
 
 /* line 1, ../app/scss/gamelist.scss */
@@ -1985,35 +2182,34 @@ body {
   background-color: #181818;
   color: #a0a0a0;
   font-size: 12px;
-  padding-bottom: 100px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-/* line 23, ../app/scss/tagsAndBrowser.scss */
+/* line 22, ../app/scss/tagsAndBrowser.scss */
 a {
   color: #fcfcfc;
   text-decoration: none;
 }
-/* line 26, ../app/scss/tagsAndBrowser.scss */
+/* line 25, ../app/scss/tagsAndBrowser.scss */
 a:hover {
   text-decoration: none;
   color: white;
 }
 
-/* line 33, ../app/scss/tagsAndBrowser.scss */
+/* line 32, ../app/scss/tagsAndBrowser.scss */
 ::-webkit-scrollbar {
   width: 6px;
   background: transparent;
   background: #1f2125;
 }
 
-/* line 39, ../app/scss/tagsAndBrowser.scss */
+/* line 38, ../app/scss/tagsAndBrowser.scss */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 0;
 }
 
-/* line 44, ../app/scss/tagsAndBrowser.scss */
+/* line 43, ../app/scss/tagsAndBrowser.scss */
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
   background: #3498DB;
@@ -2093,9 +2289,8 @@ a:hover {
 /* line 1, ../app/scss/userTab.scss */
 .user-tab {
   display: none;
-  margin-top: 28px;
 }
-/* line 5, ../app/scss/userTab.scss */
+/* line 4, ../app/scss/userTab.scss */
 .user-tab .user-tab-title {
   word-wrap: break-word;
   color: white;
@@ -2105,7 +2300,7 @@ a:hover {
   margin-bottom: 20px;
   position: relative;
 }
-/* line 13, ../app/scss/userTab.scss */
+/* line 12, ../app/scss/userTab.scss */
 .user-tab .user-tab-title .add-description-button {
   position: absolute;
   right: 0;
@@ -2114,13 +2309,13 @@ a:hover {
   margin-top: -4px;
 }
 @media only screen and (max-width: 800px) {
-  /* line 21, ../app/scss/userTab.scss */
+  /* line 20, ../app/scss/userTab.scss */
   .user-tab .user-images {
     margin-left: -24px;
     margin-right: -24px;
   }
 }
-/* line 26, ../app/scss/userTab.scss */
+/* line 25, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container {
   display: inline-block;
   width: 49%;
@@ -2132,7 +2327,7 @@ a:hover {
   background-size: cover;
   background-position: top center;
 }
-/* line 36, ../app/scss/userTab.scss */
+/* line 35, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container .remove-image {
   position: absolute;
   top: 5px;
@@ -2143,29 +2338,29 @@ a:hover {
   padding: 9px 13px;
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
-/* line 45, ../app/scss/userTab.scss */
+/* line 44, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container .remove-image:hover {
   background-color: black;
 }
-/* line 49, ../app/scss/userTab.scss */
+/* line 48, ../app/scss/userTab.scss */
 .user-tab .user-images .image-container img {
   max-width: 100%;
 }
 @media only screen and (max-width: 800px) {
-  /* line 26, ../app/scss/userTab.scss */
+  /* line 25, ../app/scss/userTab.scss */
   .user-tab .user-images .image-container {
     width: 100%;
-    height: auto;
-    overflow: auto;
+    height: 315px;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
     margin: 0 0 14px 0;
   }
 }
-/* line 63, ../app/scss/userTab.scss */
+/* line 62, ../app/scss/userTab.scss */
 .user-tab.selected {
   display: block;
 }
-/* line 66, ../app/scss/userTab.scss */
+/* line 65, ../app/scss/userTab.scss */
 .user-tab .description {
   font-size: 14px;
   color: #a0a0a0;
@@ -2276,16 +2471,16 @@ a:hover {
 }
 /* line 95, ../app/scss/game.scss */
 .update-button-container button.cancel {
-  background-color: lightyellow;
+  background-color: white;
   color: #3498DB;
 }
 /* line 99, ../app/scss/game.scss */
 .update-button-container button.cancel:hover {
-  background-color: #ffffad;
+  background-color: white;
 }
 /* line 102, ../app/scss/game.scss */
 .update-button-container button.cancel:active {
-  background-color: #ffff7a;
+  background-color: white;
 }
 
 /* line 109, ../app/scss/game.scss */
@@ -2372,20 +2567,72 @@ a:hover {
   padding: 7px 10px 5px 10px;
   position: relative;
 }
+@media only screen and (max-width: 800px) {
+  /* line 1, ../app/scss/gameSearch.scss */
+  .game-search-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    background-color: #2f3137;
+    border-top: 1px solid #1f2125;
+    border-bottom: 1px solid #1f2125;
+    opacity: 0;
+    padding: 0;
+    display: none;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 18, ../app/scss/gameSearch.scss */
+  .game-search-wrapper.game-search-show-mobile {
+    display: block;
+    opacity: 1;
+  }
+}
 
-/* line 8, ../app/scss/gameSearch.scss */
+/* line 26, ../app/scss/gameSearch.scss */
+.mobile-search-button-wrapper {
+  display: none;
+}
+@media only screen and (max-width: 800px) {
+  /* line 26, ../app/scss/gameSearch.scss */
+  .mobile-search-button-wrapper {
+    display: block;
+    padding: 16px;
+    cursor: pointer;
+  }
+  /* line 33, ../app/scss/gameSearch.scss */
+  .mobile-search-button-wrapper.selected {
+    background-color: #181818;
+  }
+  /* line 36, ../app/scss/gameSearch.scss */
+  .mobile-search-button-wrapper .mobile-search-button {
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+  }
+}
+
+/* line 46, ../app/scss/gameSearch.scss */
 .game-search-container {
   background-color: #181818;
   border-radius: 8px;
   position: relative;
 }
-/* line 12, ../app/scss/gameSearch.scss */
+/* line 50, ../app/scss/gameSearch.scss */
 .game-search-container .glyphicon {
   position: absolute;
   right: 10px;
   top: 14px;
 }
-/* line 17, ../app/scss/gameSearch.scss */
+@media only screen and (max-width: 800px) {
+  /* line 50, ../app/scss/gameSearch.scss */
+  .game-search-container .glyphicon {
+    display: none;
+  }
+}
+/* line 58, ../app/scss/gameSearch.scss */
 .game-search-container input {
   background-color: transparent;
   border: 0;
@@ -2394,8 +2641,15 @@ a:hover {
   width: 400px;
   outline: none;
 }
+@media only screen and (max-width: 800px) {
+  /* line 58, ../app/scss/gameSearch.scss */
+  .game-search-container input {
+    width: 100%;
+    padding: 8px 14px 8px 14px;
+  }
+}
 
-/* line 27, ../app/scss/gameSearch.scss */
+/* line 72, ../app/scss/gameSearch.scss */
 .game-search-results {
   position: absolute;
   top: 100%;
@@ -2406,24 +2660,24 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-/* line 36, ../app/scss/gameSearch.scss */
+/* line 81, ../app/scss/gameSearch.scss */
 .game-search-results .results-counter {
   background-color: #2f3137;
   color: white;
   padding: 10px 14px;
 }
-/* line 41, ../app/scss/gameSearch.scss */
+/* line 86, ../app/scss/gameSearch.scss */
 .game-search-results .results {
   position: relative;
 }
-/* line 43, ../app/scss/gameSearch.scss */
+/* line 88, ../app/scss/gameSearch.scss */
 .game-search-results .results a {
   color: #bdbdbd;
   padding: 10px 10px 10px 28px;
   cursor: pointer;
   display: block;
 }
-/* line 49, ../app/scss/gameSearch.scss */
+/* line 94, ../app/scss/gameSearch.scss */
 .game-search-results .results .glyphicon {
   margin-right: 6px;
   vertical-align: middle;
@@ -2432,37 +2686,46 @@ a:hover {
   top: 50%;
   margin-top: -6px;
 }
-/* line 57, ../app/scss/gameSearch.scss */
+/* line 102, ../app/scss/gameSearch.scss */
 .game-search-results .results .game-title {
   font-size: 14px;
   color: white;
 }
-/* line 61, ../app/scss/gameSearch.scss */
+/* line 106, ../app/scss/gameSearch.scss */
 .game-search-results .results .additional-properties {
   font-size: 10px;
 }
-/* line 64, ../app/scss/gameSearch.scss */
+/* line 109, ../app/scss/gameSearch.scss */
 .game-search-results .results:hover {
   background-color: #2f3137;
 }
 
 /* line 1, ../app/scss/userBar.scss */
+userbar {
+  display: inline-block;
+  float: left;
+  width: 280px;
+  height: 50px;
+}
+
+/* line 8, ../app/scss/userBar.scss */
 .user-bar {
+  width: 280px;
   position: relative;
   float: left;
 }
 @media only screen and (max-width: 800px) {
-  /* line 1, ../app/scss/userBar.scss */
+  /* line 8, ../app/scss/userBar.scss */
   .user-bar {
     float: none;
     width: 150px;
   }
 }
-/* line 9, ../app/scss/userBar.scss */
+/* line 18, ../app/scss/userBar.scss */
 .user-bar.expanded ul {
   height: auto;
 }
-/* line 13, ../app/scss/userBar.scss */
+/* line 22, ../app/scss/userBar.scss */
 .user-bar.expanded ul li.current-collection:after {
   -moz-transform: rotate(-180deg) translateY(2px);
   -ms-transform: rotate(-180deg) translateY(2px);
@@ -2473,37 +2736,50 @@ a:hover {
   -webkit-transition: 0.1s;
   transition: 0.1s;
 }
-/* line 21, ../app/scss/userBar.scss */
+@media only screen and (max-width: 800px) {
+  /* line 21, ../app/scss/userBar.scss */
+  .user-bar.expanded ul li.current-collection {
+    background-color: #2f3137;
+  }
+  /* line 28, ../app/scss/userBar.scss */
+  .user-bar.expanded ul li.current-collection span {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 16, ../app/scss/userBar.scss */
+  .user-bar.expanded {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+}
+/* line 43, ../app/scss/userBar.scss */
 .user-bar ul {
   position: absolute;
   left: 0;
   top: 0;
-  min-width: 280px;
+  min-width: 100%;
+  width: 100%;
   height: 50px;
   overflow: hidden;
   list-style: none;
   padding: 0;
   margin: 0;
+  z-index: 100;
   -moz-transition: 0.1s;
   -o-transition: 0.1s;
   -webkit-transition: 0.1s;
   transition: 0.1s;
 }
-@media only screen and (max-width: 800px) {
-  /* line 21, ../app/scss/userBar.scss */
-  .user-bar ul {
-    width: 150px;
-    min-width: 150px;
-  }
-}
-/* line 38, ../app/scss/userBar.scss */
+/* line 61, ../app/scss/userBar.scss */
 .user-bar ul li {
   display: block;
   width: 100%;
   font-size: 14px;
   position: relative;
 }
-/* line 43, ../app/scss/userBar.scss */
+/* line 66, ../app/scss/userBar.scss */
 .user-bar ul li .collection-image {
   position: absolute;
   width: 30px;
@@ -2516,7 +2792,7 @@ a:hover {
   background-color: #2f3137;
 }
 @media only screen and (max-width: 800px) {
-  /* line 38, ../app/scss/userBar.scss */
+  /* line 61, ../app/scss/userBar.scss */
   .user-bar ul li {
     font-size: 12px;
     text-overflow: ellipsis;
@@ -2524,7 +2800,7 @@ a:hover {
     overflow: hidden;
   }
 }
-/* line 60, ../app/scss/userBar.scss */
+/* line 83, ../app/scss/userBar.scss */
 .user-bar ul li.current-collection {
   padding: 15px;
   cursor: pointer;
@@ -2532,7 +2808,7 @@ a:hover {
   border-right: 1px solid #1f2125;
   position: relative;
 }
-/* line 66, ../app/scss/userBar.scss */
+/* line 89, ../app/scss/userBar.scss */
 .user-bar ul li.current-collection span {
   white-space: nowrap;
   overflow: hidden;
@@ -2541,17 +2817,23 @@ a:hover {
   display: inline-block;
 }
 @media only screen and (max-width: 800px) {
-  /* line 60, ../app/scss/userBar.scss */
+  /* line 89, ../app/scss/userBar.scss */
+  .user-bar ul li.current-collection span {
+    width: 110px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 83, ../app/scss/userBar.scss */
   .user-bar ul li.current-collection {
     padding: 16px 20px 17px 15px;
   }
 }
-/* line 76, ../app/scss/userBar.scss */
+/* line 102, ../app/scss/userBar.scss */
 .user-bar ul li.current-collection:hover {
   background-color: #1f2125;
   color: white;
 }
-/* line 80, ../app/scss/userBar.scss */
+/* line 106, ../app/scss/userBar.scss */
 .user-bar ul li.current-collection:after {
   top: 50%;
   right: 10px;
@@ -2575,44 +2857,45 @@ a:hover {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/* line 98, ../app/scss/userBar.scss */
+/* line 124, ../app/scss/userBar.scss */
 .user-bar ul li a {
   padding: 15px 15px 15px 60px;
   display: block;
   background-color: #1f2125;
 }
 @media only screen and (max-width: 800px) {
-  /* line 98, ../app/scss/userBar.scss */
+  /* line 124, ../app/scss/userBar.scss */
   .user-bar ul li a {
     font-size: 12px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    padding: 15px 15px 15px 15px;
   }
 }
-/* line 111, ../app/scss/userBar.scss */
+/* line 136, ../app/scss/userBar.scss */
 .user-bar ul li a:hover {
   background-color: #2f3137;
   color: white;
 }
-/* line 114, ../app/scss/userBar.scss */
+/* line 139, ../app/scss/userBar.scss */
 .user-bar ul li a:hover .collection-image {
   background-color: #1f2125;
 }
+/* line 146, ../app/scss/userBar.scss */
+.user-bar ul li.new-collection-item a {
+  background-color: #3498DB;
+}
 
 /* line 1, ../app/scss/navbar.scss */
-userbar {
-  display: inline-block;
-  float: left;
-  width: 280px;
-  height: 50px;
+.navbar-samledb-not-logged-in {
+  z-index: 70000;
+  background-color: #3498DB;
 }
 
 /* line 1, ../app/scss/loading.scss */
 .loading-wrapper {
   position: fixed;
-  z-index: 4004;
+  z-index: 8000;
   left: 0;
   top: 0;
   width: 100%;
@@ -2657,23 +2940,25 @@ userbar {
 /* line 1, ../app/scss/feed.scss */
 .feed-item {
   padding: 14px;
+  margin-left: -14px;
+  margin-right: -14px;
   background-color: #2f3137;
   margin-bottom: 14px;
   border-radius: 4px;
   border: 1px solid #000;
 }
-/* line 7, ../app/scss/feed.scss */
+/* line 9, ../app/scss/feed.scss */
 .feed-item a {
   cursor: pointer;
 }
 
-/* line 12, ../app/scss/feed.scss */
+/* line 14, ../app/scss/feed.scss */
 .feed-item-header {
   padding-left: 46px;
   margin-bottom: 14px;
   position: relative;
 }
-/* line 16, ../app/scss/feed.scss */
+/* line 18, ../app/scss/feed.scss */
 .feed-item-header .profile-image {
   width: 34px;
   height: 34px;
@@ -2684,12 +2969,99 @@ userbar {
   background-color: #1f2125;
   border-radius: 10px;
 }
-/* line 26, ../app/scss/feed.scss */
+/* line 28, ../app/scss/feed.scss */
 .feed-item-header .title {
   font-size: 14px;
 }
 
-/* line 33, ../app/scss/feed.scss */
+/* line 35, ../app/scss/feed.scss */
 .feed-item-body .feed-photo img {
   max-width: 100%;
+}
+/* line 38, ../app/scss/feed.scss */
+.feed-item-body .feed-photo h2 {
+  font-size: 22px;
+  color: white;
+}
+@media only screen and (max-width: 800px) {
+  /* line 38, ../app/scss/feed.scss */
+  .feed-item-body .feed-photo h2 {
+    font-size: 16px;
+  }
+}
+/* line 45, ../app/scss/feed.scss */
+.feed-item-body .feed-photo h3 {
+  font-size: 14px;
+  color: #bdbdbd;
+  margin-top: -3px;
+  margin-bottom: 14px;
+}
+@media only screen and (max-width: 800px) {
+  /* line 45, ../app/scss/feed.scss */
+  .feed-item-body .feed-photo h3 {
+    font-size: 10px;
+  }
+}
+
+/* line 2, ../app/scss/front.scss */
+.front-container .bottom-image {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 300px;
+  text-align: center;
+  overflow: hidden;
+}
+/* line 10, ../app/scss/front.scss */
+.front-container .bottom-image img {
+  width: 100%;
+  max-width: 1100px;
+}
+@media only screen and (max-width: 800px) {
+  /* line 10, ../app/scss/front.scss */
+  .front-container .bottom-image img {
+    width: 150%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* line 2, ../app/scss/front.scss */
+  .front-container .bottom-image {
+    height: 190px;
+  }
+}
+
+/* line 23, ../app/scss/front.scss */
+.front {
+  max-width: 100%;
+  text-align: center;
+}
+/* line 26, ../app/scss/front.scss */
+.front .form-header {
+  font-weight: 900;
+  font-size: 60px;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+/* line 31, ../app/scss/front.scss */
+.front .form-description {
+  line-height: 22px;
+  padding: 0 14px 0 14px;
+}
+/* line 35, ../app/scss/front.scss */
+.front .front-become-member {
+  cursor: pointer;
+  margin-top: 9px;
+  margin-bottom: 8px;
+  color: white;
+  background-color: transparent;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 20px;
+  outline: none;
+  background-color: #196090;
+  border: 0;
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 20px;
+  margin-top: -30px;
 }

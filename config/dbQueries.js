@@ -2,10 +2,6 @@ var crypto = require('crypto');
 var _ = require('underscore');
 var bcrypt = require('bcrypt-nodejs');
 
-var publishers = require('./../data/publishers.json');
-var consoles = require('./../data/consoles.json');
-var games = require('./../data/games.json');
-
 module.exports = function (models, slug) {
 
 	
@@ -33,7 +29,9 @@ module.exports = function (models, slug) {
 			var newUser = new User({
 				username: username,
 				password: password,
-				nick: nick
+				nick: nick,
+				slug: slug(nick),
+				role: 'user'
 			});
 			newUser.save(function (err) {
 				if(!err) {
@@ -298,15 +296,11 @@ module.exports = function (models, slug) {
 			delete game._id;
 			delete game.collectionId;
 
-			console.log('leter etter spill ', id);
 			Game.findById(id, function (err, foundGame) {
 				if(err) {
-					console.log('error', err);
 				} else {
-					console.log('found game: ', foundGame);
 					_.extend(foundGame, game);
 
-					console.log('utvidet game: ', foundGame);
 
 
 					foundGame.save(function (err) {
@@ -354,6 +348,11 @@ module.exports = function (models, slug) {
 				}
 			})
 		},
+		setProfilePhotoAvatar: function (userId, avatarString, callback) {
+			User.findByIdAndUpdate(userId, { $set: { profileImageId: avatarString }}, {new: true}, function (err, user) {
+				callback(user.profileImageId);
+			});
+		},
 		removeImageFromUser: function (userId, imageId, callback) {
 			User.findById(userId, function (err, user) {
 				if(!err) {
@@ -388,7 +387,6 @@ module.exports = function (models, slug) {
 		},
 		addCollectionPhotoToCollection: function (collectionId, imageId, callback) {
 			Collection.findById(collectionId, function (err, collection) {
-				console.log('kom til samling', collectionId, collection);
 				collection.collectionImageId = imageId;
 
 				collection.save(function (err) {
@@ -405,7 +403,6 @@ module.exports = function (models, slug) {
 				function(err,results) {
 					if(err) {
 						callback([]);
-						console.log(err);
 					}
 					else {
 						callback(results);
@@ -421,7 +418,6 @@ module.exports = function (models, slug) {
 				function(err,results) {
 					if(err) {
 						callback([]);
-						console.log(err);
 					}
 					else {
 						callback(results);
@@ -436,7 +432,6 @@ module.exports = function (models, slug) {
 				function(err,results) {
 					if(err) {
 						callback([]);
-						console.log(err);
 					}
 					else {
 						callback(results);
@@ -505,33 +500,50 @@ module.exports = function (models, slug) {
 
 
 		addConsoles: function (callback) {
-
-			Console.collection.insert(consoles, function (err, docs) {
-				if(!err)
-					callback([]);
-				else
-					callback(docs);
+			var consoles = require('./../data/consoles.json');
+			Console.remove({}, function () {
+				Console.collection.insert(consoles, function (err, docs) {
+					if(!err)
+						callback(consoles);
+					else
+						callback([]);
+				});
+			});
+		},
+		addSettings: function (callback) {
+			var settings = require('./../data/settings.json');
+			Settings.remove({}, function () {
+				Settings.collection.insert(settings, function (err, docs) {
+					if(!err)
+						callback(settings);
+					else
+						callback([]);
+				});
 			});
 		},
 		addPublishers: function (callback) {
-
-			Publisher.collection.insert(publishers, function (err, docs) {
-				if(!err)
-					callback([]);
-				else
-					callback(docs);
+			var publishers = require('./../data/publishers.json');
+			Publisher.remove({}, function () {
+				Publisher.collection.insert(publishers, function (err, docs) {
+					if(!err)
+						callback(publishers);
+					else
+						callback([]);
+				});
 			});
+
 		},
 		addGames: function (callback) {
-
-			GameSearch.collection.insert(games, function (err, docs) {
-				if(!err)
-					callback([]);
-				else
-					callback(docs);
+			var games = require('./../data/games.json');
+			GameSearch.remove({}, function () {
+				GameSearch.collection.insert(games, function (err, docs) {
+					if(!err)
+						callback(docs);
+					else
+						callback([]);
+				});
 			});
 		}
-
 	}
 }
 

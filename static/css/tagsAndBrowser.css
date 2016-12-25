@@ -10,9 +10,9 @@ Error: Undefined variable: "$darkBackground".
 15:   background-color: $darkBackground;
 16:   color: $textDarkGrey;
 17:   font-size: 12px;
-18:   padding-bottom: 100px;
-19:   font-family: 'Montserrat', sans-serif;
-20: }
+18:   font-family: 'Open Sans', sans-serif;
+19: }
+20: 
 
 Backtrace:
 /Users/jorjacob/Repos/samlenett/static/app/scss/tagsAndBrowser.scss:15
@@ -70,4 +70,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$darkBackground\".\A         on line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/tagsAndBrowser.scss\A \A 10: * {\A 11:   box-sizing: border-box;\A 12: }\A 13: \A 14: body {\A 15:   background-color: $darkBackground;\A 16:   color: $textDarkGrey;\A 17:   font-size: 12px;\A 18:   padding-bottom: 100px;\A 19:   font-family: 'Montserrat', sans-serif;\A 20: }"; }
+  content: "Error: Undefined variable: \"$darkBackground\".\A         on line 15 of /Users/jorjacob/Repos/samlenett/static/app/scss/tagsAndBrowser.scss\A \A 10: * {\A 11:   box-sizing: border-box;\A 12: }\A 13: \A 14: body {\A 15:   background-color: $darkBackground;\A 16:   color: $textDarkGrey;\A 17:   font-size: 12px;\A 18:   font-family: 'Open Sans', sans-serif;\A 19: }\A 20: "; }

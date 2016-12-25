@@ -142,5 +142,20 @@ spilldb.component('game', {
                 console.log($scope.settings);
                 checkUser();
             });
+
+        if($rootScope.user) {
+            $scope.user;
+            getCollections();
+        }
+
+        $(document).on('keydown', function (e) {
+            $scope.$apply(function () {
+                if(e.which == 27) {
+                    if($scope.toggles.editView) {
+                        $scope.toggleEditGameView();
+                    }
+                }
+            });
+        });
     }
 });

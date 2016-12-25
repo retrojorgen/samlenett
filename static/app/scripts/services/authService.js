@@ -87,21 +87,33 @@ spilldb.factory('authService', function(store, $q, $http, $rootScope, $location)
             });
         };
 
-        var signup = function (username, password, login, callback) {
+        var signup = function (username, password, nick, callback) {
             $http.post("/api/signup", {username: username, password: password, nick: nick})
                 .then(function (data) {
                     if(data.status) {
                         store.set("jwt", data.data.token);
+                        jwt = data.data.token;
                         loggedInUser = data.data.user;
+                        $rootScope.user = getLoggedInUser();
+                        $rootScope.$broadcast("user logged in");
+                        $rootScope.$broadcast("user logged in from form");
+                        $location.path("/wizard/avatar");
+                        if(callback)
+                            callback(true);
                     } else {
                         loggedInUser = false;
+                        if(callback)
+                            callback(false);
                     }
+
                 });
         };
 
         var logout = function (callback) {
-            store.set('jwt', undefined);
+            store.remove('jwt');
+            $http.post("/logout");
             $rootScope.user = undefined;
+            loggedInUser = false;
             callback();
         };
 

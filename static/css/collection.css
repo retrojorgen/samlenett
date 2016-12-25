@@ -2,10 +2,10 @@
 Error: Undefined variable: "$phone".
         on line 7 of /Users/jorjacob/Repos/samlenett/static/app/scss/collection.scss
 
-2:   margin: -14px -14px 14px -14px;
+2:   margin: 0 -14px 14px -14px;
 3:   position: relative;
 4:   overflow: hidden;
-5:   padding: 14px;
+5:   padding: 50px 14px 14px 14px;
 6:   display: flex;
 7:   @media #{$phone} {
 8:     display: block;
@@ -76,4 +76,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$phone\".\A         on line 7 of /Users/jorjacob/Repos/samlenett/static/app/scss/collection.scss\A \A 2:   margin: -14px -14px 14px -14px;\A 3:   position: relative;\A 4:   overflow: hidden;\A 5:   padding: 14px;\A 6:   display: flex;\A 7:   @media #{$phone} {\A 8:     display: block;\A 9:     text-align: center;\A 10:   }\A 11: \A 12:   .control-buttons {"; }
+  content: "Error: Undefined variable: \"$phone\".\A         on line 7 of /Users/jorjacob/Repos/samlenett/static/app/scss/collection.scss\A \A 2:   margin: 0 -14px 14px -14px;\A 3:   position: relative;\A 4:   overflow: hidden;\A 5:   padding: 50px 14px 14px 14px;\A 6:   display: flex;\A 7:   @media #{$phone} {\A 8:     display: block;\A 9:     text-align: center;\A 10:   }\A 11: \A 12:   .control-buttons {"; }
