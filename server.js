@@ -4,7 +4,7 @@
     , flash             = require('connect-flash')
     , logger            = require('morgan')
       config            = require('./config/database')
-    , port              = process.env.PORT || 4444
+    , port              = process.env.PORT || 3000
     , app               = express()
     , mongoose          = require('mongoose')
     , slug              = require('slug')
@@ -52,7 +52,7 @@ app.use('/static', express.static(__dirname + '/static'));
 require('./app/routes.js')(app, passport, dbQueries, config);
 
 app.listen(port, function () {
-  console.log('Listening on http://localhost:' + (process.env.PORT || 4444))
+  console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
 });
 
 
